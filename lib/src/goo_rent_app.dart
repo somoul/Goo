@@ -21,7 +21,7 @@ class GooRentApp extends StatelessWidget {
             title: 'Goo Rent',
             initialRoute: Routes.home,
             getPages: AppPages.pages,
-            // initialBinding: AuthBinding(),
+            // initialBinding: AuthBinding()
           );
         });
   }
