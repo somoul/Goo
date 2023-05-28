@@ -5,45 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/appconstant.dart';
 import 'package:goo_rent/src/home/presentation/provider/animation_background_banner_provider/animation_background_banner_provider.dart';
+import 'package:goo_rent/src/home/presentation/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_card_rent_widget.dart';
-import 'package:goo_rent/src/home/presentation/widget/type_of_rent_provider/type_of_index_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../widget/buttom_sheen_for_search.dart';
 import 'location_rent_screen.dart';
-
-List<TypeOfRent> listTypeOfRent = [
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,19 +22,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late PageController _pageController;
+  // late PageController _pageController;
   late Animation<double> animation;
+  final homeController = Get.put(HomeController());
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0);
-    context.read<AnimationBackgroundBannerProvider>().callStartAnimation();
-    // _pageController.animateToPage(
-    //   0,
-    //   duration: Duration(milliseconds: 350),
-    //   curve: Curves.easeIn,
-    // );
+    homeController.pageController = PageController(initialPage: 0);
+    homeController.callStartAnimation();
+    // context.read<AnimationBackgroundBannerProvider>().callStartAnimation();
 
     //
     //   _pageController.animateToPage(
@@ -83,28 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  final List<CategoriesItem> listIcon = [
-    const CategoriesItem(
-        iconName: 'បន្ទប់ជួល', iconSrc: 'assets/icons/Mask group.png'),
-    const CategoriesItem(
-        iconName: 'ផ្ទះជួល', iconSrc: 'assets/icons/homerent.png'),
-    const CategoriesItem(
-        iconName: 'ផ្ទះអាជីវកម្ម', iconSrc: 'assets/icons/168.png'),
-    const CategoriesItem(
-        iconName: 'ឃ្លាំង', iconSrc: 'assets/icons/Mask group (1).png'),
-    const CategoriesItem(
-        iconName: 'ខុនដូរ', iconSrc: 'assets/icons/Mask group (2).png'),
-    const CategoriesItem(
-        iconName: 'ដឺជួល', iconSrc: 'assets/icons/facebook.png'),
-    const CategoriesItem(
-        iconName: 'អាផាតមិន', iconSrc: 'assets/icons/Group 34855.png'),
-    const CategoriesItem(
-        iconName: 'ការិយាល័យ', iconSrc: 'assets/icons/facebook.png'),
-  ];
-
   _iniAnimated({required int value}) async {
     Timer(const Duration(seconds: 1), () {
-      _pageController.animateToPage(
+      homeController.pageController.animateToPage(
         value,
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeIn,
@@ -114,8 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final lengthCalculateFromListIcon = listIcon.length / 4;
-
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -170,281 +115,219 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(
             child: Stack(
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 220,
-                  child: Consumer<AnimationBackgroundBannerProvider>(
-                      builder: (context, i, widget) {
-                        _iniAnimated(value: i.index);
-
+                Container(
+                    color: Colors.amber,
+                    width: MediaQuery.of(context).size.width,
+                    height: 220,
+                    child: GetBuilder<HomeController>(
+                      builder: (controller) {
                         return PageView.builder(
-                          controller: _pageController,
+                          controller: homeController.pageController,
+                          itemCount: homeController.listIcon.length,
                           itemBuilder: (context, index) {
-                            return widget!;
+                            // controller.pageController =
+                            //     PageController(initialPage: index);
+                            _iniAnimated(value: index);
+                            return Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      homeController.listIcon[index].iconSrc),
+                                ),
+                              ),
+                            );
                           },
-                          itemCount: 6,
                         );
                       },
-                      child: Image.asset(
-                        'assets/icons/Background.png',
-                        fit: BoxFit.cover,
-                      )),
-                  // child: PageView.builder(
-                  // //  controller: _pageController,
-                  //   itemBuilder: (context, index) {
-                  //     return  Image.asset(
-                  //       'assets/icons/Background.png',
-                  //       fit: BoxFit.cover,
-                  //     );
-                  //   },
-                  //   itemCount: 6,
-                  // ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppConstant.padding,
-                    bottom: AppConstant.padding,
-                  ).copyWith(top: 130),
-                  child: Column(
-                    children: [
-                      /// Categories Item
-                      SizedBox(
-                        height: 140.r,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppConstant.padding),
-                          child: Card(
-                            elevation: 0.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                    )),
+                Column(
+                  children: [
+                    const SizedBox(height: 190),
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      margin: const EdgeInsets.symmetric(horizontal: 18),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.1),
+                            blurRadius: 40, // soften the shadow
+                            spreadRadius: 0.2, //extend the shadow
+                            offset: const Offset(
+                              5.0, // Move to right 5  horizontally
+                              5.0, // Move to bottom 5 Vertically
                             ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  "សេវាកម្ម",
-                                  style: TextStyle(color: Color(0xFF21A6F8)),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        PageView(
-                                          onPageChanged: context
-                                              .read<TypeListIndexProvider>()
-                                              .changeIndex,
-                                          scrollDirection: Axis.horizontal,
-                                          children: [
-                                            for (int i = 0;
-                                                i < lengthCalculateFromListIcon;
-                                                i++)
-                                              _buildIcon(value: i * 4)
-                                          ],
-                                        ),
-                                        Positioned(
-                                            bottom: 0,
-                                            child:
-                                                Consumer<TypeListIndexProvider>(
-                                                    builder: (context, value,
-                                                        child) {
-                                              return Row(
-                                                children: List.generate(
-                                                    lengthCalculateFromListIcon
-                                                        .toInt(), (index) {
-                                                  return AnimatedContainer(
-                                                    margin: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 1),
-                                                    duration: const Duration(
-                                                        milliseconds: 250),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50),
-                                                      color: const Color(
-                                                          0xFF21A6F8),
-                                                    ),
-                                                    width: value.index == index
-                                                        ? 15
-                                                        : 5,
-                                                    height: 3,
-                                                  );
-                                                }),
-                                              );
-                                            }))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          )
+                        ],
+                        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          showBottomSheetFunction(context: context);
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset("assets/icons/search.png", height: 20),
+                            const SizedBox(
+                              width: 10,
                             ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppConstant.padding,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 60,
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        margin: const EdgeInsets.symmetric(horizontal: 18),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.1),
-                              blurRadius: 40, // soften the shadow
-                              spreadRadius: 0.2, //extend the shadow
-                              offset: const Offset(
-                                5.0, // Move to right 5  horizontally
-                                5.0, // Move to bottom 5 Vertically
-                              ),
-                            )
+                            Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                style: GoogleFonts.kantumruy(
+                                    color: Colors.grey, fontSize: 14)),
+                            Expanded(
+                                child: Text("ស្វែងរក",
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.kantumruy(
+                                        color: const Color(0xFF21A6F8))))
                           ],
-                          border:
-                              Border.all(color: Colors.grey.withOpacity(0.3)),
-                          borderRadius: BorderRadius.circular(50),
                         ),
-                        child: InkWell(
-                          onTap: () {
-                            showBottomSheetFunction(context: context);
-                          },
-                          child: Row(
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    /// Module
+                    TextButton(onPressed: () {}, child: const Text('សេវាកម្ម')),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 70,
+                      child: ListView.builder(
+                        itemCount: homeController.listIcon.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
                             children: [
-                              Image.asset("assets/icons/search.png",
-                                  height: 20),
-                              const SizedBox(
-                                width: 10,
+                              Image.asset(
+                                homeController.listIcon[index].iconSrc,
+                                height: 40,
                               ),
-                              Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                              const Spacer(),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  homeController.listIcon[index].iconName,
                                   style: GoogleFonts.kantumruy(
-                                      color: Colors.grey, fontSize: 14)),
-                              Expanded(
-                                  child: Text("ស្វែងរក",
-                                      textAlign: TextAlign.end,
-                                      style: GoogleFonts.kantumruy(
-                                          color: const Color(0xFF21A6F8))))
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: AppConstant.padding,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppConstant.padding),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ពេញនិយម",
+                    ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ពេញនិយម",
+                            style: GoogleFonts.kantumruy(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(
+                                  () => const CustomAfterLoadingSearchWidget());
+                            },
+                            child: Text("មើលទាំងអស់",
                                 style: GoogleFonts.kantumruy(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            InkWell(
-                              onTap: () {
-                                // GoRouter.of(context).push(
-                                //     CustomAfterLoadingSearchWidget.routeName,
-                                //     extra: "AA");
-                              },
-                              child: Text("មើលទាំងអស់",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 12,
-                                      color: AppConstant.kPrimaryColor)),
-                            )
-                          ],
-                        ),
+                                    fontSize: 12,
+                                    color: AppConstant.kPrimaryColor)),
+                          )
+                        ],
                       ),
-                      const SizedBox(
-                        height: AppConstant.padding,
-                      ),
+                    ),
+                    const SizedBox(
+                      height: AppConstant.padding,
+                    ),
 
-                      /// Banner
-                      const CustomBannerListWidget(),
+                    /// Banner
+                    const CustomBannerListWidget(),
 
-                      /// Location
-                      const SizedBox(
-                        height: AppConstant.padding,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppConstant.padding),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("ការណែនាំ",
+                    /// Location
+                    const SizedBox(
+                      height: AppConstant.padding,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstant.padding),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("ការណែនាំ",
+                              style: GoogleFonts.kantumruy(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          InkWell(
+                            onTap: () {
+                              Get.to(
+                                  () => const CustomAfterLoadingSearchWidget());
+                              // GoRouter.of(context).push("/product_screen");
+                              // GoRouter.of(context).push(
+                              //     CustomAfterLoadingSearchWidget.routeName,
+                              //     extra: "AA");
+                            },
+                            child: Text("មើលទាំងអស់",
                                 style: GoogleFonts.kantumruy(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            InkWell(
-                              onTap: () {
-                                // GoRouter.of(context).push("/product_screen");
-                                // GoRouter.of(context).push(
-                                //     CustomAfterLoadingSearchWidget.routeName,
-                                //     extra: "AA");
-                              },
-                              child: Text("មើលទាំងអស់",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 12,
-                                      color: AppConstant.kPrimaryColor)),
-                            )
-                          ],
-                        ),
+                                    fontSize: 12,
+                                    color: AppConstant.kPrimaryColor)),
+                          )
+                        ],
                       ),
-                      ...listTypeOfRent.map((e) => CustomCardRentWidget(
-                            imageSrc: e.imageSrc,
-                            typeName: e.typeName,
-                            location: e.location,
-                            sizeRent: e.sizeRent,
-                            horizontal: AppConstant.padding,
-                            code: e.code,
-                            priceOfRent: e.priceOfRent,
-                            iconOfCard: e.iconCard,
-                          )),
-                      const SizedBox(
-                        height: AppConstant.padding,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0)
-                            .copyWith(bottom: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("តំបន់មានការជួលច្រើន",
+                    ),
+                    ...listTypeOfRent.map((e) => CustomCardRentWidget(
+                          imageSrc: e.imageSrc,
+                          typeName: e.typeName,
+                          location: e.location,
+                          sizeRent: e.sizeRent,
+                          horizontal: AppConstant.padding,
+                          code: e.code,
+                          priceOfRent: e.priceOfRent,
+                          iconOfCard: e.iconCard,
+                        )),
+                    const SizedBox(
+                      height: AppConstant.padding,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0)
+                          .copyWith(bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("តំបន់មានការជួលច្រើន",
+                              style: GoogleFonts.kantumruy(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          InkWell(
+                            onTap: () {
+                              Get.to(() =>
+                                  const LocationRentScreen(titleAppBar: ''));
+                            },
+                            child: Text("មើលទាំងអស់",
                                 style: GoogleFonts.kantumruy(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            InkWell(
-                              onTap: () {
-                                // GoRouter.of(context).push("/banner_detail");
-                                // GoRouter.of(context).push(
-                                //     LocationRentScreen.routeName,
-                                //     extra: "តំបន់អចលនទ្រព្យ");
-                              },
-                              child: Text("មើលទាំងអស់",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 12,
-                                      color: AppConstant.kPrimaryColor)),
-                            ),
-                          ],
-                        ),
+                                    fontSize: 12,
+                                    color: AppConstant.kPrimaryColor)),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppConstant.padding),
-                        child: getCardLocationScreen(
-                            context: context,
-                            titleAppBar: 'បន្ទប់ជួល',
-                            e: const LocationItem(
-                                imgSrc: 'assets/icons/roms.png',
-                                areaName: 'ខណ្ឌសែន សុខ',
-                                quantityLocationRoomForRent:
-                                    'មានបន្ទប់ជួល ១២ កន្លែង')),
-                      )
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstant.padding),
+                      child: getCardLocationScreen(
+                          context: context,
+                          titleAppBar: 'បន្ទប់ជួល',
+                          e: const LocationItem(
+                              imgSrc: 'assets/icons/roms.png',
+                              areaName: 'ខណ្ឌសែន សុខ',
+                              quantityLocationRoomForRent:
+                                  'មានបន្ទប់ជួល ១២ កន្លែង')),
+                    )
+                  ],
                 )
               ],
             ),
@@ -510,7 +393,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          listIcon[index].iconSrc,
+                          homeController.listIcon[index].iconSrc,
                           width: 50,
                           height: 50,
                         ),
@@ -518,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 5.r,
                         ),
                         Text(
-                          listIcon[index + value].iconName,
+                          homeController.listIcon[index + value].iconName,
                           style: GoogleFonts.kantumruy(),
                         )
                       ],
@@ -528,45 +411,6 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 }
 
-// listIcon.map((e) {
-//   var index = listIcon.indexOf(e);
-//   return InkWell(
-//     highlightColor: Colors.transparent,
-//     splashColor: Colors.transparent,
-//     onTap: () {
-//       // String valueString = '';
-//       // switch (index) {
-//       //   case 1:
-//       //     valueString = 'ផ្ទះជួល';
-//       //
-//       //     break;
-//       //   case 2:
-//       //     valueString = 'អាផាតមិនជួល';
-//       //
-//       //     break;
-//       //   default:
-//       //     valueString = 'បន្ទប់ជួល';
-//       // }
-//       // GoRouter.of(context).push(
-//       //     '/location_rent_screen',
-//       //     extra: valueString);
-//     },
-//     child: Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         SvgPicture.asset(
-//           e.iconSrc,
-//           width: 50,
-//           height: 50,
-//         ),
-//         SizedBox(
-//           height: 5.r,
-//         ),
-//         Text(e.iconName)
-//       ],
-//     ),
-//   );
-// }).toList()
 class TypeOfRent {
   final int code;
   final String imageSrc;
@@ -598,6 +442,36 @@ class IconOfCard {
       required this.park,
       required this.stair});
 }
+
+List<TypeOfRent> listTypeOfRent = [
+  const TypeOfRent(
+      code: 983883,
+      imageSrc: 'assets/icons/Rectangle11.png',
+      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
+      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
+      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
+      sizeRent: ' ៦០ដុល្លា ១ខែ',
+      iconCard:
+          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
+  const TypeOfRent(
+      code: 983883,
+      imageSrc: 'assets/icons/Rectangle11.png',
+      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
+      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
+      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
+      sizeRent: ' ៦០ដុល្លា ១ខែ',
+      iconCard:
+          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
+  const TypeOfRent(
+      code: 983883,
+      imageSrc: 'assets/icons/Rectangle11.png',
+      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
+      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
+      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
+      sizeRent: ' ៦០ដុល្លា ១ខែ',
+      iconCard:
+          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
+];
 
 class CategoriesItem {
   final String iconSrc;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/src/goo_rent_app.dart';
-import 'package:goo_rent/src/home/presentation/provider/animation_background_banner_provider/animation_background_banner_provider.dart';
 import 'package:goo_rent/src/home/presentation/provider/provider_arrow_details_screen.dart';
 import 'package:goo_rent/src/home/presentation/widget/background_anitmation_pageview_provider/background_animation_pageview_provider.dart';
 import 'package:goo_rent/src/home/presentation/widget/banner_list_index_provider/banner_list_index_provider.dart';
@@ -27,9 +26,9 @@ main() async {
       ChangeNotifierProvider(
         create: (_) => OTPCountdownProvider(),
       ),
-      ChangeNotifierProvider(
-        create: (_) => AnimationBackgroundBannerProvider(),
-      ),
+      // ChangeNotifierProvider(
+      //   create: (_) => AnimationBackgroundBannerProvider(),
+      // ),
     ],
     child: const GooRentApp(),
   ));

@@ -49,11 +49,6 @@ class _CustomAfterLoadingSearchWidgetState
                       "assets/icons/category.svg",
                       color: isCheckAction == true ? Colors.blue : Colors.black,
                     ),
-                    // icon: Icon(
-                    //   Icons.add,
-                    //   color:
-                    //       isCheckAction == true ? Colors.blue : Colors.black,
-                    // )
                   ),
                   IconButton(
                     onPressed: () {
@@ -66,11 +61,6 @@ class _CustomAfterLoadingSearchWidgetState
                       color:
                           isCheckAction == false ? Colors.blue : Colors.black,
                     ),
-                    // icon: Icon(
-                    //   Icons.local_activity,
-                    //   color:
-                    //       isCheckAction == false ? Colors.blue : Colors.black,
-                    // )
                   ),
                 ],
               ),
@@ -82,7 +72,6 @@ class _CustomAfterLoadingSearchWidgetState
                 fontSize: 16,
                 color: Colors.black,
                 fontWeight: FontWeight.bold)),
-        // title: Text(titleAppBar),
       ),
       body: DefaultTabController(
           length: 6,
