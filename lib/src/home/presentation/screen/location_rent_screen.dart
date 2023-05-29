@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/appconstant.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
 
 class LocationRentScreen extends StatelessWidget {
   const LocationRentScreen({Key? key, required this.titleAppBar})

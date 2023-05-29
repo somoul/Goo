@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goo_rent/utils/validate.dart';
+import 'package:goo_rent/cores/utils/validate.dart';
 
 class CreatePasswordScreen extends StatelessWidget {
   const CreatePasswordScreen({Key? key}) : super(key: key);

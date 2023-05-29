@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:goo_rent/cores/constant/appconstant.dart';
-import 'package:goo_rent/src/home/presentation/provider/animation_background_banner_provider/animation_background_banner_provider.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/src/home/presentation/provider/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_card_rent_widget.dart';
+import 'package:goo_rent/src/home/presentation/widget/custom_service_block.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
@@ -175,69 +177,38 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 10,
                             ),
                             Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
-                                style: GoogleFonts.kantumruy(
-                                    color: Colors.grey, fontSize: 14)),
+                                style: AppText.bodySmall),
                             Expanded(
-                                child: Text("ស្វែងរក",
-                                    textAlign: TextAlign.end,
-                                    style: GoogleFonts.kantumruy(
-                                        color: const Color(0xFF21A6F8))))
+                              child: Text("ស្វែងរក",
+                                  textAlign: TextAlign.end,
+                                  style: AppText.bodyMedium!.copyWith(
+                                      color: AppConstant.kPrimaryColor)),
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
 
-                    /// Module
-                    TextButton(onPressed: () {}, child: const Text('សេវាកម្ម')),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 70,
-                      child: ListView.builder(
-                        itemCount: homeController.listIcon.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                homeController.listIcon[index].iconSrc,
-                                height: 40,
-                              ),
-                              const Spacer(),
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  homeController.listIcon[index].iconName,
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                    /// Service
+                    CustomServiceBlock(
+                      categoryList: homeController.listIcon,
                     ),
+
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "ពេញនិយម",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
+                          Text("ពេញនិយម", style: AppText.titleMedium),
                           InkWell(
                             onTap: () {
                               Get.to(
                                   () => const CustomAfterLoadingSearchWidget());
                             },
                             child: Text("មើលទាំងអស់",
-                                style: GoogleFonts.kantumruy(
-                                    fontSize: 12,
+                                style: AppText.titleSmall!.copyWith(
                                     color: AppConstant.kPrimaryColor)),
                           )
                         ],
@@ -251,18 +222,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     const CustomBannerListWidget(),
 
                     /// Location
-                    const SizedBox(
-                      height: AppConstant.padding,
-                    ),
+                    const SizedBox(height: AppConstant.padding),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: AppConstant.padding),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("ការណែនាំ",
-                              style: GoogleFonts.kantumruy(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text("ការណែនាំ", style: AppText.titleSmall),
                           InkWell(
                             onTap: () {
                               Get.to(
@@ -273,8 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               //     extra: "AA");
                             },
                             child: Text("មើលទាំងអស់",
-                                style: GoogleFonts.kantumruy(
-                                    fontSize: 12,
+                                style: AppText.titleSmall!.copyWith(
                                     color: AppConstant.kPrimaryColor)),
                           )
                         ],

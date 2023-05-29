@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
-
-import '../src/sign_in/presentation/widget/country_code_picker/countries.dart';
-import '../src/sign_in/presentation/widget/country_code_picker/country.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
 
 class CountryPickerUtils {
   static Country getCountryByIso3Code(String iso3Code) {

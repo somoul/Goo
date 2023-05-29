@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goo_rent/cores/constant/appconstant.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/profile/presentation/widget/custom_toggle_button.dart';
 import 'package:goo_rent/src/profile/presentation/widget/show_buttom_sheet_share.dart';
 import 'package:google_fonts/google_fonts.dart';

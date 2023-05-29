@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/utils/utils.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'countries.dart';
@@ -7,9 +7,9 @@ import 'country.dart';
 
 class BuildCountryPicker extends StatelessWidget {
   const BuildCountryPicker(
-      {Key? key, required this.function, required this.country})
+      {Key? key, required this.onSelected, required this.country})
       : super(key: key);
-  final Function(Country) function;
+  final Function(Country) onSelected;
   final Country country;
 
   @override
@@ -17,7 +17,7 @@ class BuildCountryPicker extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: Container(
         width: 115,
-        padding: const EdgeInsets.symmetric(horizontal: 3),
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.grey)),
@@ -25,15 +25,12 @@ class BuildCountryPicker extends StatelessWidget {
           value: country,
           elevation: 16,
           isExpanded: true,
-          style: GoogleFonts.kantumruy(color: Colors.deepPurple),
-
-          underline: Container(
-            height: 2,
-            color: Colors.deepPurpleAccent,
-          ),
-          onChanged: (Country? countryCode) {
-            function(countryCode!);
-          },
+          style: AppText.titleSmall,
+          // underline: Container(
+          //   // height: 2,
+          //   color: Colors.deepPurpleAccent,
+          // ),
+          onChanged: (Country? countryCode) => onSelected(countryCode!),
           items: countryList.map<DropdownMenuItem<Country>>((Country value) {
             return DropdownMenuItem<Country>(
               value: value,
@@ -55,7 +52,7 @@ Widget _buildDefaultMenuItem(Country country) {
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        CountryPickerUtils.getDefaultFlagImage(country),
+        // CountryPickerUtils.getDefaultFlagImage(country),
         const SizedBox(
           width: 8.0,
         ),

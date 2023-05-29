@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:goo_rent/cores/constant/appconstant.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ViewLocationScreen extends StatelessWidget {

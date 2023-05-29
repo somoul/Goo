@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:goo_rent/cores/constant/appconstant.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/presentation/screen/home_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/rented_room.dart';
 import 'package:google_fonts/google_fonts.dart';

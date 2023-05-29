@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goo_rent/src/sign_in/presentation/blog/countdown_otp_provider/countdown_otp_provider.dart';
+import 'package:goo_rent/src/authentication/country_code/countdown_otp_provider.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
