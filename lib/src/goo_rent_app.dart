@@ -21,7 +21,7 @@ class GooRentApp extends StatelessWidget {
             theme: CustomTheme.lightTheme,
             title: 'Goo Rent',
             navigatorKey: ContextProvider.navigatorKey,
-            initialRoute: Routes.home,
+            initialRoute: Routes.authLanding,
             getPages: AppPages.pages,
             // initialBinding: AuthBinding()
           );

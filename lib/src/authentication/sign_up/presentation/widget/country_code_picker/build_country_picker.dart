@@ -1,45 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/cores/utils/utils.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'countries.dart';
 import 'country.dart';
 
 class BuildCountryPicker extends StatelessWidget {
-  const BuildCountryPicker(
-      {Key? key, required this.onSelected, required this.country})
-      : super(key: key);
+  const BuildCountryPicker({
+    Key? key,
+    required this.onSelected,
+    required this.initCountry,
+  }) : super(key: key);
   final Function(Country) onSelected;
-  final Country country;
+  final Country initCountry;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: Container(
         width: 115,
-        padding: const EdgeInsets.all(3),
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 2),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.grey)),
         child: DropdownButton<Country>(
-          value: country,
-          elevation: 16,
+          icon: const Icon(Icons.arrow_drop_down_rounded),
+          value: initCountry,
+          // elevation: 16,
           isExpanded: true,
-          style: AppText.titleSmall,
+          style: AppText.bodyMedium,
           // underline: Container(
           //   // height: 2,
           //   color: Colors.deepPurpleAccent,
           // ),
-          onChanged: (Country? countryCode) => onSelected(countryCode!),
+          onChanged: (Country? countryCode) {
+            onSelected(countryCode!);
+          },
           items: countryList.map<DropdownMenuItem<Country>>((Country value) {
             return DropdownMenuItem<Country>(
               value: value,
               child: _buildDefaultMenuItem(value),
             );
           }).toList(),
-          // items: countryList.map((e){
-          //   return DropdownMenuItem<Country>(child: Text("${e}"));
-          // }).toList(),
         ),
       ),
     );
@@ -52,7 +56,7 @@ Widget _buildDefaultMenuItem(Country country) {
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        // CountryPickerUtils.getDefaultFlagImage(country),
+        CountryPickerUtils.getDefaultFlagImage(country),
         const SizedBox(
           width: 8.0,
         ),

@@ -14,8 +14,8 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var countryCode = countryList[30];
     final signinCon = Get.put(SignInController());
+    signinCon.countryCode.value = countryList[35];
 
     return GestureDetector(
       onTap: () => KeyboardHeper.hideKeyborad(),
@@ -50,9 +50,14 @@ class SignInScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          BuildCountryPicker(
-                            onSelected: (val) {},
-                            country: countryCode,
+                          StatefulBuilder(
+                            builder: (context, setState) => BuildCountryPicker(
+                              onSelected: (val) {
+                                signinCon.countryCode.value = val;
+                                setState(() {});
+                              },
+                              initCountry: signinCon.countryCode.value,
+                            ),
                           ),
                           const SizedBox(width: 10),
                           Expanded(
@@ -61,12 +66,16 @@ class SignInScreen extends StatelessWidget {
                               maxLength: 15,
                               cursorHeight: 25,
                               textAlignVertical: TextAlignVertical.center,
+                              style: AppText.bodyMedium!
+                                  .copyWith(letterSpacing: 1),
                               textAlign: TextAlign.left,
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
+                                hintStyle: AppText.bodyMedium!.copyWith(
+                                    color: Colors.grey, letterSpacing: 1),
                                 counterText: "",
                                 contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 12),
+                                    horizontal: 15, vertical: 10),
                                 hintText: "XXX-XXX-XXX",
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
@@ -97,10 +106,13 @@ class SignInScreen extends StatelessWidget {
                           cursorHeight: 25,
                           enableSuggestions: false,
                           autocorrect: false,
+                          style: AppText.bodyMedium!.copyWith(letterSpacing: 1),
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: signinCon.isShowPass.value,
                           // obscuringCharacter: '*',
                           decoration: InputDecoration(
+                            hintStyle: AppText.bodyMedium!
+                                .copyWith(color: Colors.grey, letterSpacing: 1),
                             suffixIcon: IconButton(
                               icon: Icon(signinCon.isShowPass.value
                                   ? Icons.visibility_off
@@ -110,8 +122,6 @@ class SignInScreen extends StatelessWidget {
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 10),
-                            hintStyle: AppText.bodyMedium!
-                                .copyWith(color: Colors.grey),
                             hintText: "Please create password",
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),

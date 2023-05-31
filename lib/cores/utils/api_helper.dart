@@ -35,38 +35,34 @@ class ApiHelper {
         barrierDismissible: false,
         builder: (_) => WillPopScope(
           onWillPop: () async => false,
-          // child:
-          //  BackdropFilter(
+          // child: BackdropFilter(
           // filter: ImageFilter.blur(
-          //   sigmaX: 5,
-          //   sigmaY: 200,
+          //   sigmaX: 2.5,
+          //   sigmaY: 2.5,
           // ),
-          child: AlertDialog(
-            backgroundColor: Colors.transparent,
-            insetPadding: EdgeInsets.zero,
-            content: Container(
+          child: Center(
+            child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 2,
-                      color: Colors.grey[400]!,
-                      offset: const Offset(2, 2),
-                    )
+                        color: Colors.grey[300]!,
+                        spreadRadius: 1,
+                        blurRadius: 15)
                   ]),
               padding: const EdgeInsets.all(30),
               child: const SizedBox(
-                width: 50,
-                height: 50,
+                width: 45,
+                height: 45,
                 child: CircularProgressIndicator(
                   color: AppConstant.kSecondaryColor,
                 ),
               ),
             ),
           ),
+          // ),
         ),
-        // ),
       );
     }
   }
@@ -78,12 +74,14 @@ class ApiHelper {
     }
   }
 
-  Future<ResponseModel> $request(String url,
-      {String method = "get",
-      dynamic body,
-      Map<String, String>? headers,
-      Map<String, dynamic>? query,
-      isLoading = false}) async {
+  Future<ResponseModel> $request(
+    String url, {
+    String method = "get",
+    dynamic body,
+    Map<String, String>? headers,
+    Map<String, dynamic>? query,
+    isLoading = false,
+  }) async {
     try {
       _showLoading(isLoading);
       final response = await _client.request(

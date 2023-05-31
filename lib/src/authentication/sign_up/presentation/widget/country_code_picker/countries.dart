@@ -1,1531 +1,1776 @@
+// Map<String, dynamic> countryPickerList = {
+//   "AF": {"name": "Afghanistan", "dial": "93"},
+//   "AX": {"name": "Aland Islands", "dial": "358"},
+//   "AL": {"name": "Albania", "dial": "355"},
+//   "DZ": {"name": "Algeria", "dial": "213"},
+//   "AS": {"name": "AmericanSamoa", "dial": "1684"},
+//   "AD": {"name": "Andorra", "dial": "376"},
+//   "AO": {"name": "Angola", "dial": "244"},
+//   "AI": {"name": "Anguilla", "dial": "1264"},
+//   "AQ": {"name": "Antarctica", "dial": "672"},
+//   "AG": {"name": "Antigua and Barbuda", "dial": "1268"},
+//   "AR": {"name": "Argentina", "dial": "54"},
+//   "AM": {"name": "Armenia", "dial": "374"},
+//   "AW": {"name": "Aruba", "dial": "297"},
+//   "AU": {"name": "Australia", "dial": "61"},
+//   "AT": {"name": "Austria", "dial": "43"},
+//   "AZ": {"name": "Azerbaijan", "dial": "994"},
+//   "BS": {"name": "Bahamas", "dial": "1242"},
+//   "BH": {"name": "Bahrain", "dial": "973"},
+//   "BD": {"name": "Bangladesh", "dial": "880"},
+//   "BB": {"name": "Barbados", "dial": "1246"},
+//   "BY": {"name": "Belarus", "dial": "375"},
+//   "BE": {"name": "Belgium", "dial": "32"},
+//   "BZ": {"name": "Belize", "dial": "501"},
+//   "BJ": {"name": "Benin", "dial": "229"},
+//   "BM": {"name": "Bermuda", "dial": "1441"},
+//   "BT": {"name": "Bhutan", "dial": "975"},
+//   "BO": {"name": "Bolivia, Plurinational State of", "dial": "591"},
+//   "BA": {"name": "Bosnia and Herzegovina", "dial": "387"},
+//   "BW": {"name": "Botswana", "dial": "267"},
+//   "BR": {"name": "Brazil", "dial": "55"},
+//   "IO": {"name": "British Indian Ocean Territory", "dial": "246"},
+//   "BN": {"name": "Brunei Darussalam", "dial": "673"},
+//   "BG": {"name": "Bulgaria", "dial": "359"},
+//   "BF": {"name": "Burkina Faso", "dial": "226"},
+//   "BI": {"name": "Burundi", "dial": "257"},
+//   "KH": {"name": "Cambodia", "dial": "855"},
+//   "CM": {"name": "Cameroon", "dial": "237"},
+//   "CA": {"name": "Canada", "dial": "1"},
+//   "CV": {"name": "Cape Verde", "dial": "238"},
+//   "KY": {"name": "Cayman Islands", "dial": " 345"},
+//   "CF": {"name": "Central African Republic", "dial": "236"},
+//   "TD": {"name": "Chad", "dial": "235"},
+//   "CL": {"name": "Chile", "dial": "56"},
+//   "CN": {"name": "China", "dial": "86"},
+//   "CX": {"name": "Christmas Island", "dial": "61"},
+//   "CC": {"name": "Cocos (Keeling) Islands", "dial": "61"},
+//   "CO": {"name": "Colombia", "dial": "57"},
+//   "KM": {"name": "Comoros", "dial": "269"},
+//   "CG": {"name": "Congo", "dial": "242"},
+//   "CD": {"name": "Congo, The Democratic Republic of the Congo", "dial": "243"},
+//   "CK": {"name": "Cook Islands", "dial": "682"},
+//   "CR": {"name": "Costa Rica", "dial": "506"},
+//   "CI": {"name": "Cote d'Ivoire", "dial": "225"},
+//   "HR": {"name": "Croatia", "dial": "385"},
+//   "CU": {"name": "Cuba", "dial": "53"},
+//   "CY": {"name": "Cyprus", "dial": "357"},
+//   "CZ": {"name": "Czech Republic", "dial": "420"},
+//   "DK": {"name": "Denmark", "dial": "45"},
+//   "DJ": {"name": "Djibouti", "dial": "253"},
+//   "DM": {"name": "Dominica", "dial": "1767"},
+//   "DO": {"name": "Dominican Republic", "dial": "1849"},
+//   "EC": {"name": "Ecuador", "dial": "593"},
+//   "EG": {"name": "Egypt", "dial": "20"},
+//   "SV": {"name": "El Salvador", "dial": "503"},
+//   "GQ": {"name": "Equatorial Guinea", "dial": "240"},
+//   "ER": {"name": "Eritrea", "dial": "291"},
+//   "EE": {"name": "Estonia", "dial": "372"},
+//   "ET": {"name": "Ethiopia", "dial": "251"},
+//   "FK": {"name": "Falkland Islands (Malvinas)", "dial": "500"},
+//   "FO": {"name": "Faroe Islands", "dial": "298"},
+//   "FJ": {"name": "Fiji", "dial": "679"},
+//   "FI": {"name": "Finland", "dial": "358"},
+//   "FR": {"name": "France", "dial": "33"},
+//   "GF": {"name": "French Guiana", "dial": "594"},
+//   "PF": {"name": "French Polynesia", "dial": "689"},
+//   "GA": {"name": "Gabon", "dial": "241"},
+//   "GM": {"name": "Gambia", "dial": "220"},
+//   "GE": {"name": "Georgia", "dial": "995"},
+//   "DE": {"name": "Germany", "dial": "49"},
+//   "GH": {"name": "Ghana", "dial": "233"},
+//   "GI": {"name": "Gibraltar", "dial": "350"},
+//   "GR": {"name": "Greece", "dial": "30"},
+//   "GL": {"name": "Greenland", "dial": "299"},
+//   "GD": {"name": "Grenada", "dial": "1473"},
+//   "GP": {"name": "Guadeloupe", "dial": "590"},
+//   "GU": {"name": "Guam", "dial": "1671"},
+//   "GT": {"name": "Guatemala", "dial": "502"},
+//   "GG": {"name": "Guernsey", "dial": "44"},
+//   "GN": {"name": "Guinea", "dial": "224"},
+//   "GW": {"name": "Guinea-Bissau", "dial": "245"},
+//   "GY": {"name": "Guyana", "dial": "595"},
+//   "HT": {"name": "Haiti", "dial": "509"},
+//   "VA": {"name": "Holy See (Vatican City State)", "dial": "379"},
+//   "HN": {"name": "Honduras", "dial": "504"},
+//   "HK": {"name": "Hong Kong", "dial": "852"},
+//   "HU": {"name": "Hungary", "dial": "36"},
+//   "IS": {"name": "Iceland", "dial": "354"},
+//   "IN": {"name": "India", "dial": "91"},
+//   "ID": {"name": "Indonesia", "dial": "62"},
+//   "IR": {"name": "Iran, Islamic Republic of Persian Gulf", "dial": "98"},
+//   "IQ": {"name": "Iraq", "dial": "964"},
+//   "IE": {"name": "Ireland", "dial": "353"},
+//   "IM": {"name": "Isle of Man", "dial": "44"},
+//   "IL": {"name": "Israel", "dial": "972"},
+//   "IT": {"name": "Italy", "dial": "39"},
+//   "JM": {"name": "Jamaica", "dial": "1876"},
+//   "JP": {"name": "Japan", "dial": "81"},
+//   "JE": {"name": "Jersey", "dial": "44"},
+//   "JO": {"name": "Jordan", "dial": "962"},
+//   "KZ": {"name": "Kazakhstan", "dial": "77"},
+//   "KE": {"name": "Kenya", "dial": "254"},
+//   "KI": {"name": "Kiribati", "dial": "686"},
+//   "KP": {"name": "Korea, Democratic People's Republic of Korea", "dial": "850"},
+//   "KR": {"name": "Korea, Republic of South Korea", "dial": "82"},
+//   "KW": {"name": "Kuwait", "dial": "965"},
+//   "KG": {"name": "Kyrgyzstan", "dial": "996"},
+//   "LA": {"name": "Laos", "dial": "856"},
+//   "LV": {"name": "Latvia", "dial": "371"},
+//   "LB": {"name": "Lebanon", "dial": "961"},
+//   "LS": {"name": "Lesotho", "dial": "266"},
+//   "LR": {"name": "Liberia", "dial": "231"},
+//   "LY": {"name": "Libyan Arab Jamahiriya", "dial": "218"},
+//   "LI": {"name": "Liechtenstein", "dial": "423"},
+//   "LT": {"name": "Lithuania", "dial": "370"},
+//   "LU": {"name": "Luxembourg", "dial": "352"},
+//   "MO": {"name": "Macao", "dial": "853"},
+//   "MK": {"name": "Macedonia", "dial": "389"},
+//   "MG": {"name": "Madagascar", "dial": "261"},
+//   "MW": {"name": "Malawi", "dial": "265"},
+//   "MY": {"name": "Malaysia", "dial": "60"},
+//   "MV": {"name": "Maldives", "dial": "960"},
+//   "ML": {"name": "Mali", "dial": "223"},
+//   "MT": {"name": "Malta", "dial": "356"},
+//   "MH": {"name": "Marshall Islands", "dial": "692"},
+//   "MQ": {"name": "Martinique", "dial": "596"},
+//   "MR": {"name": "Mauritania", "dial": "222"},
+//   "MU": {"name": "Mauritius", "dial": "230"},
+//   "YT": {"name": "Mayotte", "dial": "262"},
+//   "MX": {"name": "Mexico", "dial": "52"},
+//   "FM": {"name": "Micronesia, Federated States of Micronesia", "dial": "691"},
+//   "MD": {"name": "Moldova", "dial": "373"},
+//   "MC": {"name": "Monaco", "dial": "377"},
+//   "MN": {"name": "Mongolia", "dial": "976"},
+//   "ME": {"name": "Montenegro", "dial": "382"},
+//   "MS": {"name": "Montserrat", "dial": "1664"},
+//   "MA": {"name": "Morocco", "dial": "212"},
+//   "MZ": {"name": "Mozambique", "dial": "258"},
+//   "MM": {"name": "Myanmar", "dial": "95"},
+//   "NA": {"name": "Namibia", "dial": "264"},
+//   "NR": {"name": "Nauru", "dial": "674"},
+//   "NP": {"name": "Nepal", "dial": "977"},
+//   "NL": {"name": "Netherlands", "dial": "31"},
+//   "AN": {"name": "Netherlands Antilles", "dial": "599"},
+//   "NC": {"name": "New Caledonia", "dial": "687"},
+//   "NZ": {"name": "New Zealand", "dial": "64"},
+//   "NI": {"name": "Nicaragua", "dial": "505"},
+//   "NE": {"name": "Niger", "dial": "227"},
+//   "NG": {"name": "Nigeria", "dial": "234"},
+//   "NU": {"name": "Niue", "dial": "683"},
+//   "NF": {"name": "Norfolk Island", "dial": "672"},
+//   "MP": {"name": "Northern Mariana Islands", "dial": "1670"},
+//   "NO": {"name": "Norway", "dial": "47"},
+//   "OM": {"name": "Oman", "dial": "968"},
+//   "PK": {"name": "Pakistan", "dial": "92"},
+//   "PW": {"name": "Palau", "dial": "680"},
+//   "PS": {"name": "Palestinian Territory, Occupied", "dial": "970"},
+//   "PA": {"name": "Panama", "dial": "507"},
+//   "PG": {"name": "Papua New Guinea", "dial": "675"},
+//   "PY": {"name": "Paraguay", "dial": "595"},
+//   "PE": {"name": "Peru", "dial": "51"},
+//   "PH": {"name": "Philippines", "dial": "63"},
+//   "PN": {"name": "Pitcairn", "dial": "872"},
+//   "PL": {"name": "Poland", "dial": "48"},
+//   "PT": {"name": "Portugal", "dial": "351"},
+//   "PR": {"name": "Puerto Rico", "dial": "1939"},
+//   "QA": {"name": "Qatar", "dial": "974"},
+//   "RO": {"name": "Romania", "dial": "40"},
+//   "RU": {"name": "Russia", "dial": "7"},
+//   "RW": {"name": "Rwanda", "dial": "250"},
+//   "RE": {"name": "Reunion", "dial": "262"},
+//   "BL": {"name": "Saint Barthelemy", "dial": "590"},
+//   "SH": {"name": "Saint Helena, Ascension and Tristan Da Cunha", "dial": "290"},
+//   "KN": {"name": "Saint Kitts and Nevis", "dial": "1869"},
+//   "LC": {"name": "Saint Lucia", "dial": "1758"},
+//   "MF": {"name": "Saint Martin", "dial": "590"},
+//   "PM": {"name": "Saint Pierre and Miquelon", "dial": "508"},
+//   "VC": {"name": "Saint Vincent and the Grenadines", "dial": "1784"},
+//   "WS": {"name": "Samoa", "dial": "685"},
+//   "SM": {"name": "San Marino", "dial": "378"},
+//   "ST": {"name": "Sao Tome and Principe", "dial": "239"},
+//   "SA": {"name": "Saudi Arabia", "dial": "966"},
+//   "SN": {"name": "Senegal", "dial": "221"},
+//   "RS": {"name": "Serbia", "dial": "381"},
+//   "SC": {"name": "Seychelles", "dial": "248"},
+//   "SL": {"name": "Sierra Leone", "dial": "232"},
+//   "SG": {"name": "Singapore", "dial": "65"},
+//   "SK": {"name": "Slovakia", "dial": "421"},
+//   "SI": {"name": "Slovenia", "dial": "386"},
+//   "SB": {"name": "Solomon Islands", "dial": "677"},
+//   "SO": {"name": "Somalia", "dial": "252"},
+//   "ZA": {"name": "South Africa", "dial": "27"},
+//   "SS": {"name": "South Sudan", "dial": "211"},
+//   "GS": {"name": "South Georgia and the South Sandwich Islands", "dial": "500"},
+//   "ES": {"name": "Spain", "dial": "34"},
+//   "LK": {"name": "Sri Lanka", "dial": "94"},
+//   "SD": {"name": "Sudan", "dial": "249"},
+//   "SR": {"name": "Suriname", "dial": "597"},
+//   "SJ": {"name": "Svalbard and Jan Mayen", "dial": "47"},
+//   "SZ": {"name": "Swaziland", "dial": "268"},
+//   "SE": {"name": "Sweden", "dial": "46"},
+//   "CH": {"name": "Switzerland", "dial": "41"},
+//   "SY": {"name": "Syrian Arab Republic", "dial": "963"},
+//   "TW": {"name": "Taiwan", "dial": "886"},
+//   "TJ": {"name": "Tajikistan", "dial": "992"},
+//   "TZ": {"name": "Tanzania, United Republic of Tanzania", "dial": "255"},
+//   "TH": {"name": "Thailand", "dial": "66"},
+//   "TL": {"name": "Timor-Leste", "dial": "670"},
+//   "TG": {"name": "Togo", "dial": "228"},
+//   "TK": {"name": "Tokelau", "dial": "690"},
+//   "TO": {"name": "Tonga", "dial": "676"},
+//   "TT": {"name": "Trinidad and Tobago", "dial": "1868"},
+//   "TN": {"name": "Tunisia", "dial": "216"},
+//   "TR": {"name": "Turkey", "dial": "90"},
+//   "TM": {"name": "Turkmenistan", "dial": "993"},
+//   "TC": {"name": "Turks and Caicos Islands", "dial": "1649"},
+//   "TV": {"name": "Tuvalu", "dial": "688"},
+//   "UG": {"name": "Uganda", "dial": "256"},
+//   "UA": {"name": "Ukraine", "dial": "380"},
+//   "AE": {"name": "United Arab Emirates", "dial": "971"},
+//   "GB": {"name": "United Kingdom", "dial": "44"},
+//   "US": {"name": "United States", "dial": "1"},
+//   "UY": {"name": "Uruguay", "dial": "598"},
+//   "UZ": {"name": "Uzbekistan", "dial": "998"},
+//   "VU": {"name": "Vanuatu", "dial": "678"},
+//   "VE": {"name": "Venezuela, Bolivarian Republic of Venezuela", "dial": "58"},
+//   "VN": {"name": "Vietnam", "dial": "84"},
+//   "VG": {"name": "Virgin Islands, British", "dial": "1284"},
+//   "VI": {"name": "Virgin Islands, U.S.", "dial": "1340"},
+//   "WF": {"name": "Wallis and Futuna", "dial": "681"},
+//   "YE": {"name": "Yemen", "dial": "967"},
+//   "ZM": {"name": "Zambia", "dial": "260"},
+//   "ZW": {"name": "Zimbabwe", "dial": "263"}
+// };
+
 import 'country.dart';
 
 final List<Country> countryList = [
-  const Country(
+  Country(
     isoCode: "AF",
     phoneCode: "93",
     name: "Afghanistan",
     iso3Code: "AFG",
   ),
-  const Country(
+  Country(
     isoCode: "AL",
     phoneCode: "355",
     name: "Albania",
     iso3Code: "ALB",
   ),
-  const Country(
+  Country(
     isoCode: "DZ",
     phoneCode: "213",
     name: "Algeria",
     iso3Code: "DZA",
   ),
-  const Country(
+  Country(
     isoCode: "AS",
     phoneCode: "1-684",
     name: "American Samoa",
     iso3Code: "ASM",
   ),
-  const Country(
+  Country(
     isoCode: "AD",
     phoneCode: "376",
     name: "Andorra",
     iso3Code: "AND",
   ),
-  const Country(
+  Country(
     isoCode: "AO",
     phoneCode: "244",
     name: "Angola",
     iso3Code: "AGO",
   ),
-  const Country(
+  Country(
     isoCode: "AI",
     phoneCode: "1-264",
     name: "Anguilla",
     iso3Code: "AIA",
   ),
-  const Country(
+  Country(
     isoCode: "AQ",
     phoneCode: "672",
     name: "Antarctica",
     iso3Code: "ATA",
   ),
-  const Country(
+  Country(
     isoCode: "AG",
     phoneCode: "1-268",
     name: "Antigua and Barbuda",
     iso3Code: "ATG",
   ),
-  const Country(
+  Country(
     isoCode: "AR",
     phoneCode: "54",
     name: "Argentina",
     iso3Code: "ARG",
   ),
-  const Country(
+  Country(
     isoCode: "AM",
     phoneCode: "374",
     name: "Armenia",
     iso3Code: "ARM",
   ),
-  const Country(
+  Country(
     isoCode: "AW",
     phoneCode: "297",
     name: "Aruba",
     iso3Code: "ABW",
   ),
-  const Country(
+  Country(
     isoCode: "AU",
     phoneCode: "61",
     name: "Australia",
     iso3Code: "AUS",
   ),
-  const Country(
+  Country(
     isoCode: "AT",
     phoneCode: "43",
     name: "Austria",
     iso3Code: "AUT",
   ),
-  const Country(
+  Country(
     isoCode: "AZ",
     phoneCode: "994",
     name: "Azerbaijan",
     iso3Code: "AZE",
   ),
-  const Country(
+  Country(
     isoCode: "BS",
     phoneCode: "1-242",
     name: "Bahamas",
     iso3Code: "BHS",
   ),
-  const Country(
+  Country(
     isoCode: "BH",
     phoneCode: "973",
     name: "Bahrain",
     iso3Code: "BHR",
   ),
-  const Country(
+  Country(
     isoCode: "BD",
     phoneCode: "880",
     name: "Bangladesh",
     iso3Code: "BGD",
   ),
-  const Country(
+  Country(
     isoCode: "BB",
     phoneCode: "1-246",
     name: "Barbados",
     iso3Code: "BRB",
   ),
-  const Country(
+  Country(
     isoCode: "BY",
     phoneCode: "375",
     name: "Belarus",
     iso3Code: "BLR",
   ),
-  const Country(
+  Country(
     isoCode: "BE",
     phoneCode: "32",
     name: "Belgium",
     iso3Code: "BEL",
   ),
-  const Country(
+  Country(
     isoCode: "BZ",
     phoneCode: "501",
     name: "Belize",
     iso3Code: "BLZ",
   ),
-  const Country(
+  Country(
     isoCode: "BJ",
     phoneCode: "229",
     name: "Benin",
     iso3Code: "BEN",
   ),
-  const Country(
+  Country(
     isoCode: "BM",
     phoneCode: "1-441",
     name: "Bermuda",
     iso3Code: "BMU",
   ),
-  const Country(
+  Country(
     isoCode: "BT",
     phoneCode: "975",
     name: "Bhutan",
     iso3Code: "BTN",
   ),
-  const Country(
+  Country(
     isoCode: "BO",
     phoneCode: "591",
     name: "Bolivia, Plurinational State of",
     iso3Code: "BOL",
   ),
-  const Country(
+  Country(
     isoCode: "BA",
     phoneCode: "387",
     name: "Bosnia and Herzegovina",
     iso3Code: "BIH",
   ),
-  const Country(
+  Country(
     isoCode: "BW",
     phoneCode: "267",
     name: "Botswana",
     iso3Code: "BWA",
   ),
-  const Country(
+  Country(
     isoCode: "BV",
     phoneCode: "47",
     name: "Bouvet Island",
     iso3Code: "BVT",
   ),
-  const Country(
+  Country(
     isoCode: "BR",
     phoneCode: "55",
     name: "Brazil",
     iso3Code: "BRA",
   ),
-  const Country(
+  Country(
     isoCode: "IO",
     phoneCode: "246",
     name: "British Indian Ocean Territory",
     iso3Code: "IOT",
   ),
-  const Country(
+  Country(
     isoCode: "BN",
     phoneCode: "673",
     name: "Brunei Darussalam",
     iso3Code: "BRN",
   ),
-  const Country(
+  Country(
     isoCode: "BG",
     phoneCode: "359",
     name: "Bulgaria",
     iso3Code: "BGR",
   ),
-  const Country(
+  Country(
     isoCode: "BF",
     phoneCode: "226",
     name: "Burkina Faso",
     iso3Code: "BFA",
   ),
-  const Country(
+  Country(
     isoCode: "BI",
     phoneCode: "257",
     name: "Burundi",
     iso3Code: "BDI",
   ),
-  const Country(
+  Country(
     isoCode: "KH",
     phoneCode: "855",
     name: "Cambodia",
     iso3Code: "KHM",
   ),
-  const Country(
+  Country(
     isoCode: "CM",
     phoneCode: "237",
     name: "Cameroon",
     iso3Code: "CMR",
   ),
-  const Country(
+  Country(
     isoCode: "CA",
     phoneCode: "1",
     name: "Canada",
     iso3Code: "CAN",
   ),
-  const Country(
+  Country(
     isoCode: "CV",
     phoneCode: "238",
     name: "Cape Verde",
     iso3Code: "CPV",
   ),
-  const Country(
+  Country(
     isoCode: "BQ",
     phoneCode: "599",
     name: "Caribbean Netherlands",
     iso3Code: "BES",
   ),
-  const Country(
+  Country(
     isoCode: "KY",
     phoneCode: "1-345",
     name: "Cayman Islands",
     iso3Code: "CYM",
   ),
-  const Country(
+  Country(
     isoCode: "CF",
     phoneCode: "236",
     name: "Central African Republic",
     iso3Code: "CAF",
   ),
-  const Country(
+  Country(
     isoCode: "TD",
     phoneCode: "235",
     name: "Chad",
     iso3Code: "TCD",
   ),
-  const Country(
+  Country(
     isoCode: "CL",
     phoneCode: "56",
     name: "Chile",
     iso3Code: "CHL",
   ),
-  const Country(
+  Country(
     isoCode: "CN",
     phoneCode: "86",
     name: "China",
     iso3Code: "CHN",
   ),
-  const Country(
+  Country(
     isoCode: "CX",
     phoneCode: "61",
     name: "Christmas Island",
     iso3Code: "CXR",
   ),
-  const Country(
+  Country(
     isoCode: "CC",
     phoneCode: "61",
     name: "Cocos (Keeling) Islands",
     iso3Code: "CCK",
   ),
-  const Country(
+  Country(
     isoCode: "CO",
     phoneCode: "57",
     name: "Colombia",
     iso3Code: "COL",
   ),
-  const Country(
+  Country(
     isoCode: "KM",
     phoneCode: "269",
     name: "Comoros",
     iso3Code: "COM",
   ),
-  const Country(
+  Country(
     isoCode: "CG",
     phoneCode: "242",
     name: "Congo",
     iso3Code: "COG",
   ),
-  const Country(
+  Country(
     isoCode: "CD",
     phoneCode: "243",
     name: "Congo, the Democratic Republic of the",
     iso3Code: "COD",
   ),
-  const Country(
+  Country(
     isoCode: "CK",
     phoneCode: "682",
     name: "Cook Islands",
     iso3Code: "COK",
   ),
-  const Country(
+  Country(
     isoCode: "CR",
     phoneCode: "506",
     name: "Costa Rica",
     iso3Code: "CRI",
   ),
-  const Country(
+  Country(
     isoCode: "HR",
     phoneCode: "385",
     name: "Croatia",
     iso3Code: "HRV",
   ),
-  const Country(
+  Country(
     isoCode: "CU",
     phoneCode: "53",
     name: "Cuba",
     iso3Code: "CUB",
   ),
-  const Country(
+  Country(
     isoCode: "CW",
     phoneCode: "599",
     name: "Curaçao",
     iso3Code: "CUW",
   ),
-  const Country(
+  Country(
     isoCode: "CY",
     phoneCode: "357",
     name: "Cyprus",
     iso3Code: "CYP",
   ),
-  const Country(
+  Country(
     isoCode: "CZ",
     phoneCode: "420",
     name: "Czech Republic",
     iso3Code: "CZE",
   ),
-  const Country(
+  Country(
     isoCode: "CI",
     phoneCode: "225",
     name: "Côte d'Ivoire",
     iso3Code: "CIV",
   ),
-  const Country(
+  Country(
     isoCode: "DK",
     phoneCode: "45",
     name: "Denmark",
     iso3Code: "DNK",
   ),
-  const Country(
+  Country(
     isoCode: "DJ",
     phoneCode: "253",
     name: "Djibouti",
     iso3Code: "DJI",
   ),
-  const Country(
+  Country(
     isoCode: "DM",
     phoneCode: "1-767",
     name: "Dominica",
     iso3Code: "DMA",
   ),
-  const Country(
+  Country(
     isoCode: "DO",
     phoneCode: "1-849",
     name: "Dominican Republic",
     iso3Code: "DOM",
   ),
-  const Country(
+  Country(
     isoCode: "EC",
     phoneCode: "593",
     name: "Ecuador",
     iso3Code: "ECU",
   ),
-  const Country(
+  Country(
     isoCode: "EG",
     phoneCode: "20",
     name: "Egypt",
     iso3Code: "EGY",
   ),
-  const Country(
+  Country(
     isoCode: "SV",
     phoneCode: "503",
     name: "El Salvador",
     iso3Code: "SLV",
   ),
-  const Country(
+  Country(
     isoCode: "GB-ENG",
     phoneCode: "44",
     name: "England",
     iso3Code: "GBR",
   ),
-  const Country(
+  Country(
     isoCode: "GQ",
     phoneCode: "240",
     name: "Equatorial Guinea",
     iso3Code: "GNQ",
   ),
-  const Country(
+  Country(
     isoCode: "ER",
     phoneCode: "291",
     name: "Eritrea",
     iso3Code: "ERI",
   ),
-  const Country(
+  Country(
     isoCode: "EE",
     phoneCode: "372",
     name: "Estonia",
     iso3Code: "EST",
   ),
-  const Country(
+  Country(
     isoCode: "ET",
     phoneCode: "251",
     name: "Ethiopia",
     iso3Code: "ETH",
   ),
-  const Country(
+  Country(
     isoCode: "FK",
     phoneCode: "500",
     name: "Falkland Islands (Malvinas)",
     iso3Code: "FLK",
   ),
-  const Country(
+  Country(
     isoCode: "FO",
     phoneCode: "298",
     name: "Faroe Islands",
     iso3Code: "FRO",
   ),
-  const Country(
+  Country(
     isoCode: "FJ",
     phoneCode: "679",
     name: "Fiji",
     iso3Code: "FJI",
   ),
-  const Country(
+  Country(
     isoCode: "FI",
     phoneCode: "358",
     name: "Finland",
     iso3Code: "FIN",
   ),
-  const Country(
+  Country(
     isoCode: "FR",
     phoneCode: "33",
     name: "France",
     iso3Code: "FRA",
   ),
-  const Country(
+  Country(
     isoCode: "GF",
     phoneCode: "594",
     name: "French Guiana",
     iso3Code: "GUF",
   ),
-  const Country(
+  Country(
     isoCode: "PF",
     phoneCode: "689",
     name: "French Polynesia",
     iso3Code: "PYF",
   ),
-  const Country(
+  Country(
     isoCode: "TF",
     phoneCode: "262",
     name: "French Southern Territories",
     iso3Code: "ATF",
   ),
-  const Country(
+  Country(
     isoCode: "GA",
     phoneCode: "241",
     name: "Gabon",
     iso3Code: "GAB",
   ),
-  const Country(
+  Country(
     isoCode: "GM",
     phoneCode: "220",
     name: "Gambia",
     iso3Code: "GMB",
   ),
-  const Country(
+  Country(
     isoCode: "GE",
     phoneCode: "995",
     name: "Georgia",
     iso3Code: "GEO",
   ),
-  const Country(
+  Country(
     isoCode: "DE",
     phoneCode: "49",
     name: "Germany",
     iso3Code: "DEU",
   ),
-  const Country(
+  Country(
     isoCode: "GH",
     phoneCode: "233",
     name: "Ghana",
     iso3Code: "GHA",
   ),
-  const Country(
+  Country(
     isoCode: "GI",
     phoneCode: "350",
     name: "Gibraltar",
     iso3Code: "GIB",
   ),
-  const Country(
+  Country(
     isoCode: "GR",
     phoneCode: "30",
     name: "Greece",
     iso3Code: "GRC",
   ),
-  const Country(
+  Country(
     isoCode: "GL",
     phoneCode: "299",
     name: "Greenland",
     iso3Code: "GRL",
   ),
-  const Country(
+  Country(
     isoCode: "GD",
     phoneCode: "1-473",
     name: "Grenada",
     iso3Code: "GRD",
   ),
-  const Country(
+  Country(
     isoCode: "GP",
     phoneCode: "590",
     name: "Guadeloupe",
     iso3Code: "GLP",
   ),
-  const Country(
+  Country(
     isoCode: "GU",
     phoneCode: "1-671",
     name: "Guam",
     iso3Code: "GUM",
   ),
-  const Country(
+  Country(
     isoCode: "GT",
     phoneCode: "502",
     name: "Guatemala",
     iso3Code: "GTM",
   ),
-  const Country(
+  Country(
     isoCode: "GG",
     phoneCode: "44-1481",
     name: "Guernsey",
     iso3Code: "GGY",
   ),
-  const Country(
+  Country(
     isoCode: "GN",
     phoneCode: "224",
     name: "Guinea",
     iso3Code: "GIN",
   ),
-  const Country(
+  Country(
     isoCode: "GW",
     phoneCode: "245",
     name: "Guinea-Bissau",
     iso3Code: "GNB",
   ),
-  const Country(
+  Country(
     isoCode: "GY",
     phoneCode: "592",
     name: "Guyana",
     iso3Code: "GUY",
   ),
-  const Country(
+  Country(
     isoCode: "HT",
     phoneCode: "509",
     name: "Haiti",
     iso3Code: "HTI",
   ),
-  const Country(
+  Country(
     isoCode: "HM",
     phoneCode: "672",
     name: "Heard Island and McDonald Islands",
     iso3Code: "HMD",
   ),
-  const Country(
+  Country(
     isoCode: "VA",
     phoneCode: "379",
     name: "Holy See (Vatican City State)",
     iso3Code: "VAT",
   ),
-  const Country(
+  Country(
     isoCode: "HN",
     phoneCode: "504",
     name: "Honduras",
     iso3Code: "HND",
   ),
-  const Country(
+  Country(
     isoCode: "HK",
     phoneCode: "852",
     name: "Hong Kong",
     iso3Code: "HKG",
   ),
-  const Country(
+  Country(
     isoCode: "HU",
     phoneCode: "36",
     name: "Hungary",
     iso3Code: "HUN",
   ),
-  const Country(
+  Country(
     isoCode: "IS",
     phoneCode: "354",
     name: "Iceland",
     iso3Code: "ISL",
   ),
-  const Country(
+  Country(
     isoCode: "IN",
     phoneCode: "91",
     name: "India",
     iso3Code: "IND",
   ),
-  const Country(
+  Country(
     isoCode: "ID",
     phoneCode: "62",
     name: "Indonesia",
     iso3Code: "IDN",
   ),
-  const Country(
+  Country(
     isoCode: "IR",
     phoneCode: "98",
     name: "Iran, Islamic Republic of",
     iso3Code: "IRN",
   ),
-  const Country(
+  Country(
     isoCode: "IQ",
     phoneCode: "964",
     name: "Iraq",
     iso3Code: "IRQ",
   ),
-  const Country(
+  Country(
     isoCode: "IE",
     phoneCode: "353",
     name: "Ireland",
     iso3Code: "IRL",
   ),
-  const Country(
+  Country(
     isoCode: "IM",
     phoneCode: "44-1624",
     name: "Isle of Man",
     iso3Code: "IMN",
   ),
-  const Country(
+  Country(
     isoCode: "IL",
     phoneCode: "972",
     name: "Israel",
     iso3Code: "ISR",
   ),
-  const Country(
+  Country(
     isoCode: "IT",
     phoneCode: "39",
     name: "Italy",
     iso3Code: "ITA",
   ),
-  const Country(
+  Country(
     isoCode: "JM",
     phoneCode: "1-876",
     name: "Jamaica",
     iso3Code: "JAM",
   ),
-  const Country(
+  Country(
     isoCode: "JP",
     phoneCode: "81",
     name: "Japan",
     iso3Code: "JPN",
   ),
-  const Country(
+  Country(
     isoCode: "JE",
     phoneCode: "44-1534",
     name: "Jersey",
     iso3Code: "JEY",
   ),
-  const Country(
+  Country(
     isoCode: "JO",
     phoneCode: "962",
     name: "Jordan",
     iso3Code: "JOR",
   ),
-  const Country(
+  Country(
     isoCode: "KZ",
     phoneCode: "7",
     name: "Kazakhstan",
     iso3Code: "KAZ",
   ),
-  const Country(
+  Country(
     isoCode: "KE",
     phoneCode: "254",
     name: "Kenya",
     iso3Code: "KEN",
   ),
-  const Country(
+  Country(
     isoCode: "KI",
     phoneCode: "686",
     name: "Kiribati",
     iso3Code: "KIR",
   ),
-  const Country(
+  Country(
     isoCode: "KP",
     phoneCode: "850",
     name: "Korea, Democratic People's Republic of",
     iso3Code: "PRK",
   ),
-  const Country(
+  Country(
     isoCode: "KR",
     phoneCode: "82",
     name: "Korea, Republic of",
     iso3Code: "KOR",
   ),
-  const Country(
+  Country(
     isoCode: "XK",
     phoneCode: "383",
     name: "Kosovo",
     iso3Code: "KOS",
   ),
-  const Country(
+  Country(
     isoCode: "KW",
     phoneCode: "965",
     name: "Kuwait",
     iso3Code: "KWT",
   ),
-  const Country(
+  Country(
     isoCode: "KG",
     phoneCode: "996",
     name: "Kyrgyzstan",
     iso3Code: "KGZ",
   ),
-  const Country(
+  Country(
     isoCode: "LA",
     phoneCode: "856",
     name: "Lao People's Democratic Republic",
     iso3Code: "LAO",
   ),
-  const Country(
+  Country(
     isoCode: "LV",
     phoneCode: "371",
     name: "Latvia",
     iso3Code: "LVA",
   ),
-  const Country(
+  Country(
     isoCode: "LB",
     phoneCode: "961",
     name: "Lebanon",
     iso3Code: "LBN",
   ),
-  const Country(
+  Country(
     isoCode: "LS",
     phoneCode: "266",
     name: "Lesotho",
     iso3Code: "LSO",
   ),
-  const Country(
+  Country(
     isoCode: "LR",
     phoneCode: "231",
     name: "Liberia",
     iso3Code: "LBR",
   ),
-  const Country(
+  Country(
     isoCode: "LY",
     phoneCode: "218",
     name: "Libya",
     iso3Code: "LBY",
   ),
-  const Country(
+  Country(
     isoCode: "LI",
     phoneCode: "423",
     name: "Liechtenstein",
     iso3Code: "LIE",
   ),
-  const Country(
+  Country(
     isoCode: "LT",
     phoneCode: "370",
     name: "Lithuania",
     iso3Code: "LTU",
   ),
-  const Country(
+  Country(
     isoCode: "LU",
     phoneCode: "352",
     name: "Luxembourg",
     iso3Code: "LUX",
   ),
-  const Country(
+  Country(
     isoCode: "MO",
     phoneCode: "853",
     name: "Macao",
     iso3Code: "MAC",
   ),
-  const Country(
+  Country(
     isoCode: "MK",
     phoneCode: "389",
     name: "Macedonia, the former Yugoslav Republic of",
     iso3Code: "MKD",
   ),
-  const Country(
+  Country(
     isoCode: "MG",
     phoneCode: "261",
     name: "Madagascar",
     iso3Code: "MDG",
   ),
-  const Country(
+  Country(
     isoCode: "MW",
     phoneCode: "265",
     name: "Malawi",
     iso3Code: "MWI",
   ),
-  const Country(
+  Country(
     isoCode: "MY",
     phoneCode: "60",
     name: "Malaysia",
     iso3Code: "MYS",
   ),
-  const Country(
+  Country(
     isoCode: "MV",
     phoneCode: "960",
     name: "Maldives",
     iso3Code: "MDV",
   ),
-  const Country(
+  Country(
     isoCode: "ML",
     phoneCode: "223",
     name: "Mali",
     iso3Code: "MLI",
   ),
-  const Country(
+  Country(
     isoCode: "MT",
     phoneCode: "356",
     name: "Malta",
     iso3Code: "MLT",
   ),
-  const Country(
+  Country(
     isoCode: "MH",
     phoneCode: "692",
     name: "Marshall Islands",
     iso3Code: "MHL",
   ),
-  const Country(
+  Country(
     isoCode: "MQ",
     phoneCode: "596",
     name: "Martinique",
     iso3Code: "MTQ",
   ),
-  const Country(
+  Country(
     isoCode: "MR",
     phoneCode: "222",
     name: "Mauritania",
     iso3Code: "MRT",
   ),
-  const Country(
+  Country(
     isoCode: "MU",
     phoneCode: "230",
     name: "Mauritius",
     iso3Code: "MUS",
   ),
-  const Country(
+  Country(
     isoCode: "YT",
     phoneCode: "262",
     name: "Mayotte",
     iso3Code: "MYT",
   ),
-  const Country(
+  Country(
     isoCode: "MX",
     phoneCode: "52",
     name: "Mexico",
     iso3Code: "MEX",
   ),
-  const Country(
+  Country(
     isoCode: "FM",
     phoneCode: "691",
     name: "Micronesia, Federated States of",
     iso3Code: "FSM",
   ),
-  const Country(
+  Country(
     isoCode: "MD",
     phoneCode: "373",
     name: "Moldova, Republic of",
     iso3Code: "MDA",
   ),
-  const Country(
+  Country(
     isoCode: "MC",
     phoneCode: "377",
     name: "Monaco",
     iso3Code: "MCO",
   ),
-  const Country(
+  Country(
     isoCode: "MN",
     phoneCode: "976",
     name: "Mongolia",
     iso3Code: "MNG",
   ),
-  const Country(
+  Country(
     isoCode: "ME",
     phoneCode: "382",
     name: "Montenegro",
     iso3Code: "MNE",
   ),
-  const Country(
+  Country(
     isoCode: "MS",
     phoneCode: "1-664",
     name: "Montserrat",
     iso3Code: "MSR",
   ),
-  const Country(
+  Country(
     isoCode: "MA",
     phoneCode: "212",
     name: "Morocco",
     iso3Code: "MAR",
   ),
-  const Country(
+  Country(
     isoCode: "MZ",
     phoneCode: "258",
     name: "Mozambique",
     iso3Code: "MOZ",
   ),
-  const Country(
+  Country(
     isoCode: "MM",
     phoneCode: "95",
     name: "Myanmar",
     iso3Code: "MMR",
   ),
-  const Country(
+  Country(
     isoCode: "NA",
     phoneCode: "264",
     name: "Namibia",
     iso3Code: "NAM",
   ),
-  const Country(
+  Country(
     isoCode: "NR",
     phoneCode: "674",
     name: "Nauru",
     iso3Code: "NRU",
   ),
-  const Country(
+  Country(
     isoCode: "NP",
     phoneCode: "977",
     name: "Nepal",
     iso3Code: "NPL",
   ),
-  const Country(
+  Country(
     isoCode: "NL",
     phoneCode: "31",
     name: "Netherlands",
     iso3Code: "NLD",
   ),
-  const Country(
+  Country(
     isoCode: "AN",
     phoneCode: "599",
     name: "Netherlands Antilles",
     iso3Code: "AN",
   ),
-  const Country(
+  Country(
     isoCode: "NC",
     phoneCode: "687",
     name: "New Caledonia",
     iso3Code: "NCL",
   ),
-  const Country(
+  Country(
     isoCode: "NZ",
     phoneCode: "64",
     name: "New Zealand",
     iso3Code: "NZL",
   ),
-  const Country(
+  Country(
     isoCode: "NI",
     phoneCode: "505",
     name: "Nicaragua",
     iso3Code: "NIC",
   ),
-  const Country(
+  Country(
     isoCode: "NE",
     phoneCode: "227",
     name: "Niger",
     iso3Code: "NER",
   ),
-  const Country(
+  Country(
     isoCode: "NG",
     phoneCode: "234",
     name: "Nigeria",
     iso3Code: "NGA",
   ),
-  const Country(
+  Country(
     isoCode: "NU",
     phoneCode: "683",
     name: "Niue",
     iso3Code: "NIU",
   ),
-  const Country(
+  Country(
     isoCode: "NF",
     phoneCode: "672",
     name: "Norfolk Island",
     iso3Code: "NFK",
   ),
-  const Country(
+  Country(
     isoCode: "GB-NIR",
     phoneCode: "44",
     name: "Northern Ireland",
     iso3Code: "GBR",
   ),
-  const Country(
+  Country(
     isoCode: "MP",
     phoneCode: "1-670",
     name: "Northern Mariana Islands",
     iso3Code: "MNP",
   ),
-  const Country(
+  Country(
     isoCode: "NO",
     phoneCode: "47",
     name: "Norway",
     iso3Code: "NOR",
   ),
-  const Country(
+  Country(
     isoCode: "OM",
     phoneCode: "968",
     name: "Oman",
     iso3Code: "OMN",
   ),
-  const Country(
+  Country(
     isoCode: "PK",
     phoneCode: "92",
     name: "Pakistan",
     iso3Code: "PAK",
   ),
-  const Country(
+  Country(
     isoCode: "PW",
     phoneCode: "680",
     name: "Palau",
     iso3Code: "PLW",
   ),
-  const Country(
+  Country(
     isoCode: "PS",
     phoneCode: "970",
     name: "Palestine",
     iso3Code: "PSE",
   ),
-  const Country(
+  Country(
     isoCode: "PA",
     phoneCode: "507",
     name: "Panama",
     iso3Code: "PAN",
   ),
-  const Country(
+  Country(
     isoCode: "PG",
     phoneCode: "675",
     name: "Papua New Guinea",
     iso3Code: "PNG",
   ),
-  const Country(
+  Country(
     isoCode: "PY",
     phoneCode: "595",
     name: "Paraguay",
     iso3Code: "PRY",
   ),
-  const Country(
+  Country(
     isoCode: "PE",
     phoneCode: "51",
     name: "Peru",
     iso3Code: "PER",
   ),
-  const Country(
+  Country(
     isoCode: "PH",
     phoneCode: "63",
     name: "Philippines",
     iso3Code: "PHL",
   ),
-  const Country(
+  Country(
     isoCode: "PN",
     phoneCode: "64",
     name: "Pitcairn",
     iso3Code: "PCN",
   ),
-  const Country(
+  Country(
     isoCode: "PL",
     phoneCode: "48",
     name: "Poland",
     iso3Code: "POL",
   ),
-  const Country(
+  Country(
     isoCode: "PT",
     phoneCode: "351",
     name: "Portugal",
     iso3Code: "PRT",
   ),
-  const Country(
+  Country(
     isoCode: "PR",
     phoneCode: "1-787",
     name: "Puerto Rico",
     iso3Code: "PRI",
   ),
-  const Country(
+  Country(
     isoCode: "QA",
     phoneCode: "974",
     name: "Qatar",
     iso3Code: "QAT",
   ),
-  const Country(
+  Country(
     isoCode: "RO",
     phoneCode: "40",
     name: "Romania",
     iso3Code: "ROU",
   ),
-  const Country(
+  Country(
     isoCode: "RU",
     phoneCode: "7",
     name: "Russian Federation",
     iso3Code: "RUS",
   ),
-  const Country(
+  Country(
     isoCode: "RW",
     phoneCode: "250",
     name: "Rwanda",
     iso3Code: "RWA",
   ),
-  const Country(
+  Country(
     isoCode: "RE",
     phoneCode: "262",
     name: "Réunion",
     iso3Code: "REU",
   ),
-  const Country(
+  Country(
     isoCode: "BL",
     phoneCode: "590",
     name: "Saint Barthélemy",
     iso3Code: "BLM",
   ),
-  const Country(
+  Country(
     isoCode: "SH",
     phoneCode: "290",
     name: "Saint Helena, Ascension and Tristan da Cunha",
     iso3Code: "SHN",
   ),
-  const Country(
+  Country(
     isoCode: "KN",
     phoneCode: "1-869",
     name: "Saint Kitts and Nevis",
     iso3Code: "KNA",
   ),
-  const Country(
+  Country(
     isoCode: "LC",
     phoneCode: "1-758",
     name: "Saint Lucia",
     iso3Code: "LCA",
   ),
-  const Country(
+  Country(
     isoCode: "MF",
     phoneCode: "590",
     name: "Saint Martin",
     iso3Code: "MAF",
   ),
-  const Country(
+  Country(
     isoCode: "PM",
     phoneCode: "508",
     name: "Saint Pierre and Miquelon",
     iso3Code: "SPM",
   ),
-  const Country(
+  Country(
     isoCode: "VC",
     phoneCode: "1-784",
     name: "Saint Vincent and the Grenadines",
     iso3Code: "VCT",
   ),
-  const Country(
+  Country(
     isoCode: "WS",
     phoneCode: "685",
     name: "Samoa",
     iso3Code: "WSM",
   ),
-  const Country(
+  Country(
     isoCode: "SM",
     phoneCode: "378",
     name: "San Marino",
     iso3Code: "SMR",
   ),
-  const Country(
+  Country(
     isoCode: "ST",
     phoneCode: "239",
     name: "Sao Tome and Principe",
     iso3Code: "STP",
   ),
-  const Country(
+  Country(
     isoCode: "SA",
     phoneCode: "966",
     name: "Saudi Arabia",
     iso3Code: "SAU",
   ),
-  const Country(
+  Country(
     isoCode: "GB-SCT",
     phoneCode: "44",
     name: "Scotland",
     iso3Code: "GBR",
   ),
-  const Country(
+  Country(
     isoCode: "SN",
     phoneCode: "221",
     name: "Senegal",
     iso3Code: "SEN",
   ),
-  const Country(
+  Country(
     isoCode: "RS",
     phoneCode: "381",
     name: "Serbia",
     iso3Code: "SRB",
   ),
-  const Country(
+  Country(
     isoCode: "SC",
     phoneCode: "248",
     name: "Seychelles",
     iso3Code: "SYC",
   ),
-  const Country(
+  Country(
     isoCode: "SL",
     phoneCode: "232",
     name: "Sierra Leone",
     iso3Code: "SLE",
   ),
-  const Country(
+  Country(
     isoCode: "SG",
     phoneCode: "65",
     name: "Singapore",
     iso3Code: "SGP",
   ),
-  const Country(
+  Country(
     isoCode: "SX",
     phoneCode: "1-721",
     name: "Sint Maarten (Dutch part)",
     iso3Code: "SXM",
   ),
-  const Country(
+  Country(
     isoCode: "SK",
     phoneCode: "421",
     name: "Slovakia",
     iso3Code: "SVK",
   ),
-  const Country(
+  Country(
     isoCode: "SI",
     phoneCode: "386",
     name: "Slovenia",
     iso3Code: "SVN",
   ),
-  const Country(
+  Country(
     isoCode: "SB",
     phoneCode: "677",
     name: "Solomon Islands",
     iso3Code: "SLB",
   ),
-  const Country(
+  Country(
     isoCode: "SO",
     phoneCode: "252",
     name: "Somalia",
     iso3Code: "SOM",
   ),
-  const Country(
+  Country(
     isoCode: "ZA",
     phoneCode: "27",
     name: "South Africa",
     iso3Code: "ZAF",
   ),
-  const Country(
+  Country(
     isoCode: "GS",
     phoneCode: "500",
     name: "South Georgia and the South Sandwich Islands",
     iso3Code: "SGS",
   ),
-  const Country(
+  Country(
     isoCode: "SS",
     phoneCode: "211",
     name: "South Sudan",
     iso3Code: "SSD",
   ),
-  const Country(
+  Country(
     isoCode: "ES",
     phoneCode: "34",
     name: "Spain",
     iso3Code: "ESP",
   ),
-  const Country(
+  Country(
     isoCode: "LK",
     phoneCode: "94",
     name: "Sri Lanka",
     iso3Code: "LKA",
   ),
-  const Country(
+  Country(
     isoCode: "SD",
     phoneCode: "249",
     name: "Sudan",
     iso3Code: "SDN",
   ),
-  const Country(
+  Country(
     isoCode: "SR",
     phoneCode: "597",
     name: "Suriname",
     iso3Code: "SUR",
   ),
-  const Country(
+  Country(
     isoCode: "SJ",
     phoneCode: "47",
     name: "Svalbard and Jan Mayen Islands",
     iso3Code: "SJM",
   ),
-  const Country(
+  Country(
     isoCode: "SZ",
     phoneCode: "268",
     name: "Swaziland",
     iso3Code: "SWZ",
   ),
-  const Country(
+  Country(
     isoCode: "SE",
     phoneCode: "46",
     name: "Sweden",
     iso3Code: "SWE",
   ),
-  const Country(
+  Country(
     isoCode: "CH",
     phoneCode: "41",
     name: "Switzerland",
     iso3Code: "CHE",
   ),
-  const Country(
+  Country(
     isoCode: "SY",
     phoneCode: "963",
     name: "Syrian Arab Republic",
     iso3Code: "SYR",
   ),
-  const Country(
+  Country(
     isoCode: "TW",
     phoneCode: "886",
     name: "Taiwan",
     iso3Code: "TWN",
   ),
-  const Country(
+  Country(
     isoCode: "TJ",
     phoneCode: "992",
     name: "Tajikistan",
     iso3Code: "TJK",
   ),
-  const Country(
+  Country(
     isoCode: "TZ",
     phoneCode: "255",
     name: "Tanzania, United Republic of",
     iso3Code: "TZA",
   ),
-  const Country(
+  Country(
     isoCode: "TH",
     phoneCode: "66",
     name: "Thailand",
     iso3Code: "THA",
   ),
-  const Country(
+  Country(
     isoCode: "TL",
     phoneCode: "670",
     name: "Timor-Leste",
     iso3Code: "TLS",
   ),
-  const Country(
+  Country(
     isoCode: "TG",
     phoneCode: "228",
     name: "Togo",
     iso3Code: "TGO",
   ),
-  const Country(
+  Country(
     isoCode: "TK",
     phoneCode: "690",
     name: "Tokelau",
     iso3Code: "TKL",
   ),
-  const Country(
+  Country(
     isoCode: "TO",
     phoneCode: "676",
     name: "Tonga",
     iso3Code: "TON",
   ),
-  const Country(
+  Country(
     isoCode: "TT",
     phoneCode: "1-868",
     name: "Trinidad and Tobago",
     iso3Code: "TTO",
   ),
-  const Country(
+  Country(
     isoCode: "TN",
     phoneCode: "216",
     name: "Tunisia",
     iso3Code: "TUN",
   ),
-  const Country(
+  Country(
     isoCode: "TR",
     phoneCode: "90",
     name: "Turkey",
     iso3Code: "TUR",
   ),
-  const Country(
+  Country(
     isoCode: "TM",
     phoneCode: "993",
     name: "Turkmenistan",
     iso3Code: "TKM",
   ),
-  const Country(
+  Country(
     isoCode: "TC",
     phoneCode: "1-649",
     name: "Turks and Caicos Islands",
     iso3Code: "TCA",
   ),
-  const Country(
+  Country(
     isoCode: "TV",
     phoneCode: "688",
     name: "Tuvalu",
     iso3Code: "TUV",
   ),
-  const Country(
+  Country(
     isoCode: "UG",
     phoneCode: "256",
     name: "Uganda",
     iso3Code: "UGA",
   ),
-  const Country(
+  Country(
     isoCode: "UA",
     phoneCode: "380",
     name: "Ukraine",
     iso3Code: "UKR",
   ),
-  const Country(
+  Country(
     isoCode: "AE",
     phoneCode: "971",
     name: "United Arab Emirates",
     iso3Code: "ARE",
   ),
-  const Country(
+  Country(
     isoCode: "GB",
     phoneCode: "44",
     name: "United Kingdom",
     iso3Code: "GBR",
   ),
-  const Country(
+  Country(
     isoCode: "US",
     phoneCode: "1",
     name: "United States",
     iso3Code: "USA",
   ),
-  const Country(
+  Country(
     isoCode: "UY",
     phoneCode: "598",
     name: "Uruguay",
     iso3Code: "URY",
   ),
-  const Country(
+  Country(
     isoCode: "UM",
     phoneCode: "1",
     name: "US Minor Outlying Islands",
     iso3Code: "UMI",
   ),
-  const Country(
+  Country(
     isoCode: "UZ",
     phoneCode: "998",
     name: "Uzbekistan",
     iso3Code: "UZB",
   ),
-  const Country(
+  Country(
     isoCode: "VU",
     phoneCode: "678",
     name: "Vanuatu",
     iso3Code: "VUT",
   ),
-  const Country(
+  Country(
     isoCode: "VE",
     phoneCode: "58",
     name: "Venezuela, Bolivarian Republic of",
     iso3Code: "VEN",
   ),
-  const Country(
+  Country(
     isoCode: "VN",
     phoneCode: "84",
     name: "Vietnam",
     iso3Code: "VNM",
   ),
-  const Country(
+  Country(
     isoCode: "VG",
     phoneCode: "1-284",
     name: "Virgin Islands, British",
     iso3Code: "VGB",
   ),
-  const Country(
+  Country(
     isoCode: "VI",
     phoneCode: "1-340",
     name: "Virgin Islands, U.S.",
     iso3Code: "VIR",
   ),
-  const Country(
+  Country(
     isoCode: "GB-WLS",
     phoneCode: "44",
     name: "Wales",
     iso3Code: "GBR",
   ),
-  const Country(
+  Country(
     isoCode: "WF",
     phoneCode: "681",
     name: "Wallis and Futuna Islands",
     iso3Code: "WLF",
   ),
-  const Country(
+  Country(
     isoCode: "EH",
     phoneCode: "212",
     name: "Western Sahara",
     iso3Code: "ESH",
   ),
-  const Country(
+  Country(
     isoCode: "YE",
     phoneCode: "967",
     name: "Yemen",
     iso3Code: "YEM",
   ),
-  const Country(
+  Country(
     isoCode: "ZM",
     phoneCode: "260",
     name: "Zambia",
     iso3Code: "ZMB",
   ),
-  const Country(
+  Country(
     isoCode: "ZW",
     phoneCode: "263",
     name: "Zimbabwe",
     iso3Code: "ZWE",
   ),
-  const Country(
+  Country(
     isoCode: "AX",
     phoneCode: "358",
     name: "Åland Islands",
