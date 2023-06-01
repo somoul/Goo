@@ -9,6 +9,8 @@ class HomeController extends GetxController {
   bool _checkIsBiggerThan = true;
   late PageController pageController;
 
+  var indexSlider = 0.obs;
+
   ///Dummy List
   final List<CategoriesItem> listIcon = [
     const CategoriesItem(
