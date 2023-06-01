@@ -8,6 +8,7 @@ import 'package:goo_rent/src/authentication/country_code/countdown_otp_provider.
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+///Flutter version 3.10.2
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();

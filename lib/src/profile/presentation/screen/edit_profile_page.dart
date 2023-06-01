@@ -1,6 +1,7 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_default.dart';
 import 'package:goo_rent/src/profile/presentation/screen/modified_page.dart';
 import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
@@ -26,7 +27,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         centerTitle: true,
         title: Text(
           "គណនីរបស់ខ្ញុំ",
-          style: GoogleFonts.kantumruy(fontSize: 18),
+          style: AppText.titleMedium!.copyWith(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(

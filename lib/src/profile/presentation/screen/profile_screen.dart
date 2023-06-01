@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';
+import 'package:goo_rent/src/profile/presentation/screen/components/custom_listile.dart';
+import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart';
+import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
+import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 import 'package:goo_rent/src/profile/presentation/widget/custom_toggle_button.dart';
-import 'package:goo_rent/src/profile/presentation/widget/show_buttom_sheet_share.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -56,241 +62,60 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              InkWell(
-                onTap: () {
-                  // GoRouter.of(context).push('/edit_profile_page');
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.grey,
+                  shape: const StadiumBorder(),
+                  backgroundColor:
+                      AppConstant.kPrimaryColor, // Background color
+                ),
+                onPressed: () {
+                  Get.to(() => const EditProfilePage());
                 },
-                child: Container(
-                  width: 80,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.lightBlueAccent.withOpacity(0.8)),
-                  child: Text(
-                    "កែប្រែ",
-                    style: GoogleFonts.kantumruy(
-                        fontSize: 14.sp, fontWeight: FontWeight.bold),
-                  ),
+                child: Text(
+                  'កែប្រែ',
+                  style: AppText.titleSmall,
                 ),
               )
             ]),
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 50),
           Expanded(
             child: ListView(
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
               children: [
-                SizedBox(
-                  height: 65,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/icons/Darks.png',
-                        height: 50,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "មុខងារ Dark",
-                        style: TextStyle(fontSize: 18.sp),
-                      ),
-                      const Spacer(),
-                      StyledSwitch(
-                        onToggled: (bool isToggled) {},
-                      ),
-                    ],
+                const SizedBox(height: 20),
+                CustomListile(
+                  title: 'មុខងារងងិត',
+                  onTap: () {},
+                  leadingAsset: 'assets/icons/Darks.png',
+                  trailing: StyledSwitch(
+                    onToggled: (bool isToggled) {},
                   ),
                 ),
-                SizedBox(
-                  height: 65,
-                  child: InkWell(
-                    onTap: () {
-                      // GoRouter.of(context).push(NotificationScreen.routeName);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/notifications.png',
-                          height: 50,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "ការជូនដំណឹង",
-                          style: TextStyle(fontSize: 18.sp),
-                        ),
-                        const Spacer(),
-                        const Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 65,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/icons/About.png',
-                        height: 50,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "អំពីយើង",
-                        style: TextStyle(fontSize: 18.sp),
-                      ),
-                      const Spacer(),
-                      const Icon(Icons.arrow_forward_ios)
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    showBottomSheetShare(
-                        context: context,
-                        widget: SizedBox(
-                            height: 300,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Divider(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    height: 10,
-                                    thickness: 2,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0 * 2),
-                                  child: Text(
-                                    "Share",
-                                    style: GoogleFonts.kantumruy(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0 * 3),
-                                  child: Divider(
-                                    thickness: 1,
-                                  ),
-                                ),
-                                Wrap(
-                                  children: socialMedialList
-                                      .map((e) => Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0 * 2,
-                                                vertical: 10),
-                                            child: Column(
-                                              children: [
-                                                Image.asset(
-                                                  e.imgSrc,
-                                                  width: 40,
-                                                  height: 40,
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  e.nameApp,
-                                                  style:
-                                                      GoogleFonts.kantumruy(),
-                                                )
-                                              ],
-                                            ),
-                                          ))
-                                      .toList(),
-                                )
-                              ],
-                            )));
+                CustomListile(
+                    title: 'ការជូនដំណឹង',
+                    onTap: () {},
+                    leadingAsset: 'assets/icons/notifications.png'),
+                CustomListile(
+                    title: 'ការជូនដំណឹង',
+                    onTap: () {},
+                    leadingAsset: 'assets/icons/About.png'),
+                CustomListile(
+                  title: 'ការចែករំលែក',
+                  leadingAsset: 'assets/icons/share.png',
+                  onTap: () async {
+                    await onShare(context);
                   },
-                  child: SizedBox(
-                    height: 65,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/share.png',
-                          height: 50,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "ការចែករំលែក",
-                          style: TextStyle(fontSize: 18.sp),
-                        ),
-                        const Spacer(),
-                        const Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ),
                 ),
-                SizedBox(
-                  height: 65,
-                  child: InkWell(
-                    onTap: () {
-                      // GoRouter.of(context).push(EditProfilePage.routeName);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/Security.png',
-                          height: 50,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "សុវត្ថិភាព",
-                          style: TextStyle(fontSize: 18.sp),
-                        ),
-                        const Spacer(),
-                        const Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    // GoRouter.of(context).push(MultipleLanguageScreen.routeName);
-                  },
-                  child: SizedBox(
-                    height: 65,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/icons/lange.png',
-                          height: 50,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "ប្តូភាសា",
-                          style: TextStyle(fontSize: 18.sp),
-                        ),
-                        const Spacer(),
-                        Text(
-                          "ខ្មែរ",
-                          style: GoogleFonts.kantumruy(fontSize: 14.sp),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ),
-                ),
+                CustomListile(
+                    title: 'សុវត្ថិភាព',
+                    onTap: () {},
+                    leadingAsset: 'assets/icons/Security.png'),
+                CustomListile(
+                    title: 'ប្តូភាសា',
+                    onTap: () {},
+                    leadingAsset: 'assets/icons/lange.png'),
               ],
             ),
           ),
@@ -322,60 +147,35 @@ class ProfileScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 130,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(
+                  CustomItemButton(
                     onTap: () {
-                      // GoRouter.of(context).push('/real_estate_page');
+                      Get.to(() => const RealEstatePage());
                     },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/home168.png',
-                          height: 50,
-                        ),
-                        const Text("អចលនទ្រព្យខ្ញុំ")
-                      ],
-                    ),
+                    title: 'អចលនទ្រព្យ',
+                    iconAsset: 'assets/icons/home168.png',
                   ),
-                  InkWell(
+                  CustomItemButton(
                     onTap: () {
-                      // GoRouter.of(context).push('/problem_pages');
+                      Get.to(() => const ProblemPage());
                     },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/chating.png',
-                          height: 50,
-                        ),
-                        const Text("បញ្ហា")
-                      ],
-                    ),
+                    title: 'បញ្ហា',
+                    iconAsset: 'assets/icons/chating.png',
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/icons/mybookmak.png',
-                        height: 50,
-                      ),
-                      const Text("កំណត់ត្រា")
-                    ],
+                  CustomItemButton(
+                    onTap: () {
+                      // Get.to(() => const ProblemPage());
+                    },
+                    title: 'កំណត់ត្រា',
+                    iconAsset: 'assets/icons/mybookmak.png',
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/save.png',
-                          height: 50,
-                        ),
-                        const Text("រក្សាទុក")
-                      ],
-                    ),
+                  CustomItemButton(
+                    onTap: () {
+                      // Get.to(() => const ProblemPage());
+                    },
+                    title: 'រក្សាទុក',
+                    iconAsset: 'assets/icons/save.png',
                   ),
                 ],
               ),
@@ -387,42 +187,9 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-List<SocialMedia> socialMedialList = [
-  const SocialMedia(
-      imgSrc: "assets/image2/square_facebook.png", nameApp: "FaceBook"),
-  const SocialMedia(
-      imgSrc: "assets/icons/instagrames.png", nameApp: "Instagram"),
-  const SocialMedia(imgSrc: "assets/icons/tiktok.png", nameApp: "TikTok"),
-  const SocialMedia(imgSrc: "assets/icons/yahoo.png", nameApp: "Telegram"),
-  const SocialMedia(imgSrc: "assets/icons/whatapps.png", nameApp: "WhatsApp"),
-  const SocialMedia(imgSrc: "assets/icons/likes.png", nameApp: "Messager"),
-  const SocialMedia(imgSrc: "assets/icons/twitters.png", nameApp: "Twintter"),
-  const SocialMedia(imgSrc: "assets/icons/chatss.png", nameApp: "WeChat"),
-];
-
-class SocialMedia {
-  final String imgSrc;
-  final String nameApp;
-
-  const SocialMedia({required this.imgSrc, required this.nameApp});
-}
-// List<SettingUser> _settingUserList = [
-//   const SettingUser(
-//       iconSrc: 'assets/icons/Group34692.svg',
-//       settingName: 'ការផ្លាស់ប្តូរគណនី'),
-//   const SettingUser(
-//       iconSrc: 'assets/icons/Loccation.svg', settingName: 'អាស្រ័យដ្ធាន'),
-//   const SettingUser(
-//       iconSrc: 'assets/icons/comment.svg',
-//       settingName: 'ដោះស្រាយបញ្ហារបស់លោកអ្នក'),
-//   const SettingUser(
-//       iconSrc: 'assets/icons/checktrue.svg',
-//       settingName: 'គោលការណ៏ នឹង អំពីយើង'),
-// ];
-
-class SettingUser {
-  final String iconSrc;
-  final String settingName;
-
-  const SettingUser({required this.iconSrc, required this.settingName});
+onShare(BuildContext context) async {
+  final box = context.findRenderObject() as RenderBox?;
+  await Share.share("text",
+      subject: "subject",
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
 }
