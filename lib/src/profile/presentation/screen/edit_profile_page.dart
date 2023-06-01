@@ -1,6 +1,7 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_default.dart';
 import 'package:goo_rent/src/profile/presentation/screen/modified_page.dart';
@@ -26,7 +27,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
-          "គណនីរបស់ខ្ញុំ",
+          'myAccount'.tr,
           style: AppText.titleMedium!.copyWith(color: Colors.white),
         ),
       ),
@@ -57,7 +58,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ),
                           ),
                           Text(
-                            "ជ្រើសរើសរូបភាព",
+                            "chooseImage".tr,
                             style: GoogleFonts.kantumruy(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
@@ -72,7 +73,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 10,
                           ),
                           Text(
-                            "ថតរូប",
+                            "takePhoto".tr,
                             style: GoogleFonts.kantumruy(
                                 fontSize: 20, color: const Color(0xFF21A6F8)),
                           ),
@@ -87,7 +88,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 10,
                           ),
                           Text(
-                            "ជ្រើសរើសរូបភាព",
+                            "fromGallery".tr,
                             style: GoogleFonts.kantumruy(
                                 fontSize: 20, color: const Color(0xFF21A6F8)),
                           ),
@@ -103,7 +104,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 10,
                           ),
                           Text(
-                            "Cancel",
+                            "cancel".tr,
                             style: GoogleFonts.kantumruy(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
@@ -150,32 +151,37 @@ class _EditProfilePageState extends State<EditProfilePage> {
               height: 16,
             ),
             _buildCardWidget(
-                labelName: "ឈ្មោះ",
+                labelName: "name".tr,
                 contentName: "ហម ហុី",
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const ModifiedPage(
-                              modifyField: ModifyField(
-                                  appBarTitle: 'ប្តូរឈ្មោះ',
-                                  textField: 'ហម ហុី'))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) => ModifiedPage(
+                        modifyField: ModifyField(
+                            appBarTitle: 'changeName'.tr, textField: 'ហម ហុី'),
+                      ),
+                    ),
+                  );
 
                   //   GoRouter.of(context).push('/modified_page',
                   //       extra: const ModifyField(
                   //           appBarTitle: "ប្តូរឈ្មោះ", textField: "ហម ហុី"));
                 }),
             _buildCardWidget(
-                labelName: "លេខទូរស័ព្ទ",
+                labelName: "phoneNumber".tr,
                 contentName: "+(855)0887821785",
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const ModifiedPage(
-                              modifyField: ModifyField(
-                                  appBarTitle: 'ប្តូរលេខទូរស័ព្ទ',
-                                  textField: '+(855)0887821785'))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) => ModifiedPage(
+                        modifyField: ModifyField(
+                            appBarTitle: 'changePhoneNumber'.tr,
+                            textField: '+(855)0887821785'),
+                      ),
+                    ),
+                  );
 
                   // GoRouter.of(context).push('/modified_page',
                   //     extra: ModifyField(
@@ -183,16 +189,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   //         textField: "+(855)0887821785"));
                 }),
             _buildCardWidget(
-                labelName: "អុីម៉ែល",
+                labelName: "email".tr,
                 contentName: "horm@gmail.com",
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const ModifiedPage(
-                              modifyField: ModifyField(
-                                  appBarTitle: 'ប្តូរអុីម៉ែល',
-                                  textField: 'horm@gmail.com'))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) => ModifiedPage(
+                        modifyField: ModifyField(
+                            appBarTitle: 'changeEmail'.tr,
+                            textField: 'horm@gmail.com'),
+                      ),
+                    ),
+                  );
 
                   // GoRouter.of(context).push('/modified_page',
                   //     extra: ModifyField(
@@ -200,32 +209,37 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   //         textField: "horm@gmail.com"));
                 }),
             _buildCardWidget(
-                labelName: "តេលេក្រាម",
+                labelName: "telegram".tr,
                 contentName: "@hormhy",
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const ModifiedPage(
-                              modifyField: ModifyField(
-                                  appBarTitle: 'ប្តូរតេលេក្រាម',
-                                  textField: '@hormhy'))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) => ModifiedPage(
+                        modifyField: ModifyField(
+                            appBarTitle: 'changeTelegram'.tr,
+                            textField: '@hormhy'),
+                      ),
+                    ),
+                  );
                 }),
             _buildCardWidget(
-                labelName: "អាសយដ្ធាន",
+                labelName: "address".tr,
                 contentName: "ភ្នំពេញថ្មី សង្កាត់ឈូកមាស ខណ្ឌសែនសុខ",
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => const ModifiedPage(
-                              modifyField: ModifyField(
-                                  appBarTitle: 'ប្តូរអាសយដ្ធាន',
-                                  textField:
-                                      'ភ្នំពេញថ្មី សង្កាត់ឈូកមាស ខណ្ឌសែនសុខ'))));
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) => ModifiedPage(
+                        modifyField: ModifyField(
+                            appBarTitle: 'changeAddress'.tr,
+                            textField: 'ភ្នំពេញថ្មី សង្កាត់ឈូកមាស ខណ្ឌសែនសុខ'),
+                      ),
+                    ),
+                  );
                 }),
             _buildCardWidget(
-                labelName: "ថ្ងៃកំណើត",
+                labelName: "dateOfBirth".tr,
                 contentName: "December 27,1998",
                 onTap: () {
                   showDialog(
@@ -248,7 +262,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "ជ្រើសរើសថ្ងៃខែឆ្នាំ",
+                                      "chooseDateOfBirth".tr,
                                       style:
                                           GoogleFonts.kantumruy(fontSize: 18),
                                     ),
@@ -312,7 +326,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               ),
                                           onPressed: () {},
                                           child: Text(
-                                            "Cancel",
+                                            "cancel".tr,
                                             style: GoogleFonts.kantumruy(
                                                 fontSize: 16)
                                             // style: TextStyle(fontSize: 16)
@@ -329,7 +343,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       child: ElevatedButton(
                                           onPressed: () {},
                                           child: Text(
-                                            "កំណត់",
+                                            "set".tr,
                                             style: GoogleFonts.kantumruy(
                                                 color: Colors.white,
                                                 fontSize: 16),
@@ -347,7 +361,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       });
                 }),
             _buildCardWidget(
-                labelName: "ភេទ",
+                labelName: "gender".tr,
                 contentName: "Male",
                 onTap: () {
                   showBottomSheetDefault(
@@ -369,7 +383,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 ),
                               ),
                               Text(
-                                "កំណត់ភេទ",
+                                "setGender".tr,
                                 style: GoogleFonts.kantumruy(
                                     fontSize: 22, fontWeight: FontWeight.bold),
                               ),
@@ -386,7 +400,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "ប្រុស",
+                                        "male".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),
@@ -416,7 +430,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "ស្រី",
+                                        "female".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),
@@ -444,7 +458,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "ផ្សេងៗ",
+                                        "somethingElse".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),

@@ -3,13 +3,13 @@ import 'package:goo_rent/cores/constant/app_text.dart';
 
 class CustomListile extends StatelessWidget {
   final String title;
-  final Function onTap;
+  final Function? onTap;
   final String leadingAsset;
   final Widget? trailing;
   const CustomListile({
     super.key,
     required this.title,
-    required this.onTap,
+    this.onTap,
     required this.leadingAsset,
     this.trailing,
   });
@@ -17,7 +17,7 @@ class CustomListile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap(),
+      onTap: onTap == null ? null : () => onTap!(),
       child: Container(
         color: Colors.transparent,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/src/goo_rent_app.dart';
 import 'package:goo_rent/src/home/presentation/provider/provider_arrow_details_screen.dart';
 import 'package:goo_rent/src/home/presentation/widget/background_anitmation_pageview_provider/background_animation_pageview_provider.dart';
@@ -11,6 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ///Flutter version 3.10.2
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  await onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
   runApp(MultiProvider(
     providers: [
@@ -34,6 +39,19 @@ Future<void> main() async {
     child: const GooRentApp(),
   ));
 }
+
+Future<void> onCheckLanguages() async {
+  var localeStr = await LocalStorage.readLocale();
+  if (localeStr != '') {
+    var locale = Locale(localeStr, '');
+    Get.updateLocale(locale);
+  } else {
+    var localeStr = Get.deviceLocale!.languageCode;
+    var locale = Locale(localeStr, '');
+    Get.updateLocale(locale);
+  }
+}
+
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});

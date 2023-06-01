@@ -22,6 +22,7 @@ class CustomItemButton extends StatelessWidget {
             iconAsset,
             height: 50,
           ),
+          const SizedBox(height: 5),
           Text(
             title,
             style: AppText.bodyMedium,

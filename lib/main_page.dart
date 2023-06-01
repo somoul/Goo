@@ -4,7 +4,7 @@ import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_type_of_rent.
 import 'package:goo_rent/src/notification/presentation/screen/notification_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/my_property_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/profile_screen.dart';
-
+import 'package:get/get.dart';
 import 'cores/buttom_navigation_bar/buttom_navigation_bar.dart';
 import 'cores/buttom_navigation_bar/button_navigation_item.dart';
 
@@ -94,13 +94,16 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavItem(
               svgPicturePath: 'assets/icons/active_home_nagivation.svg',
-              label: "ទំព័រដើម"),
-          BottomNavItem(svgPicturePath: 'assets/icons/sales.svg', label: "លក់"),
+              label: "home".tr),
           BottomNavItem(
-              svgPicturePath: 'assets/icons/user.svg', label: "ដាក់ជួល"),
+              svgPicturePath: 'assets/icons/sales.svg', label: "sell".tr),
           BottomNavItem(
-              svgPicturePath: 'assets/icons/notification.svg', label: "ដំណឹង"),
-          BottomNavItem(svgPicturePath: 'assets/icons/user.svg', label: "គណនី"),
+              svgPicturePath: 'assets/icons/user.svg', label: "rent".tr),
+          BottomNavItem(
+              svgPicturePath: 'assets/icons/notification.svg',
+              label: "notify".tr),
+          BottomNavItem(
+              svgPicturePath: 'assets/icons/user.svg', label: "account".tr),
         ],
         onTapChange: (index) {
           if (index == 2) {
