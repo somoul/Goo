@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,31 +19,38 @@ import '../widget/buttom_sheen_for_search.dart';
 import 'location_rent_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, required}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // late PageController _pageController;
   late Animation<double> animation;
   final homeController = Get.put(HomeController());
+//
+  late int selectedPage;
+  late final PageController _pageController;
+  final pageCount = 5;
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  final CarouselController _controller = CarouselController();
+
+  final List<String> imgList = [
+    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+    'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  ];
 
   @override
   void initState() {
     super.initState();
     homeController.pageController = PageController(initialPage: 0);
     homeController.callStartAnimation();
-    // context.read<AnimationBackgroundBannerProvider>().callStartAnimation();
-
-    //
-    //   _pageController.animateToPage(
-    //     _currentPage,
-    //     duration: Duration(milliseconds: 350),
-    //     curve: Curves.easeIn,
-    //   );
-    // });
+    selectedPage = 0;
+    _pageController = PageController(initialPage: selectedPage);
   }
 
   @override
@@ -61,42 +70,59 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  int activePage = 1;
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> imageSliders = imgList
+        .map(
+          (item) => Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(item),
+              ),
+            ),
+          ),
+        )
+        .toList();
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
         toolbarHeight: 80,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppConstant.padding),
+          padding:
+              const EdgeInsets.symmetric(horizontal: AppConstant.paddingLarge),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 'assets/icons/location.svg',
                 fit: BoxFit.contain,
                 color: Colors.white,
-                width: 24,
-                height: 24,
+                width: 25,
+                height: 28,
               ),
-              SizedBox(
-                width: 5.r,
-              ),
+              const SizedBox(width: 4),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'ទីតាំងបច្ចុប្បន្នរបស់អ្នក',
-                    style: TextStyle(
-                        fontFamily: GoogleFonts.kantumruy().fontFamily,
-                        fontSize: 16),
+                    style: AppText.titleMedium!.copyWith(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xffFFFFFF)),
                   ),
                   Text(
-                    'ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ',
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: GoogleFonts.kantumruy().fontFamily),
-                  )
+                    'ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែន សុខ ភ្នំពេញ',
+                    style: AppText.titleMedium!.copyWith(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xffFAFAFA)),
+                  ),
                 ],
               ),
               const Spacer(),
@@ -104,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Icon(
                   Icons.arrow_forward_ios_sharp,
-                  size: 18,
+                  size: 23,
                   color: Colors.white,
                 ),
               )
@@ -117,31 +143,44 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(
             child: Stack(
               children: [
-                Container(
-                    color: Colors.amber,
-                    width: MediaQuery.of(context).size.width,
-                    height: 220,
-                    child: GetBuilder<HomeController>(
-                      builder: (controller) {
-                        return PageView.builder(
-                          controller: homeController.pageController,
-                          itemCount: homeController.listIcon.length,
-                          itemBuilder: (context, index) {
-                            // controller.pageController =
-                            //     PageController(initialPage: index);
-                            _iniAnimated(value: index);
-                            return Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      homeController.listIcon[index].iconSrc),
-                                ),
-                              ),
-                            );
-                          },
+                Stack(
+                  children: [
+                    CarouselSlider(
+                      items: imageSliders,
+                      carouselController: _controller,
+                      options: CarouselOptions(
+                          padEnds: false,
+                          autoPlay: true,
+                          enlargeFactor: 0,
+                          enlargeCenterPage: true,
+                          viewportFraction: 1,
+                          aspectRatio: 2.0,
+                          enlargeStrategy: CenterPageEnlargeStrategy.height,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              homeController.indexSlider.value = index;
+                            });
+                          }),
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                      const SizedBox(width: 10),
+                      ...imageSliders.map((e) {
+                        int index = imageSliders.indexOf(e);
+                        return Container(
+                          height: 8,
+                          width: 8,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 3),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: homeController.indexSlider.value == index
+                                  ? AppConstant.kSecondaryColor
+                                  : Colors.white60),
                         );
-                      },
-                    )),
+                      }).toList()
+                    ]),
+                  ],
+                ),
                 Column(
                   children: [
                     const SizedBox(height: 190),
@@ -445,3 +484,16 @@ class CategoriesItem {
 
   const CategoriesItem({required this.iconName, required this.iconSrc});
 }
+
+Padding padding = const Padding(
+    padding: EdgeInsets.only(left: 16, top: 0, right: 16, bottom: 0));
+
+//
+const colors = [
+  Colors.red,
+  Colors.green,
+  Colors.greenAccent,
+  Colors.amberAccent,
+  Colors.blue,
+  Colors.amber,
+];
