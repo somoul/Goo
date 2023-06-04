@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -96,14 +97,14 @@ class FindNewLocationScreen extends StatelessWidget {
                         SizedBox(
                           width: 5.r,
                         ),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'ទីតាំងបច្ចុប្បន្នរបស់អ្នក',
-                              style: TextStyle(fontSize: 16),
+                              'yourCurrentLocation'.tr,
+                              style: const TextStyle(fontSize: 16),
                             ),
-                            Text(
+                            const Text(
                               'ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.grey),

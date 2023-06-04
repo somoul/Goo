@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'en.dart';
 import 'km.dart';
 
-
 class Translator extends Translations {
   @override
   Map<String, Map<String, String>> get keys => AppTranslation.translationsKeys;
@@ -23,7 +22,7 @@ class Translator extends Translations {
 
 abstract class AppTranslation {
   static Map<String, Map<String, String>> translationsKeys = {
-    "en_US": English.lang,
+    "en": English.lang,
     "km": Khmer.lang,
   };
 }

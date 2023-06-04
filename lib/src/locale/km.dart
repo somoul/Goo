@@ -11,7 +11,7 @@ class Khmer {
     'id': 'លេខសម្គាល់',
     'property': 'អចលនទ្រព្យ',
     'problem': 'បញ្ហា',
-    'notice': 'កំណត់ត្រា',
+    'history': 'កំណត់ត្រា',
     'favorite': 'រក្សាទុក',
     'edit': 'កែប្រែ',
     'home': 'ទំព័រដើម',
@@ -29,5 +29,6 @@ class Khmer {
     'address': 'អាស័យដ្ឋាន',
     'dateOfBirth': 'ថ្ងៃកំណើត',
     'gender': 'ភេទ',
+    'yourCurrentLocation': 'ទីតាំងបច្ចុប្បន្នរបស់អ្នក'
   };
 }

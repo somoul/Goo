@@ -169,7 +169,7 @@ class ProfileScreen extends StatelessWidget {
                     onTap: () {
                       // Get.to(() => const ProblemPage());
                     },
-                    title: 'notice'.tr,
+                    title: 'history'.tr,
                     iconAsset: 'assets/icons/mybookmak.png',
                   ),
                   CustomItemButton(
@@ -207,7 +207,7 @@ onShowChangeLanguage() {
         children: [
           InkWell(
             onTap: () async {
-              onUpdateLanguage(isKhmer: true);
+              await onUpdateLanguage(isKhmer: true);
             },
             child: Container(
               alignment: Alignment.centerLeft,
@@ -220,8 +220,8 @@ onShowChangeLanguage() {
           ),
           const Divider(height: 0),
           InkWell(
-            onTap: () {
-              onUpdateLanguage(isKhmer: false);
+            onTap: () async {
+              await onUpdateLanguage(isKhmer: false);
             },
             child: Container(
               alignment: Alignment.centerLeft,
@@ -241,14 +241,13 @@ onShowChangeLanguage() {
 Future<void> onUpdateLanguage({bool isKhmer = true}) async {
   if (isKhmer) {
     var locale = const Locale('km', 'KH');
-    await LocalStorage.writeLocale('km');
     Get.updateLocale(locale);
-
+    await LocalStorage.writeLocale('km');
     Get.back();
   } else {
     var locale = const Locale('en', 'US');
-    await LocalStorage.writeLocale('en');
     Get.updateLocale(locale);
+    await LocalStorage.writeLocale('en');
 
     Get.back();
   }

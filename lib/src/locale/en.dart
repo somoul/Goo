@@ -11,7 +11,7 @@ class English {
     'id': 'ID',
     'property': 'Property',
     'problem': 'Problem',
-    'notice': 'Notice',
+    'history': 'History',
     'favorite': 'Favorite',
     'edit': 'Edit',
     'home': 'Home',
@@ -29,5 +29,6 @@ class English {
     'address': 'Address',
     'dateOfBirth': 'Date of Birth',
     'gender': 'Gender',
+    'yourCurrentLocation': 'Your Current Location'
   };
 }
