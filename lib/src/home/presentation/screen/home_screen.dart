@@ -108,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'ទីតាំងបច្ចុប្បន្នរបស់អ្នក',
+                    'yourCurrentLocation'.tr,
                     style: AppText.titleMedium!.copyWith(
-                        fontSize: 13.5,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xffFFFFFF)),
                   ),

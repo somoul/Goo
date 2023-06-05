@@ -11,7 +11,7 @@ class LocalStorage {
   }
 
   static Future<String> readLocale() async {
-    var locale = await _storage.read(AppString.locale);
-    return locale ?? '';
+    String locale = await _storage.read(AppString.locale);
+    return locale;
   }
 }
