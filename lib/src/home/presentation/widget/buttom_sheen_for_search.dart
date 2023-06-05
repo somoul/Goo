@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../../../cores/constant/app_text.dart';
+import '../../../../cores/utils/custom_button.dart';
+import '../provider/animation_background_banner_provider/home_controller.dart';
 import 'custom_drop_down_button_widget.dart';
 import 'custom_rangevalue_widget.dart';
 
@@ -18,10 +21,7 @@ void showBottomSheetFunction({required BuildContext context}) {
       ),
       context: context,
       builder: (context) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: BottomSheetScreen(),
-        );
+        return const BottomSheetScreen();
       });
 }
 
@@ -31,261 +31,249 @@ class BottomSheetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    bool isRentForHome = true;
+    final homeController = Get.put(HomeController());
+
+    // bool isRentForHome = true;
+    //
+    int indexTapber = 0;
     return AnimatedPadding(
       duration: kThemeAnimationDuration,
       padding: mediaQueryData.viewInsets,
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                "តើលោកអ្នកកំពុងត្រូវការជួលអ្វី?",
-                style: GoogleFonts.kantumruy(
-                    color: const Color(0xFF21A6F8), fontSize: 20),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: InkWell(
-              //         onTap: () {
-              //           setStateButtonSheet(() {
-              //             priceCheck = true;
-              //           });
-              //         },
-              //         child: Container(
-              //           margin: const EdgeInsets.symmetric(vertical: 10),
-              //           height: 40,
-              //           decoration: BoxDecoration(
-              //               color: priceCheck == true
-              //                   ? AppConstant.kPrimaryColor.withOpacity(0.2)
-              //                   : Colors.grey.shade100),
-              //           alignment: Alignment.center,
-              //           child: Text(
-              //             "តម្លៃមធ្យម",
-              //             style: GoogleFonts.kantumruy(
-              //                 color: priceCheck == true
-              //                     ? AppConstant.kPrimaryColor
-              //                     : Colors.black),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: InkWell(
-              //         onTap: () {
-              //           setStateButtonSheet(() {
-              //             priceCheck = false;
-              //           });
-              //         },
-              //         child: Container(
-              //             margin: const EdgeInsets.symmetric(vertical: 10),
-              //             height: 40,
-              //             decoration: BoxDecoration(
-              //                 color: priceCheck == false
-              //                     ? AppConstant.kPrimaryColor.withOpacity(0.2)
-              //                     : Colors.grey.shade100),
-              //             alignment: Alignment.center,
-              //             child: Text(
-              //               "តម្លៃខ្ពស់",
-              //               style: GoogleFonts.kantumruy(
-              //                   color: priceCheck == false
-              //                       ? AppConstant.kPrimaryColor
-              //                       : Colors.black),
-              //             )),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              StatefulBuilder(builder: (context, setStateRent) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          setStateRent(() {
-                            isRentForHome = true;
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: isRentForHome == true
-                                ? AppConstant.kPrimaryColor.withOpacity(0.2)
-                                : Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            StatefulBuilder(builder: (context, setStateRent) {
+              return Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setStateRent(() {
+                          // isRentForHome = true;
+                          indexTapber = 0;
+                          // controllerBusiness.text = "";
+                        });
+                      },
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        // topRight: Radius.circular(25),
+                      ),
+                      child: Container(
+                        height: 65,
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: indexTapber == 0
+                              ? AppConstant.kPrimaryColor
+                              : const Color(0xffBFBFBF),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            // topRight: Radius.circular(25),
                           ),
-                          child: Text(
-                            "សម្រាប់លំនៅដ្ធាន",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16,
-                                color: isRentForHome == true
-                                    ? AppConstant.kPrimaryColor
-                                    : Colors.black),
-                          ),
+                        ),
+                        child: Text(
+                          "សម្រាប់លំនៅដ្ធាន",
+                          style: GoogleFonts.kantumruy(
+                              fontSize: 16,
+                              color: indexTapber == 0
+                                  ? Colors.white
+                                  : Colors.black),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          setStateRent(() {
-                            isRentForHome = false;
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: isRentForHome == false
-                                ? AppConstant.kPrimaryColor.withOpacity(0.2)
-                                : Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(10),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setStateRent(() {
+                          indexTapber = 1;
+                          // controllerHome.text = "";
+                        });
+                      },
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        // topRight: Radius.circular(25),
+                      ),
+                      child: Container(
+                        height: 65,
+                        // padding: const EdgeInsets.all(16),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: indexTapber == 1
+                              ? AppConstant.kPrimaryColor
+                              : const Color(0xffBFBFBF),
+                          borderRadius: const BorderRadius.only(
+                            // topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
                           ),
-                          child: Text(
-                            "សម្រាប់អាជីវកម្ម",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16,
-                                color: isRentForHome == false
-                                    ? AppConstant.kPrimaryColor
-                                    : Colors.black),
-                          ),
+                        ),
+                        child: Text(
+                          "សម្រាប់អាជីវកម្ម",
+                          style: GoogleFonts.kantumruy(
+                              fontSize: 16,
+                              color: indexTapber == 1
+                                  ? Colors.white
+                                  : Colors.black),
                         ),
                       ),
                     ),
-
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //     style: ElevatedButton.styleFrom(backgroundColor: Colors.grey.shade200),
-                    //       onPressed: () {},
-                    //       child: const Text(
-                    //         "សម្រាប់លំនៅដ្ធាន",
-                    //         style: TextStyle(color: Colors.white),
-                    //       )),
-                    // ),
-                    // const SizedBox(
-                    //   width: 16,
-                    // ),
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //       onPressed: () {},
-                    //       child: const Text(
-                    //         "សម្រាប់អាជីវកម្ម",
-                    //         style: TextStyle(color: Colors.white),
-                    //       )),
-                    // ),
+                  ),
+                ],
+              );
+            }),
+            Padding(
+                padding: const EdgeInsets.only(
+                  left: AppConstant.paddingMedium,
+                  top: AppConstant.paddingMedium,
+                  right: AppConstant.paddingLarge,
+                  bottom: AppConstant.paddingLarge + 25,
+                ),
+                child: CustomScrenBottomSheet(
+                  onChangedLocation: (value) {
+                    homeController.textLocationHome.value = value;
+                  },
+                  onChangedServices: (value) {
+                    homeController.textServiceHome.value = value;
+                    print("=========================vale :$value==========");
+                  },
+                  valuePrice: "adsf",
+                  itemList: const [
+                    'បន្ទប់ជួល',
+                    'ផ្ទះជួល',
+                    'ខុនដូរជួរ',
+                    'អាផាតមិនជួល',
+                    'វីឡាជួល',
+                    'ភូមិគ្រិះជួល',
                   ],
-                );
-              }),
+                ))
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 50,
-                child: TextField(
-                  style: GoogleFonts.kantumruy(fontSize: 22),
-                  decoration: InputDecoration(
-                    hintStyle: GoogleFonts.kantumruy(
-                        fontSize: 14.sp, color: const Color(0XFFDADADA)),
-                    hintText: "បញ្ចូលទីតាំងរបស់អ្នកត្រូវជួល",
-                    contentPadding: const EdgeInsets.all(0),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          // GoRouter.of(context)
-                          //     .push(BuildAddressScreen.routeName);
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_sharp)),
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: SvgPicture.asset(
-                          'assets/icons/location.svg',
-                          width: 10,
-                          height: 10,
-                        ),
-                      ),
-                    ),
-                    errorBorder: _getDecoreOutLineBorderTextField(),
-                    focusedBorder: _getDecoreOutLineBorderTextField(),
-                    focusedErrorBorder: _getDecoreOutLineBorderTextField(),
-                    disabledBorder: _getDecoreOutLineBorderTextField(),
-                    enabledBorder: _getDecoreOutLineBorderTextField(),
-                    border: _getDecoreOutLineBorderTextField(),
+class CustomScrenBottomSheet extends StatelessWidget {
+  final Function(String)? onChangedLocation;
+  final Function(String)? onChangedServices;
+
+  final String valuePrice;
+  final List<String> itemList;
+  const CustomScrenBottomSheet({
+    super.key,
+    required this.onChangedLocation,
+    required this.onChangedServices,
+    required this.valuePrice,
+    required this.itemList,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    List<double> valueSlider = [0.0, 50.0];
+    // final myController = TextEditingController();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppConstant.paddingMedium),
+          child: Text(
+            "ទីតាំង",
+            style: AppText.titleSmall,
+          ),
+        ),
+        SizedBox(
+          height: 50,
+          child: TextField(
+            onChanged: (textConterLocation) {
+              // myController.text = "";
+              onChangedLocation!(textConterLocation);
+            },
+            style: AppText.titleMedium!.copyWith(fontWeight: FontWeight.w600),
+            decoration: InputDecoration(
+              hintStyle: AppText.titleSmall!
+                  .copyWith(fontSize: 14.sp, color: const Color(0XFFDADADA)),
+              hintText: "បញ្ចូលទីតាំងរបស់អ្នកត្រូវជួល",
+              contentPadding: const EdgeInsets.all(0),
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    // GoRouter.of(context)
+                    //     .push(BuildAddressScreen.routeName);
+                  },
+                  icon: const Icon(Icons.arrow_forward_ios_sharp)),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: SvgPicture.asset(
+                    'assets/icons/location.svg',
+                    width: 10,
+                    height: 10,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              // SizedBox(
-              //   height: 50,
-              //   child: TextField(
-              //     decoration: InputDecoration(
-              //       hintText: "ជ្រើសរើសប្រភេទជួលអ្នកត្រូវការ",
-              //       prefixIcon: Icon(Icons.add),
-              //       suffixIcon: Icon(Icons.arrow_forward_ios_sharp),
-              //       errorBorder: _getDecoreOutLineBorderTextField(),
-              //       focusedBorder: _getDecoreOutLineBorderTextField(),
-              //       focusedErrorBorder: _getDecoreOutLineBorderTextField(),
-              //       disabledBorder: _getDecoreOutLineBorderTextField(),
-              //       enabledBorder: _getDecoreOutLineBorderTextField(),
-              //       border: _getDecoreOutLineBorderTextField(),
-              //     ),
-              //   ),
-              // ),
-              const CustomDropDownButtonWidget(
-                iconWidget: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  color: Colors.grey,
-                ),
-                hintText: 'ជ្រើសរើសប្រភេទជួលអ្នកត្រូវការ',
-                svgSrc: 'assets/icons/home3.svg',
-                itemList: [
-                  'បន្ទប់ជួល',
-                  'ផ្ទះជួល',
-                  'ខុនដូរជួរ',
-                  'អាផាតមិនជួល',
-                  'វីឡាជួល',
-                  'ភូមិគ្រិះជួល',
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "កំណត់តម្លៃដែលអ្នកចង់ស្វែងរក",
-                style: GoogleFonts.kantumruy(fontSize: 16),
-              ),
-              const CustomRangeValueWidget(),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 45,
-                child: ElevatedButton(
-                    onPressed: () {
-                      // GoRouter.of(context).push(ResultFromRentScreen.routeName);
-                    },
-                    child: Text(
-                      "ចាប់ផ្តើមស្វែងរក",
-                      style: GoogleFonts.kantumruy(
-                          color: Colors.white, fontSize: 16),
-                    )),
-              )
-            ],
+              errorBorder: _getDecoreOutLineBorderTextField(),
+              focusedBorder: _getDecoreOutLineBorderTextField(),
+              focusedErrorBorder: _getDecoreOutLineBorderTextField(),
+              disabledBorder: _getDecoreOutLineBorderTextField(),
+              enabledBorder: _getDecoreOutLineBorderTextField(),
+              border: _getDecoreOutLineBorderTextField(),
+            ),
           ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: AppConstant.paddingMedium,
+              bottom: AppConstant.paddingMedium),
+          child: Text(
+            "សេវាកម្ម",
+            style: AppText.titleSmall,
+          ),
+        ),
+        CustomDropDownButtonWidget(
+          iconWidget: const Icon(
+            Icons.arrow_forward_ios_sharp,
+            color: Colors.grey,
+          ),
+          hintText: 'ជ្រើសរើសប្រភេទជួលអ្នកត្រូវការ',
+          svgSrc: 'assets/icons/home3.svg',
+          itemList: itemList,
+          onChangedServices: (value) {
+            onChangedServices!(value!);
+          },
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          "តម្លៃ",
+          style: AppText.titleSmall,
+        ),
+        CustomRangeValueWidget(
+          onDragging: (handlerIndex, lowerValue, upperValue) {
+            if (handlerIndex == 0) {
+              valueSlider.first = lowerValue;
+              print("=====================slider 1   :$lowerValue ");
+              // setStateSlider(() {});
+            } else {
+              valueSlider.last = upperValue;
+              print("=====================slider 2   :$upperValue ");
+              // setStateSlider(() {});
+            }
+          },
+          valueSlider: valueSlider,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: CustomButton(
+            onPressed: () {},
+            title: "ចាប់ផ្តើមស្វែងរក",
+            isOutline: false,
+          ),
+        ),
+      ],
     );
   }
 }

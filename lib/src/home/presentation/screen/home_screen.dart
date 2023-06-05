@@ -55,8 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     super.dispose();
   }
 
@@ -167,15 +165,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ...imageSliders.map((e) {
                         int index = imageSliders.indexOf(e);
                         return Container(
-                          height: 8,
-                          width: 8,
+                          height: 8.5,
+                          width: 8.5,
                           margin: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 3),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: homeController.indexSlider.value == index
-                                  ? AppConstant.kSecondaryColor
-                                  : Colors.white60),
+                                  ? AppConstant.kPrimaryColor
+                                  : Colors.white),
                         );
                       }).toList()
                     ]),
