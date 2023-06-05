@@ -48,5 +48,20 @@ class HomeController extends GetxController {
         update();
       });
     });
-  }
+  } //Business
+// use on bottomSheet Search
+
+  var textLocationHome = "".obs;
+  var textServiceHome = "".obs;
+  var textPriceHome = "".obs;
+
+  var textLocationBusiness = "".obs;
+  var textServiceBusiness = "".obs;
+  var textPriceBusiness = "".obs;
+
+  //
+  double startSlider = 1;
+  double endSlider = 100;
+  //  RangeValues values = RangeValues(startSlider.toDouble(), endSlider);
+  //     RangeLabels labels = RangeLabels('$startSlider', '$10endSlider0');
 }

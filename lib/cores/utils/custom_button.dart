@@ -21,7 +21,6 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      // height: 50,
       child: Platform.isAndroid
           ? SizedBox(
               height: 50,
