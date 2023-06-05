@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:goo_rent/main_page.dart';
 import 'package:goo_rent/src/splash/presentation/widgets/show_dialog_ocation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -49,6 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void didChangeDependencies() {
     Timer(const Duration(seconds: 3), () async {
+      Get.to(() => const MainPage());
       // Navigator.pushNamedAndRemoveUntil(
       //     context,
       //     EnvProvider.config.name != EnvProvider.flavor.name

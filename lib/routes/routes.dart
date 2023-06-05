@@ -1,5 +1,10 @@
 import 'package:go_router/go_router.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_name_screen.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_passwrod_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/sign_up_screen.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/screen/start_account_screen.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/screen/verification_otp_screen.dart';
 import 'package:goo_rent/src/home/presentation/screen/business_rental_type/building_rent_page.dart';
 import 'package:goo_rent/src/home/presentation/screen/business_rental_type/business_house_rent_page.dart';
 import 'package:goo_rent/src/home/presentation/screen/business_rental_type/factory_rent_page.dart';
@@ -28,11 +33,6 @@ import 'package:goo_rent/src/profile/presentation/screen/my_property_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 import 'package:goo_rent/src/settings/presentation/pages/multiple_language_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/create_name_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/create_passwrod_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/start_account_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/verification_otp_screen.dart';
 import 'package:goo_rent/src/splash/presentation/screen/splash_screen.dart';
 
 // GoRouter configuration
@@ -114,9 +114,9 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: VerificationOTPScreen.routeName,
+      path: VerifyOTPScreen.routeName,
       builder: (context, state) {
-        return const VerificationOTPScreen();
+        return const VerifyOTPScreen();
       },
     ),
     GoRoute(
@@ -234,9 +234,9 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: AuthLanding.routeName,
+      path: StartAccountScreen.routeName,
       builder: (context, state) {
-        return const AuthLanding();
+        return const StartAccountScreen();
       },
     ),
     GoRoute(

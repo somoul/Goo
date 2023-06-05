@@ -9,6 +9,8 @@
 .history
 .svn/
 /.fvm
+/linux
+/macos
 build.sh
 migrate_working_dir/
 

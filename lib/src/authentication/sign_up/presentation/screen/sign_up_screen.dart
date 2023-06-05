@@ -35,11 +35,14 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     Row(
                       children: [
-                        BuildCountryPicker(
-                          onSelected: (val) {
-                            signUpCon.countryCode.value = val;
-                          },
-                          initCountry: countryList[35],
+                        IgnorePointer(
+                          ignoring: true,
+                          child: BuildCountryPicker(
+                            onSelected: (val) {
+                              signUpCon.countryCode.value = val;
+                            },
+                            initCountry: countryList[35],
+                          ),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -79,33 +82,34 @@ class SignUpScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have ave an account? ',
-                          style: AppText.bodySmall,
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Get.offAndToNamed(Routes.signin);
-                            },
-                            child: const Text(
-                              'Sign in',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                              ),
-                            ))
-                      ],
-                    )
+                    // const SizedBox(height: 10),
+                    // Row(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       'Already have ave an account? ',
+                    //       style: AppText.bodySmall,
+                    //     ),
+                    //     TextButton(
+                    //         onPressed: () {
+                    //           Get.offAndToNamed(Routes.signin);
+                    //         },
+                    //         child: const Text(
+                    //           'Sign in',
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //           ),
+                    //         ))
+                    //   ],
+                    // )
                   ],
                 ),
               ),
               CustomButton(
-                title: 'Sign up',
-                onPressed: () => signUpCon.onRegister(),
+                title: 'Sign Up',
+                onPressed: () => Get.toNamed(Routes.verifyOtp),
+                // onPressed: () => signUpCon.onRegister(),
               ),
             ],
           ),

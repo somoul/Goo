@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goo_rent/src/splash/presentation/widgets/show_dialog_ocation.dart';
+import 'package:get/get.dart';
+import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/main_page.dart';
 
 class CreateNameScreen extends StatelessWidget {
   const CreateNameScreen({Key? key}) : super(key: key);
@@ -11,7 +14,8 @@ class CreateNameScreen extends StatelessWidget {
     bool checkPasswordExisting = false;
     bool obSecText = false;
     TextEditingController txtName = TextEditingController();
-    return SafeArea(
+    return GestureDetector(
+      onTap: () => KeyboardHeper.hideKeyborad(),
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -68,21 +72,16 @@ class CreateNameScreen extends StatelessWidget {
                 }),
                 const Spacer(),
                 SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(7))),
-                        onPressed: checkPasswordExisting
-                            ? () {
-                                showAlertDialog(context: context);
-                              }
-                            : null,
-                        child: const Text(
-                          "Confirm",
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        )))
+                  width: double.infinity,
+                  height: 50,
+                  child: CustomButton(
+                    title: 'Confirm',
+                    onPressed: () {
+                      Get.to(const MainPage());
+                      //  showAlertDialog(context: context);
+                    },
+                  ),
+                )
               ],
             );
           }),

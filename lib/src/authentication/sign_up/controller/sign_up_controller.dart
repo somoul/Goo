@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/api_helper.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/src/authentication/sign_up/data/register_model.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
 
 class SignUpController extends GetxController {
@@ -9,24 +11,29 @@ class SignUpController extends GetxController {
   final phoneNumber = ''.obs;
   final password = ''.obs;
   final countryCode = Country().obs;
-  final api = ApiHelper.instance;
+  final apiHelper = ApiHelper();
+  final registerData = RegisterModel().obs;
 
-  /// Function
+  /// Method
   Future<void> onRegister() async {
     var body = {
-      'phone': phoneNumber.value,
+      'username': '234567',
+      'password': '123456',
+      'phone': '096452345300',
     };
     KeyboardHeper.hideKeyborad();
     try {
-      var response = await api.$request(
-        "/register",
-        isLoading: true,
-        headers: {},
+      await apiHelper
+          .onRequest(
+        url: '/register',
+        methode: METHODE.post,
+        isAuthorize: false,
         body: body,
-      );
-      print('object---------------->>>$response');
-    } catch (e) {
-      print('object---------->> $e');
-    }
+      )
+          .then((value) async {
+        registerData.value = RegisterModel.fromJson(value['data']);
+        await LocalStorage.writeToken(registerData.value.token!);
+      });
+    } catch (_) {}
   }
 }

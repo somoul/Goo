@@ -1,18 +1,16 @@
 import 'dart:async';
+import 'package:get/get.dart';
 
-import 'package:flutter/material.dart';
-
-class OTPCountdownProvider extends ChangeNotifier {
-  int get index => _index;
-  int _index = 59;
-  Timer? countdownTimer;
+class OTPController extends GetxController {
+  int get index => _index.value;
+  final _index = 59.obs;
+  final countdownTimer = Timer(const Duration(), () {}).obs;
 
   changeIndex({int index = 0}) async {
     var counter = index;
-    countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    countdownTimer.value = Timer.periodic(const Duration(seconds: 1), (timer) {
       counter--;
-      _index = counter;
-      notifyListeners();
+      _index.value = counter;
       if (counter == 0) {
         _stopTimer();
       }
@@ -20,6 +18,6 @@ class OTPCountdownProvider extends ChangeNotifier {
   }
 
   void _stopTimer() {
-    countdownTimer!.cancel();
+    countdownTimer.value.cancel();
   }
 }

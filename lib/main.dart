@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:goo_rent/cores/theme/theme_data.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:goo_rent/cores/utils/locale_helper.dart';
 import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/locale/translator.dart';
@@ -13,21 +13,9 @@ import 'package:goo_rent/src/locale/translator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  await onCheckLanguages();
+  await LocaleHelper.onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
-}
-
-Future<void> onCheckLanguages() async {
-  var localeStr = await LocalStorage.readLocale();
-  // if (localeStr != '') {
-  var locale = Locale(localeStr, '');
-  Get.updateLocale(locale);
-  // } else {
-  //   var localeStr = Get.deviceLocale!.languageCode;
-  //   var locale = Locale(localeStr, '');
-  //   Get.updateLocale(locale);
-  // }
 }
 
 class MyApp extends StatelessWidget {
@@ -49,7 +37,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: CustomTheme.lightTheme,
             navigatorKey: ContextProvider.navigatorKey,
-            initialRoute: Routes.home,
+            initialRoute: Routes.signup,
             getPages: AppPages.pages,
             // initialBinding: AuthBinding()
           );
