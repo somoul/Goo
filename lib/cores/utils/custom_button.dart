@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'dart:io';
+
+import 'package:goo_rent/cores/constant/app_constant.dart';
 
 ///[Noted] If you want to disable it => onPressed: null
 class CustomButton extends StatelessWidget {
@@ -25,7 +28,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45,
+      height: 50,
       width: double.infinity,
       child: Platform.isAndroid
           ? isOutline == true
@@ -36,14 +39,14 @@ class CustomButton extends StatelessWidget {
                       width: 1,
                       color: onPressed == null
                           ? (disableColor ?? Colors.grey /*Color(0xffD9D9D9)*/)
-                          : (enableColor ?? const Color(0xff4FB848)),
+                          : (enableColor ?? AppConstant.kPrimaryColor),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   child: Text(
-                    title,
+                    title.tr,
                     style: onPressed == null
                         ? (disableTextStyle ??
                             const TextStyle(
@@ -54,7 +57,7 @@ class CustomButton extends StatelessWidget {
                         : (enableTextStyle ??
                             const TextStyle(
                               fontSize: 16,
-                              color: Color(0xff4FB848),
+                              color: AppConstant.kPrimaryColor,
                               fontWeight: FontWeight.w400,
                             )),
                   ),
@@ -67,11 +70,11 @@ class CustomButton extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5)),
                     ),
                     backgroundColor: MaterialStateProperty.all(onPressed != null
-                        ? (enableColor ?? const Color(0xff4FB848))
+                        ? (enableColor ?? AppConstant.kPrimaryColor)
                         : (disableColor ?? Colors.grey.shade400)),
                   ),
                   child: Text(
-                    title,
+                    title.tr,
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -86,7 +89,7 @@ class CustomButton extends StatelessWidget {
                     border: Border.all(
                       color: onPressed == null
                           ? (disableColor ?? Colors.grey /*Color(0xffD9D9D9)*/)
-                          : (enableColor ?? const Color(0xff4FB848)),
+                          : (enableColor ?? AppConstant.kPrimaryColor),
                     ),
                   ),
                   child: CupertinoButton(
@@ -94,7 +97,7 @@ class CustomButton extends StatelessWidget {
                     padding: const EdgeInsets.all(0),
                     borderRadius: BorderRadius.circular(5),
                     child: Text(
-                      title,
+                      title.tr,
                       style: onPressed == null
                           ? (disableTextStyle ??
                               const TextStyle(
@@ -105,7 +108,7 @@ class CustomButton extends StatelessWidget {
                           : (enableTextStyle ??
                               const TextStyle(
                                 fontSize: 16,
-                                color: Color(0xff4FB848),
+                                color: AppConstant.kPrimaryColor,
                                 fontWeight: FontWeight.w400,
                               )),
                     ),
@@ -117,10 +120,10 @@ class CustomButton extends StatelessWidget {
                   onPressed: onPressed == null ? null : () => onPressed!(),
                   color: onPressed == null
                       ? (disableColor ?? Colors.grey.shade400)
-                      : (enableColor ?? const Color(0xff4FB848)),
+                      : (enableColor ?? AppConstant.kPrimaryColor),
                   borderRadius: BorderRadius.circular(5),
                   child: Text(
-                    title,
+                    title.tr,
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,

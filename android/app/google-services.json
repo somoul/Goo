@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "340131520441",
+    "project_id": "goorent",
+    "storage_bucket": "goorent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340131520441:android:92996672b2d8631f1d6068",
+        "android_client_info": {
+          "package_name": "go.gorents.cambodia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340131520441-qjeddhrlo9138nj5enqb2mfrifg86cs9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.gorents.cambodia",
+            "certificate_hash": "ab12438b5be30e0a80cd1c6f5faeed3493992f74"
+          }
+        },
+        {
+          "client_id": "340131520441-ctpm4lm7b5bft3ue2q6povd993emvd3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHpGHxBw3NC33E7eVB0zt9FKTiNmF62ts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340131520441-ctpm4lm7b5bft3ue2q6povd993emvd3i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340131520441-7v9u8jmi9us8cdqta0s5qtgfkt6h6g8p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gooRent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

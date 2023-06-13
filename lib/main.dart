@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,6 +6,7 @@ import 'package:goo_rent/cores/theme/theme_data.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_rent/cores/utils/locale_helper.dart';
+import 'package:goo_rent/firebase_options.dart';
 import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/locale/translator.dart';
@@ -12,6 +14,9 @@ import 'package:goo_rent/src/locale/translator.dart';
 ///Flutter version 3.10.2
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await GetStorage.init();
   await LocaleHelper.onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: CustomTheme.lightTheme,
             navigatorKey: ContextProvider.navigatorKey,
-            initialRoute: Routes.signup,
+            initialRoute: Routes.home,
             getPages: AppPages.pages,
             // initialBinding: AuthBinding()
           );

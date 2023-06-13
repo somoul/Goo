@@ -49,6 +49,7 @@ class CreatePasswordScreen extends StatelessWidget {
                               // checkPasswordExisting = validatePassword(c);
                             });
                           },
+
                           decoration: InputDecoration(
                               suffixIcon: IconButton(
                                 icon: Icon(obSecText
@@ -76,7 +77,7 @@ class CreatePasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: CustomButton(
-                    title: 'Confirm',
+                    title: 'confirm'.tr,
                     onPressed: () {
                       Get.to(() => const CreateNameScreen());
                     },
