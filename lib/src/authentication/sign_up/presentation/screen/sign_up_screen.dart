@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
-import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
+
+import '../../../../home/presentation/screen/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -107,10 +108,17 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               CustomButton(
-                title: 'Sign Up',
-                onPressed: () => Get.toNamed(Routes.verifyOtp),
-                // onPressed: () => signUpCon.onRegister(),
-              ),
+                  title: 'Sign Up',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                    );
+                  }
+                  // => Get.toNamed(Routes.verifyOtp),
+                  // onPressed: () => signUpCon.onRegister(),
+                  ),
             ],
           ),
         ),

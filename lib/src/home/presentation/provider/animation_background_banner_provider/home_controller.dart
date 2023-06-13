@@ -60,8 +60,8 @@ class HomeController extends GetxController {
   var textPriceBusiness = "".obs;
 
   //
-  double startSlider = 1;
-  double endSlider = 100;
-  //  RangeValues values = RangeValues(startSlider.toDouble(), endSlider);
+  double startSlider = 0.0;
+  double endSlider = 100.0;
+  //  RangeValues values = RangeValues(startSlider, endSlider);
   //     RangeLabels labels = RangeLabels('$startSlider', '$10endSlider0');
 }

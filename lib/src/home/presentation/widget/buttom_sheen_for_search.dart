@@ -32,9 +32,9 @@ class BottomSheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final homeController = Get.put(HomeController());
+    homeController.startSlider = 0;
+    homeController.endSlider = 100;
 
-    // bool isRentForHome = true;
-    //
     int indexTapber = 0;
     return AnimatedPadding(
       duration: kThemeAnimationDuration,
@@ -251,19 +251,25 @@ class CustomScrenBottomSheet extends StatelessWidget {
           "តម្លៃ",
           style: AppText.titleSmall,
         ),
-        CustomRangeValueWidget(
-          onDragging: (handlerIndex, lowerValue, upperValue) {
-            if (handlerIndex == 0) {
-              valueSlider.first = lowerValue;
-              print("=====================slider 1   :$lowerValue ");
-              // setStateSlider(() {});
-            } else {
-              valueSlider.last = upperValue;
-              print("=====================slider 2   :$upperValue ");
-              // setStateSlider(() {});
-            }
-          },
-          valueSlider: valueSlider,
+        const SizedBox(
+          height: 95,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 50,
+            ),
+            child: CustomRangeValueWidget(
+                // onDragging: (handlerIndex, lowerValue, upperValue) {
+                //   if (handlerIndex == 0) {
+                //     valueSlider.first = lowerValue;
+                //     print("=====================slider 1   :$lowerValue ");
+                //   } else {
+                //     valueSlider.last = upperValue;
+                //     print("=====================slider 2   :$upperValue ");
+                //   }
+                // },
+                // valueSlider: valueSlider,
+                ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20),

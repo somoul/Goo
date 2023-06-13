@@ -89,6 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         titleSpacing: 0,
         toolbarHeight: 80,
+        leading: null,
+        actions: null,
         title: Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: AppConstant.paddingLarge),
