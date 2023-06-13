@@ -12,7 +12,7 @@ class LocalStorage {
   }
 
   static Future<String> readLocale() async {
-    String locale = await box.read(AppString.locale);
+    String locale = box.read(AppString.locale) ?? '';
     return locale;
   }
 

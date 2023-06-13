@@ -124,7 +124,7 @@ class VerifyOTPScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: CustomButton(
-                    title: 'Verify',
+                    title: 'confirm',
                     onPressed: () {
                       Get.to(() => const CreatePasswordScreen());
                     },

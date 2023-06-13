@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/utils.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'country.dart';
 
@@ -57,13 +56,8 @@ Widget _buildDefaultMenuItem(Country country) {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         CountryPickerUtils.getDefaultFlagImage(country),
-        const SizedBox(
-          width: 8.0,
-        ),
-        Text(
-          "+${country.phoneCode}",
-          style: GoogleFonts.kantumruy(fontSize: 14),
-        ),
+        const Spacer(),
+        Text("+${country.phoneCode}", style: AppText.titleSmall),
       ],
     ),
   );
