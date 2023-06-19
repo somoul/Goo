@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/src/home/presentation/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_drop_down_button_widget.dart';
-import 'package:goo_rent/src/home/presentation/widget/custom_text_file.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CondoRentPage extends StatelessWidget {
   const CondoRentPage({Key? key, this.appBarTitle = "ដាក់ជួលខុនដូ"})
       : super(key: key);
-  static const String routeName = "/rent_page";
+  static String routeName = "/rent_page";
   final String appBarTitle;
 
   @override
@@ -55,17 +55,17 @@ class CondoRentPage extends StatelessWidget {
                       ],
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំណងជើង",
                       labelText: "ចំណងជើង",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "តម្លៃ (\$)",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "បង់កក់មុន",
                       suffixIcon: Row(
@@ -86,7 +86,7 @@ class CondoRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលទីតាំងក្នុង Google Map",
                       labelText: "ទីតាំង",
                       suffixIcon: IconButton(
@@ -101,7 +101,7 @@ class CondoRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ជូលជាន់របស់បន្ទប់",
                       labelText: "លេខជាន់",
                       suffixIcon: IconButton(
@@ -114,7 +114,7 @@ class CondoRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ជូលប្រភេទបន្ទប់",
                       labelText: "ប្រភេទបន្ទប់",
                       suffixIcon: IconButton(
@@ -127,12 +127,12 @@ class CondoRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលទំហំ",
                       labelText: "ទំហំ (ម៉ែត្រការ៉េ)",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលសម្ភារ:បំពាក់",
                       labelText: "សម្ភារ:បំពាក់",
                       suffixIcon: IconButton(
@@ -196,8 +196,7 @@ class CondoRentPage extends StatelessWidget {
                       // style: TextStyle(fontSize: 18),
                     ),
                     CustomTextField(
-                      maxLine: 10,
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ជូលព័ត៍មានបន្ថែម",
                       labelText: "",
                     ),

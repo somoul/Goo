@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/main_page.dart';
+import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/splash/presentation/widgets/show_dialog_ocation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,6 +21,15 @@ enum BestTutorSite { khmer, english, china, korea }
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
+  void onCheckUser() async {
+    var tokenKey = await LocalStorage.readToken();
+    if (tokenKey != '') {
+      Get.offAllNamed(Routes.home);
+    } else {
+      Get.offAllNamed(Routes.signin);
+    }
+  }
+
   @override
   void initState() {
     controller = AnimationController(
@@ -50,8 +60,9 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void didChangeDependencies() {
-    Timer(const Duration(seconds: 3), () async {
-      Get.to(() => const MainPage());
+    Timer(const Duration(seconds: 2), () async {
+      onCheckUser();
+      // Get.to(() => const MainPage());
       // Navigator.pushNamedAndRemoveUntil(
       //     context,
       //     EnvProvider.config.name != EnvProvider.flavor.name

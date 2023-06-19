@@ -21,8 +21,12 @@ class LocalStorage {
     await box.write(AppString.token, token);
   }
 
-  static Future<String?> readToken() async {
+  static Future<String> readToken() async {
     var token = await box.read(AppString.token);
     return token ?? '';
+  }
+
+  static Future<void> removeToken() async {
+    await box.remove(AppString.token);
   }
 }

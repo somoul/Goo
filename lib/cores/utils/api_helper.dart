@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:goo_rent/cores/constant/app_string.dart';
 
@@ -16,7 +17,7 @@ enum METHODE {
 }
 
 class ApiHelper extends GetConnect {
-  final String? baseurl = AppString.baseUrl;
+  final String baseurl = AppString.baseUrl;
   Future<dynamic> onRequest(
       {required String url,
       Map<String, String>? header,
@@ -26,7 +27,7 @@ class ApiHelper extends GetConnect {
       bool isConvertToByte = false}) async {
     // final _token = await StorageDataLocal.getData('current_user') ?? "";
     // tockenTest = _token;
-    final fullUrl = baseurl! + url;
+    final fullUrl = baseurl + url;
     Map<String, String> header0 = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -67,6 +68,7 @@ class ApiHelper extends GetConnect {
   }
 
   dynamic _returnResponse(Response response) {
+    debugPrint('Response Data : ${response.bodyString}');
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.bodyString!);

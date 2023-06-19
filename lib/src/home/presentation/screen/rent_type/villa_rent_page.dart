@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/src/home/presentation/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_drop_down_button_widget.dart';
-import 'package:goo_rent/src/home/presentation/widget/custom_text_file.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VillaRentPage extends StatelessWidget {
@@ -54,17 +54,17 @@ class VillaRentPage extends StatelessWidget {
                       ],
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំណងជើង",
                       labelText: "ចំណងជើង",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "តម្លៃ (\$)",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "បង់កក់មុន",
                       suffixIcon: Row(
@@ -86,7 +86,7 @@ class VillaRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលទីតាំងក្នុង Google Map",
                       labelText: "ទីតាំង",
                       suffixIcon: IconButton(
@@ -111,7 +111,7 @@ class VillaRentPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំទទឹង",
                             labelText: "",
                           ),
@@ -121,7 +121,7 @@ class VillaRentPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំបណ្តោយ",
                             labelText: "",
                           ),
@@ -136,7 +136,7 @@ class VillaRentPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំទទឹង",
                             labelText: "",
                           ),
@@ -146,7 +146,7 @@ class VillaRentPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំបណ្តោយ",
                             labelText: "",
                           ),
@@ -154,17 +154,17 @@ class VillaRentPage extends StatelessWidget {
                       ],
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំនួនបន្ទប់គេង",
                       labelText: "ចំនួនបន្ទប់គេង",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំនួនបន្ទប់ទឹក",
                       labelText: "ចំនួនបន្ទប់ទឹក់",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំនួនជាន់បន្ទប់",
                       labelText: "ចំនួនជាន់់",
                     ),
@@ -220,8 +220,7 @@ class VillaRentPage extends StatelessWidget {
                       style: GoogleFonts.kantumruy(fontSize: 18),
                     ),
                     CustomTextField(
-                      maxLine: 10,
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ជូលព័ត៍មានបន្ថែម",
                       labelText: "",
                     ),

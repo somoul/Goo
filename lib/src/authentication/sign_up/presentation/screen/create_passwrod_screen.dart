@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
-
-import 'create_name_screen.dart';
+import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
 
 class CreatePasswordScreen extends StatelessWidget {
   const CreatePasswordScreen({Key? key}) : super(key: key);
@@ -12,8 +14,7 @@ class CreatePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool obSecText = true;
-
+    var signupCon = Get.put(SignUpController());
     return GestureDetector(
       onTap: () => KeyboardHeper.hideKeyborad(),
       child: Scaffold(
@@ -29,60 +30,45 @@ class CreatePasswordScreen extends StatelessWidget {
                       SizedBox(
                         height: 120.h,
                       ),
-                      const Text(
-                        "Create a new password",
-                        style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                      Text(
+                        "Create a new password".tr,
+                        style: const TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      StatefulBuilder(builder: (context, setStatePassword) {
-                        return TextField(
-                          // cursorColor: Colors.red[600],
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          obscureText: obSecText,
-                          obscuringCharacter: '*',
-                          onChanged: (c) {
-                            setStateSignIn(() {
-                              // checkPasswordExisting = validatePassword(c);
-                            });
+                      Obx(
+                        () => CustomTextField(
+                          suffixIcon: IconButton(
+                            onPressed: () => signupCon.isShowPass.value =
+                                !signupCon.isShowPass.value,
+                            icon: Icon(signupCon.isShowPass.value
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          obscureText: signupCon.isShowPass.value,
+                          textInputType: TextInputType.visiblePassword,
+                          hindText: "Please enter password".tr,
+                          valueStyle:
+                              AppText.titleSmall!.copyWith(letterSpacing: 1),
+                          onChange: (val) {
+                            signupCon.password.value = val;
                           },
-
-                          decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                icon: Icon(obSecText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                                onPressed: () {
-                                  setStatePassword(() {
-                                    obSecText = !obSecText;
-                                  });
-                                },
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 15),
-                              hintText: "Please create password",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide:
-                                    const BorderSide(color: Colors.black),
-                              )),
-                        );
-                      }),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                  child: CustomButton(
-                    title: 'confirm'.tr,
-                    onPressed: () {
-                      Get.to(() => const CreateNameScreen());
-                    },
-                  ),
-                )
+                Obx(() => SizedBox(
+                      height: 50,
+                      child: CustomButton(
+                        title: 'Confirm'.tr,
+                        onPressed: signupCon.password.value.length < 4
+                            ? null
+                            : () => Get.toNamed(Routes.createName),
+                      ),
+                    ))
               ],
             );
           }),

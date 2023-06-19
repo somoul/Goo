@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: CustomTheme.lightTheme,
             navigatorKey: ContextProvider.navigatorKey,
-            initialRoute: Routes.home,
+            initialRoute: Routes.initialize,
             getPages: AppPages.pages,
             // initialBinding: AuthBinding()
           );

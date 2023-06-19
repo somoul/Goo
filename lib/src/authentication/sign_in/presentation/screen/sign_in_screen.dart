@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_in/controller/signin_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
@@ -51,92 +52,51 @@ class SignInScreen extends StatelessWidget {
                       Row(
                         children: [
                           StatefulBuilder(
-                            builder: (context, setState) => BuildCountryPicker(
-                              onSelected: (val) {
-                                signinCon.countryCode.value = val;
-                                setState(() {});
-                              },
-                              initCountry: signinCon.countryCode.value,
+                            builder: (context, setState) => IgnorePointer(
+                              child: BuildCountryPicker(
+                                onSelected: (val) {
+                                  signinCon.countryCode.value = val;
+                                  setState(() {});
+                                },
+                                initCountry: signinCon.countryCode.value,
+                              ),
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 15),
                           Expanded(
-                            child: TextField(
-                              maxLines: 1,
-                              maxLength: 15,
-                              cursorHeight: 25,
-                              textAlignVertical: TextAlignVertical.center,
-                              style: AppText.bodyMedium!
-                                  .copyWith(letterSpacing: 1),
-                              textAlign: TextAlign.left,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                hintStyle: AppText.bodyMedium!.copyWith(
-                                    color: Colors.grey, letterSpacing: 1),
-                                counterText: "",
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 10),
-                                hintText: "XXX-XXX-XXX",
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey)),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(7),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                ),
+                            child: CustomTextField(
+                              textInputType: TextInputType.phone,
+                              hindText: "XXX-XXX-XXX",
+                              hintStyle: AppText.bodyMedium!.copyWith(
+                                letterSpacing: 1,
+                                color: Colors.grey,
                               ),
-                              onChanged: (val) {
-                                signinCon.phoneNumber.value = val;
+                              valueStyle: AppText.titleSmall!.copyWith(
+                                letterSpacing: 1,
+                              ),
+                              onChange: (value) {
+                                signinCon.phoneNumber.value = value;
                               },
                             ),
                           )
                         ],
                       ),
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 20),
                       Obx(
-                        () => TextField(
-                          textAlignVertical: TextAlignVertical.center,
-                          textAlign: TextAlign.left,
-                          cursorHeight: 25,
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          style: AppText.bodyMedium!.copyWith(letterSpacing: 1),
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: signinCon.isShowPass.value,
-                          // obscuringCharacter: '*',
-                          decoration: InputDecoration(
-                            hintStyle: AppText.bodyMedium!
-                                .copyWith(color: Colors.grey, letterSpacing: 1),
-                            suffixIcon: IconButton(
-                              icon: Icon(signinCon.isShowPass.value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                              onPressed: () => signinCon.isShowPass.value =
-                                  !signinCon.isShowPass.value,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            hintText: "Please create password",
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
+                        () => CustomTextField(
+                          suffixIcon: IconButton(
+                            onPressed: () => signinCon.isShowPass.value =
+                                !signinCon.isShowPass.value,
+                            icon: Icon(signinCon.isShowPass.value
+                                ? Icons.visibility_off
+                                : Icons.visibility),
                           ),
-                          onChanged: (val) {
+                          obscureText: signinCon.isShowPass.value,
+                          textInputType: TextInputType.visiblePassword,
+                          hindText: "Please enter password",
+                          valueStyle:
+                              AppText.titleSmall!.copyWith(letterSpacing: 1),
+                          onChange: (val) {
                             signinCon.password.value = val;
                           },
                         ),
@@ -165,10 +125,13 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomButton(
-                title: 'Sign in',
-                // isOutline: false,
-                onPressed: () => signinCon.onLogin(),
+              Obx(
+                () => CustomButton(
+                  title: 'Sign In',
+                  onPressed: signinCon.isEnableSignin
+                      ? () async => await signinCon.onLogin()
+                      : null,
+                ),
               ),
             ],
           ),

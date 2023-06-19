@@ -4,6 +4,7 @@ import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_listile.dart';
 import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart';
@@ -118,6 +119,14 @@ class ProfileScreen extends StatelessWidget {
                     title: 'language'.tr,
                     onTap: onShowChangeLanguage,
                     leadingAsset: 'assets/icons/lange.png'),
+                CustomListile(
+                  title: 'Logout'.tr,
+                  onTap: () async {
+                    await LocalStorage.removeToken();
+                    Get.offAllNamed(Routes.signin);
+                  },
+                  leadingAsset: 'assets/icons/Security.png',
+                ),
               ],
             ),
           ),

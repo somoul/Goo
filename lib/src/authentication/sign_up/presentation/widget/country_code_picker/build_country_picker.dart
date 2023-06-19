@@ -22,18 +22,13 @@ class BuildCountryPicker extends StatelessWidget {
         height: 50,
         padding: const EdgeInsets.symmetric(horizontal: 2),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.grey)),
         child: DropdownButton<Country>(
           icon: const Icon(Icons.arrow_drop_down_rounded),
           value: initCountry,
-          // elevation: 16,
           isExpanded: true,
           style: AppText.bodyMedium,
-          // underline: Container(
-          //   // height: 2,
-          //   color: Colors.deepPurpleAccent,
-          // ),
           onChanged: (Country? countryCode) {
             onSelected(countryCode!);
           },

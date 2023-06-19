@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
-import 'package:goo_rent/main_page.dart';
+import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
 
 class CreateNameScreen extends StatelessWidget {
-  const CreateNameScreen({Key? key}) : super(key: key);
+  CreateNameScreen({Key? key}) : super(key: key);
   static const String routeName = '/create_name_screen';
-
+  final nameCon = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    bool checkPasswordExisting = false;
-    bool obSecText = false;
-    TextEditingController txtName = TextEditingController();
+    var signupCon = Get.put(SignUpController());
     return GestureDetector(
       onTap: () => KeyboardHeper.hideKeyborad(),
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-          child: StatefulBuilder(builder: (context, setStateSignIn) {
+          child: StatefulBuilder(builder: (context, setState) {
             return Column(
               children: [
                 Expanded(
@@ -32,59 +32,66 @@ class CreateNameScreen extends StatelessWidget {
                       const Text(
                         "What is your name?",
                         style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        height: 30,
+                      const SizedBox(height: 30),
+                      TextFormField(
+                        controller: signupCon.userNameController.value,
+                        cursorColor: AppConstant.kPrimaryColor,
+                        cursorRadius: const Radius.circular(10),
+                        cursorHeight: 20,
+                        cursorWidth: 2,
+                        keyboardType: TextInputType.name,
+                        style: AppText.bodyMedium,
+                        onChanged: (val) {
+                          setState(() {});
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                          suffixIcon: Obx(
+                            () => IconButton(
+                                icon: Icon(
+                                    signupCon.userNameController.value.text !=
+                                            ''
+                                        ? Icons.cancel
+                                        : null),
+                                onPressed: () {
+                                  signupCon.userNameController.value.clear();
+                                  setState(() {});
+                                }),
+                          ),
+                          hintStyle:
+                              AppText.bodyMedium!.copyWith(color: Colors.grey),
+                          hintText: "Please enter your name",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(
+                              color: AppConstant.kPrimaryColor,
+                              width: 1,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
+                          ),
+                        ),
                       ),
-                      StatefulBuilder(builder: (context, setStatePassword) {
-                        return TextField(
-                          controller: txtName,
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          onChanged: (c) {
-                            if (c.isNotEmpty) {
-                              obSecText = true;
-                              if (c.length > 3) {
-                                checkPasswordExisting = true;
-                              } else {
-                                checkPasswordExisting = false;
-                              }
-                            } else {
-                              obSecText = false;
-                            }
-
-                            setStateSignIn(() {});
-                          },
-                          decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                icon: Icon(obSecText ? Icons.cancel : null),
-                                onPressed: obSecText
-                                    ? () {
-                                        txtName.clear();
-                                      }
-                                    : null,
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 15),
-                              hintText: "Please enter your name",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide:
-                                    const BorderSide(color: Colors.black),
-                              )),
-                        );
-                      }),
                     ],
                   ),
                 ),
-                CustomButton(
-                  title: 'confirm',
-                  onPressed: () {
-                    Get.to(const MainPage());
-                    //  showAlertDialog(context: context);
-                  },
-                ),
+                Obx(() => CustomButton(
+                    title: 'Confirm'.tr,
+                    onPressed: signupCon.userNameController.value.text == ''
+                        ? null
+                        : () => signupCon.onRegister()))
               ],
             );
           }),

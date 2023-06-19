@@ -4,7 +4,8 @@ abstract class Routes {
   static const signin = '/login';
   static const signup = '/signup';
   static const verifyOtp = '/verify-otp';
-  // static const signup = '/signup';
+  static const createPassword = '/create-password';
+  static const createName = '/createName';
   // static const signup = '/signup';
   static const home = '/home';
 }

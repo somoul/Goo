@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/src/home/presentation/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/presentation/widget/custom_drop_down_button_widget.dart';
-import 'package:goo_rent/src/home/presentation/widget/custom_text_file.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BuildRentPage extends StatelessWidget {
   const BuildRentPage({Key? key, this.appBarTitle = "ដាក់ជួលអាគារ"})
       : super(key: key);
-  static const String routeName = "/build_rent_page";
+  static String routeName = "/build_rent_page";
   final String appBarTitle;
 
   @override
@@ -57,17 +57,17 @@ class BuildRentPage extends StatelessWidget {
                       ],
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលចំណងជើង",
                       labelText: "ចំណងជើង",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "តម្លៃជ (\$)",
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលតម្លៃជួល",
                       labelText: "បង់កក់មុន",
                       suffixIcon: Row(
@@ -89,7 +89,7 @@ class BuildRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "បញ្ជូលរយះពេលកុងត្រាជួល",
                       labelText: "កុងត្រាជួល",
                       suffixIcon: Row(
@@ -111,7 +111,7 @@ class BuildRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលទីតាំងក្នុង Google Map",
                       labelText: "ទីតាំង",
                       suffixIcon: IconButton(
@@ -136,7 +136,7 @@ class BuildRentPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំទទឹង",
                             labelText: "",
                           ),
@@ -146,7 +146,7 @@ class BuildRentPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: CustomTextField(
-                            color: Colors.grey.withOpacity(0.6),
+                            onChange: (value) {},
                             hindText: "សូមបញ្ចូលទំហំបណ្តោយ",
                             labelText: "",
                           ),
@@ -154,7 +154,7 @@ class BuildRentPage extends StatelessWidget {
                       ],
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលជាន់របស់បន្ទប់",
                       labelText: "ចំនួនជាន់",
                       suffixIcon: IconButton(
@@ -167,7 +167,7 @@ class BuildRentPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ចូលជាន់របស់បន្ទប់",
                       labelText: "ទំហំផ្លូវខាងមុខ",
                       suffixIcon: IconButton(
@@ -231,8 +231,7 @@ class BuildRentPage extends StatelessWidget {
                       style: GoogleFonts.kantumruy(fontSize: 18),
                     ),
                     CustomTextField(
-                      maxLine: 10,
-                      color: Colors.grey.withOpacity(0.6),
+                      onChange: (value) {},
                       hindText: "សូមបញ្ជូលព័ត៍មានបន្ថែម",
                       labelText: "",
                     ),

@@ -41,7 +41,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       //path: '/',
-      path: SplashScreen.routeName,
+      path: '',
       builder: (context, state) => const SplashScreen(),
     ),
     // GoRoute(
@@ -114,7 +114,7 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: VerifyOTPScreen.routeName,
+      path: 'VerifyOTPScreen.routeName',
       builder: (context, state) {
         return const VerifyOTPScreen();
       },
@@ -128,7 +128,7 @@ final router = GoRouter(
     GoRoute(
       path: CreateNameScreen.routeName,
       builder: (context, state) {
-        return const CreateNameScreen();
+        return CreateNameScreen();
       },
     ),
     GoRoute(

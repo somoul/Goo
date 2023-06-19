@@ -1,6 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:goo_rent/routes/route_name.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartAccountScreen extends StatelessWidget {
@@ -80,6 +82,9 @@ class StartAccountScreen extends StatelessWidget {
               ],
             ),
             InkWell(
+              onTap: () {
+                Get.offNamed(Routes.signin);
+              },
               borderRadius: BorderRadius.circular(50),
               child: Container(
                 margin: const EdgeInsets.only(top: 20),
