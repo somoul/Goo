@@ -8,7 +8,7 @@ import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 
-import '../../../../home/presentation/screen/home_screen.dart';
+import '../../../../home/screen/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/src/home/presentation/screen/home_screen.dart';
-import 'package:goo_rent/src/home/presentation/widget/custom_card_rent_widget.dart';
+import 'package:goo_rent/src/home/screen/home_screen.dart';
+import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
 
 class RentedRoomPage extends StatelessWidget {
   const RentedRoomPage({Key? key, required this.checkAccount})
