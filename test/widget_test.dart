@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:goo_rent/src/home/presentation/screen/products/product_tap_view/gorent_home_sreen.dart';
+import 'package:goo_rent/src/home/screen/products/product_tap_view/gorent_home_sreen.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

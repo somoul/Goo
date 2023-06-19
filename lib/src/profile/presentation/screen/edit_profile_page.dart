@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/src/home/presentation/widget/buttom_sheet_default.dart';
+import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 import 'package:goo_rent/src/profile/presentation/screen/modified_page.dart';
 import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/src/home/presentation/screen/home_screen.dart';
+import 'package:goo_rent/src/home/screen/home_screen.dart';
 
 showAlertDialog({required BuildContext context}) async {
   return showDialog<void>(
