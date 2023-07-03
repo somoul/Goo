@@ -29,23 +29,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(390, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return GetMaterialApp(
-            title: 'Goo Rent',
-            translationsKeys: AppTranslation.translationsKeys,
-            translations: Translator(),
-            locale: Get.locale ?? Get.deviceLocale,
-            fallbackLocale: const Locale('km', 'KH'),
-            debugShowCheckedModeBanner: false,
-            theme: CustomTheme.lightTheme,
-            navigatorKey: ContextProvider.navigatorKey,
-            initialRoute: Routes.initialize,
-            getPages: AppPages.pages,
-            // initialBinding: AuthBinding()
-          );
-        });
+      designSize: const Size(390, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          title: 'Goo Rent',
+
+          translationsKeys: AppTranslation.translationsKeys,
+          translations: Translator(),
+          locale: Get.locale ?? Get.deviceLocale,
+          fallbackLocale: const Locale('km', 'KH'),
+          debugShowCheckedModeBanner: false,
+          theme: CustomTheme.lightTheme,
+          navigatorKey: ContextProvider.navigatorKey,
+          initialRoute: Routes.initialize,
+          getPages: AppPages.pages,
+          // initialBinding: AuthBinding()
+        );
+      },
+    );
   }
 }

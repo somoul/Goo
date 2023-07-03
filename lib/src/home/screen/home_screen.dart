@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'yourCurrentLocation'.tr,
+                    'Your Current Location'.tr,
                     style: AppText.titleMedium!.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

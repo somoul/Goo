@@ -5,6 +5,7 @@ import 'color_schemes.g.dart';
 
 class CustomTheme {
   static get lightTheme => ThemeData(
+        useMaterial3: true,
         indicatorColor: AppConstant.kSecondaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: lightColorScheme,

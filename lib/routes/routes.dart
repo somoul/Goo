@@ -28,7 +28,6 @@ import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart
 import 'package:goo_rent/src/notification/presentation/screen/notification_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/build_address_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart';
-import 'package:goo_rent/src/profile/presentation/screen/modified_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/my_property_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
@@ -84,13 +83,10 @@ final router = GoRouter(
       path: EditProfilePage.routeName,
       builder: (context, state) => const EditProfilePage(),
     ),
-    GoRoute(
-      path: ModifiedPage.routeName,
-      builder: (context, state) {
-        final value = state.extra as ModifyField;
-        return ModifiedPage(modifyField: value);
-      },
-    ),
+    // GoRoute(
+    //   path: ModifiedPage.routeName,
+    //   builder: (context, state) {},
+    // ),
     GoRoute(
       path: MyPropertyPage.routeName,
       builder: (context, state) {

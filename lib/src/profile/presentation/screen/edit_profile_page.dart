@@ -2,10 +2,10 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
-import 'package:goo_rent/src/profile/presentation/screen/modified_page.dart';
-import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
+import 'package:goo_rent/src/profile/presentation/screen/edit_info.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -27,13 +27,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
-          'myAccount'.tr,
+          'My Account'.tr,
           style: AppText.titleMedium!.copyWith(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height: 20),
             Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -41,108 +42,72 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   shape: BoxShape.circle),
               child: InkWell(
                 onTap: () {
-                  showBottomEditProfilePhoto(
-                      context: context,
-                      widget: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: Divider(
-                              color: Colors.grey.withOpacity(0.5),
-                              height: 10,
-                              thickness: 2,
-                            ),
+                  showCupertinoModalPopup<void>(
+                    context: context,
+                    builder: (BuildContext context) => CupertinoActionSheet(
+                      title: Text(
+                        "Choose Image".tr,
+                        style: AppText.titleMedium,
+                      ),
+                      actions: <CupertinoActionSheetAction>[
+                        CupertinoActionSheetAction(
+                          isDefaultAction: true,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Take Photo".tr,
+                            style: AppText.titleSmall!
+                                .copyWith(color: AppConstant.kPrimaryColor),
                           ),
-                          Text(
-                            "chooseImage".tr,
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        CupertinoActionSheetAction(
+                          isDefaultAction: true,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("From Gallery".tr,
+                              style: AppText.titleSmall!
+                                  .copyWith(color: AppConstant.kPrimaryColor)),
+                        ),
+                        CupertinoActionSheetAction(
+                          isDestructiveAction: true,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Cancel".tr,
+                            style:
+                                AppText.titleSmall!.copyWith(color: Colors.red),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Divider(
-                            thickness: 1,
-                            color: Colors.grey[300],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "takePhoto".tr,
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 20, color: const Color(0xFF21A6F8)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Divider(
-                            thickness: 1,
-                            color: Colors.grey[300],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "fromGallery".tr,
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 20, color: const Color(0xFF21A6F8)),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Divider(
-                            height: 6,
-                            thickness: 10,
-                            color: Colors.grey[300],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "cancel".tr,
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ));
+                        ),
+                      ],
+                    ),
+                  );
                 },
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        'assets/icons/person.png',
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.asset(
+                          'assets/icons/person.png',
+                          width: 120,
+                          height: 120,
+                          fit: BoxFit.cover,
+                        )),
                     Positioned(
-                      right: 5,
-                      bottom: 0,
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff246BFD),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
-                    ),
+                        right: 5,
+                        bottom: 0,
+                        child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff246BFD),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Icon(Icons.edit,
+                                color: Colors.white, size: 22)))
                   ],
                 ),
               ),
@@ -151,95 +116,42 @@ class _EditProfilePageState extends State<EditProfilePage> {
               height: 16,
             ),
             _buildCardWidget(
-                labelName: "name".tr,
+                labelName: "Name".tr,
                 contentName: "ហម ហុី",
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (builder) => ModifiedPage(
-                        modifyField: ModifyField(
-                            appBarTitle: 'changeName'.tr, textField: 'ហម ហុី'),
-                      ),
-                    ),
-                  );
-
-                  //   GoRouter.of(context).push('/modified_page',
-                  //       extra: const ModifyField(
-                  //           appBarTitle: "ប្តូរឈ្មោះ", textField: "ហម ហុី"));
+                  Get.to(() =>
+                      const ProfileInfoPage(title: 'Change Name', value: ''));
                 }),
             _buildCardWidget(
-                labelName: "phoneNumber".tr,
+                labelName: "Phone Number".tr,
                 contentName: "+(855)0887821785",
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (builder) => ModifiedPage(
-                        modifyField: ModifyField(
-                            appBarTitle: 'changePhoneNumber'.tr,
-                            textField: '+(855)0887821785'),
-                      ),
-                    ),
-                  );
-
-                  // GoRouter.of(context).push('/modified_page',
-                  //     extra: ModifyField(
-                  //         appBarTitle: "ប្តូរលេខទូរស័ព្ទ",
-                  //         textField: "+(855)0887821785"));
+                  Get.to(() => const ProfileInfoPage(
+                      title: 'Change Phone Number', value: ''));
                 }),
             _buildCardWidget(
-                labelName: "email".tr,
+                labelName: "Email".tr,
                 contentName: "horm@gmail.com",
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (builder) => ModifiedPage(
-                        modifyField: ModifyField(
-                            appBarTitle: 'changeEmail'.tr,
-                            textField: 'horm@gmail.com'),
-                      ),
-                    ),
-                  );
-
-                  // GoRouter.of(context).push('/modified_page',
-                  //     extra: ModifyField(
-                  //         appBarTitle: "ប្តូរអុីម៉ែល",
-                  //         textField: "horm@gmail.com"));
+                  Get.to(() => const ProfileInfoPage(
+                      title: 'Change Email Address', value: ''));
                 }),
             _buildCardWidget(
-                labelName: "telegram".tr,
+                labelName: "Telegram".tr,
                 contentName: "@hormhy",
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (builder) => ModifiedPage(
-                        modifyField: ModifyField(
-                            appBarTitle: 'changeTelegram'.tr,
-                            textField: '@hormhy'),
-                      ),
-                    ),
-                  );
+                  Get.to(() => const ProfileInfoPage(
+                      title: 'Change Telegram', value: ''));
                 }),
             _buildCardWidget(
-                labelName: "address".tr,
+                labelName: "Address".tr,
                 contentName: "ភ្នំពេញថ្មី សង្កាត់ឈូកមាស ខណ្ឌសែនសុខ",
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (builder) => ModifiedPage(
-                        modifyField: ModifyField(
-                            appBarTitle: 'changeAddress'.tr,
-                            textField: 'ភ្នំពេញថ្មី សង្កាត់ឈូកមាស ខណ្ឌសែនសុខ'),
-                      ),
-                    ),
-                  );
+                  Get.to(() => const ProfileInfoPage(
+                      title: 'Change Address', value: ''));
                 }),
             _buildCardWidget(
-                labelName: "dateOfBirth".tr,
+                labelName: "Date Of Birth".tr,
                 contentName: "December 27,1998",
                 onTap: () {
                   showDialog(
@@ -262,7 +174,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "chooseDateOfBirth".tr,
+                                      "Choose Date of Birth".tr,
                                       style:
                                           GoogleFonts.kantumruy(fontSize: 18),
                                     ),
@@ -326,12 +238,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               ),
                                           onPressed: () {},
                                           child: Text(
-                                            "cancel".tr,
-                                            style: GoogleFonts.kantumruy(
-                                                fontSize: 16)
-                                            // style: TextStyle(fontSize: 16)
-
-                                            ,
+                                            "Cancel".tr,
+                                            style: AppText.titleSmall!
+                                                .copyWith(color: Colors.white),
                                           )),
                                     )),
                                     const SizedBox(
@@ -343,7 +252,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       child: ElevatedButton(
                                           onPressed: () {},
                                           child: Text(
-                                            "set".tr,
+                                            "Okay".tr,
                                             style: GoogleFonts.kantumruy(
                                                 color: Colors.white,
                                                 fontSize: 16),
@@ -361,7 +270,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       });
                 }),
             _buildCardWidget(
-                labelName: "gender".tr,
+                labelName: "Gender".tr,
                 contentName: "Male",
                 onTap: () {
                   showBottomSheetDefault(
@@ -383,7 +292,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 ),
                               ),
                               Text(
-                                "setGender".tr,
+                                "Gender".tr,
                                 style: GoogleFonts.kantumruy(
                                     fontSize: 22, fontWeight: FontWeight.bold),
                               ),
@@ -400,7 +309,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "male".tr,
+                                        "Male".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),
@@ -430,7 +339,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "female".tr,
+                                        "Female".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),
@@ -458,7 +367,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "somethingElse".tr,
+                                        "Something else".tr,
                                         style:
                                             GoogleFonts.kantumruy(fontSize: 16),
                                       ),

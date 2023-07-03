@@ -101,7 +101,7 @@ class FindNewLocationScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'yourCurrentLocation'.tr,
+                              'Your Current Location'.tr,
                               style: const TextStyle(fontSize: 16),
                             ),
                             const Text(

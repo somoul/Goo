@@ -27,15 +27,13 @@ class SignInController extends GetxController {
   Future<void> onLogin() async {
     KeyboardHeper.hideKeyborad();
     BaseDialogLoading.show();
-    //  phoneNumber.value = phoneNumber.value.trim();
     var body = {
-      'phone': phoneNumber.value,
+      'username': phoneNumber.value,
       'password': password.value,
     };
 
-    print('Signin Body : $body');
     try {
-      var val = await apiHelper
+      await apiHelper
           .onRequest(
         url: '/login',
         methode: METHODE.post,
@@ -43,14 +41,12 @@ class SignInController extends GetxController {
         body: body,
       )
           .then((value) async {
-        print('object===============>>>> $value');
         BaseDialogLoading.dismiss();
         BaseToast.showSuccessBaseToast('Signin successfully!');
         userModel.value = RegisterModel.fromJson(value['data']);
         await LocalStorage.writeToken(userModel.value.token!);
         Get.offAllNamed(Routes.home);
       });
-      print('-----------------$val');
     } catch (e) {
       BaseDialogLoading.dismiss();
       // BaseToast.showErorrBaseToast(e.toString());
