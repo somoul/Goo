@@ -37,7 +37,6 @@ class CustomCardRentWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (checkAccount.toLowerCase().contains("default")) {
-            // GoRouter.of(context).push('/details_screen');
           } else {
             showBottomSheetDefault(context: context, widget: Container());
           }

@@ -8,12 +8,12 @@ import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
-import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../widget/buttom_sheen_for_search.dart';
+import '../widget/custom_banner_list_widget.dart';
 import '../widget/custom_service_block.dart';
 import 'location_rent_screen.dart';
 
@@ -248,119 +248,116 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 5),
 
                             /// Service
                             CustomServiceBlock(
                               categoryList:
                                   homeController.listSideBarDataCategorie,
                             ),
-                            Container(
-                              color: const Color(0xffF9F9F9),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 13),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: AppConstant.paddingLarge),
-                                    child: Text("ពេញនិយម",
-                                        style: AppText.titleSmall!.copyWith(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: AppConstant.paddingLarge,
+                                  ),
+                                  child: Text("ពេញនិយម",
+                                      style: AppText.titleSmall!.copyWith(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                ),
+                                const SizedBox(
+                                  height: AppConstant.paddingSmall,
+                                ),
+
+                                /// Banner
+                                const CustomBannerListWidget(),
+
+                                /// Location
+                                const SizedBox(height: AppConstant.padding),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppConstant.padding),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("ការណែនាំ",
+                                          style: AppText.titleSmall),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() =>
+                                              const CustomAfterLoadingSearchWidget());
+                                          // GoRouter.of(context).push("/product_screen");
+                                          // GoRouter.of(context).push(
+                                          //     CustomAfterLoadingSearchWidget.routeName,
+                                          //     extra: "AA");
+                                        },
+                                        child: Text("មើលទាំងអស់",
+                                            style: AppText.titleSmall!.copyWith(
+                                                color:
+                                                    AppConstant.kPrimaryColor)),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                ...listTypeOfRent
+                                    .map((e) => CustomCardRentWidget(
+                                          imageSrc: e.imageSrc,
+                                          typeName: e.typeName,
+                                          location: e.location,
+                                          sizeRent: e.sizeRent,
+                                          horizontal: AppConstant.padding,
+                                          code: e.code,
+                                          priceOfRent: e.priceOfRent,
+                                          iconOfCard: e.iconCard,
                                         )),
-                                  ),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
-
-                                  /// Banner
-                                  const CustomBannerListWidget(),
-
-                                  /// Location
-                                  const SizedBox(height: AppConstant.padding),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("ការណែនាំ",
-                                            style: AppText.titleSmall),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const CustomAfterLoadingSearchWidget());
-                                            // GoRouter.of(context).push("/product_screen");
-                                            // GoRouter.of(context).push(
-                                            //     CustomAfterLoadingSearchWidget.routeName,
-                                            //     extra: "AA");
-                                          },
-                                          child: Text("មើលទាំងអស់",
-                                              style: AppText.titleSmall!
-                                                  .copyWith(
-                                                      color: AppConstant
-                                                          .kPrimaryColor)),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  ...listTypeOfRent
-                                      .map((e) => CustomCardRentWidget(
-                                            imageSrc: e.imageSrc,
-                                            typeName: e.typeName,
-                                            location: e.location,
-                                            sizeRent: e.sizeRent,
-                                            horizontal: AppConstant.padding,
-                                            code: e.code,
-                                            priceOfRent: e.priceOfRent,
-                                            iconOfCard: e.iconCard,
-                                          )),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0)
-                                        .copyWith(bottom: 8),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("តំបន់មានការជួលច្រើន",
+                                const SizedBox(
+                                  height: AppConstant.padding,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0)
+                                      .copyWith(bottom: 8),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("តំបន់មានការជួលច្រើន",
+                                          style: GoogleFonts.kantumruy(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold)),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() => const LocationRentScreen(
+                                              titleAppBar: ''));
+                                        },
+                                        child: Text("មើលទាំងអស់",
                                             style: GoogleFonts.kantumruy(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const LocationRentScreen(
-                                                    titleAppBar: ''));
-                                          },
-                                          child: Text("មើលទាំងអស់",
-                                              style: GoogleFonts.kantumruy(
-                                                  fontSize: 12,
-                                                  color: AppConstant
-                                                      .kPrimaryColor)),
-                                        ),
-                                      ],
-                                    ),
+                                                fontSize: 12,
+                                                color:
+                                                    AppConstant.kPrimaryColor)),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: getCardLocationScreen(
-                                        context: context,
-                                        titleAppBar: 'បន្ទប់ជួល',
-                                        e: const LocationItem(
-                                            imgSrc: 'assets/icons/roms.png',
-                                            areaName: 'ខណ្ឌសែន សុខ',
-                                            quantityLocationRoomForRent:
-                                                'មានបន្ទប់ជួល ១២ កន្លែង')),
-                                  )
-                                ],
-                              ),
-                            )
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppConstant.padding),
+                                  child: getCardLocationScreen(
+                                      context: context,
+                                      titleAppBar: 'បន្ទប់ជួល',
+                                      e: const LocationItem(
+                                          imgSrc: 'assets/icons/roms.png',
+                                          areaName: 'ខណ្ឌសែន សុខ',
+                                          quantityLocationRoomForRent:
+                                              'មានបន្ទប់ជួល ១២ កន្លែង')),
+                                )
+                              ],
+                            ),
                           ],
                         )
                       ],

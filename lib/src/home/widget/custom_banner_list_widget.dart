@@ -31,16 +31,51 @@ class CustomBannerListWidget extends StatelessWidget {
               ]),
           child: Column(
             children: [
-              Container(
-                height: 200,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/icons/Rectangle2416.png'),
-                    )),
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8)),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/icons/Rectangle2416.png'),
+                        )),
+                  ),
+                  Positioned(
+                      top: 10,
+                      right: 10,
+                      child: Container(
+                        // height: 20,
+                        // width: 20,
+
+                        decoration: BoxDecoration(
+                            color: const Color(0xffF0F0F0),
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 8, top: 4, right: 8, bottom: 4),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/icons/ icons_visibility.png",
+                                width: 10,
+                                height: 10,
+                              ),
+                              Text(
+                                "193",
+                                style: AppText.titleSmall!.copyWith(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ))
+                ],
               ),
               Padding(
                 padding:
