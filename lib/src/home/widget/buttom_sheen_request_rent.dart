@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 
 import 'buttom_sheet_pick_date_ios_platform.dart';
 
@@ -27,11 +27,9 @@ void showBottomSheetRequestRentFunction({required BuildContext context}) {
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(60)),
                     color: Colors.blue.withOpacity(0.2)),
-                child: Text(
-                  "៦០ដុល្លា/១ខែ",
-                  style: GoogleFonts.kantumruy(
-                      color: const Color(0xFF21A6F8), fontSize: 12),
-                ),
+                child: Text("៦០ដុល្លា/១ខែ",
+                    style: AppText.bodySmall!.copyWith(
+                        color: const Color(0xFF21A6F8), fontSize: 12)),
               ),
             ),
             const Padding(
@@ -81,11 +79,10 @@ class BottomSheetScreen extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: 180.w,
-                          child: Text(
-                            "បន្ទប់ជួលផ្សាឈូកមាសស្រួលរស់នៅ",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          )),
+                          child: Text("បន្ទប់ជួលផ្សាឈូកមាសស្រួលរស់នៅ",
+                              style: AppText.bodySmall!.copyWith(
+                                  color: const Color(0xFF21A6F8),
+                                  fontSize: 16))),
                       Row(
                         children: [
                           SvgPicture.asset("assets/image2/Vector1.svg"),
@@ -94,8 +91,9 @@ class BottomSheetScreen extends StatelessWidget {
                           ),
                           Text(
                             "លេខកូដ",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                            style: AppText.titleSmall!.copyWith(
+                              color: const Color(0xFF21A6F8),
+                            ),
                           ),
                           const SizedBox(
                             width: 5,
@@ -115,18 +113,14 @@ class BottomSheetScreen extends StatelessWidget {
                           ),
                           Text(
                             "ប្រភេទ",
-                            style: GoogleFonts.kantumruy(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppText.bodySmall,
                           ),
                           const SizedBox(
                             width: 5,
                           ),
-                          const Text(
+                          Text(
                             "បន្ទប់ជួល",
-                            style: TextStyle(
-                                color: Color(0xFF21A6F8), fontSize: 16),
+                            style: AppText.bodySmall,
                           )
                         ],
                       ),
@@ -144,7 +138,7 @@ class BottomSheetScreen extends StatelessWidget {
                     children: [
                       Text(
                         "ត្រកូល",
-                        style: GoogleFonts.kantumruy(fontSize: 16),
+                        style: AppText.bodySmall,
                       ),
                       const SizedBox(
                         height: 10,
@@ -154,7 +148,7 @@ class BottomSheetScreen extends StatelessWidget {
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 10),
                           hintText: "ហម",
-                          hintStyle: GoogleFonts.kantumruy(fontSize: 14.sp),
+                          hintStyle: AppText.bodySmall,
                           errorBorder: _getDecoreOutLineBorderTextField(),
                           focusedBorder: _getDecoreOutLineBorderTextField(),
                           focusedErrorBorder:
@@ -176,7 +170,7 @@ class BottomSheetScreen extends StatelessWidget {
                     children: [
                       Text(
                         "ឈ្មោះ",
-                        style: GoogleFonts.kantumruy(fontSize: 16),
+                        style: AppText.bodySmall,
                       ),
                       const SizedBox(
                         height: 10,
@@ -186,7 +180,7 @@ class BottomSheetScreen extends StatelessWidget {
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 10),
                           hintText: "ហុី",
-                          hintStyle: GoogleFonts.kantumruy(fontSize: 14.sp),
+                          hintStyle: AppText.bodySmall,
                           errorBorder: _getDecoreOutLineBorderTextField(),
                           focusedBorder: _getDecoreOutLineBorderTextField(),
                           focusedErrorBorder:
@@ -209,7 +203,7 @@ class BottomSheetScreen extends StatelessWidget {
             ),
             Text(
               "លេខទំនាក់ទំនង",
-              style: GoogleFonts.kantumruy(fontSize: 16),
+              style: AppText.bodySmall,
             ),
             const SizedBox(
               height: 10,
@@ -218,7 +212,7 @@ class BottomSheetScreen extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 hintText: "0887821785",
-                hintStyle: GoogleFonts.kantumruy(fontSize: 14.sp),
+                hintStyle: AppText.bodySmall,
                 errorBorder: _getDecoreOutLineBorderTextField(),
                 focusedBorder: _getDecoreOutLineBorderTextField(),
                 focusedErrorBorder: _getDecoreOutLineBorderTextField(),
@@ -232,7 +226,7 @@ class BottomSheetScreen extends StatelessWidget {
             ),
             Text(
               "រយៈពេលជួល",
-              style: GoogleFonts.kantumruy(fontSize: 16),
+              style: AppText.bodySmall,
             ),
             const SizedBox(
               height: 10,
@@ -262,12 +256,10 @@ class BottomSheetScreen extends StatelessWidget {
                                 color: index == i
                                     ? const Color(0xFF21A6F8)
                                     : Colors.grey.withOpacity(0.2)),
-                            child: Text(
-                              longTimeToRent[i],
-                              style: GoogleFonts.kantumruy(
-                                  fontSize: 14.sp,
-                                  color: index == i ? Colors.white : null),
-                            ),
+                            child: Text(longTimeToRent[i],
+                                style: AppText.bodySmall!.copyWith(
+                                    fontSize: 14.sp,
+                                    color: index == i ? Colors.white : null)),
                           ),
                         ),
                       ),
@@ -275,7 +267,7 @@ class BottomSheetScreen extends StatelessWidget {
                   );
                 }),
                 hintText: "កំណត់រយ:ពេលជួល",
-                hintStyle: GoogleFonts.kantumruy(fontSize: 14),
+                hintStyle: AppText.bodySmall,
                 errorBorder: _getDecoreOutLineBorderTextField(),
                 focusedBorder: _getDecoreOutLineBorderTextField(),
                 focusedErrorBorder: _getDecoreOutLineBorderTextField(),
@@ -287,10 +279,7 @@ class BottomSheetScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text(
-              "ចាប់ផ្តើមជួល",
-              style: GoogleFonts.kantumruy(fontSize: 16),
-            ),
+            Text("ចាប់ផ្តើមជួល", style: AppText.bodySmall),
             const SizedBox(
               height: 10,
             ),
@@ -309,11 +298,7 @@ class BottomSheetScreen extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
-                        Text(
-                          "កំណត់ពេលចាប់ផ្តើមជួល",
-                          style: GoogleFonts.kantumruy(
-                              color: Colors.grey, fontSize: 14.sp),
-                        ),
+                        Text("កំណត់ពេលចាប់ផ្តើមជួល", style: AppText.bodySmall),
                         const Spacer(),
                         const Icon(
                           Icons.arrow_forward_ios_sharp,
@@ -337,11 +322,7 @@ class BottomSheetScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    "ដាក់ស្នើជួល",
-                    style: GoogleFonts.kantumruy(
-                        color: Colors.white, fontSize: 16),
-                  )),
+                  child: Text("ដាក់ស្នើជួល", style: AppText.bodySmall)),
             ),
             const SizedBox(
               height: 10,

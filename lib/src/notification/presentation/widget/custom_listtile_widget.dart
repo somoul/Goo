@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomListTileWidget extends StatelessWidget {
   const CustomListTileWidget({Key? key}) : super(key: key);
@@ -86,12 +85,13 @@ class CustomListTileWidget extends StatelessWidget {
             title: Row(
               children: [
                 Flexible(
-                  child: Text(e.typeName,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.kantumruy(fontSize: 16)
-                      // style: const TextStyle(
-                      //     fontSize: 16, overflow: TextOverflow.ellipsis),
-                      ),
+                  child: Text(
+                    e.typeName,
+                    overflow: TextOverflow.ellipsis,
+
+                    // style: const TextStyle(
+                    //     fontSize: 16, overflow: TextOverflow.ellipsis),
+                  ),
                 ),
                 const Icon(
                   Icons.arrow_forward_ios_sharp,
@@ -112,15 +112,11 @@ class CustomListTileWidget extends StatelessWidget {
                 )
               ],
             ),
-            subtitle: Text(e.sizeRent,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.kantumruy(
-                  fontSize: 14,
-                )
-                // style: const TextStyle(
-                //     fontSize: 14, overflow: TextOverflow.ellipsis),
-                ),
+            subtitle: Text(
+              e.sizeRent,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ],

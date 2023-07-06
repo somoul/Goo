@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/src/notification/presentation/widget/custom_listtile_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goo_rent/cores/utils/notifications_helper.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({
@@ -13,19 +12,24 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: false,
-        title: Text(
+        title: const Text(
           "ការផ្តល់ដំណឹង",
           style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: GoogleFonts.kantumruy().fontFamily,
-              fontSize: 20,
-              color: Colors.black),
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
-          child: CustomListTileWidget(),
+          padding: const EdgeInsets.all(10),
+          // child: CustomListTileWidget(),
+          child: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                NotificationHelper.showNotification();
+              },
+              child: const Text('Show Notification '),
+            ),
+          ),
         ),
       ),
     );

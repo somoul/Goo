@@ -129,7 +129,10 @@ class SignInScreen extends StatelessWidget {
                 () => CustomButton(
                   title: 'Sign In',
                   onPressed: signinCon.isEnableSignin
-                      ? () async => await signinCon.onLogin()
+                      ? () async {
+                          // KeyboardHeper.hideKeyborad();
+                          await signinCon.onLogin();
+                        }
                       : null,
                 ),
               ),

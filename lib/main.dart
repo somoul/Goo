@@ -6,6 +6,7 @@ import 'package:goo_rent/cores/theme/theme_data.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_rent/cores/utils/locale_helper.dart';
+import 'package:goo_rent/cores/utils/notifications_helper.dart';
 import 'package:goo_rent/firebase_options.dart';
 import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
@@ -18,8 +19,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
+
   await LocaleHelper.onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
+  await NotificationHelper.onInitializeNotification();
   runApp(const MyApp());
 }
 
@@ -34,8 +37,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          title: 'Goo Rent',
-
+          title: 'Goo App',
           translationsKeys: AppTranslation.translationsKeys,
           translations: Translator(),
           locale: Get.locale ?? Get.deviceLocale,
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: CustomTheme.lightTheme,
           navigatorKey: ContextProvider.navigatorKey,
-          initialRoute: Routes.initialize,
+          initialRoute: Routes.signup,
           getPages: AppPages.pages,
           // initialBinding: AuthBinding()
         );

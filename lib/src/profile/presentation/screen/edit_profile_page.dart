@@ -6,7 +6,6 @@ import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 import 'package:goo_rent/src/profile/presentation/screen/edit_info.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EditProfilePage extends StatefulWidget {
   static const String routeName = '/edit_profile_page';
@@ -175,8 +174,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       "Choose Date of Birth".tr,
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 18),
                                     ),
                                   ),
                                   Positioned(
@@ -253,9 +250,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           onPressed: () {},
                                           child: Text(
                                             "Okay".tr,
-                                            style: GoogleFonts.kantumruy(
-                                                color: Colors.white,
-                                                fontSize: 16),
                                           )),
                                     ))
                                   ],
@@ -293,8 +287,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               ),
                               Text(
                                 "Gender".tr,
-                                style: GoogleFonts.kantumruy(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
                               ),
                               InkWell(
                                 onTap: () {
@@ -310,8 +302,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     children: [
                                       Text(
                                         "Male".tr,
-                                        style:
-                                            GoogleFonts.kantumruy(fontSize: 16),
                                       ),
                                       _currentGender == 1
                                           ? const Icon(
@@ -340,8 +330,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     children: [
                                       Text(
                                         "Female".tr,
-                                        style:
-                                            GoogleFonts.kantumruy(fontSize: 16),
                                       ),
                                       _currentGender == 2
                                           ? const Icon(CupertinoIcons.checkmark,
@@ -368,8 +356,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     children: [
                                       Text(
                                         "Something else".tr,
-                                        style:
-                                            GoogleFonts.kantumruy(fontSize: 16),
                                       ),
                                       _currentGender == 3
                                           ? const Icon(CupertinoIcons.checkmark,
@@ -468,7 +454,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     Text(
                       labelName,
-                      style: GoogleFonts.kantumruy(color: Colors.grey),
                     ),
                     const SizedBox(
                       height: 5,
@@ -476,7 +461,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     Text(
                       contentName,
                       overflow: TextOverflow.visible,
-                      style: GoogleFonts.kantumruy(fontSize: 18),
                     )
                   ],
                 ),

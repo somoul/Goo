@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ViewLocationScreen extends StatelessWidget {
   const ViewLocationScreen({Key? key}) : super(key: key);
@@ -15,9 +14,9 @@ class ViewLocationScreen extends StatelessWidget {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "ស្វែងរកទីតាំង",
-          style: GoogleFonts.kantumruy(fontSize: 18),
+          // style: GoogleFonts.kantumruy(fontSize: 18),
         ),
       ),
       body: Stack(
@@ -118,26 +117,29 @@ class ViewLocationScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Column(
+                                const Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "ទីតាំងរបស់អ្នក",
-                                      style: GoogleFonts.kantumruy(
-                                          color: Colors.grey),
+                                      // style: GoogleFonts.kantumruy(
+                                      //     color: Colors.grey),
                                     ),
                                     Text(
                                       "Royal University",
-                                      style: GoogleFonts.kantumruy(),
                                     ),
-                                    Text("ទីតាំងផ្ទះ",
-                                        style: GoogleFonts.kantumruy(
-                                            color: Colors.grey)),
-                                    Text("Khan sen sok,Street 12, Phnom Penh",
-                                        style: GoogleFonts.kantumruy(
-                                            color: Colors.grey)),
+                                    Text(
+                                      "ទីតាំងផ្ទះ",
+                                      // style: GoogleFonts.kantumruy(
+                                      //     color: Colors.grey),
+                                    ),
+                                    Text(
+                                      "Khan sen sok,Street 12, Phnom Penh",
+                                      // style: GoogleFonts.kantumruy(
+                                      //     color: Colors.grey),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -168,10 +170,10 @@ class ViewLocationScreen extends StatelessWidget {
                               onPressed: () {
                                 // GoRouter.of(context).pop();
                               },
-                              child: Text(
+                              child: const Text(
                                 "រក្សាអាស្រាយដ្ធានរបស់អ្នក",
-                                style: GoogleFonts.kantumruy(
-                                    color: Colors.white, fontSize: 16),
+                                // style: GoogleFonts.kantumruy(
+                                //     color: Colors.white, fontSize: 16),
                               ))),
                     )
                   ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/src/profile/presentation/screen/rented_room.dart';
 import 'package:goo_rent/src/profile/presentation/screen/renting_room.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MyPropertyPage extends StatelessWidget {
   static const String routeName = '/my_property_page';
@@ -25,9 +24,9 @@ class MyPropertyPage extends StatelessWidget {
               iconTheme: const IconThemeData(color: Color(0xFF21A6F8)),
               backgroundColor: Colors.white,
               centerTitle: true,
-              title: Text(
+              title: const Text(
                 "បន្ទប់ជួល",
-                style: GoogleFonts.kantumruy(fontSize: 22, color: Colors.black),
+
                 //style: TextStyle(fontSize: 22, color: Colors.black),
               ),
             ),
@@ -35,15 +34,15 @@ class MyPropertyPage extends StatelessWidget {
               length: 2,
               child: Scaffold(
                 backgroundColor: Colors.white,
-                appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(100),
+                appBar: const PreferredSize(
+                  preferredSize: Size.fromHeight(100),
                   child: SizedBox(
                     height: 50,
                     child: TabBar(
                       indicatorColor: Colors.grey,
-                      labelColor: const Color(0xFF21A6F8),
+                      labelColor: Color(0xFF21A6F8),
                       unselectedLabelColor: Colors.grey,
-                      indicator: const UnderlineTabIndicator(
+                      indicator: UnderlineTabIndicator(
                         borderSide:
                             BorderSide(width: 2.0, color: Color(0xFF21A6F8)),
                         // insets: EdgeInsets.symmetric(horizontal: 36)
@@ -57,7 +56,7 @@ class MyPropertyPage extends StatelessWidget {
                               // Icon(Icons.add),
                               Text(
                                 'ទូទៅ',
-                                style: GoogleFonts.kantumruy(fontSize: 16),
+
                                 //style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -71,7 +70,6 @@ class MyPropertyPage extends StatelessWidget {
                               // Icon(Icons.add),
                               Text(
                                 'កំពុងដាក់ជួល',
-                                style: GoogleFonts.kantumruy(fontSize: 16),
                               ),
                             ],
                           ),

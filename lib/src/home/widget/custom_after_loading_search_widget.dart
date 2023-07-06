@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/rented_room.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'custom_card_rent_widget.dart';
 
@@ -67,27 +66,25 @@ class _CustomAfterLoadingSearchWidgetState
             ),
           )
         ],
-        title: Text("អចលនទ្រព្យទាំងអស់",
-            style: GoogleFonts.kantumruy(
-                fontSize: 16,
-                color: Colors.black,
-                fontWeight: FontWeight.bold)),
+        title: const Text(
+          "អចលនទ្រព្យទាំងអស់",
+        ),
       ),
       body: DefaultTabController(
           length: 6,
           child: Scaffold(
             backgroundColor: Colors.white,
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(100),
+            appBar: const PreferredSize(
+              preferredSize: Size.fromHeight(100),
               child: SizedBox(
                 height: 30,
                 child: TabBar(
                   // controller: _tabController
                   isScrollable: true,
                   indicatorColor: Colors.grey,
-                  labelColor: const Color(0xFF21A6F8),
+                  labelColor: Color(0xFF21A6F8),
                   unselectedLabelColor: Colors.grey,
-                  indicator: const UnderlineTabIndicator(
+                  indicator: UnderlineTabIndicator(
                     borderSide:
                         BorderSide(width: 2.0, color: Color(0xFF21A6F8)),
                     // insets: EdgeInsets.symmetric(horizontal: 36)
@@ -101,7 +98,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'បន្ទប់ជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -114,7 +110,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'ដីជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -127,7 +122,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'ឃ្លាំងជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -140,7 +134,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'ផ្ទះជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -153,7 +146,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'តូបជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -166,7 +158,6 @@ class _CustomAfterLoadingSearchWidgetState
                           // Icon(Icons.add),
                           Text(
                             'ផ្ទះអាជីវកម្ម',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -211,9 +202,8 @@ class _CustomAfterLoadingSearchWidgetState
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
-                          child: Text(
+                          child: const Text(
                             "983883",
-                            style: GoogleFonts.kantumruy(),
                           ),
                         )),
                     Positioned(
@@ -254,11 +244,8 @@ class _CustomAfterLoadingSearchWidgetState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SvgPicture.asset("assets/icons/eye.svg"),
-                                Text(
+                                const Text(
                                   "120",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
                                 )
                               ],
                             ),
@@ -273,10 +260,8 @@ class _CustomAfterLoadingSearchWidgetState
                                 color: Colors.white.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(5)),
                             height: 40,
-                            child: Text(
+                            child: const Text(
                               "700ដុល្លា/១ខែ",
-                              style: GoogleFonts.kantumruy(
-                                  fontSize: 14, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -294,10 +279,8 @@ class _CustomAfterLoadingSearchWidgetState
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "បន្ទប់ជួលនៅឈូកមាស សម្រាប់និស្សិត",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -317,10 +300,8 @@ class _CustomAfterLoadingSearchWidgetState
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "ប្រហែល ៦០នាទី",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, color: Colors.grey),
                           )
                         ],
                       ),
@@ -439,9 +420,8 @@ class _CustomAfterLoadingSearchWidgetState
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
-                          child: Text(
+                          child: const Text(
                             "983883",
-                            style: GoogleFonts.kantumruy(),
                           ),
                         )),
                     Positioned(
@@ -482,11 +462,8 @@ class _CustomAfterLoadingSearchWidgetState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SvgPicture.asset("assets/icons/eye.svg"),
-                                Text(
+                                const Text(
                                   "120",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
                                 )
                               ],
                             ),
@@ -501,10 +478,8 @@ class _CustomAfterLoadingSearchWidgetState
                                 color: Colors.white.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(5)),
                             height: 40,
-                            child: Text(
+                            child: const Text(
                               "700ដុល្លា/១ខែ",
-                              style: GoogleFonts.kantumruy(
-                                  fontSize: 14, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -522,10 +497,8 @@ class _CustomAfterLoadingSearchWidgetState
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "បន្ទប់ជួលនៅឈូកមាស សម្រាប់និស្សិត",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -545,10 +518,8 @@ class _CustomAfterLoadingSearchWidgetState
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "ប្រហែល ៦០នាទី",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, color: Colors.grey),
                           )
                         ],
                       ),
@@ -667,9 +638,8 @@ class _CustomAfterLoadingSearchWidgetState
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
-                          child: Text(
+                          child: const Text(
                             "983883",
-                            style: GoogleFonts.kantumruy(),
                           ),
                         )),
                     Positioned(
@@ -710,11 +680,8 @@ class _CustomAfterLoadingSearchWidgetState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SvgPicture.asset("assets/icons/eye.svg"),
-                                Text(
+                                const Text(
                                   "120",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
                                 )
                               ],
                             ),
@@ -729,10 +696,8 @@ class _CustomAfterLoadingSearchWidgetState
                                 color: Colors.white.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(5)),
                             height: 40,
-                            child: Text(
+                            child: const Text(
                               "700ដុល្លា/១ខែ",
-                              style: GoogleFonts.kantumruy(
-                                  fontSize: 14, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -750,10 +715,8 @@ class _CustomAfterLoadingSearchWidgetState
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "បន្ទប់ជួលនៅឈូកមាស សម្រាប់និស្សិត",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -773,10 +736,8 @@ class _CustomAfterLoadingSearchWidgetState
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "ប្រហែល ៦០នាទី",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, color: Colors.grey),
                           )
                         ],
                       ),
@@ -927,14 +888,10 @@ class _CustomAfterLoadingSearchWidgetState
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'ផ្ទះជួលសម្រាប់អាជីវកម្ម',
-                hintStyle: GoogleFonts.kantumruy(
-                    fontSize: 16, color: Colors.grey.shade400),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 12, top: 12),
+                suffixIcon: const Padding(
+                  padding: EdgeInsets.only(right: 12, top: 12),
                   child: Text(
                     "ស្វែងរក",
-                    style:
-                        GoogleFonts.kantumruy(color: AppConstant.kPrimaryColor),
                   ),
                 ),
                 border: _outLineBorder(),
@@ -1003,14 +960,10 @@ class _CustomAfterLoadingSearchWidgetState
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'ផ្ទះជួលសម្រាប់អាជីវកម្ម',
-                hintStyle: GoogleFonts.kantumruy(
-                    fontSize: 16, color: Colors.grey.shade400),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 12, top: 12),
+                suffixIcon: const Padding(
+                  padding: EdgeInsets.only(right: 12, top: 12),
                   child: Text(
                     "ស្វែងរក",
-                    style:
-                        GoogleFonts.kantumruy(color: AppConstant.kPrimaryColor),
                   ),
                 ),
                 border: _outLineBorder(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/src/notification/presentation/widget/custom_listtile_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BuildAddressScreen extends StatelessWidget {
   const BuildAddressScreen({Key? key}) : super(key: key);
@@ -45,10 +44,8 @@ class BuildAddressScreen extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         "បញ្ជូលទីតាំងរបស់អ្នកត្រូវជួល",
-                        style:
-                            GoogleFonts.kantumruy(color: Colors.grey.shade500),
                       ),
                       const Spacer(),
                       const Icon(

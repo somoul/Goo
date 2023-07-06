@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 enum BestTutorSite { khmer, english, china, korea }
 
@@ -14,9 +13,8 @@ class MultipleLanguageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(
+        title: const Text(
           "ភាសា",
-          style: GoogleFonts.kantumruy(fontSize: 16),
         ),
         centerTitle: true,
       ),

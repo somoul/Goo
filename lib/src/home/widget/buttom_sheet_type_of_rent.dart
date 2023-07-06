@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void showBottomTypeOfRent({required BuildContext context}) {
   showModalBottomSheet(
@@ -50,17 +49,14 @@ class BottomSheetScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Text(
+                  const Text(
                     "តើលោកអ្នកចង់ដាក់អាជីវកម្មប្រភេទណាដែរ?",
-                    style: GoogleFonts.kantumruy(fontSize: 16.sp),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     "លោកអ្នកអាចជ្រើសរើសការដាក់ជួលខាងក្រោម",
-                    style: GoogleFonts.kantumruy(
-                        color: Colors.grey.withOpacity(0.4), fontSize: 14.sp),
                   ),
                   const SizedBox(
                     height: 10,
@@ -95,10 +91,8 @@ class BottomSheetScreen extends StatelessWidget {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           "ផ្ទះរស់នៅ",
-                                          style: GoogleFonts.kantumruy(
-                                              fontSize: 16.sp),
                                         )
                                       ],
                                     )
@@ -134,10 +128,8 @@ class BottomSheetScreen extends StatelessWidget {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           "ផ្ទះអាជីវកម្ម",
-                                          style: GoogleFonts.kantumruy(
-                                              fontSize: 16.sp),
                                         )
                                       ],
                                     )

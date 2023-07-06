@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 
 class CustomDropDownButtonWidget extends StatelessWidget {
   const CustomDropDownButtonWidget(
@@ -68,13 +68,10 @@ class CustomDropDownButtonWidget extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          hintText,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 14, color: Colors.grey.shade300),
-                        ),
+                        child: Text(hintText,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppText.bodySmall),
                       ),
                     ],
                   ),
@@ -87,10 +84,7 @@ class CustomDropDownButtonWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   item,
-                                  style: GoogleFonts.kantumruy(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                  ),
+                                  style: AppText.bodySmall,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 const Divider(

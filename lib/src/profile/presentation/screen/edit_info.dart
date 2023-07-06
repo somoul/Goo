@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProfileInfoPage extends StatefulWidget {
   static const String routeName = '/modified_page';
@@ -33,7 +32,6 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
           centerTitle: true,
           title: Text(
             widget.title ?? "",
-            style: GoogleFonts.kantumruy(fontSize: 18),
           ),
         ),
         body: SingleChildScrollView(
@@ -43,7 +41,6 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
               children: [
                 Obx(
                   () => TextField(
-                    style: GoogleFonts.kantumruy(),
                     controller: profileController.textEditController.value,
                     onChanged: (val) {
                       setState(() {});

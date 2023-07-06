@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_menu_result_from_rent.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ResultFromRentScreen extends StatefulWidget {
   const ResultFromRentScreen({Key? key}) : super(key: key);
@@ -22,17 +21,21 @@ class _ResultFromRentScreenState extends State<ResultFromRentScreen> {
       appBar: AppBar(
         leadingWidth: 30,
         backgroundColor: Colors.white,
-        title: Row(
+        title: const Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('លទ្ធផល',
-                style:
-                    GoogleFonts.kantumruy(color: Colors.black, fontSize: 18)),
-            Text('បន្ទប់ជួល',
-                style: GoogleFonts.kantumruy(
-                    color: Colors.black,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold)),
+            Text(
+              'លទ្ធផល',
+              // style:
+              //     GoogleFonts.kantumruy(color: Colors.black, fontSize: 18),
+            ),
+            Text(
+              'បន្ទប់ជួល',
+              // style: GoogleFonts.kantumruy(
+              //     color: Colors.black,
+              //     fontSize: 22,
+              //     fontWeight: FontWeight.bold)
+            ),
           ],
         ),
         actions: [
@@ -136,10 +139,12 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text('NEW LISTING',
-                                style: GoogleFonts.kantumruy(
-                                  color: Colors.black,
-                                ))
+                            const Text(
+                              'NEW LISTING',
+                              // style: GoogleFonts.kantumruy(
+                              //   color: Colors.black,
+                              // ),
+                            )
                           ],
                         ),
                       )),
@@ -164,11 +169,15 @@ _customCategoriesLayout() => ListView(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   textBaseline: TextBaseline.ideographic,
                   children: [
-                    Text("\$900 / ខែ",
-                        style: GoogleFonts.kantumruy(
-                            color: const Color(0xFF21A6F8), fontSize: 20)),
-                    Text("ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
-                        style: GoogleFonts.kantumruy(fontSize: 18)),
+                    const Text(
+                      "\$900 / ខែ",
+                      // style: GoogleFonts.kantumruy(
+                      //     color: const Color(0xFF21A6F8), fontSize: 20),
+                    ),
+                    const Text(
+                      "ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
+                      // style: GoogleFonts.kantumruy(fontSize: 18),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -181,8 +190,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("1342m",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "1342m",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -194,8 +205,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("5",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "5",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -207,8 +220,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -220,8 +235,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                       ],
@@ -269,10 +286,12 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text('NEW LISTING',
-                                style: GoogleFonts.kantumruy(
-                                  color: Colors.black,
-                                ))
+                            const Text(
+                              'NEW LISTING',
+                              // style: GoogleFonts.kantumruy(
+                              //   color: Colors.black,
+                              // ),
+                            )
                           ],
                         ),
                       )),
@@ -297,11 +316,15 @@ _customCategoriesLayout() => ListView(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   textBaseline: TextBaseline.ideographic,
                   children: [
-                    Text("\$900 / ខែ",
-                        style: GoogleFonts.kantumruy(
-                            color: const Color(0xFF21A6F8), fontSize: 20)),
-                    Text("ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
-                        style: GoogleFonts.kantumruy(fontSize: 18)),
+                    const Text(
+                      "\$900 / ខែ",
+                      // style: GoogleFonts.kantumruy(
+                      //     color: const Color(0xFF21A6F8), fontSize: 20),
+                    ),
+                    const Text(
+                      "ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
+                      // style: GoogleFonts.kantumruy(fontSize: 18),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -314,8 +337,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("1342m",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "1342m",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -327,8 +352,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("5",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "5",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -340,8 +367,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -353,8 +382,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                       ],
@@ -402,10 +433,12 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text('NEW LISTING',
-                                style: GoogleFonts.kantumruy(
-                                  color: Colors.black,
-                                ))
+                            const Text(
+                              'NEW LISTING',
+                              // style: GoogleFonts.kantumruy(
+                              //   color: Colors.black,
+                              // ),
+                            )
                           ],
                         ),
                       )),
@@ -430,11 +463,15 @@ _customCategoriesLayout() => ListView(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   textBaseline: TextBaseline.ideographic,
                   children: [
-                    Text("\$900 / ខែ",
-                        style: GoogleFonts.kantumruy(
-                            color: const Color(0xFF21A6F8), fontSize: 20)),
-                    Text("ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
-                        style: GoogleFonts.kantumruy(fontSize: 18)),
+                    const Text(
+                      "\$900 / ខែ",
+                      // style: GoogleFonts.kantumruy(
+                      //     color: const Color(0xFF21A6F8), fontSize: 20),
+                    ),
+                    const Text(
+                      "ផ្ទះសម្រាប់ជួលនៅអូឡាំពិជ",
+                      // style: GoogleFonts.kantumruy(fontSize: 18),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -447,8 +484,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("1342m",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "1342m",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -460,8 +499,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("5",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "5",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -473,8 +514,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -486,8 +529,10 @@ _customCategoriesLayout() => ListView(
                             const SizedBox(
                               width: 5,
                             ),
-                            Text("4",
-                                style: GoogleFonts.kantumruy(fontSize: 12))
+                            const Text(
+                              "4",
+                              // style: GoogleFonts.kantumruy(fontSize: 12),
+                            )
                           ],
                         ),
                       ],

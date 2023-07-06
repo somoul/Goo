@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RealEstatePage extends StatelessWidget {
   const RealEstatePage({Key? key}) : super(key: key);
@@ -42,9 +41,8 @@ class RealEstatePage extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.blue),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "អចលនទ្រព្យខ្ញុំ",
-          style: GoogleFonts.kantumruy(fontSize: 18, color: Colors.black),
         ),
       ),
       body: Padding(
@@ -69,11 +67,9 @@ class RealEstatePage extends StatelessWidget {
                       ),
                       title: Text(
                         e.description,
-                        style: GoogleFonts.kantumruy(),
                       ),
                       subtitle: Text(
                         e.qty,
-                        style: GoogleFonts.kantumruy(color: Colors.grey),
                       ),
                       trailing: const Icon(Icons.arrow_forward_ios_sharp),
                     ),

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class FindNewLocationScreen extends StatelessWidget {
   const FindNewLocationScreen({Key? key}) : super(key: key);
@@ -123,13 +122,14 @@ class FindNewLocationScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "រក្សាអាស័យដ្ធានរបស់អ្នក",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: GoogleFonts.kantumruy().fontFamily),
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            // fontFamily: GoogleFonts.kantumruy().fontFamily,
+                          ),
                         )))
               ],
             ),

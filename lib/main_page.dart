@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goo_rent/cores/utils/notifications_helper.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_type_of_rent.dart';
 import 'package:goo_rent/src/notification/presentation/screen/notification_screen.dart';
@@ -18,6 +19,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
+  @override
+  void initState() {
+    _requestNotificationPermission();
+    super.initState();
+  }
+
+  _requestNotificationPermission() async {
+    await NotificationHelper.requestPermissions();
+  }
 
   @override
   Widget build(BuildContext context) {

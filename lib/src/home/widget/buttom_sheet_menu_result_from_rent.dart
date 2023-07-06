@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 
 void showBottomSheetResultFromRent({required BuildContext context}) {
   bool priceCheck = true;
@@ -39,7 +39,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                 Center(
                   child: Text(
                     "ស្វែងរកប្រហែល",
-                    style: GoogleFonts.kantumruy(fontSize: 18),
+                    style: AppText.bodyMedium,
                     // style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -48,7 +48,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                 ),
                 Text(
                   "កំណត់តម្លៃ",
-                  style: GoogleFonts.kantumruy(fontSize: 16),
+                  style: AppText.bodySmall,
                 ),
                 Row(
                   children: [
@@ -69,7 +69,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                           alignment: Alignment.center,
                           child: Text(
                             "តម្លៃមធ្យម",
-                            style: GoogleFonts.kantumruy(
+                            style: AppText.bodySmall!.copyWith(
                                 color: priceCheck == true
                                     ? AppConstant.kPrimaryColor
                                     : Colors.black),
@@ -94,7 +94,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                             alignment: Alignment.center,
                             child: Text(
                               "តម្លៃខ្ពស់",
-                              style: GoogleFonts.kantumruy(
+                              style: AppText.bodySmall!.copyWith(
                                   color: priceCheck == false
                                       ? AppConstant.kPrimaryColor
                                       : Colors.black),
@@ -105,7 +105,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                 ),
                 Text(
                   "កំណត់តម្លៃ",
-                  style: GoogleFonts.kantumruy(fontSize: 16),
+                  style: AppText.bodySmall,
                 ),
                 Row(
                   children: [
@@ -126,7 +126,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                           alignment: Alignment.center,
                           child: Text(
                             "ទីតាំងជិត",
-                            style: GoogleFonts.kantumruy(
+                            style: AppText.bodySmall!.copyWith(
                                 color: locationCheck == true
                                     ? AppConstant.kPrimaryColor
                                     : Colors.black),
@@ -155,7 +155,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                           alignment: Alignment.center,
                           child: Text(
                             "ទីតាំងឆ្ងាយ",
-                            style: GoogleFonts.kantumruy(
+                            style: AppText.bodySmall!.copyWith(
                                 color: locationCheck == false
                                     ? AppConstant.kPrimaryColor
                                     : Colors.black),
@@ -172,7 +172,7 @@ void showBottomSheetResultFromRent({required BuildContext context}) {
                       onPressed: () {},
                       child: Text(
                         "ស្វែងរក",
-                        style: GoogleFonts.kantumruy(color: Colors.white),
+                        style: AppText.bodySmall!.copyWith(color: Colors.white),
                       )),
                 )
               ],

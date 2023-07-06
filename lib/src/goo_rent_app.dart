@@ -18,7 +18,7 @@
 //         splitScreenMode: true,
 //         builder: (context, child) {
 //           return GetMaterialApp(
-//             title: 'Goo Rent',
+//             title: 'Goo App',
 //             translationsKeys: AppTranslation.translationsKeys,
 //             translations: Translator(),
 //             locale: Get.deviceLocale,

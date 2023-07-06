@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'color_schemes.g.dart';
 
 class CustomTheme {
@@ -38,44 +38,48 @@ class CustomTheme {
       );
 }
 
-TextTheme textThem = TextTheme(
+TextTheme textThem = const TextTheme(
   /// Title
-  titleSmall: GoogleFonts.kantumruy(
+  titleSmall: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Kantumruy',
   ),
-  titleMedium: GoogleFonts.kantumruy(
+  titleMedium: TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Kantumruy',
   ),
-  titleLarge: GoogleFonts.kantumruy(
+  titleLarge: TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Kantumruy',
   ),
 
   /// Body
-  bodySmall: GoogleFonts.kantumruy(
+  bodySmall: TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontFamily: 'Kantumruy',
   ),
-  bodyMedium: GoogleFonts.kantumruy(
+  bodyMedium: TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w500,
+    fontFamily: 'Kantumruy',
   ),
-  bodyLarge: GoogleFonts.kantumruy(
+  bodyLarge: TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w500,
+    fontFamily: 'Kantumruy',
   ),
 
   /// Grey text
-  displaySmall: GoogleFonts.kantumruy(
+  displaySmall: TextStyle(
     fontSize: 14,
+    fontFamily: 'Kantumruy',
     fontWeight: FontWeight.w400,
-    color: Colors.grey,
   ),
-  displayLarge: GoogleFonts.kantumruy(
+
+  displayLarge: TextStyle(
     fontSize: 15,
+    fontFamily: 'Kantumruy',
     fontWeight: FontWeight.w400,
-    color: Colors.grey,
   ),
 );

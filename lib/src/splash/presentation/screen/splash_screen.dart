@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/splash/presentation/widgets/show_dialog_ocation.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -107,11 +106,9 @@ class _SplashScreenState extends State<SplashScreen>
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0 * 2),
-                                  child: Text("ជ្រើសរើសភាសា",
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 28)),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0 * 2),
+                                  child: Text("ជ្រើសរើសភាសា"),
                                 ),
                                 ListTile(
                                   onTap: () {
@@ -124,9 +121,8 @@ class _SplashScreenState extends State<SplashScreen>
                                     "assets/icons/kh.png",
                                     width: 50,
                                   ),
-                                  title: Text(
+                                  title: const Text(
                                     "Khmer",
-                                    style: GoogleFonts.kantumruy(),
                                   ),
                                   trailing: Radio(
                                     value: BestTutorSite.khmer,
@@ -150,8 +146,7 @@ class _SplashScreenState extends State<SplashScreen>
                                     "assets/icons/english.png",
                                     width: 50,
                                   ),
-                                  title: Text("English",
-                                      style: GoogleFonts.kantumruy()),
+                                  title: const Text("English"),
                                   trailing: Radio(
                                     value: BestTutorSite.english,
                                     groupValue: _site,
@@ -175,8 +170,7 @@ class _SplashScreenState extends State<SplashScreen>
                                     "assets/icons/china.png",
                                     width: 50,
                                   ),
-                                  title: Text("China",
-                                      style: GoogleFonts.kantumruy()),
+                                  title: const Text("China"),
                                   trailing: Radio(
                                     value: BestTutorSite.china,
                                     groupValue: _site,
@@ -200,8 +194,7 @@ class _SplashScreenState extends State<SplashScreen>
                                     "assets/icons/korea.png",
                                     width: 50,
                                   ),
-                                  title: Text("Korea",
-                                      style: GoogleFonts.kantumruy()),
+                                  title: const Text("Korea"),
                                   trailing: Radio(
                                     value: BestTutorSite.korea,
                                     groupValue: _site,

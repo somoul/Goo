@@ -23,7 +23,8 @@ class SignUpController extends GetxController {
   final isShowPass = true.obs;
   final phoneNumber = ''.obs;
   final password = ''.obs;
-  final userNameController = TextEditingController().obs;
+  final firstName = TextEditingController().obs;
+  final lastName = TextEditingController().obs;
   final verificationId = ''.obs;
   final otpCode = ''.obs;
 
@@ -86,7 +87,11 @@ class SignUpController extends GetxController {
     KeyboardHeper.hideKeyborad();
     phoneNumber.value = phoneNumber.value.trim();
     var body = {
-      'username': userNameController.value.text,
+      'm_prefix': '855',
+      'avatar': '',
+      'first_name': firstName.value,
+      'last_name': lastName.value,
+      'code': otpCode,
       'password': password.value,
       'phone': phoneNumber.value,
     };

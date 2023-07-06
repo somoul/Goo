@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void showButtomSheetVerifyRent({required BuildContext context}) {
   showModalBottomSheet(
@@ -34,10 +33,8 @@ class BottomSheetScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "ការបញ្ចាក់",
-                style: GoogleFonts.kantumruy(
-                    fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -59,27 +56,26 @@ class BottomSheetScreen extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "ផ្ទះរស់នៅ",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
-                        Text("ដោយ ហម ហុី",
-                            style: GoogleFonts.kantumruy(
-                                fontSize: 16, color: Colors.grey))
+                        Text(
+                          "ដោយ ហម ហុី",
+                        )
                       ],
                     ),
                     const Spacer(),
                     TextButton(
                         onPressed: () {},
-                        child: Row(
+                        child: const Row(
                           children: [
-                            Text("ឯកសារព្រមព្រៀង",
-                                style: GoogleFonts.kantumruy(fontSize: 16)),
-                            const Icon(
+                            Text(
+                              "ឯកសារព្រមព្រៀង",
+                            ),
+                            Icon(
                               Icons.arrow_forward_ios_sharp,
                               size: 18,
                               color: Colors.grey,
@@ -99,72 +95,56 @@ class BottomSheetScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "តម្លៃជួល",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, color: Colors.grey),
                         ),
                         Text(
                           "\$100/ខែ",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "តម្លៃជើងសារ",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, color: Colors.grey),
                         ),
                         Text(
                           "\$20",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "ប្រភេទផ្ធះ",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, color: Colors.grey),
                         ),
                         Text(
                           "បន្ទប់ជួល",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "លេខសម្គាល់",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, color: Colors.grey),
                         ),
                         Text(
                           "A198",
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -179,10 +159,8 @@ class BottomSheetScreen extends StatelessWidget {
                               // GoRouter.of(context).pop();
                               // showMyDialog(context: context);
                             },
-                            child: Text(
+                            child: const Text(
                               "ព្រមទទួល",
-                              style: GoogleFonts.kantumruy(
-                                  color: Colors.white, fontSize: 18),
                             )))
                   ],
                 ),

@@ -4,7 +4,6 @@ import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/src/home/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/widget/custom_drop_down_button_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ShopRentPage extends StatelessWidget {
   const ShopRentPage({Key? key, this.appBarTitle = "ដាក់ជួលហាងជួល"})
@@ -19,7 +18,6 @@ class ShopRentPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           appBarTitle,
-          style: GoogleFonts.kantumruy(color: Colors.white, fontSize: 18),
         ),
         centerTitle: true,
       ),
@@ -34,9 +32,8 @@ class ShopRentPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "ប្រភេទ",
-                      style: GoogleFonts.kantumruy(fontSize: 16),
                       //style: TextStyle(fontSize: 16)
                     ),
                     const SizedBox(
@@ -178,32 +175,29 @@ class ShopRentPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 color: Colors.white,
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
                           "រូបភាព",
-                          style: GoogleFonts.kantumruy(
-                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Flexible(
                           child: Text(
                             "សូមដាក់រូបបន្ទប់ដែលចង់ដាក់ជួលចាប់ពី ១០ សន្លឹកចុងក្រោយ",
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.kantumruy(fontSize: 14),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
-                    const BuildButtonCameraWidget()
+                    BuildButtonCameraWidget()
                   ],
                 ),
               ),

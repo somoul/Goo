@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheen_request_rent.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'main_tab_view_screen.dart';
 
@@ -19,9 +18,9 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'ព័ត៏មានអំពីការជួល',
-          style: GoogleFonts.kantumruy(fontSize: 18),
+          // style: GoogleFonts.kantumruy(fontSize: 18),
         ),
         actions: [
           Padding(
@@ -62,16 +61,16 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     width: 160,
                     height: 40,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.camera_alt),
-                        const SizedBox(
+                        Icon(Icons.camera_alt),
+                        SizedBox(
                           width: 10,
                         ),
                         Text(
                           "រូបភាព/10",
-                          style: GoogleFonts.kantumruy(fontSize: 18),
+                          // style: GoogleFonts.kantumruy(fontSize: 18),
                         )
                       ],
                     ),
@@ -120,10 +119,10 @@ class DetailsScreen extends StatelessWidget {
                   onPressed: () {
                     showBottomSheetRequestRentFunction(context: context);
                   },
-                  child: Text(
+                  child: const Text(
                     "ស្នើរសុំជួល",
-                    style: GoogleFonts.kantumruy(
-                        color: Colors.white, fontSize: 16),
+                    // style: GoogleFonts.kantumruy(
+                    //     color: Colors.white, fontSize: 16),
                   ),
                 ),
               ),
@@ -151,9 +150,9 @@ class DetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 30,
                                 ),
-                                Text(
+                                const Text(
                                   "សេវាកម្មបម្រើអតិថិជន",
-                                  style: GoogleFonts.kantumruy(fontSize: 28),
+                                  // style: GoogleFonts.kantumruy(fontSize: 28),
                                 ),
                                 Container(
                                   margin: const EdgeInsets.all(16),
@@ -177,11 +176,11 @@ class DetailsScreen extends StatelessWidget {
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Text(
+                                          const Text(
                                             "ផ្ញើសារតាមតេឡេក្រាម",
-                                            style: GoogleFonts.kantumruy(
-                                                color: const Color(0xff29AAEC),
-                                                fontSize: 18),
+                                            // style: GoogleFonts.kantumruy(
+                                            //     color: const Color(0xff29AAEC),
+                                            //     fontSize: 18),
                                           ),
                                         ],
                                       ),
@@ -214,11 +213,11 @@ class DetailsScreen extends StatelessWidget {
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Text(
+                                          const Text(
                                             "ផ្ញើសារតាមហ្វេសប៊ុក",
-                                            style: GoogleFonts.kantumruy(
-                                                color: const Color(0xff1877F2),
-                                                fontSize: 18),
+                                            // style: GoogleFonts.kantumruy(
+                                            //     color: const Color(0xff1877F2),
+                                            //     fontSize: 18),
                                           ),
                                         ],
                                       ),

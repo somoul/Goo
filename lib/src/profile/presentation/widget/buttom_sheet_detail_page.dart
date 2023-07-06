@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_rent/src/home/screen/tap_view/general_news_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void showBottomSheetDefault({required BuildContext context}) {
   final PageController detailsPageController = PageController(initialPage: 0);
@@ -80,25 +79,18 @@ void showBottomSheetDefault({required BuildContext context}) {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
                                 child: Wrap(
                                   children: [
                                     Text(
                                       "បន្ទប់សម្រាប់ជួលផ្សារទឹកថ្លា ",
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 24),
                                     ),
                                     Text(
                                       "\$90/ខែ ",
-                                      style: GoogleFonts.kantumruy(
-                                          fontSize: 24, color: Colors.blue),
                                     ),
                                     Text(
                                       "ធូរថ្លៃ",
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 24),
                                     )
                                   ],
                                 ),
@@ -127,8 +119,6 @@ void showBottomSheetDefault({required BuildContext context}) {
                                                 ),
                                                 Text(
                                                   e.price,
-                                                  style:
-                                                      GoogleFonts.kantumruy(),
                                                 )
                                               ],
                                             ),
@@ -163,17 +153,15 @@ void showBottomSheetDefault({required BuildContext context}) {
                                           const SizedBox(
                                             width: 10,
                                           ),
-                                          Text(
+                                          const Text(
                                             "លេខកូដ",
-                                            style: GoogleFonts.kantumruy(),
                                           ),
                                           const SizedBox(
                                             width: 10,
                                           ),
-                                          Text(
+                                          const Text(
                                             "AIB9",
-                                            style: GoogleFonts.kantumruy(
-                                                color: const Color(0xFF21A6F8)),
+
                                             // style: TextStyle(
                                             //     color: Color(0xFF21A6F8)
                                             // ),
@@ -189,15 +177,11 @@ void showBottomSheetDefault({required BuildContext context}) {
                                           const SizedBox(
                                             width: 10,
                                           ),
-                                          Text(
+                                          const Text(
                                             "ប្រភេទ:",
-                                            style: GoogleFonts.kantumruy(
-                                                fontSize: 16),
                                           ),
-                                          Text(
+                                          const Text(
                                             "AIB9",
-                                            style: GoogleFonts.kantumruy(
-                                                color: const Color(0xFF21A6F8)),
                                           )
                                         ],
                                       )
@@ -211,32 +195,22 @@ void showBottomSheetDefault({required BuildContext context}) {
                               const Divider(
                                 color: Colors.red,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "ការពិពណ៍នា",
-                                      style: GoogleFonts.kantumruy(
-                                          color: const Color(
-                                            0xFF21A6F8,
-                                          ),
-                                          fontSize: 22),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "• បន្ទប់មានភាបស្ងប់ស្ងាត់មិនមានសំឡេងរំខាន់ពីអ្នកជិតខាង ការរស់នៅប្រកបដោយសុវត្តិភាព។",
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 16),
                                     ),
                                     Text(
                                       "• បន្ទប់មានភាបស្ងប់ស្ងាត់មិនមានសំឡេងរំខាន់ពីអ្នកជិតខាង ការរស់នៅប្រកបដោយសុវត្តិភាព។",
-                                      style:
-                                          GoogleFonts.kantumruy(fontSize: 16),
                                     ),
                                   ],
                                 ),
@@ -255,13 +229,8 @@ void showBottomSheetDefault({required BuildContext context}) {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "ពត៍មានបន្ទប់",
-                                style: GoogleFonts.kantumruy(
-                                    fontSize: 22,
-                                    color: const Color(
-                                      0xFF21A6F8,
-                                    )),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -289,7 +258,6 @@ void showBottomSheetDefault({required BuildContext context}) {
                                               ),
                                               Text(
                                                 e.nameOfEquipmentProvider,
-                                                style: GoogleFonts.kantumruy(),
                                               )
                                             ],
                                           ),
@@ -331,8 +299,6 @@ void showBottomSheetDefault({required BuildContext context}) {
                                                   : index == 1
                                                       ? "បានកក់"
                                                       : "កែប្រែ",
-                                              style: GoogleFonts.kantumruy(
-                                                  color: Colors.white),
                                             )),
                                       ))
                             ],

@@ -19,13 +19,16 @@ class BuildCountryPicker extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: Container(
         width: 115,
-        height: 50,
+        height: 49,
         padding: const EdgeInsets.symmetric(horizontal: 2),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.grey)),
         child: DropdownButton<Country>(
-          icon: const Icon(Icons.arrow_drop_down_rounded),
+          icon: const Icon(
+            Icons.arrow_drop_down_rounded,
+            color: Colors.grey,
+          ),
           value: initCountry,
           isExpanded: true,
           style: AppText.bodyMedium,
@@ -52,7 +55,7 @@ Widget _buildDefaultMenuItem(Country country) {
       children: <Widget>[
         CountryPickerUtils.getDefaultFlagImage(country),
         const Spacer(),
-        Text("+${country.phoneCode}", style: AppText.titleSmall),
+        Text("+${country.phoneCode}", style: AppText.bodyMedium),
       ],
     ),
   );

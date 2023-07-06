@@ -4,7 +4,6 @@ import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/src/home/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/widget/custom_drop_down_button_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RepoRentPage extends StatelessWidget {
   const RepoRentPage({Key? key, this.appBarTitle = "ដាក់ជួលឃ្លាំង"})
@@ -17,8 +16,9 @@ class RepoRentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(appBarTitle,
-            style: GoogleFonts.kantumruy(fontSize: 18, color: Colors.white)),
+        title: Text(
+          appBarTitle,
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -32,7 +32,10 @@ class RepoRentPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("ប្រភេទ", style: GoogleFonts.kantumruy(fontSize: 16)),
+                    const Text(
+                      "ប្រភេទ",
+                      // style: GoogleFonts.kantumruy(fontSize: 16),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -68,8 +71,10 @@ class RepoRentPage extends StatelessWidget {
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text("ខែ",
-                              style: GoogleFonts.kantumruy(fontSize: 16)),
+                          const Text(
+                            "ខែ",
+                            // style: GoogleFonts.kantumruy(fontSize: 16),
+                          ),
                           IconButton(
                             onPressed: () {},
                             icon: const Icon(
@@ -88,7 +93,7 @@ class RepoRentPage extends StatelessWidget {
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text("ខែ", style: GoogleFonts.kantumruy()),
+                          const Text("ខែ"),
                           IconButton(
                             onPressed: () {},
                             icon: const Icon(
@@ -134,32 +139,32 @@ class RepoRentPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 color: Colors.white,
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
                           "រូបភាព",
-                          style: GoogleFonts.kantumruy(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                          // style: GoogleFonts.kantumruy(
+                          //     fontWeight: FontWeight.bold, fontSize: 14),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Flexible(
                           child: Text(
                             "សូមដាក់រូបបន្ទប់ដែលចង់ដាក់ជួលចាប់ពី ១០ សន្លឹកចុងក្រោយ",
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.kantumruy(fontSize: 14),
+                            // style: GoogleFonts.kantumruy(fontSize: 14),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
-                    const BuildButtonCameraWidget()
+                    BuildButtonCameraWidget()
                   ],
                 ),
               ),
@@ -172,8 +177,10 @@ class RepoRentPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("ព័ត៍មានបន្ថែម",
-                        style: GoogleFonts.kantumruy(fontSize: 18)),
+                    const Text(
+                      "ព័ត៍មានបន្ថែម",
+                      // style: GoogleFonts.kantumruy(fontSize: 18),
+                    ),
                     CustomTextField(
                       onChange: (value) {},
                       hindText: "សូមបញ្ជូលព័ត៍មានបន្ថែម",
@@ -191,9 +198,11 @@ class RepoRentPage extends StatelessWidget {
                   color: Colors.blue,
                   width: double.infinity,
                   height: 60,
-                  child: Text("ដាក់ជួល",
-                      style: GoogleFonts.kantumruy(
-                          fontSize: 18, color: Colors.white)),
+                  child: const Text(
+                    "ដាក់ជួល",
+                    // style: GoogleFonts.kantumruy(
+                    //     fontSize: 18, color: Colors.white),
+                  ),
                 ),
               )
             ],

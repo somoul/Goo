@@ -11,7 +11,7 @@ import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart'
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 import 'package:goo_rent/src/profile/presentation/widget/custom_toggle_button.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:share_plus/share_plus.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -51,15 +51,14 @@ class ProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    "SOTH MENGHOUR",
-                    style: GoogleFonts.kantumruy(
-                        color: Colors.white, fontSize: 16),
-                    //style: TextStyle(color: Colors.white),
-                  ),
+                  Text("SOTH MENGHOUR",
+                      style: AppText.bodyMedium!
+                          .copyWith(color: Colors.white, fontSize: 16)
+                      //style: TextStyle(color: Colors.white),
+                      ),
                   Text(
                     "${'id'.tr}: 09999",
-                    style: GoogleFonts.kantumruy(
+                    style: AppText.bodySmall!.copyWith(
                         color: Colors.white.withOpacity(0.6), fontSize: 14),
                   )
                 ],

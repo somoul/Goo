@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:goo_rent/src/home/widget/build_button_camera_widget.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_verify_rent.dart';
 import 'package:goo_rent/src/home/widget/custom_drop_down_button_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RoomRentPage extends StatelessWidget {
   const RoomRentPage({
@@ -17,9 +16,8 @@ class RoomRentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(
+        title: const Text(
           "ដាក់បន្ទប់ជួល",
-          style: GoogleFonts.kantumruy(color: Colors.white, fontSize: 18),
         ),
         centerTitle: true,
       ),
@@ -34,9 +32,8 @@ class RoomRentPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "ប្រភេទ",
-                      style: GoogleFonts.kantumruy(fontSize: 16),
                     ),
                     const SizedBox(
                       height: 10,
@@ -70,9 +67,8 @@ class RoomRentPage extends StatelessWidget {
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
+                          const Text(
                             "ខែ",
-                            style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                           IconButton(
                             onPressed: () {},
@@ -108,9 +104,8 @@ class RoomRentPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "ទំហំ (ម៉ែត្រការ៉េ)",
-                      style: GoogleFonts.kantumruy(fontSize: 16),
                     ),
                     Row(
                       children: [
@@ -145,9 +140,8 @@ class RoomRentPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "ចេញចូល",
-                      style: GoogleFonts.kantumruy(fontSize: 16),
                     ),
                     const SizedBox(
                       height: 10,
@@ -159,9 +153,8 @@ class RoomRentPage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 height: 40,
                                 color: Colors.grey.shade200,
-                                child: Text(
+                                child: const Text(
                                   "ចេញចូល ២៤ ម៉ោង",
-                                  style: GoogleFonts.kantumruy(),
                                 ))),
                         const SizedBox(
                           width: 10,
@@ -171,8 +164,9 @@ class RoomRentPage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 height: 40,
                                 color: Colors.grey.shade200,
-                                child: Text("ចេញចូល ១២ ម៉ោង",
-                                    style: GoogleFonts.kantumruy())))
+                                child: const Text(
+                                  "ចេញចូល ១២ ម៉ោង",
+                                )))
                       ],
                     ),
                   ],
@@ -184,32 +178,29 @@ class RoomRentPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 color: Colors.white,
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
                           "រូបភាព",
-                          style: GoogleFonts.kantumruy(
-                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Flexible(
                           child: Text(
                             "សូមដាក់រូបបន្ទប់ដែលចង់ដាក់ជួលចាប់ពី ១០ សន្លឹកចុងក្រោយ",
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.kantumruy(fontSize: 14),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
-                    const BuildButtonCameraWidget()
+                    BuildButtonCameraWidget()
                   ],
                 ),
               ),
@@ -243,10 +234,8 @@ class RoomRentPage extends StatelessWidget {
                   color: Colors.blue,
                   width: double.infinity,
                   height: 60,
-                  child: Text(
+                  child: const Text(
                     "ដាក់ជួល",
-                    style: GoogleFonts.kantumruy(
-                        fontSize: 18, color: Colors.white),
                   ),
                 ),
               )

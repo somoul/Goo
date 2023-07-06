@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 showMyDialog({required BuildContext context}) async {
   return showDialog<void>(
@@ -20,16 +19,15 @@ showMyDialog({required BuildContext context}) async {
               const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "ការដាក់ជួលស្ថិតនៅក្នុងការត្រួតពិនិត្យ",
-                style: GoogleFonts.kantumruy(
-                    fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text("យើងនឹងឆ្លើយតបទៅអ្នកវិញក្នុងរយះពេលខ្លី",
-                  style: GoogleFonts.kantumruy(fontSize: 18)),
+              const Text(
+                "យើងនឹងឆ្លើយតបទៅអ្នកវិញក្នុងរយះពេលខ្លី",
+              ),
             ],
           ),
         ),

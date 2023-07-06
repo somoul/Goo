@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:goo_rent/main_page.dart';
 import 'package:goo_rent/routes/route_name.dart';
-import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_name_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_passwrod_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/sign_up_screen.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
@@ -31,10 +30,10 @@ abstract class AppPages {
       name: Routes.verifyOtp,
       page: () => const VerifyOTPScreen(),
     ),
-    GetPage(
-      name: Routes.createName,
-      page: () => CreateNameScreen(),
-    ),
+    // GetPage(
+    //   name: Routes.createName,
+    //   page: () => CreateNameScreen(),
+    // ),
     GetPage(
       name: Routes.createPassword,
       page: () => const CreatePasswordScreen(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import "dart:math" as math;
 
 import 'button_navigation_item.dart';
@@ -130,11 +130,10 @@ class _ButtonNavigationGooRentState extends State<ButtonNavigationGooRent>
                       ),
                       Text(widget.items[index].label,
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.kantumruy(
-                              fontSize: 12,
+                          style: AppText.bodySmall!.copyWith(
                               color: _currentIndex != index
                                   ? inactiveIconColor
-                                  : activeIconColor))
+                                  : activeIconColor)),
                     ],
                   ),
                 ),

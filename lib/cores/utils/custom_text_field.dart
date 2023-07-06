@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {Key? key,
+      this.onTap,
+      this.isSelection = false,
       this.hindText = "",
       this.labelText = "",
       this.trailingWidget = const SizedBox(),
@@ -14,6 +16,7 @@ class CustomTextField extends StatelessWidget {
       required this.onChange,
       this.hintStyle,
       this.valueStyle,
+      this.initSelectionValue,
       this.obscureText = false})
       : super(key: key);
   final String hindText;
@@ -26,58 +29,98 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? hintStyle;
   final TextStyle? valueStyle;
   final bool? obscureText;
+  final bool? isSelection;
+  final Function? onTap;
+  final String? initSelectionValue;
 
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        labelText.isEmpty
+        widget.labelText.isEmpty
             ? const SizedBox()
             : const SizedBox(
                 height: 10,
               ),
-        labelText.isEmpty
-            ? const SizedBox()
-            : Text(labelText, style: AppText.titleSmall),
-        SizedBox(height: labelText != '' ? 10 : 0),
-        TextFormField(
-          cursorColor: AppConstant.kPrimaryColor,
-          cursorRadius: const Radius.circular(10),
-          cursorHeight: 20,
-          cursorWidth: 2,
-          initialValue: initialValue ?? '',
-          obscureText: obscureText ?? false,
-          onChanged: onChange,
-          keyboardType: textInputType,
-          style: valueStyle ?? AppText.bodyMedium,
-          decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            suffixIcon: suffixIcon,
-            hintStyle:
-                hintStyle ?? AppText.bodyMedium!.copyWith(color: Colors.grey),
-            hintText: hindText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(color: Colors.grey),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(
-                color: AppConstant.kPrimaryColor,
-                width: 1,
+        widget.labelText.isEmpty ? const SizedBox() : Text(widget.labelText),
+        SizedBox(height: widget.labelText != '' ? 5 : 0),
+        widget.isSelection == true
+            ? GestureDetector(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  height: 46,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      // color: Colors.white,
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      )),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.initSelectionValue ?? widget.hindText,
+                          style: TextStyle(
+                            color: widget.initSelectionValue != null
+                                ? Colors.black
+                                : Colors.grey,
+                          ),
+                        ),
+                      ),
+                      const Icon(
+                        Icons.arrow_drop_down_rounded,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : TextFormField(
+                cursorColor: AppConstant.kPrimaryColor,
+                cursorRadius: const Radius.circular(10),
+                cursorHeight: 20,
+                cursorWidth: 2,
+                initialValue: widget.initialValue ?? '',
+                obscureText: widget.obscureText ?? false,
+                onChanged: widget.onChange,
+                keyboardType: widget.textInputType,
+                style: widget.valueStyle ?? AppText.bodyMedium,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  suffixIcon: widget.suffixIcon,
+                  hintStyle: widget.hintStyle ??
+                      AppText.bodyMedium!.copyWith(color: Colors.grey),
+                  hintText: widget.hindText,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(
+                      color: AppConstant.kPrimaryColor,
+                      width: 1,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                  ),
+                ),
               ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 1,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

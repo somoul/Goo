@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BuildButtonCameraWidget extends StatelessWidget {
   const BuildButtonCameraWidget({Key? key}) : super(key: key);
@@ -35,8 +35,8 @@ class BuildButtonCameraWidget extends StatelessWidget {
                     ),
                     Text(
                       "ជ្រើសរើសរូបភាព",
-                      style: GoogleFonts.kantumruy(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                      style: AppText.bodyMedium!
+                          .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 10,
@@ -50,7 +50,7 @@ class BuildButtonCameraWidget extends StatelessWidget {
                     ),
                     Text(
                       "ថតរូប",
-                      style: GoogleFonts.kantumruy(
+                      style: AppText.bodyMedium!.copyWith(
                           fontSize: 20, color: const Color(0xFF21A6F8)),
                     ),
                     const SizedBox(
@@ -63,11 +63,9 @@ class BuildButtonCameraWidget extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      "ជ្រើសរើសរូបភាព",
-                      style: GoogleFonts.kantumruy(
-                          fontSize: 20, color: const Color(0xFF21A6F8)),
-                    ),
+                    Text("ជ្រើសរើសរូបភាព",
+                        style: AppText.titleMedium!.copyWith(
+                            fontSize: 20, color: const Color(0xFF21A6F8))),
                     const SizedBox(
                       height: 20,
                     ),
@@ -81,8 +79,7 @@ class BuildButtonCameraWidget extends StatelessWidget {
                     ),
                     Text(
                       "Cancel",
-                      style: GoogleFonts.kantumruy(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                      style: AppText.titleMedium,
                     ),
                     const SizedBox(
                       height: 10,
@@ -103,7 +100,7 @@ class BuildButtonCameraWidget extends StatelessWidget {
               ),
               Text(
                 "ដាក់រូបទីនេះ",
-                style: GoogleFonts.kantumruy(
+                style: AppText.bodySmall!.copyWith(
                     color: Colors.lightBlueAccent.shade700,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600),

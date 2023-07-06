@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomCardRentWidget extends StatelessWidget {
   const CustomCardRentWidget(
@@ -106,11 +106,11 @@ class CustomCardRentWidget extends StatelessWidget {
                           children: [
                             Text(typeName,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.kantumruy(
+                                style: AppText.bodySmall!.copyWith(
                                     fontSize: 14.w,
                                     fontWeight: FontWeight.bold)),
                             Text(sizeRent,
-                                style: GoogleFonts.kantumruy(
+                                style: AppText.bodySmall!.copyWith(
                                     fontSize: 12.w,
                                     fontWeight: FontWeight.bold,
                                     color: const Color(0xFF21A6F8)))
@@ -130,13 +130,15 @@ class CustomCardRentWidget extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text("ប្រហែល 15នាទី",
-                                    style: GoogleFonts.kantumruy(
-                                        color: Colors.grey, fontSize: 14)),
+                                Text(
+                                  "ប្រហែល 15នាទី",
+                                  style: AppText.bodySmall!.copyWith(
+                                      color: Colors.grey, fontSize: 14),
+                                ),
                               ],
                             ),
                             Text("Code: $code",
-                                style: GoogleFonts.kantumruy(
+                                style: AppText.bodySmall!.copyWith(
                                     fontSize: 14, fontWeight: FontWeight.bold)),
                           ],
                         ),
@@ -162,7 +164,7 @@ class CustomCardRentWidget extends StatelessWidget {
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  Text("3x5m", style: GoogleFonts.kantumruy()),
+                                  Text("3x5m", style: AppText.bodySmall),
                                 ],
                               ),
 
@@ -189,7 +191,7 @@ class CustomCardRentWidget extends StatelessWidget {
                               //     const SizedBox(
                               //       width: 5,
                               //     ),
-                              //     Text("Free", style: GoogleFonts.kantumruy()),
+                              //     Text("Free", style: ),
                               //   ],
                               // ),
                               // const SizedBox(

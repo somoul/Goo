@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/cores/utils/loading_dialoge.dart';
 import 'package:goo_rent/cores/utils/loading_helper.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
@@ -25,13 +24,11 @@ class SignInController extends GetxController {
 
   /// Method
   Future<void> onLogin() async {
-    KeyboardHeper.hideKeyborad();
     BaseDialogLoading.show();
     var body = {
       'username': phoneNumber.value,
       'password': password.value,
     };
-
     try {
       await apiHelper
           .onRequest(

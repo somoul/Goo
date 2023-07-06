@@ -1,6 +1,6 @@
 {
-    "name": "goo_rent",
-    "short_name": "goo_rent",
+    "name": "Goo App",
+    "short_name": "Goo App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

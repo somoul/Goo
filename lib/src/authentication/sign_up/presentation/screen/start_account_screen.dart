@@ -2,8 +2,8 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/routes/route_name.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class StartAccountScreen extends StatelessWidget {
   const StartAccountScreen({Key? key}) : super(key: key);
@@ -63,11 +63,7 @@ class StartAccountScreen extends StatelessWidget {
                   dashGapColor: Colors.transparent,
                   dashGapRadius: 0.0,
                 ),
-                Text(
-                  "or",
-                  style: GoogleFonts.kantumruy(
-                      fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                Text("or", style: AppText.titleSmall),
                 DottedLine(
                   direction: Axis.horizontal,
                   lineLength: (MediaQuery.of(context).size.width / 2) - 40,
@@ -97,11 +93,9 @@ class StartAccountScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Sign with phone number",
-                      style: GoogleFonts.kantumruy(
-                          fontSize: 16, color: Colors.white),
-                    ),
+                    Text("Sign with phone number",
+                        style:
+                            AppText.titleSmall!.copyWith(color: Colors.white)),
                   ],
                 ),
               ),
@@ -136,7 +130,6 @@ class StartAccountScreen extends StatelessWidget {
             ),
             Text(
               "Continues with $media",
-              style: GoogleFonts.kantumruy(fontSize: 16),
             ),
           ],
         ),

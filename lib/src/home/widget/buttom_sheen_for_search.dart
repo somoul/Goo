@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import '../../../cores/constant/app_text.dart';
 import '../../../cores/utils/custom_button.dart';
 import '../controler/animation_background_banner_provider/home_controller.dart';
@@ -75,7 +75,7 @@ class BottomSheetScreen extends StatelessWidget {
                         ),
                         child: Text(
                           "សម្រាប់លំនៅដ្ធាន",
-                          style: GoogleFonts.kantumruy(
+                          style: AppText.bodyMedium!.copyWith(
                               fontSize: 16,
                               color: indexTapber == 0
                                   ? Colors.white
@@ -111,7 +111,7 @@ class BottomSheetScreen extends StatelessWidget {
                         ),
                         child: Text(
                           "សម្រាប់អាជីវកម្ម",
-                          style: GoogleFonts.kantumruy(
+                          style: AppText.bodyMedium!.copyWith(
                               fontSize: 16,
                               color: indexTapber == 1
                                   ? Colors.white

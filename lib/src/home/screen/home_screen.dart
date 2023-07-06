@@ -10,7 +10,7 @@ import 'package:goo_rent/src/home/controler/animation_background_banner_provider
 import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../widget/buttom_sheen_for_search.dart';
@@ -327,21 +327,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("តំបន់មានការជួលច្រើន",
-                                            style: GoogleFonts.kantumruy(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
+                                        const Text(
+                                          "តំបន់មានការជួលច្រើន",
+                                          // style: GoogleFonts.kantumruy(
+                                          //     fontSize: 16,
+                                          //     fontWeight: FontWeight.bold),
+                                        ),
                                         InkWell(
                                           onTap: () {
                                             Get.to(() =>
                                                 const LocationRentScreen(
                                                     titleAppBar: ''));
                                           },
-                                          child: Text("មើលទាំងអស់",
-                                              style: GoogleFonts.kantumruy(
-                                                  fontSize: 12,
-                                                  color: AppConstant
-                                                      .kPrimaryColor)),
+                                          child: const Text(
+                                            "មើលទាំងអស់",
+                                            // style: GoogleFonts.kantumruy(
+                                            //     fontSize: 12,
+                                            //     color:
+                                            //         AppConstant.kPrimaryColor),
+                                          ),
                                         ),
                                       ],
                                     ),

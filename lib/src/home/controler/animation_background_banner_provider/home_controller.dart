@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/utils/api_helper.dart';
 import '../../data/slide_categorie_model/slide_categorie_model.dart';
 import '../../data/slider_ banners_model/slide_model.dart';
-import 'api_base_helper.dart';
 
 class HomeController extends GetxController {
   int _currentPage = 0;
@@ -52,14 +52,15 @@ class HomeController extends GetxController {
   // final slideList = <SlideModel>[].obs;
   final sideBarData = const SlideModel().obs;
   final listSideBarData = <SlideModel>[].obs;
-  ApiBaseHelper apiBaseHelper = ApiBaseHelper();
+  ApiHelper apiBaseHelper = ApiHelper();
   Future<List<SlideModel>> fetchSlideBanner() async {
     isfetchLoadingBanner(true);
     await apiBaseHelper
-        .onNetworkRequesting(
-      isAuthorize: false,
-      url: "banners",
-      methode: METHODE.get,
+        .onRequest(
+      isAuthorize: false, methode: METHODE.get, url: "/banners",
+      // isAuthorize: false,
+      // url: "banners",
+      // methode: METHODE.get,
     )
         .then((response) {
       print("===================== True get api ==================");
@@ -89,9 +90,9 @@ class HomeController extends GetxController {
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     isfetchLoadingCategorie(true);
     await apiBaseHelper
-        .onNetworkRequesting(
+        .onRequest(
       isAuthorize: false,
-      url: "categories",
+      url: "/categories",
       methode: METHODE.get,
     )
         .then((response) {
@@ -104,7 +105,6 @@ class HomeController extends GetxController {
 
         //debugPrint("Slide list:${listSideBarData[1].title}");
       }).toList();
-      debugPrint("===my json data Categorie:${listSideBarDataCategorie[10]}");
 
       isfetchLoadingCategorie(false);
       debugPrint('hello1688888888888888');

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/src/home/screen/tap_view/general_news_page.dart';
 import 'package:goo_rent/src/home/screen/tap_view/price_of_rent_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DetailsPageByType extends StatelessWidget {
   const DetailsPageByType({Key? key}) : super(key: key);
@@ -43,9 +42,9 @@ class DetailsPageByType extends StatelessWidget {
                                 ? const Color(0xFF21A6F8)
                                 : Colors.grey,
                           ),
-                          Text(
+                          const Text(
                             'ទូទៅ',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
+                            // style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),
@@ -60,9 +59,9 @@ class DetailsPageByType extends StatelessWidget {
                             color: val == 1 ? const Color(0xFF21A6F8) : null,
                             height: 30,
                           ),
-                          Text(
+                          const Text(
                             'កំពុងដាក់ជួល',
-                            style: GoogleFonts.kantumruy(fontSize: 16),
+                            // style: GoogleFonts.kantumruy(fontSize: 16),
                           ),
                         ],
                       ),

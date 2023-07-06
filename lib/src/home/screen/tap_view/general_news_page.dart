@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GeneralNewsPage extends StatelessWidget {
   const GeneralNewsPage({Key? key}) : super(key: key);
@@ -53,13 +52,13 @@ class GeneralNewsPage extends StatelessWidget {
                         width: 320,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         alignment: Alignment.centerLeft,
-                        child: Stack(
+                        child: const Stack(
                           children: [
                             Text(
                               "បន្ទប់សម្រាប់ជួលផ្សាទឹកថ្លាតម្លៃធូថ្លៃ។",
                               //style: TextStyle(fontSize: 18),
-                              style: GoogleFonts.kantumruy(
-                                  fontWeight: FontWeight.bold, fontSize: 17.sp),
+                              // style: GoogleFonts.kantumruy(
+                              //     fontWeight: FontWeight.bold, fontSize: 17.sp),
                             ),
 
                             // Positioned(right: 0,top: 0,child: Row(children: [ Text(
@@ -101,18 +100,18 @@ class GeneralNewsPage extends StatelessWidget {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
+                                  const Text(
                                     "លេខកូដ",
-                                    style: GoogleFonts.kantumruy(fontSize: 16),
+                                    // style: GoogleFonts.kantumruy(fontSize: 16),
                                   ),
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     "AIB9",
-                                    style: GoogleFonts.kantumruy(
-                                        color: const Color(0xFF21A6F8),
-                                        fontSize: 16),
+                                    // style: GoogleFonts.kantumruy(
+                                    //     color: const Color(0xFF21A6F8),
+                                    //     fontSize: 16),
                                   )
                                 ],
                               ),
@@ -122,18 +121,18 @@ class GeneralNewsPage extends StatelessWidget {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
+                                  const Text(
                                     "ប្រភេទ:",
-                                    style: GoogleFonts.kantumruy(fontSize: 16),
+                                    // style: GoogleFonts.kantumruy(fontSize: 16),
                                   ),
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     "AIB9",
-                                    style: GoogleFonts.kantumruy(
-                                        color: const Color(0xFF21A6F8),
-                                        fontSize: 16),
+                                    // style: GoogleFonts.kantumruy(
+                                    //     color: const Color(0xFF21A6F8),
+                                    //     fontSize: 16),
                                   )
                                 ],
                               )
@@ -147,34 +146,34 @@ class GeneralNewsPage extends StatelessWidget {
                       const Divider(
                         color: Color(0xFFEEEEEE),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "ពត័មានទូទៅ",
-                              style: GoogleFonts.kantumruy(
-                                  color: const Color(
-                                    0xFF21A6F8,
-                                  ),
-                                  fontSize: 18.sp),
+                              // style: GoogleFonts.kantumruy(
+                              //     color: const Color(
+                              //       0xFF21A6F8,
+                              //     ),
+                              //     fontSize: 18.sp),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
                             Row(
                               children: [
                                 Text(
                                   "• បន្ទប់ទំហំ:",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp, color: Colors.grey),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp, color: Colors.grey),
                                 ),
                                 Text(
                                   " 5x6 ម៉ែត្រការេ",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp,
+                                  //     fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -182,14 +181,14 @@ class GeneralNewsPage extends StatelessWidget {
                               children: [
                                 Text(
                                   "• បង់កក់មុន ",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp, color: Colors.grey),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp, color: Colors.grey),
                                 ),
                                 Text(
                                   "5 ខែ",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp,
+                                  //     fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -197,14 +196,14 @@ class GeneralNewsPage extends StatelessWidget {
                               children: [
                                 Text(
                                   "• ស្ថិតនៅជាន់: ",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp, color: Colors.grey),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp, color: Colors.grey),
                                 ),
                                 Text(
                                   "ផ្ទាល់ដី",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp,
+                                  //     fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -212,14 +211,14 @@ class GeneralNewsPage extends StatelessWidget {
                               children: [
                                 Text(
                                   "• មានចំណត់:",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp, color: Colors.grey),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp, color: Colors.grey),
                                 ),
                                 Text(
                                   " សម្រាប់ចត",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp,
+                                  //     fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -227,14 +226,14 @@ class GeneralNewsPage extends StatelessWidget {
                               children: [
                                 Text(
                                   "• ការចេញចូល",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp, color: Colors.grey),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp, color: Colors.grey),
                                 ),
                                 Text(
                                   " 24 ម៉ោង",
-                                  style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold),
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 14.sp,
+                                  //     fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -244,16 +243,16 @@ class GeneralNewsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 15,
                   right: 0,
                   child: Text(
                     " \$90/ខែ ",
-                    style: GoogleFonts.kantumruy(
-                        color: const Color(
-                          0xFF21A6F8,
-                        ),
-                        fontSize: 17),
+                    // style: GoogleFonts.kantumruy(
+                    //     color: const Color(
+                    //       0xFF21A6F8,
+                    //     ),
+                    //     fontSize: 17),
                   ),
                 )
               ],
@@ -268,13 +267,13 @@ class GeneralNewsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "សម្ភារះបំពាក់ជូន",
-                    style: GoogleFonts.kantumruy(
-                        fontSize: 18.sp,
-                        color: const Color(
-                          0xFF21A6F8,
-                        )),
+                    // style: GoogleFonts.kantumruy(
+                    //     fontSize: 18.sp,
+                    //     color: const Color(
+                    //       0xFF21A6F8,
+                    //     )),
                   ),
                   const SizedBox(
                     height: 10,
@@ -299,9 +298,9 @@ class GeneralNewsPage extends StatelessWidget {
                                   ),
                                   Text(
                                     e.nameOfEquipmentProvider,
-                                    style: GoogleFonts.kantumruy(
-                                      fontSize: 14.sp,
-                                    ),
+                                    // style: GoogleFonts.kantumruy(
+                                    //   fontSize: 14.sp,
+                                    // ),
                                   )
                                 ],
                               ),
@@ -317,23 +316,23 @@ class GeneralNewsPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               color: Colors.white,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "ការពិពណ៍នា",
-                    style: GoogleFonts.kantumruy(
-                        color: const Color(0xFF21A6F8), fontSize: 18.sp),
+                    // style: GoogleFonts.kantumruy(
+                    //     color: const Color(0xFF21A6F8), fontSize: 18.sp),
                   ),
                   Text(
                     "• បន្ទប់មានភាបស្ងប់ស្ងាត់មិនមានសំឡេងរំខាន់ពីអ្នកជិតខាង ការរស់នៅប្រកបដោយសុវត្តិភាព។",
-                    style: GoogleFonts.kantumruy(
-                        fontSize: 14.sp, fontWeight: FontWeight.bold),
+                    // style: GoogleFonts.kantumruy(
+                    //     fontSize: 14.sp, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "• បន្ទប់មានភាបស្ងប់ស្ងាត់មិនមានសំឡេងរំខាន់ពីអ្នកជិតខាង ការរស់នៅប្រកបដោយសុវត្តិភាព។",
-                    style: GoogleFonts.kantumruy(
-                        fontSize: 14.sp, fontWeight: FontWeight.bold),
+                    // style: GoogleFonts.kantumruy(
+                    //     fontSize: 14.sp, fontWeight: FontWeight.bold),
                   )
                 ],
               ),

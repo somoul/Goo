@@ -1,6 +1,5 @@
 import 'package:go_router/go_router.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
-import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_name_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_passwrod_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/sign_up_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/start_account_screen.dart';
@@ -121,12 +120,12 @@ final router = GoRouter(
         return const CreatePasswordScreen();
       },
     ),
-    GoRoute(
-      path: CreateNameScreen.routeName,
-      builder: (context, state) {
-        return CreateNameScreen();
-      },
-    ),
+    // GoRoute(
+    //   path: CreateNameScreen.routeName,
+    //   builder: (context, state) {
+    //     return CreateNameScreen();
+    //   },
+    // ),
     GoRoute(
       path: MultipleLanguageScreen.routeName,
       builder: (context, state) {
