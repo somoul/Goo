@@ -2,8 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-
+import 'package:goo_rent/cores/theme/color_schemes.g.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
 
 class CustomServiceBlock extends StatelessWidget {
@@ -16,78 +15,27 @@ class CustomServiceBlock extends StatelessWidget {
 
     return Column(
       children: [
-        // TextButton(
-        //     onPressed: () {},
-        //     child:
-        Text(
-          'សេវាកម្ម',
-          style: AppText.titleSmall!.copyWith(
-            fontSize: 15,
-            color: AppConstant.kPrimaryColor.withOpacity(0.75),
-            fontWeight: FontWeight.w300,
+        Padding(
+          padding: const EdgeInsets.only(top: 14),
+          child: Text(
+            'សេវាកម្ម',
+            style: AppText.titleSmall!.copyWith(
+                color: lightColorScheme.primary,
+                fontWeight: FontWeight.w500,
+                fontSize: 14),
           ),
-          // )
         ),
-
-        SizedBox(
-          height: 80,
+        Container(
+          height: 63,
           width: double.infinity,
-          child:
-              // CarouselSlider(
-              //   items: categoryList
-              //       .map((item) => Container(
-              //           height: 80,
-              //           width: double.infinity,
-              //           color: Colors.green,
-              //           child: Row(
-              //             children: [
-              //               const Spacer(),
-              //               GestureDetector(
-              //                   onTap: () {
-              //                     print("=================1111========");
-              //                   },
-              //                   child: Text(item.iconName)),
-              //               const Spacer(),
-              //               const Spacer(),
-              //               GestureDetector(
-              //                   onTap: () {
-              //                     print("=================22222========");
-              //                   },
-              //                   child: Text(item.iconName)),
-              //               const Spacer(),
-              //               GestureDetector(
-              //                   onTap: () {
-              //                     print("=================1111========");
-              //                   },
-              //                   child: Text(item.iconName)),
-              //               const Spacer(),
-              //               const Spacer(),
-              //               GestureDetector(
-              //                   onTap: () {
-              //                     print("=================22222========");
-              //                   },
-              //                   child: Text(item.iconName)),
-              //               const Spacer(),
-              //             ],
-              //           )))
-              //       .toList(),
-              //   carouselController: buttonCarouselController,
-              //   options: CarouselOptions(
-              //     autoPlay: false,
-              //     enlargeCenterPage: true,
-              //     viewportFraction: 0.9,
-              //     aspectRatio: 2.0,
-              //     initialPage: 0,
-              //   ),
-              // ),
-
-              ListView.builder(
+          margin: const EdgeInsets.only(top: 6),
+          child: ListView.builder(
             itemCount: categoryList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {},
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+                margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 2),
                 child: Column(
                   children: [
                     CachedNetworkImage(
@@ -96,24 +44,20 @@ class CustomServiceBlock extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       ),
                       imageUrl: categoryList[index].icon!,
-                      height: 35,
+                      height: 25,
                     ),
-
-                    // Image.network(
-                    //   categoryList[index].icon!,
-                    //   height: 35,
-                    // ),
-                    const Spacer(),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        categoryList[index].name!,
-                        style: AppText.titleSmall!.copyWith(
-                          color: Colors.black87,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          categoryList[index].name!,
+                          style: AppText.titleSmall!.copyWith(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.start,
                         ),
-                        textAlign: TextAlign.start,
                       ),
                     )
                   ],

@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: CustomTheme.lightTheme,
           navigatorKey: ContextProvider.navigatorKey,
-          initialRoute: Routes.signup,
+          initialRoute: Routes.home,
           getPages: AppPages.pages,
           // initialBinding: AuthBinding()
         );

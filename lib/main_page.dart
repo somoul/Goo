@@ -39,6 +39,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       //specify the location of the FAB
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         backgroundColor: const Color(0xFF21A6F8),
         onPressed: () {
           showBottomTypeOfRent(context: context);
@@ -94,11 +95,8 @@ class _MainPageState extends State<MainPage> {
           //     ));
         },
         tooltip: "Centre FAB",
-        elevation: 4.0,
-        child: Container(
-          margin: const EdgeInsets.all(15.0),
-          child: const Icon(Icons.add),
-        ),
+        elevation: 5,
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: ButtonNavigationGooRent(
         items: [
