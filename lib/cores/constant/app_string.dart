@@ -5,4 +5,5 @@ class AppString {
   ///Local Storage [KEY]
   static const locale = 'locale';
   static const token = 'token';
+  static const notificationKey = 'notificationKey';
 }

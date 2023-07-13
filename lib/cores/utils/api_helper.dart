@@ -1,12 +1,15 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:goo_rent/cores/constant/app_string.dart';
+import 'package:goo_rent/cores/utils/local_storage.dart';
 
 class ErrorModel {
   final int? statusCode;
   final dynamic bodyString;
-  const ErrorModel({this.statusCode, this.bodyString});
+  const ErrorModel({
+    this.statusCode,
+    this.bodyString,
+  });
 }
 
 enum METHODE {
@@ -25,18 +28,25 @@ class ApiHelper extends GetConnect {
       required METHODE? methode,
       required bool isAuthorize,
       bool isConvertToByte = false}) async {
-    // final _token = await StorageDataLocal.getData('current_user') ?? "";
+    final token = await LocalStorage.readToken();
     // tockenTest = _token;
+    // BaseDialogLoading.show();
     final fullUrl = baseurl + url;
     Map<String, String> header0 = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': isAuthorize ? 'Bearer' : ''
+      'Authorization': isAuthorize ? 'Bearer $token' : ''
     };
     try {
       switch (methode) {
         case METHODE.get:
-          final response = await get(fullUrl, headers: header ?? header0);
+          print('Header: $header0 \n URL: $fullUrl');
+          final response = await get(
+            fullUrl,
+            headers: header ?? header0,
+            contentType: 'application/json',
+          );
+          print('dasfxgnhmc fxzvfds${jsonDecode(response.bodyString!)}');
           return _returnResponse(response);
         case METHODE.post:
           if (body != null) {
@@ -63,12 +73,15 @@ class ApiHelper extends GetConnect {
           break;
       }
     } catch (e) {
+      // BaseDialogLoading.show();
       return Future.error(e);
+    } finally {
+      // BaseDialogLoading.dismiss();
     }
   }
 
   dynamic _returnResponse(Response response) {
-    debugPrint('Response Data : ${response.bodyString}');
+    // debugPrint('Response Data : ${response.bodyString}');
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.bodyString!);

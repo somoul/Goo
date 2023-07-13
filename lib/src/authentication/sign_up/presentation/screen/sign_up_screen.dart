@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -88,8 +88,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: signUpCon.isShowPass.value,
                         textInputType: TextInputType.visiblePassword,
                         hindText: "Please enter password".tr,
-                        valueStyle:
-                            AppText.titleSmall!.copyWith(letterSpacing: 1),
                         onChange: (val) {
                           signUpCon.password.value = val;
                         },
@@ -244,7 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 () => CustomButton(
                   title: 'Sign Up',
                   onPressed: signUpCon.isDisabelSignup
-                      ? () async => await signUpCon.onCreateAccount()
+                      ? () async => await signUpCon.onRequestOTP()
                       : null,
                 ),
               )

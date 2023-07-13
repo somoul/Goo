@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/utils/notifications_helper.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({
@@ -24,9 +23,7 @@ class NotificationScreen extends StatelessWidget {
           // child: CustomListTileWidget(),
           child: Center(
             child: ElevatedButton(
-              onPressed: () {
-                NotificationHelper.showNotification();
-              },
+              onPressed: () {},
               child: const Text('Show Notification '),
             ),
           ),

@@ -6,7 +6,6 @@ import 'package:goo_rent/cores/theme/theme_data.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_rent/cores/utils/locale_helper.dart';
-import 'package:goo_rent/cores/utils/notifications_helper.dart';
 import 'package:goo_rent/firebase_options.dart';
 import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
@@ -22,7 +21,7 @@ Future<void> main() async {
 
   await LocaleHelper.onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
-  await NotificationHelper.onInitializeNotification();
+  // await NotificationHelper.onInitializeNotification();
   runApp(const MyApp());
 }
 

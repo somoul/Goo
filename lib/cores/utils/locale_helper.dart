@@ -4,12 +4,12 @@ import 'package:goo_rent/cores/utils/local_storage.dart';
 
 class LocaleHelper {
   static Future<void> onCheckLanguages() async {
-    String localeStr = await LocalStorage.readLocale();
+    var localeStr = await LocalStorage.readLocale();
     if (localeStr != '') {
       var locale = Locale(localeStr, '');
       Get.updateLocale(locale);
     } else {
-      String localeStr = Get.deviceLocale!.languageCode;
+      var localeStr = Get.deviceLocale?.languageCode ?? 'km';
       var locale = Locale(localeStr, '');
       Get.updateLocale(locale);
     }

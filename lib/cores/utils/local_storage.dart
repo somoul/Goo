@@ -12,8 +12,8 @@ class LocalStorage {
   }
 
   static Future<String> readLocale() async {
-    String locale = box.read(AppString.locale) ?? '';
-    return locale;
+    String? locale = box.read(AppString.locale);
+    return locale ?? '';
   }
 
   /// Token [User_Token]
@@ -21,12 +21,26 @@ class LocalStorage {
     await box.write(AppString.token, token);
   }
 
-  static Future<String> readToken() async {
+  static Future<String?> readToken() async {
     var token = await box.read(AppString.token);
-    return token ?? '';
+    return token;
   }
 
   static Future<void> removeToken() async {
     await box.remove(AppString.token);
+  }
+
+  /// Locale [NOTIFICATION]
+  static Future<void> writeNoficationToken(String key) async {
+    await box.write(AppString.notificationKey, key);
+  }
+
+  static Future<String?> readNoficationToken() async {
+    var key = await box.read(AppString.notificationKey);
+    return key;
+  }
+
+  static Future<void> removeNoficationToken() async {
+    await box.remove(AppString.notificationKey);
   }
 }

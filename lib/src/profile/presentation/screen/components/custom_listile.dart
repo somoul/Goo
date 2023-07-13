@@ -23,21 +23,15 @@ class CustomListile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
-            Image.asset(
-              leadingAsset,
-              height: 50,
-            ),
-            const SizedBox(width: 20),
+            Image.asset(leadingAsset, height: 40),
+            const SizedBox(width: 15),
             Expanded(
-              child: Text(
-                title,
-                style: AppText.titleSmall,
-              ),
+              child: Text(title, style: AppText.bodyMedium),
             ),
             trailing ??
                 Icon(
                   Icons.arrow_forward_ios_outlined,
-                  size: 20,
+                  size: 15,
                   color: Colors.grey[500],
                 )
           ],

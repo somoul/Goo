@@ -19,6 +19,7 @@ class Khmer {
     'Rent': 'ដាក់ជួល',
     'Notification': 'ដំណឹង',
     'Account': 'គណនី',
+    'Logout': 'ចាកចេញ',
     //Edit Profile
     'Choose Image': 'ជ្រើសរើសរូបភាព',
     'My Account': 'គណនីរបស់ខ្ញុំ',

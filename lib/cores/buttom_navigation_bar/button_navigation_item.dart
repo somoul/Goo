@@ -9,5 +9,5 @@ class BottomNavItem {
       {required this.label,
       required this.svgPicturePath,
       this.backgroundColor,
-      this.iconSize = 22});
+      this.iconSize = 20});
 }

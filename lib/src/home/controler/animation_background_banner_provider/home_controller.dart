@@ -52,10 +52,10 @@ class HomeController extends GetxController {
   // final slideList = <SlideModel>[].obs;
   final sideBarData = const SlideModel().obs;
   final listSideBarData = <SlideModel>[].obs;
-  ApiHelper apiBaseHelper = ApiHelper();
+  final apiHelper = ApiHelper();
   Future<List<SlideModel>> fetchSlideBanner() async {
     isfetchLoadingBanner(true);
-    await apiBaseHelper
+    await apiHelper
         .onRequest(
       isAuthorize: false, methode: METHODE.get, url: "/banners",
       // isAuthorize: false,
@@ -63,22 +63,15 @@ class HomeController extends GetxController {
       // methode: METHODE.get,
     )
         .then((response) {
-      print("===================== True get api ==================");
       var jsonData = response['data'];
-
       jsonData.map((json) {
         sideBarData.value = SlideModel.fromJson(json);
         listSideBarData.add(sideBarData.value);
-        debugPrint("===my json data:$sideBarData");
         //debugPrint("Slide list:${listSideBarData[1].title}");
       }).toList();
-      isfetchLoadingBanner(false);
-      debugPrint('hello1688888888888888');
+      // isfetchLoadingBanner(false);
     }).onError((ErrorModel error, stackTrace) {
-      print("===================== False get api ==================");
-      debugPrint('Error: ${error.statusCode}');
-      debugPrint('Error: ${error.bodyString}');
-      isfetchLoadingBanner(false);
+      // isfetchLoadingBanner(false);
     });
     return listSideBarData;
   }
@@ -89,29 +82,21 @@ class HomeController extends GetxController {
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     isfetchLoadingCategorie(true);
-    await apiBaseHelper
+    await apiHelper
         .onRequest(
       isAuthorize: false,
       url: "/categories",
       methode: METHODE.get,
     )
         .then((response) {
-      print("===================== True get api categories ==================");
       var jsonData = response['data'];
-
       jsonData.map((json) {
         sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
         listSideBarDataCategorie.add(sideBarDataCategorie.value);
-
-        //debugPrint("Slide list:${listSideBarData[1].title}");
       }).toList();
 
       isfetchLoadingCategorie(false);
-      debugPrint('hello1688888888888888');
     }).onError((ErrorModel error, stackTrace) {
-      print("===================== False get api ==================");
-      debugPrint('Error: ${error.statusCode}');
-      debugPrint('Error: ${error.bodyString}');
       isfetchLoadingCategorie(false);
     });
     return listSideBarDataCategorie;
@@ -119,8 +104,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    fetchSlideBanner();
-    fetchSliderCategorie();
+    // fetchSlideBanner();
+    // fetchSliderCategorie();
     super.onInit();
   }
 }

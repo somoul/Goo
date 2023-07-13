@@ -29,29 +29,26 @@ class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.put(HomeController());
 //
   late int selectedPage;
-  late final PageController _pageController;
+  // late final PageController _pageController;
   final pageCount = 5;
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   final CarouselController _controller = CarouselController();
 
-  final List<String> imgList = [
-    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-    'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-  ];
-
   @override
   void initState() {
+    super.initState();
+    Timer.run(() {
+      _onInit();
+    });
+  }
+
+  _onInit() async {
     homeController.fetchSlideBanner();
     homeController.fetchSliderCategorie();
-    super.initState();
+    selectedPage = 0;
     homeController.pageController = PageController(initialPage: 0);
     homeController.callStartAnimation();
-    selectedPage = 0;
-    _pageController = PageController(initialPage: selectedPage);
+    // _pageController = PageController(initialPage: selectedPage);
   }
 
   @override
@@ -59,15 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  _iniAnimated({required int value}) async {
-    Timer(const Duration(seconds: 1), () {
-      homeController.pageController.animateToPage(
-        value,
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
-  }
+  // _iniAnimated({required int value}) async {
+  //   Timer(const Duration(seconds: 1), () {
+  //     homeController.pageController.animateToPage(
+  //       value,
+  //       duration: const Duration(milliseconds: 350),
+  //       curve: Curves.easeIn,
+  //     );
+  //   });
+  // }
 
   int activePage = 1;
 
@@ -141,247 +138,232 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Obx(
-        () => homeController.isfetchLoadingBanner.value ||
-                homeController.isfetchLoadingCategorie.value
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Stack(
-                      children: [
-                        Stack(
-                          children: [
-                            CarouselSlider(
-                              items: imageSliders,
-                              carouselController: _controller,
-                              options: CarouselOptions(
-                                  padEnds: false,
-                                  autoPlay: true,
-                                  enlargeFactor: 0,
-                                  enlargeCenterPage: true,
-                                  viewportFraction: 1,
-                                  aspectRatio: 2.0,
-                                  enlargeStrategy:
-                                      CenterPageEnlargeStrategy.height,
-                                  onPageChanged: (index, reason) {
-                                    setState(() {
-                                      homeController.indexSlider.value = index;
-                                    });
-                                  }),
+      body:
+          //  Obx(
+          //   () =>
+          // homeController.isfetchLoadingBanner.value
+          //     // homeController.isfetchLoadingCategorie.value
+          //     ? const Center(
+          //         child: CircularProgressIndicator(),
+          //       )
+          //     :
+          CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Stack(
+              children: [
+                Stack(
+                  children: [
+                    CarouselSlider(
+                      items: imageSliders,
+                      carouselController: _controller,
+                      options: CarouselOptions(
+                          padEnds: false,
+                          autoPlay: true,
+                          enlargeFactor: 0,
+                          enlargeCenterPage: true,
+                          viewportFraction: 1,
+                          aspectRatio: 2.0,
+                          enlargeStrategy: CenterPageEnlargeStrategy.height,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              homeController.indexSlider.value = index;
+                            });
+                          }),
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                      const SizedBox(width: 10),
+                      ...imageSliders.map((e) {
+                        int index = imageSliders.indexOf(e);
+                        return Container(
+                          height: 8.5,
+                          width: 8.5,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 3),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: homeController.indexSlider.value == index
+                                  ? AppConstant.kPrimaryColor
+                                  : Colors.white),
+                        );
+                      }).toList()
+                    ]),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 170),
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      margin: const EdgeInsets.symmetric(horizontal: 18),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.1),
+                            blurRadius: 40,
+                            spreadRadius: 0.2,
+                            offset: const Offset(
+                              5.0,
+                              5.0,
                             ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const SizedBox(width: 10),
-                                  ...imageSliders.map((e) {
-                                    int index = imageSliders.indexOf(e);
-                                    return Container(
-                                      height: 8.5,
-                                      width: 8.5,
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 3),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: homeController
-                                                      .indexSlider.value ==
-                                                  index
-                                              ? AppConstant.kPrimaryColor
-                                              : Colors.white),
-                                    );
-                                  }).toList()
-                                ]),
+                          )
+                        ],
+                        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          showBottomSheetFunction(context: context);
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset("assets/icons/search.png", height: 20),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                style: AppText.bodySmall),
+                            Expanded(
+                              child: Text("ស្វែងរក",
+                                  textAlign: TextAlign.end,
+                                  style: AppText.bodyMedium!.copyWith(
+                                      color: AppConstant.kPrimaryColor)),
+                            ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 170),
-                            Container(
-                              width: double.infinity,
-                              height: 60,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 18),
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 18),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
-                                    blurRadius: 40,
-                                    spreadRadius: 0.2,
-                                    offset: const Offset(
-                                      5.0,
-                                      5.0,
-                                    ),
-                                  )
-                                ],
-                                border: Border.all(
-                                    color: Colors.grey.withOpacity(0.3)),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  showBottomSheetFunction(context: context);
-                                },
-                                child: Row(
-                                  children: [
-                                    Image.asset("assets/icons/search.png",
-                                        height: 20),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
-                                        style: AppText.bodySmall),
-                                    Expanded(
-                                      child: Text("ស្វែងរក",
-                                          textAlign: TextAlign.end,
-                                          style: AppText.bodyMedium!.copyWith(
-                                              color:
-                                                  AppConstant.kPrimaryColor)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-
-                            /// Service
-                            CustomServiceBlock(
-                              categoryList:
-                                  homeController.listSideBarDataCategorie,
-                            ),
-                            Container(
-                              color: const Color(0xffF9F9F9),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 13),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: AppConstant.paddingLarge),
-                                    child: Text("ពេញនិយម",
-                                        style: AppText.titleSmall!.copyWith(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        )),
-                                  ),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
-
-                                  /// Banner
-                                  const CustomBannerListWidget(),
-
-                                  /// Location
-                                  const SizedBox(height: AppConstant.padding),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("ការណែនាំ",
-                                            style: AppText.titleSmall),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const CustomAfterLoadingSearchWidget());
-                                            // GoRouter.of(context).push("/product_screen");
-                                            // GoRouter.of(context).push(
-                                            //     CustomAfterLoadingSearchWidget.routeName,
-                                            //     extra: "AA");
-                                          },
-                                          child: Text("មើលទាំងអស់",
-                                              style: AppText.titleSmall!
-                                                  .copyWith(
-                                                      color: AppConstant
-                                                          .kPrimaryColor)),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  ...listTypeOfRent
-                                      .map((e) => CustomCardRentWidget(
-                                            imageSrc: e.imageSrc,
-                                            typeName: e.typeName,
-                                            location: e.location,
-                                            sizeRent: e.sizeRent,
-                                            horizontal: AppConstant.padding,
-                                            code: e.code,
-                                            priceOfRent: e.priceOfRent,
-                                            iconOfCard: e.iconCard,
-                                          )),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0)
-                                        .copyWith(bottom: 8),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Text(
-                                          "តំបន់មានការជួលច្រើន",
-                                          // style: GoogleFonts.kantumruy(
-                                          //     fontSize: 16,
-                                          //     fontWeight: FontWeight.bold),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const LocationRentScreen(
-                                                    titleAppBar: ''));
-                                          },
-                                          child: const Text(
-                                            "មើលទាំងអស់",
-                                            // style: GoogleFonts.kantumruy(
-                                            //     fontSize: 12,
-                                            //     color:
-                                            //         AppConstant.kPrimaryColor),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: getCardLocationScreen(
-                                        context: context,
-                                        titleAppBar: 'បន្ទប់ជួល',
-                                        e: const LocationItem(
-                                            imgSrc: 'assets/icons/roms.png',
-                                            areaName: 'ខណ្ឌសែន សុខ',
-                                            quantityLocationRoomForRent:
-                                                'មានបន្ទប់ជួល ១២ កន្លែង')),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                  // const SliverPadding(
-                  //   padding: EdgeInsets.only(right: AppConstant.padding),
-                  //   sliver: SliverToBoxAdapter(
-                  //     child:
-                  //
-                  //         /// Banner
-                  //         CustomMultiScrollWidget(),
-                  //   ),
-                  // )
-                ],
-              ),
+                    const SizedBox(height: 5),
+
+                    /// Service
+                    CustomServiceBlock(
+                      categoryList: homeController.listSideBarDataCategorie,
+                    ),
+                    Container(
+                      color: const Color(0xffF9F9F9),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 13),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: AppConstant.paddingLarge),
+                            child: Text("ពេញនិយម",
+                                style: AppText.titleSmall!.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ),
+                          const SizedBox(
+                            height: AppConstant.padding,
+                          ),
+
+                          /// Banner
+                          const CustomBannerListWidget(),
+
+                          /// Location
+                          const SizedBox(height: AppConstant.padding),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppConstant.padding),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("ការណែនាំ", style: AppText.titleSmall),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(() =>
+                                        const CustomAfterLoadingSearchWidget());
+                                    // GoRouter.of(context).push("/product_screen");
+                                    // GoRouter.of(context).push(
+                                    //     CustomAfterLoadingSearchWidget.routeName,
+                                    //     extra: "AA");
+                                  },
+                                  child: Text("មើលទាំងអស់",
+                                      style: AppText.titleSmall!.copyWith(
+                                          color: AppConstant.kPrimaryColor)),
+                                )
+                              ],
+                            ),
+                          ),
+                          ...listTypeOfRent.map((e) => CustomCardRentWidget(
+                                imageSrc: e.imageSrc,
+                                typeName: e.typeName,
+                                location: e.location,
+                                sizeRent: e.sizeRent,
+                                horizontal: AppConstant.padding,
+                                code: e.code,
+                                priceOfRent: e.priceOfRent,
+                                iconOfCard: e.iconCard,
+                              )),
+                          const SizedBox(
+                            height: AppConstant.padding,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0)
+                                    .copyWith(bottom: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "តំបន់មានការជួលច្រើន",
+                                  // style: GoogleFonts.kantumruy(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.bold),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(() => const LocationRentScreen(
+                                        titleAppBar: ''));
+                                  },
+                                  child: const Text(
+                                    "មើលទាំងអស់",
+                                    // style: GoogleFonts.kantumruy(
+                                    //     fontSize: 12,
+                                    //     color:
+                                    //         AppConstant.kPrimaryColor),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppConstant.padding),
+                            child: getCardLocationScreen(
+                                context: context,
+                                titleAppBar: 'បន្ទប់ជួល',
+                                e: const LocationItem(
+                                    imgSrc: 'assets/icons/roms.png',
+                                    areaName: 'ខណ្ឌសែន សុខ',
+                                    quantityLocationRoomForRent:
+                                        'មានបន្ទប់ជួល ១២ កន្លែង')),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          // const SliverPadding(
+          //   padding: EdgeInsets.only(right: AppConstant.padding),
+          //   sliver: SliverToBoxAdapter(
+          //     child:
+          //
+          //         /// Banner
+          //         CustomMultiScrollWidget(),
+          //   ),
+          // )
+        ],
       ),
+      // ),
     );
   }
 

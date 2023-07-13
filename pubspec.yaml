@@ -61,6 +61,9 @@ dependencies:
   json_annotation: ^4.6.0
   json_serializable: ^6.1.3
   flutter_local_notifications: ^15.0.0
+  firebase_messaging: ^14.6.4
+  device_info_plus: ^9.0.2
+  flutter_app_badger: ^1.5.0
   
   
   
@@ -75,7 +78,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.1.11
   freezed: ^2.0.3+1
-  json_serializable: ^6.1.3
+  # json_serializable: ^6.1.3
   
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                       //style: TextStyle(color: Colors.white),
                       ),
                   Text(
-                    "${'id'.tr}: 09999",
+                    "${'ID'.tr}: 09999",
                     style: AppText.bodySmall!.copyWith(
                         color: Colors.white.withOpacity(0.6), fontSize: 14),
                   )
@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                   Get.to(() => const EditProfilePage());
                 },
                 child: Text(
-                  'edit'.tr,
+                  'Edit'.tr,
                   style: AppText.titleSmall,
                 ),
               )
@@ -88,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 CustomListile(
-                  title: 'darkMode'.tr,
+                  title: 'Dark Mode'.tr,
                   onTap: null,
                   leadingAsset: 'assets/icons/Darks.png',
                   trailing: StyledSwitch(
@@ -96,26 +96,26 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 CustomListile(
-                    title: 'notification'.tr,
+                    title: 'Notification'.tr,
                     onTap: () {},
                     leadingAsset: 'assets/icons/notifications.png'),
                 CustomListile(
-                    title: 'aboutUs'.tr,
+                    title: 'About Us'.tr,
                     onTap: () {},
                     leadingAsset: 'assets/icons/About.png'),
                 CustomListile(
-                  title: 'share'.tr,
+                  title: 'Share'.tr,
                   leadingAsset: 'assets/icons/share.png',
                   onTap: () async {
                     await onShare(context);
                   },
                 ),
                 CustomListile(
-                    title: 'security'.tr,
+                    title: 'Security'.tr,
                     onTap: () {},
                     leadingAsset: 'assets/icons/Security.png'),
                 CustomListile(
-                    title: 'language'.tr,
+                    title: 'Language'.tr,
                     onTap: onShowChangeLanguage,
                     leadingAsset: 'assets/icons/lange.png'),
                 CustomListile(
