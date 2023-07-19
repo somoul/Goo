@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 
 import 'color_schemes.g.dart';
 
@@ -13,9 +14,19 @@ class CustomTheme {
 
         /// AppBar
         appBarTheme: const AppBarTheme(
-            elevation: 0.1,
-            titleTextStyle: TextStyle(color: Colors.white),
-            backgroundColor: Color(0xFF21A6F8)),
+          elevation: 0.1,
+          titleTextStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Kantumruy',
+              color: Colors.white),
+          backgroundColor: AppConstant.kPrimaryColor,
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            size: 20,
+            color: Colors.white,
+          ),
+        ),
 
         /// Form
         inputDecorationTheme: InputDecorationTheme(
@@ -31,8 +42,12 @@ class CustomTheme {
         ///Btn
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-                // backgroundColor: const Color(0xFF21A6F8),
-                textStyle: const TextStyle(color: Colors.white),
+                backgroundColor: const Color(0xFF21A6F8),
+                textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Kantumruy',
+                    color: Colors.white),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)))),
       );
@@ -42,17 +57,17 @@ TextTheme textThem = const TextTheme(
   /// Title
   titleSmall: TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Kantumruy',
   ),
   titleMedium: TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
     fontFamily: 'Kantumruy',
   ),
   titleLarge: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
     fontFamily: 'Kantumruy',
   ),
 

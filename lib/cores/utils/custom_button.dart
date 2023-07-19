@@ -53,10 +53,12 @@ class CustomButton extends StatelessWidget {
                               fontSize: 16,
                               color: Colors.grey /*Color(0xffD9D9D9)*/,
                               fontWeight: FontWeight.w400,
+                              fontFamily: 'Kantumruy',
                             ))
                         : (enableTextStyle ??
                             const TextStyle(
                               fontSize: 16,
+                              fontFamily: 'Kantumruy',
                               color: AppConstant.kPrimaryColor,
                               fontWeight: FontWeight.w400,
                             )),
@@ -79,6 +81,7 @@ class CustomButton extends StatelessWidget {
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
+                      fontFamily: 'Kantumruy',
                     ),
                   ),
                 )
@@ -104,12 +107,14 @@ class CustomButton extends StatelessWidget {
                                 fontSize: 16,
                                 color: Colors.grey, //Color(0xffD9D9D9),
                                 fontWeight: FontWeight.w400,
+                                fontFamily: 'Kantumruy',
                               ))
                           : (enableTextStyle ??
                               const TextStyle(
                                 fontSize: 16,
                                 color: AppConstant.kPrimaryColor,
                                 fontWeight: FontWeight.w400,
+                                fontFamily: 'Kantumruy',
                               )),
                     ),
                   ),
@@ -128,6 +133,7 @@ class CustomButton extends StatelessWidget {
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
+                      fontFamily: 'Kantumruy',
                     ),
                   ),
                 ),

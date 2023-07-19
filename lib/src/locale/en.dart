@@ -34,6 +34,11 @@ class English {
     'Address': 'Address',
     'Date of Birth': 'Date of Birth',
     'Gender': 'Gender',
-    'Your Current Location': 'Your Current Location'
+    'Your Current Location': 'Your Current Location',
+
+    /// [MAP]
+    'Map': 'Map',
+    'Your Location': 'Your Location',
+    'Save Your Location': 'Save Your Location'
   };
 }

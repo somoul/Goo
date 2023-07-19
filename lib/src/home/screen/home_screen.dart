@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
+import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
 import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
@@ -27,6 +29,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Animation<double> animation;
   final homeController = Get.put(HomeController());
+  final _mapController = Get.put(MapController());
 //
   late int selectedPage;
   // late final PageController _pageController;
@@ -48,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     selectedPage = 0;
     homeController.pageController = PageController(initialPage: 0);
     homeController.callStartAnimation();
+    _mapController.getCurrentAddress();
     // _pageController = PageController(initialPage: selectedPage);
   }
 
@@ -88,53 +92,57 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
-        toolbarHeight: 80,
+        // toolbarHeight: 80,
         leading: null,
         actions: null,
-        title: Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppConstant.paddingLarge),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/icons/location.svg',
-                fit: BoxFit.contain,
-                color: Colors.white,
-                width: 25,
-                height: 28,
-              ),
-              const SizedBox(width: 4),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Your Current Location'.tr,
-                    style: AppText.titleMedium!.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xffFFFFFF)),
-                  ),
-                  Text(
-                    'ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែន សុខ ភ្នំពេញ',
-                    style: AppText.titleMedium!.copyWith(
-                        fontSize: 11.5,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xffFAFAFA)),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  size: 23,
+        title: InkWell(
+          onTap: () => Get.to(() => const MapScreen()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppConstant.paddingLarge),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/icons/location.svg',
+                  fit: BoxFit.contain,
                   color: Colors.white,
+                  width: 25,
+                  height: 28,
                 ),
-              )
-            ],
+                const SizedBox(width: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Your Current Location'.tr,
+                      style: AppText.titleMedium!.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xffFFFFFF)),
+                    ),
+                    Text(
+                      '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
+                      style: AppText.bodySmall!.copyWith(
+                        color: Colors.white,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      // overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    size: 23,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

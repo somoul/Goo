@@ -33,6 +33,11 @@ class Khmer {
     'Address': 'អាស័យដ្ឋាន',
     'Date of Birth': 'ថ្ងៃកំណើត',
     'Gender': 'ភេទ',
-    'Your Current Location': 'ទីតាំងបច្ចុប្បន្នរបស់អ្នក'
+    'Your Current Location': 'ទីតាំងបច្ចុប្បន្នរបស់អ្នក',
+
+    /// [MAP]
+    'Map': 'ផែនទី',
+    'Your Location': 'ទីតាំងរបស់អ្នក',
+    'Save Your Location': 'រក្សាអាស័យដ្ឋានរបស់អ្នក'
   };
 }
