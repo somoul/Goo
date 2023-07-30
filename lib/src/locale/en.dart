@@ -6,7 +6,7 @@ class English {
     'About Us': 'About Us',
     'Share': 'Share',
     'Security': 'Security',
-    'Languages': 'Languages',
+    'Change Language': 'Change Language',
     //Menu
     'ID': 'ID',
     'Property': 'Property',
@@ -47,5 +47,9 @@ class English {
     'Choose Address': 'Choose Address',
     'Search Rent Property': 'Search Rent Property',
     'Choose Property Type': 'Choose Property Type',
+    'See All': 'See All',
+    'All Property': 'All Property',
+    'Recommend': 'Recommend',
+    'Popular': 'Popular',
   };
 }

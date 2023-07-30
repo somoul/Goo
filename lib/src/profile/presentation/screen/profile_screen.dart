@@ -115,7 +115,7 @@ class ProfileScreen extends StatelessWidget {
                     onTap: () {},
                     leadingAsset: 'assets/icons/Security.png'),
                 CustomListile(
-                    title: 'Language'.tr,
+                    title: 'Change Language'.tr,
                     onTap: onShowChangeLanguage,
                     leadingAsset: 'assets/icons/lange.png'),
                 CustomListile(
@@ -198,6 +198,8 @@ class ProfileScreen extends StatelessWidget {
 }
 
 onShowChangeLanguage() {
+  var langCode = Get.locale?.languageCode ?? 'km';
+
   showModalBottomSheet(
     context: ContextProvider.context,
     shape: const RoundedRectangleBorder(
@@ -212,39 +214,61 @@ onShowChangeLanguage() {
       ),
       height: 180,
       child: Column(
-        children: [
-          InkWell(
-            onTap: () async {
-              await onUpdateLanguage(isKhmer: true);
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                'ភាសាខ្មែរ',
-                style: AppText.titleSmall,
+        children: langList
+            .asMap()
+            .entries
+            .map(
+              (e) => Column(
+                children: [
+                  if (e.key == 1) const Divider(height: 0),
+                  InkWell(
+                    onTap: () async {
+                      if (e.key == 0) {
+                        await onUpdateLanguage(isKhmer: true);
+                      } else {
+                        await onUpdateLanguage(isKhmer: false);
+                      }
+                    },
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 25),
+                      child: Row(
+                        children: [
+                          Text(
+                            e.value['name'],
+                            style: AppText.titleSmall,
+                          ),
+                          const Spacer(),
+                          langCode != e.value['code']
+                              ? const SizedBox()
+                              : const Icon(
+                                  Icons.check_circle,
+                                  color: AppConstant.kPrimaryColor,
+                                )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-          const Divider(height: 0),
-          InkWell(
-            onTap: () async {
-              await onUpdateLanguage(isKhmer: false);
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-              child: Text(
-                'English',
-                style: AppText.titleSmall,
-              ),
-            ),
-          ),
-        ],
+            )
+            .toList(),
       ),
     ),
   );
 }
+
+List<Map<String, dynamic>> langList = [
+  {
+    'name': 'ភាសាខ្មែរ',
+    'code': 'km',
+  },
+  {
+    'name': 'English',
+    'code': 'en',
+  },
+];
 
 Future<void> onUpdateLanguage({bool isKhmer = true}) async {
   if (isKhmer) {

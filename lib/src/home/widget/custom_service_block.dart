@@ -4,9 +4,9 @@ import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/theme/color_schemes.g.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
 
-class CustomServiceBlock extends StatelessWidget {
+class CustomCategoryBlock extends StatelessWidget {
   final List<SlideCategorieModel> categoryList;
-  const CustomServiceBlock({super.key, required this.categoryList});
+  const CustomCategoryBlock({super.key, required this.categoryList});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class CustomServiceBlock extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 10),
           child: Text(
             'Service',
             style: AppText.titleSmall!.copyWith(
@@ -26,7 +26,7 @@ class CustomServiceBlock extends StatelessWidget {
         Container(
           height: 60,
           width: double.infinity,
-          margin: const EdgeInsets.only(top: 15),
+          margin: const EdgeInsets.only(top: 14),
           child: ListView.builder(
             itemCount: categoryList.length,
             scrollDirection: Axis.horizontal,
@@ -44,7 +44,7 @@ class CustomServiceBlock extends StatelessWidget {
 
 _categoryItem(String icon, String title) {
   return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+    margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       children: [
         CachedNetworkImage(

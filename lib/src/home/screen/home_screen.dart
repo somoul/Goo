@@ -11,14 +11,14 @@ import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
 
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
-import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
+import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
 import '../widget/custom_service_block.dart';
-import 'location_rent_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required}) : super(key: key);
@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   final CarouselController _controller = CarouselController();
   final _mapController = Get.put(MapController());
+  final _propertyController = Get.put(PropertyController());
 
   @override
   void initState() {
@@ -49,10 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
   _onInit() async {
     homeController.fetchSlideBanner();
     homeController.fetchSliderCategorie();
+    _propertyController.getPopularProperty(late: 1, long: 1);
+    _propertyController.getAllProperties(late: 1, long: 1);
     selectedPage = 0;
     homeController.pageController = PageController(initialPage: 0);
     homeController.callStartAnimation();
     _mapController.getCurrentAddress();
+
     // _pageController = PageController(initialPage: selectedPage);
   }
 
@@ -81,34 +85,23 @@ class _HomeScreenState extends State<HomeScreen> {
             width: MediaQuery.of(context).size.width,
             child: CachedNetworkImage(
               fit: BoxFit.cover,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
+              placeholder: (context, url) => Container(
+                color: Colors.grey[200],
               ),
               imageUrl: item.imageUrl!,
-              height: 35,
             ),
           ),
         )
         .toList();
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-
-      body:
-          //  Obx(
-          //   () =>
-          // homeController.isfetchLoadingBanner.value
-          //     // homeController.isfetchLoadingCategorie.value
-          //     ? const Center(
-          //         child: CircularProgressIndicator(),
-          //       )
-          //     :
-          SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
             InkWell(
               onTap: () => Get.to(const SearchRentScreen()),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 7),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 color: AppConstant.kPrimaryColor,
                 width: MediaQuery.of(context).size.width,
                 child: Row(
@@ -185,19 +178,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               items: imageSliders,
                               carouselController: _controller,
                               options: CarouselOptions(
-                                  padEnds: false,
-                                  autoPlay: true,
-                                  enlargeFactor: 0,
-                                  enlargeCenterPage: true,
-                                  viewportFraction: 1,
-                                  aspectRatio: 2.0,
-                                  enlargeStrategy:
-                                      CenterPageEnlargeStrategy.height,
-                                  onPageChanged: (index, reason) {
-                                    setState(() {
-                                      homeController.indexSlider.value = index;
-                                    });
-                                  }),
+                                padEnds: false,
+                                autoPlay: true,
+                                enlargeFactor: 0,
+                                enlargeCenterPage: true,
+                                viewportFraction: 1,
+                                aspectRatio: 2.0,
+                                enlargeStrategy:
+                                    CenterPageEnlargeStrategy.height,
+                                onPageChanged: (index, reason) {
+                                  homeController.indexSlider.value = index;
+                                  setState(() {});
+                                },
+                              ),
                             ),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -229,26 +222,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 170),
                             Container(
                               width: double.infinity,
-                              height: 60,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 18),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 14),
                               margin:
-                                  const EdgeInsets.symmetric(horizontal: 18),
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 40,
-                                    spreadRadius: 0.2,
-                                    offset: Offset(
-                                      5.0,
-                                      5.0,
+                                    color: AppConstant.kPrimaryColor
+                                        .withOpacity(0.15),
+                                    blurRadius: 20,
+                                    offset: const Offset(
+                                      2.0,
+                                      2.0,
                                     ),
                                   )
                                 ],
                                 border: Border.all(
-                                    color: Colors.grey.withOpacity(0.3)),
+                                    width: 3, color: AppConstant.kPrimaryColor),
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: GestureDetector(
@@ -256,8 +248,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SearchRentScreen()), //TabBarDemo
+                                      builder: (context) =>
+                                          const SearchRentScreen(),
+                                    ), //TabBarDemo
                                   );
 
                                   // InkWell(
@@ -271,15 +264,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 child: Row(
                                   children: [
-                                    Image.asset("assets/icons/search.png",
-                                        height: 20),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
+                                    SvgPicture.asset('assets/image/search.svg'),
+                                    const SizedBox(width: 10),
                                     Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
                                         style: AppText.bodySmall),
                                     Expanded(
-                                      child: Text("ស្វែងរក",
+                                      child: Text("Search".tr,
                                           textAlign: TextAlign.end,
                                           style: AppText.bodyMedium!.copyWith(
                                               color:
@@ -291,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
 
                             /// Service
-                            CustomServiceBlock(
+                            CustomCategoryBlock(
                               categoryList:
                                   homeController.listSideBarDataCategorie,
                             ),
@@ -301,108 +291,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const SizedBox(height: 10),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: AppConstant.paddingLarge),
-                                    child: Text("ពេញនិយម",
-                                        style: AppText.titleSmall!.copyWith(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        )),
-                                  ),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
+                                  const SizedBox(height: 5),
 
-                                  /// Banner
-                                  const CustomBannerListWidget(),
-
-                                  /// Location
+                                  /// Popular
+                                  Obx(
+                                    () => CustomPopularBlock(
+                                      popularList: _propertyController
+                                              .popularPropertyData.value.data ??
+                                          [],
+                                    ),
+                                  ),
                                   const SizedBox(height: AppConstant.padding),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("ការណែនាំ",
-                                            style: AppText.titleSmall),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() => const AllProperty());
-                                            // GoRouter.of(context).push("/product_screen");
-                                            // GoRouter.of(context).push(
-                                            //     CustomAfterLoadingSearchWidget.routeName,
-                                            //     extra: "AA");
-                                          },
-                                          child: Text("មើលទាំងអស់",
-                                              style: AppText.titleSmall!
-                                                  .copyWith(
-                                                      color: AppConstant
-                                                          .kPrimaryColor)),
-                                        )
-                                      ],
+
+                                  ///Recommend
+                                  Obx(
+                                    () => CustomPropertyGrid(
+                                      title: 'Recommend'.tr,
+                                      actionTitle: 'See All'.tr,
+                                      onAction: () {
+                                        Get.to(() => const AllProperty());
+                                      },
+                                      propertyList: _propertyController
+                                              .propertyData
+                                              .value
+                                              .propertyList ??
+                                          [],
                                     ),
                                   ),
-                                  ...listTypeOfRent
-                                      .map((e) => CustomCardRentWidget(
-                                            imageSrc: e.imageSrc,
-                                            typeName: e.typeName,
-                                            location: e.location,
-                                            sizeRent: e.sizeRent,
-                                            horizontal: AppConstant.padding,
-                                            code: e.code,
-                                            priceOfRent: e.priceOfRent,
-                                            iconOfCard: e.iconCard,
-                                          )),
-                                  const SizedBox(
-                                    height: AppConstant.padding,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0)
-                                        .copyWith(bottom: 8),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Text(
-                                          "តំបន់មានការជួលច្រើន",
-                                          // style: GoogleFonts.kantumruy(
-                                          //     fontSize: 16,
-                                          //     fontWeight: FontWeight.bold),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const LocationRentScreen(
-                                                    titleAppBar: ''));
-                                          },
-                                          child: const Text(
-                                            "មើលទាំងអស់",
-                                            // style: GoogleFonts.kantumruy(
-                                            //     fontSize: 12,
-                                            //     color:
-                                            //         AppConstant.kPrimaryColor),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: AppConstant.padding),
-                                    child: getCardLocationScreen(
-                                        context: context,
-                                        titleAppBar: 'បន្ទប់ជួល',
-                                        e: const LocationItem(
-                                            imgSrc: 'assets/icons/roms.png',
-                                            areaName: 'ខណ្ឌសែន សុខ',
-                                            quantityLocationRoomForRent:
-                                                'មានបន្ទប់ជួល ១២ កន្លែង')),
-                                  )
+                                  const SizedBox(height: 20),
+
+                                  // Padding(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //       horizontal: AppConstant.padding),
+                                  //   child: getCardLocationScreen(
+                                  //       context: context,
+                                  //       titleAppBar: 'បន្ទប់ជួល',
+                                  //       e: const LocationItem(
+                                  //           imgSrc: 'assets/icons/roms.png',
+                                  //           areaName: 'ខណ្ឌសែន សុខ',
+                                  //           quantityLocationRoomForRent:
+                                  //               'មានបន្ទប់ជួល ១២ កន្លែង')),
+                                  // )
                                 ],
                               ),
                             )

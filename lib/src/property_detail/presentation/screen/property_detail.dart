@@ -51,6 +51,8 @@ class _AllPropertyState extends State<AllProperty> {
                 child: CircularProgressIndicator(),
               )
             : CustomPropertyGrid(
+                actionTitle: null,
+                title: null,
                 propertyList:
                     _propertyController.propertyData.value.propertyList ?? [],
               ),
