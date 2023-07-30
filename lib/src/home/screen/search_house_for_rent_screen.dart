@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/src/home/screen/search_type_screen.dart';
 
 import '../../../../cores/constant/app_constant.dart';
 import '../../../../cores/constant/app_text.dart';
@@ -77,7 +78,14 @@ class SearchRentScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 120),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          print("======== show test =======");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SearchTypeScreen()),
+                          );
+                        },
                         child: Container(
                           width: double.infinity,
                           height: 60,
