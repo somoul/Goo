@@ -12,7 +12,7 @@ class CustomBannerListWidget extends StatelessWidget {
     // final pageController = PageController(viewportFraction: 0.900);
 
     return SizedBox(
-      height: 340,
+      height: 320,
       width: double.infinity,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -77,78 +77,104 @@ class CustomBannerListWidget extends StatelessWidget {
                       ))
                 ],
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppConstant.padding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  textBaseline: TextBaseline.ideographic,
-                  children: [
-                    const SizedBox(height: 10),
-                    Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstant.padding, vertical: 4),
+                    child: Text(
+                        "ផ្ទះអាជីវកម្មសម្រាប់ជួលផ្ទះអាជីវកម្មសម្រាប់ជួលផ្ទះអាជីវកម្មសម្រាប់ជួល",
+                        overflow: TextOverflow.ellipsis,
+                        style: AppText.bodyMedium),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstant.padding, vertical: 4),
+                    child: Row(
                       children: [
-                        Expanded(
-                          child: Text("ផ្ទះអាជីវកម្មសម្រាប់ជួល",
-                              overflow: TextOverflow.ellipsis,
-                              style: AppText.bodyMedium),
-                        ),
                         const SizedBox(width: 5),
+                        Image.asset(
+                          "assets/icons/love.png",
+                          height: 8,
+                        ),
+                        // Image.asset("assets/icons/ic_star.svg"),
                         Text(
-                          "\$1200/1ខែ",
+                          "4.7",
                           style: AppText.bodyMedium!
                               .copyWith(color: const Color(0xFF21A6F8)),
                         ),
+                        Text(
+                          ".536km",
+                          style: AppText.bodyMedium!
+                              .copyWith(color: const Color(0xFF979797)),
+                        ),
+                        const Spacer(),
+                        Text(
+                          "\$1200",
+                          style: AppText.bodyMedium!
+                              .copyWith(color: const Color(0xFF21A6F8)),
+                        ),
+                        Text(
+                          "/1ខែ",
+                          style: AppText.bodyMedium!
+                              .copyWith(color: Colors.black, fontSize: 12),
+                        ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Image.asset(
+                  ),
+                  const Divider(
+                    height: 1,
+                    color: Color(0xffF3F3F3),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Image.asset(
                           'assets/image2/make_group.png',
-                          height: 16,
-                          width: 16,
+                          height: 13,
+                          width: 13,
+                          color: const Color(0xff979797),
                         ),
-                        const SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            "ប្រហែល15នាទី",
-                            style: AppText.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                      ),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Text(
+                          "4 បន្ទប់គេង",
+                          style: AppText.bodySmall!
+                              .copyWith(color: const Color(0xff979797)),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        Text("Code: 983883", style: AppText.bodyMedium),
-                        const SizedBox(width: 5),
-                        IconButton(
-                          onPressed: () {
-                            print('Fav');
-                          },
-                          icon: const Icon(
-                            Icons.favorite_border,
-                            color: Colors.blue,
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Image.asset(
-                          'assets/icons/rom_cm.png',
-                          height: 14,
+                      ),
+                      Image.asset(
+                        'assets/icons/rom_cm.png',
+                        height: 13,
+                        width: 13,
+                        color: const Color(0xff979797),
+                      ),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: Text(
+                          "3x5m",
+                          style: AppText.bodySmall!
+                              .copyWith(color: const Color(0xff979797)),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            "3x5m",
-                            style: AppText.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.favorite_border,
+                          size: 20,
+                          color: Color(0xff979797),
                         ),
-                      ],
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  ),
+                ],
               )
             ],
           ),

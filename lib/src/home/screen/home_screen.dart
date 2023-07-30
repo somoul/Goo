@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+
+import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
+
 import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
-import '../widget/buttom_sheen_for_search.dart';
+import '../controler/animation_background_banner_provider/home_controller.dart';
 import '../widget/custom_service_block.dart';
 import 'location_rent_screen.dart';
 
@@ -86,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
         )
         .toList();
     return Scaffold(
+      backgroundColor: const Color(0xffF9F9F9),
       appBar: AppBar(
         titleSpacing: 0,
         toolbarHeight: 80,
@@ -138,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+
       body:
           //  Obx(
           //   () =>
@@ -202,12 +206,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 18),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: Colors.grey,
                             blurRadius: 40,
                             spreadRadius: 0.2,
-                            offset: const Offset(
+                            offset: Offset(
                               5.0,
                               5.0,
                             ),
@@ -216,9 +220,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: Border.all(color: Colors.grey.withOpacity(0.3)),
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {
-                          showBottomSheetFunction(context: context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const SearchRentScreen()), //TabBarDemo
+                          );
+
+                          // InkWell(
+                          //   onTap: () {
+                          //     // Navigator.push(
+                          //     //   context,
+                          //     //   MaterialPageRoute(
+                          //     //       builder: (context) =>  SearchRentScreen()),
+                          //     // );
+                          //     showBottomSheetFunction(context: context);
                         },
                         child: Row(
                           children: [
@@ -238,7 +256,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 5),
 
                     /// Service
                     CustomServiceBlock(
@@ -247,8 +264,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       color: const Color(0xffF9F9F9),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 13),
+                          const SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: AppConstant.paddingLarge),

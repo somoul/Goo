@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/api_helper.dart';
+
 import '../../data/slide_categorie_model/slide_categorie_model.dart';
 import '../../data/slider_ banners_model/slide_model.dart';
 

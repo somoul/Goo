@@ -36,26 +36,20 @@ class CustomDropDownButtonWidget extends StatelessWidget {
                 child: DropdownButton2(
                   disabledHint: Row(
                     children: [
-                      SvgPicture.asset(
-                        svgSrc,
-                        width: 25,
-                        height: 25,
-                        color: Colors.red,
-                      ),
+                      SvgPicture.asset(svgSrc,
+                          width: 25,
+                          height: 25,
+                          color: const Color(0xffB1B1B1)),
                     ],
                   ),
 
                   icon: iconWidget ??
-                      SvgPicture.asset(
-                        icon,
-                        width: 15,
-                        height: 15,
-                      ),
-                  iconOnClick: SvgPicture.asset(
-                    iconOnClick,
-                    width: 15,
-                    height: 15,
-                  ),
+                      SvgPicture.asset(icon,
+                          width: 15,
+                          height: 15,
+                          color: const Color(0xffB1B1B1)),
+                  iconOnClick: SvgPicture.asset(iconOnClick,
+                      width: 15, height: 15, color: const Color(0xffB1B1B1)),
                   isExpanded: true,
 
                   ///

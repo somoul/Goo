@@ -4,25 +4,14 @@ import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_p
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/sign_up_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/start_account_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/verification_otp_screen.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/building_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/business_house_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/factory_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/land_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/office_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/repo_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/restaurants_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/shop_rent_page.dart';
-import 'package:goo_rent/src/home/screen/business_rental_type/stalls_rent_page.dart';
-import 'package:goo_rent/src/home/screen/details_screen.dart';
 import 'package:goo_rent/src/home/screen/find_new_location_screen.dart';
 import 'package:goo_rent/src/home/screen/location_rent_screen.dart';
-import 'package:goo_rent/src/home/screen/rent_type/apartment_rent_page.dart';
 import 'package:goo_rent/src/home/screen/rent_type/condo_rent_page.dart';
 import 'package:goo_rent/src/home/screen/rent_type/home_rent_page.dart';
 import 'package:goo_rent/src/home/screen/rent_type/room_rent_page.dart';
 import 'package:goo_rent/src/home/screen/rent_type/villa_rent_page.dart';
-import 'package:goo_rent/src/home/screen/result_from_rent_screen.dart';
 import 'package:goo_rent/src/home/screen/view_location_screen.dart';
+
 import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/notification/presentation/screen/notification_screen.dart';
 import 'package:goo_rent/src/profile/presentation/screen/build_address_screen.dart';
@@ -32,6 +21,19 @@ import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 import 'package:goo_rent/src/settings/presentation/pages/multiple_language_screen.dart';
 import 'package:goo_rent/src/splash/presentation/screen/splash_screen.dart';
+
+import '../src/home/screen/business_rental_type/building_rent_page.dart';
+import '../src/home/screen/business_rental_type/business_house_rent_page.dart';
+import '../src/home/screen/business_rental_type/factory_rent_page.dart';
+import '../src/home/screen/business_rental_type/land_rent_page.dart';
+import '../src/home/screen/business_rental_type/office_rent_page.dart';
+import '../src/home/screen/business_rental_type/repo_rent_page.dart';
+import '../src/home/screen/business_rental_type/restaurants_rent_page.dart';
+import '../src/home/screen/business_rental_type/shop_rent_page.dart';
+import '../src/home/screen/business_rental_type/stalls_rent_page.dart';
+import '../src/home/screen/details_screen.dart';
+import '../src/home/screen/rent_type/apartment_rent_page.dart';
+import '../src/home/screen/result_from_rent_screen.dart';
 
 // GoRouter configuration
 final router = GoRouter(
