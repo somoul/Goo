@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+
+import '../controler/animation_background_banner_provider/home_controller.dart';
 
 class CustomRangeValueWidget extends StatefulWidget {
   // final Function(int, dynamic, dynamic)? onDragging;

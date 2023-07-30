@@ -7,6 +7,7 @@ import 'package:goo_rent/cores/constant/app_constant.dart';
 import '../../../cores/constant/app_text.dart';
 import '../../../cores/utils/custom_button.dart';
 import '../controler/animation_background_banner_provider/home_controller.dart';
+
 import 'custom_drop_down_button_widget.dart';
 import 'custom_rangevalue_widget.dart';
 
@@ -187,6 +188,7 @@ class CustomScrenBottomSheet extends StatelessWidget {
         SizedBox(
           height: 50,
           child: TextField(
+            enabled: false,
             onChanged: (textConterLocation) {
               // myController.text = "";
               onChangedLocation!(textConterLocation);
@@ -209,8 +211,8 @@ class CustomScrenBottomSheet extends StatelessWidget {
                   padding: const EdgeInsets.all(3.0),
                   child: SvgPicture.asset(
                     'assets/icons/location.svg',
-                    width: 10,
-                    height: 10,
+                    width: 16,
+                    height: 19,
                   ),
                 ),
               ),
