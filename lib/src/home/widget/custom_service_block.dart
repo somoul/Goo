@@ -49,8 +49,10 @@ _categoryItem(String icon, String title) {
       children: [
         CachedNetworkImage(
           fit: BoxFit.cover,
-          placeholder: (context, url) => const Center(
-            child: CircularProgressIndicator(),
+          placeholder: (context, url) => Center(
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[200],
+            ),
           ),
           imageUrl: icon,
           height: 30,

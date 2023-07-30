@@ -8,6 +8,7 @@ import 'package:goo_rent/src/home/controler/animation_background_banner_provider
 import 'package:goo_rent/src/home/controler/search_rent_controler/search_controler.dart';
 import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
 import 'package:goo_rent/src/home/screen/custom_default_butom_sheet.dart';
+import 'package:goo_rent/src/home/screen/search_type_screen.dart';
 
 import '../../../../cores/constant/app_constant.dart';
 import '../../../../cores/constant/app_text.dart';
@@ -69,7 +70,14 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                         children: [
                           const SizedBox(height: 120),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SearchTypeScreen()),
+                              );
+                            },
                             child: Container(
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(
