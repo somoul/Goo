@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
@@ -106,11 +105,10 @@ class CustomCardRentWidget extends StatelessWidget {
                             Text(typeName,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppText.bodySmall!.copyWith(
-                                    fontSize: 14.w,
-                                    fontWeight: FontWeight.bold)),
+                                    fontSize: 14, fontWeight: FontWeight.bold)),
                             Text(sizeRent,
                                 style: AppText.bodySmall!.copyWith(
-                                    fontSize: 12.w,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                     color: const Color(0xFF21A6F8)))
                           ],

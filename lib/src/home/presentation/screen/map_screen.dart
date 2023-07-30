@@ -38,14 +38,6 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {});
   }
 
-  // _onZoom() {
-  //   _cameraPosition = CameraPosition(
-  //     target: LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
-  //     zoom: 14.4746,
-  //   );
-  //   setState(() {});
-  // }
-
   Future<void> _markerIcons() async {
     _markerIcon = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(),
@@ -106,64 +98,68 @@ class _MapScreenState extends State<MapScreen> {
                     left: 20, right: 20, bottom: 30, top: 45),
                 child: CustomButton(
                   title: 'Save Your Location',
-                  onPressed: () {},
+                  onPressed: _mapCon.currentAddress.value.country == null
+                      ? null
+                      : () {},
                 ),
               )
             ],
           ),
-          Positioned(
-            left: 15,
-            right: 15,
-            bottom: 95,
-            child: InkWell(
-              // onTap: () {
-              //   // _onZoom();
-              // },
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                shadowColor: Colors.grey[200],
-                surfaceTintColor: Colors.white,
-                elevation: 5,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/icons/location.svg',
-                            fit: BoxFit.contain,
-                            color: AppConstant.kPrimaryColor,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            'Your Location'.tr,
-                            style: AppText.bodyMedium!
-                                .copyWith(color: Colors.black),
-                          ),
-                        ],
+          _mapCon.currentAddress.value.country == null
+              ? const SizedBox()
+              : Positioned(
+                  left: 15,
+                  right: 15,
+                  bottom: 95,
+                  child: InkWell(
+                    // onTap: () {
+                    //   // _onZoom();
+                    // },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      Obx(
-                        () => Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text(
-                            '${_mapCon.currentAddress.value.village}${_mapCon.currentAddress.value.village != '' ? ', ' : ''}${_mapCon.currentAddress.value.commune}${_mapCon.currentAddress.value.commune != '' ? ',' : ''}${_mapCon.currentAddress.value.distict}${_mapCon.currentAddress.value.distict != '' ? ',' : ''} ${_mapCon.currentAddress.value.provice}${_mapCon.currentAddress.value.provice != '' ? ',' : ''} ${_mapCon.currentAddress.value.country}',
-                            style:
-                                AppText.bodySmall!.copyWith(color: Colors.grey),
-                          ),
+                      shadowColor: Colors.grey[200],
+                      surfaceTintColor: Colors.white,
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/location.svg',
+                                  fit: BoxFit.contain,
+                                  color: AppConstant.kPrimaryColor,
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  'Your Location'.tr,
+                                  style: AppText.bodyMedium!
+                                      .copyWith(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            Obx(
+                              () => Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Text(
+                                  '${_mapCon.currentAddress.value.village}${_mapCon.currentAddress.value.village != '' ? ', ' : ''}${_mapCon.currentAddress.value.commune}${_mapCon.currentAddress.value.commune != '' ? ',' : ''}${_mapCon.currentAddress.value.distict}${_mapCon.currentAddress.value.distict != '' ? ',' : ''} ${_mapCon.currentAddress.value.provice}${_mapCon.currentAddress.value.provice != '' ? ',' : ''} ${_mapCon.currentAddress.value.country}',
+                                  style: AppText.bodySmall!
+                                      .copyWith(color: Colors.grey),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );

@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     selectedPage = 0;
     homeController.pageController = PageController(initialPage: 0);
     homeController.callStartAnimation();
+
     _mapController.getCurrentAddress();
     // _pageController = PageController(initialPage: selectedPage);
   }
@@ -90,286 +91,322 @@ class _HomeScreenState extends State<HomeScreen> {
         )
         .toList();
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        // toolbarHeight: 80,
-        leading: null,
-        actions: null,
-        title: InkWell(
-          onTap: () => Get.to(() => const MapScreen()),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: AppConstant.paddingLarge),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/icons/location.svg',
-                  fit: BoxFit.contain,
-                  color: Colors.white,
-                  width: 25,
-                  height: 28,
-                ),
-                const SizedBox(width: 4),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+      body: SafeArea(
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () => Get.to(const MapScreen()),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                color: AppConstant.kPrimaryColor,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
                   children: [
-                    Text(
-                      'Your Current Location'.tr,
-                      style: AppText.titleMedium!.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: const Color(0xffFFFFFF)),
-                    ),
-                    Text(
-                      '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
-                      style: AppText.bodySmall!.copyWith(
-                        color: Colors.white,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      // overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    size: 23,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      body:
-          //  Obx(
-          //   () =>
-          // homeController.isfetchLoadingBanner.value
-          //     // homeController.isfetchLoadingCategorie.value
-          //     ? const Center(
-          //         child: CircularProgressIndicator(),
-          //       )
-          //     :
-          CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Stack(
-              children: [
-                Stack(
-                  children: [
-                    CarouselSlider(
-                      items: imageSliders,
-                      carouselController: _controller,
-                      options: CarouselOptions(
-                          padEnds: false,
-                          autoPlay: true,
-                          enlargeFactor: 0,
-                          enlargeCenterPage: true,
-                          viewportFraction: 1,
-                          aspectRatio: 2.0,
-                          enlargeStrategy: CenterPageEnlargeStrategy.height,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              homeController.indexSlider.value = index;
-                            });
-                          }),
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      const SizedBox(width: 10),
-                      ...imageSliders.map((e) {
-                        int index = imageSliders.indexOf(e);
-                        return Container(
-                          height: 8.5,
-                          width: 8.5,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 3),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: homeController.indexSlider.value == index
-                                  ? AppConstant.kPrimaryColor
-                                  : Colors.white),
-                        );
-                      }).toList()
-                    ]),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 170),
-                    Container(
-                      width: double.infinity,
-                      height: 60,
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      margin: const EdgeInsets.symmetric(horizontal: 18),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            blurRadius: 40,
-                            spreadRadius: 0.2,
-                            offset: const Offset(
-                              5.0,
-                              5.0,
-                            ),
-                          )
-                        ],
-                        border: Border.all(color: Colors.grey.withOpacity(0.3)),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          showBottomSheetFunction(context: context);
-                        },
-                        child: Row(
-                          children: [
-                            Image.asset("assets/icons/search.png", height: 20),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
-                                style: AppText.bodySmall),
-                            Expanded(
-                              child: Text("ស្វែងរក",
-                                  textAlign: TextAlign.end,
-                                  style: AppText.bodyMedium!.copyWith(
-                                      color: AppConstant.kPrimaryColor)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-
-                    /// Service
-                    CustomServiceBlock(
-                      categoryList: homeController.listSideBarDataCategorie,
-                    ),
-                    Container(
-                      color: const Color(0xffF9F9F9),
+                    const SizedBox(width: 10),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 54,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 13),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: AppConstant.paddingLarge),
-                            child: Text("ពេញនិយម",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 30,
+                                child: SvgPicture.asset(
+                                  'assets/icons/location.svg',
+                                  fit: BoxFit.contain,
+                                  color: Colors.white,
+                                  width: 24,
+                                ),
+                              ),
+                              Text(
+                                'Your Current Location'.tr,
                                 style: AppText.titleSmall!.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                )),
+                                    color: Colors.white, fontSize: 14),
+                              ),
+                            ],
                           ),
-                          const SizedBox(
-                            height: AppConstant.padding,
-                          ),
-
-                          /// Banner
-                          const CustomBannerListWidget(),
-
-                          /// Location
-                          const SizedBox(height: AppConstant.padding),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: AppConstant.padding),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("ការណែនាំ", style: AppText.titleSmall),
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(() =>
-                                        const CustomAfterLoadingSearchWidget());
-                                    // GoRouter.of(context).push("/product_screen");
-                                    // GoRouter.of(context).push(
-                                    //     CustomAfterLoadingSearchWidget.routeName,
-                                    //     extra: "AA");
-                                  },
-                                  child: Text("មើលទាំងអស់",
-                                      style: AppText.titleSmall!.copyWith(
-                                          color: AppConstant.kPrimaryColor)),
-                                )
-                              ],
-                            ),
-                          ),
-                          ...listTypeOfRent.map((e) => CustomCardRentWidget(
-                                imageSrc: e.imageSrc,
-                                typeName: e.typeName,
-                                location: e.location,
-                                sizeRent: e.sizeRent,
-                                horizontal: AppConstant.padding,
-                                code: e.code,
-                                priceOfRent: e.priceOfRent,
-                                iconOfCard: e.iconCard,
-                              )),
-                          const SizedBox(
-                            height: AppConstant.padding,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0)
-                                    .copyWith(bottom: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "តំបន់មានការជួលច្រើន",
-                                  // style: GoogleFonts.kantumruy(
-                                  //     fontSize: 16,
-                                  //     fontWeight: FontWeight.bold),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(() => const LocationRentScreen(
-                                        titleAppBar: ''));
-                                  },
-                                  child: const Text(
-                                    "មើលទាំងអស់",
-                                    // style: GoogleFonts.kantumruy(
-                                    //     fontSize: 12,
-                                    //     color:
-                                    //         AppConstant.kPrimaryColor),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: AppConstant.padding),
-                            child: getCardLocationScreen(
-                                context: context,
-                                titleAppBar: 'បន្ទប់ជួល',
-                                e: const LocationItem(
-                                    imgSrc: 'assets/icons/roms.png',
-                                    areaName: 'ខណ្ឌសែន សុខ',
-                                    quantityLocationRoomForRent:
-                                        'មានបន្ទប់ជួល ១២ កន្លែង')),
-                          )
+                          Obx(() =>
+                              _mapController.currentAddress.value.provice ==
+                                      null
+                                  ? const SizedBox()
+                                  : Padding(
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text(
+                                        '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
+                                        style: AppText.bodySmall!.copyWith(
+                                          color: Colors.white,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        // overflow: TextOverflow.ellipsis,
+                                      ),
+                                    )),
                         ],
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const SizedBox(
+                      width: 40,
+                      child: Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 18,
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
-          ),
-          // const SliverPadding(
-          //   padding: EdgeInsets.only(right: AppConstant.padding),
-          //   sliver: SliverToBoxAdapter(
-          //     child:
-          //
-          //         /// Banner
-          //         CustomMultiScrollWidget(),
-          //   ),
-          // )
-        ],
+            Expanded(
+              child: //  Obx(
+                  //   () =>
+                  // homeController.isfetchLoadingBanner.value
+                  //     // homeController.isfetchLoadingCategorie.value
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       )
+                  //     :
+                  CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Stack(
+                      children: [
+                        Stack(
+                          children: [
+                            CarouselSlider(
+                              items: imageSliders,
+                              carouselController: _controller,
+                              options: CarouselOptions(
+                                  padEnds: false,
+                                  autoPlay: true,
+                                  enlargeFactor: 0,
+                                  enlargeCenterPage: true,
+                                  viewportFraction: 1,
+                                  aspectRatio: 2.0,
+                                  enlargeStrategy:
+                                      CenterPageEnlargeStrategy.height,
+                                  onPageChanged: (index, reason) {
+                                    setState(() {
+                                      homeController.indexSlider.value = index;
+                                    });
+                                  }),
+                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(width: 10),
+                                  ...imageSliders.map((e) {
+                                    int index = imageSliders.indexOf(e);
+                                    return Container(
+                                      height: 8.5,
+                                      width: 8.5,
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 3),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: homeController
+                                                      .indexSlider.value ==
+                                                  index
+                                              ? AppConstant.kPrimaryColor
+                                              : Colors.white),
+                                    );
+                                  }).toList()
+                                ]),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 170),
+                            Container(
+                              width: double.infinity,
+                              height: 60,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 40,
+                                    spreadRadius: 0.2,
+                                    offset: const Offset(
+                                      5.0,
+                                      5.0,
+                                    ),
+                                  )
+                                ],
+                                border: Border.all(
+                                    color: Colors.grey.withOpacity(0.3)),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  showBottomSheetFunction(context: context);
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset("assets/icons/search.png",
+                                        height: 20),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                        style: AppText.bodySmall),
+                                    Expanded(
+                                      child: Text("ស្វែងរក",
+                                          textAlign: TextAlign.end,
+                                          style: AppText.bodyMedium!.copyWith(
+                                              color:
+                                                  AppConstant.kPrimaryColor)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+
+                            /// Service
+                            CustomServiceBlock(
+                              categoryList:
+                                  homeController.listSideBarDataCategorie,
+                            ),
+                            Container(
+                              color: const Color(0xffF9F9F9),
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 13),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: AppConstant.paddingLarge),
+                                    child: Text("ពេញនិយម",
+                                        style: AppText.titleSmall!.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        )),
+                                  ),
+                                  const SizedBox(
+                                    height: AppConstant.padding,
+                                  ),
+
+                                  /// Banner
+                                  const CustomBannerListWidget(),
+
+                                  /// Location
+                                  const SizedBox(height: AppConstant.padding),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: AppConstant.padding),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("ការណែនាំ",
+                                            style: AppText.titleSmall),
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(() =>
+                                                const CustomAfterLoadingSearchWidget());
+                                            // GoRouter.of(context).push("/product_screen");
+                                            // GoRouter.of(context).push(
+                                            //     CustomAfterLoadingSearchWidget.routeName,
+                                            //     extra: "AA");
+                                          },
+                                          child: Text("មើលទាំងអស់",
+                                              style: AppText.titleSmall!
+                                                  .copyWith(
+                                                      color: AppConstant
+                                                          .kPrimaryColor)),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  ...listTypeOfRent
+                                      .map((e) => CustomCardRentWidget(
+                                            imageSrc: e.imageSrc,
+                                            typeName: e.typeName,
+                                            location: e.location,
+                                            sizeRent: e.sizeRent,
+                                            horizontal: AppConstant.padding,
+                                            code: e.code,
+                                            priceOfRent: e.priceOfRent,
+                                            iconOfCard: e.iconCard,
+                                          )),
+                                  const SizedBox(
+                                    height: AppConstant.padding,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0)
+                                        .copyWith(bottom: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          "តំបន់មានការជួលច្រើន",
+                                          // style: GoogleFonts.kantumruy(
+                                          //     fontSize: 16,
+                                          //     fontWeight: FontWeight.bold),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(() =>
+                                                const LocationRentScreen(
+                                                    titleAppBar: ''));
+                                          },
+                                          child: const Text(
+                                            "មើលទាំងអស់",
+                                            // style: GoogleFonts.kantumruy(
+                                            //     fontSize: 12,
+                                            //     color:
+                                            //         AppConstant.kPrimaryColor),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: AppConstant.padding),
+                                    child: getCardLocationScreen(
+                                        context: context,
+                                        titleAppBar: 'បន្ទប់ជួល',
+                                        e: const LocationItem(
+                                            imgSrc: 'assets/icons/roms.png',
+                                            areaName: 'ខណ្ឌសែន សុខ',
+                                            quantityLocationRoomForRent:
+                                                'មានបន្ទប់ជួល ១២ កន្លែង')),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  // const SliverPadding(
+                  //   padding: EdgeInsets.only(right: AppConstant.padding),
+                  //   sliver: SliverToBoxAdapter(
+                  //     child:
+                  //
+                  //         /// Banner
+                  //         CustomMultiScrollWidget(),
+                  //   ),
+                  // )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       // ),
     );
@@ -548,6 +585,7 @@ void imageSlider(
         ),
   );
   Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+    const SizedBox(width: 10),
     const SizedBox(width: 10),
     ...imageSliders!.map((e) {
       int index = imageSliders.indexOf(e);

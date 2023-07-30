@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.pages,
       // initialBinding: AuthBinding()
     );
-    // ScreenUtilInit(
+    //     ScreenUtilInit(
     //   designSize: const Size(390, 690),
     //   minTextAdapt: true,
     //   splitScreenMode: true,
@@ -57,9 +57,7 @@ class MyApp extends StatelessWidget {
     //       debugShowCheckedModeBanner: false,
     //       theme: CustomTheme.lightTheme,
     //       navigatorKey: ContextProvider.navigatorKey,
-    //       initialRoute: Routes.home,
-    //       getPages: AppPages.pages,
-    //       // initialBinding: AuthBinding()
+    //       home: const SplashScreen(),
     //     );
     //   },
     // );

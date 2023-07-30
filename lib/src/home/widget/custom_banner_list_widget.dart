@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 
 class CustomBannerListWidget extends StatelessWidget {
   const CustomBannerListWidget({Key? key, this.axis = Axis.horizontal})
@@ -17,140 +19,145 @@ class CustomBannerListWidget extends StatelessWidget {
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => Container(
-          width: 350,
-          margin: const EdgeInsets.only(right: 20, bottom: 8),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 5,
-                    color: Colors.grey[300]!,
-                    offset: const Offset(2, 2))
-              ]),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 200,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8)),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/icons/Rectangle2416.png'),
-                        )),
-                  ),
-                  Positioned(
-                      top: 10,
-                      right: 10,
-                      child: Container(
-                        // height: 20,
-                        // width: 20,
-
-                        decoration: BoxDecoration(
-                            color: const Color(0xffF0F0F0),
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, top: 4, right: 8, bottom: 4),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/icons/ icons_visibility.png",
-                                width: 10,
-                                height: 10,
-                              ),
-                              Text(
-                                "193",
-                                style: AppText.titleSmall!.copyWith(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ))
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppConstant.padding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  textBaseline: TextBaseline.ideographic,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Get.to(() => const CustomAfterLoadingSearchWidget());
+          },
+          child: Container(
+            width: 350,
+            margin: const EdgeInsets.only(right: 20, bottom: 8),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 5,
+                      color: Colors.grey[300]!,
+                      offset: const Offset(2, 2))
+                ]),
+            child: Column(
+              children: [
+                Stack(
                   children: [
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text("ផ្ទះអាជីវកម្មសម្រាប់ជួល",
-                              overflow: TextOverflow.ellipsis,
-                              style: AppText.bodyMedium),
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          "\$1200/1ខែ",
-                          style: AppText.bodyMedium!
-                              .copyWith(color: const Color(0xFF21A6F8)),
-                        ),
-                      ],
+                    Container(
+                      height: 200,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/icons/Rectangle2416.png'),
+                          )),
                     ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/image2/make_group.png',
-                          height: 16,
-                          width: 16,
-                        ),
-                        const SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            "ប្រហែល15នាទី",
-                            style: AppText.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
+                    Positioned(
+                        top: 10,
+                        right: 10,
+                        child: Container(
+                          // height: 20,
+                          // width: 20,
+
+                          decoration: BoxDecoration(
+                              color: const Color(0xffF0F0F0),
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, top: 4, right: 8, bottom: 4),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  "assets/icons/ icons_visibility.png",
+                                  width: 10,
+                                  height: 10,
+                                ),
+                                Text(
+                                  "193",
+                                  style: AppText.titleSmall!.copyWith(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Text("Code: 983883", style: AppText.bodyMedium),
-                        const SizedBox(width: 5),
-                        IconButton(
-                          onPressed: () {
-                            print('Fav');
-                          },
-                          icon: const Icon(
-                            Icons.favorite_border,
-                            color: Colors.blue,
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Image.asset(
-                          'assets/icons/rom_cm.png',
-                          height: 14,
-                        ),
-                        const SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            "3x5m",
-                            style: AppText.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    )
+                        ))
                   ],
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstant.padding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text("ផ្ទះអាជីវកម្មសម្រាប់ជួល",
+                                overflow: TextOverflow.ellipsis,
+                                style: AppText.bodyMedium),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            "\$1200/1ខែ",
+                            style: AppText.bodyMedium!
+                                .copyWith(color: const Color(0xFF21A6F8)),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/image2/make_group.png',
+                            height: 16,
+                            width: 16,
+                          ),
+                          const SizedBox(width: 5),
+                          Expanded(
+                            child: Text(
+                              "ប្រហែល15នាទី",
+                              style: AppText.bodyMedium,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text("Code: 983883", style: AppText.bodyMedium),
+                          const SizedBox(width: 5),
+                          IconButton(
+                            onPressed: () {
+                              print('Fav');
+                            },
+                            icon: const Icon(
+                              Icons.favorite_border,
+                              color: Colors.blue,
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Image.asset(
+                            'assets/icons/rom_cm.png',
+                            height: 14,
+                          ),
+                          const SizedBox(width: 5),
+                          Expanded(
+                            child: Text(
+                              "3x5m",
+                              style: AppText.bodyMedium,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
