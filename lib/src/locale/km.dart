@@ -45,5 +45,9 @@ class Khmer {
     'Choose Address': 'ជ្រើសរើសទីតាំង',
     'Search Rent Property': 'ស្វែងអចលនាទ្រព្យជួល',
     'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
+
+    //search propery rent
+    'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
+    'No search history': 'គ្មានប្រវត្តិស្វែងរក'
   };
 }

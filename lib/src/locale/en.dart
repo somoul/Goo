@@ -47,5 +47,8 @@ class English {
     'Choose Address': 'Choose Address',
     'Search Rent Property': 'Search Rent Property',
     'Choose Property Type': 'Choose Property Type',
+
+    //search property rent
+    'Looking to rent a property for rent': 'Looking to rent a property for rent'
   };
 }
