@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/theme/color_schemes.g.dart';
@@ -11,14 +10,13 @@ class CustomServiceBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CarouselController buttonCarouselController = CarouselController();
-
+    // CarouselController buttonCarouselController = CarouselController();
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 14),
+          padding: const EdgeInsets.only(top: 20),
           child: Text(
-            'សេវាកម្ម',
+            'Service',
             style: AppText.titleSmall!.copyWith(
                 color: lightColorScheme.primary,
                 fontWeight: FontWeight.w500,
@@ -26,47 +24,52 @@ class CustomServiceBlock extends StatelessWidget {
           ),
         ),
         Container(
-          height: 63,
+          height: 60,
           width: double.infinity,
-          margin: const EdgeInsets.only(top: 6),
+          margin: const EdgeInsets.only(top: 15),
           child: ListView.builder(
             itemCount: categoryList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {},
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 2),
-                child: Column(
-                  children: [
-                    CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      imageUrl: categoryList[index].icon!,
-                      height: 25,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          categoryList[index].name!,
-                          style: AppText.titleSmall!.copyWith(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              child: _categoryItem(
+                  categoryList[index].icon!, categoryList[index].name ?? ''),
             ),
           ),
         ),
       ],
     );
   }
+}
+
+_categoryItem(String icon, String title) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+    child: Column(
+      children: [
+        CachedNetworkImage(
+          fit: BoxFit.cover,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          imageUrl: icon,
+          height: 30,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 3),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              style: AppText.titleSmall!.copyWith(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.start,
+            ),
+          ),
+        )
+      ],
+    ),
+  );
 }

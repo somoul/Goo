@@ -26,6 +26,7 @@ class _MapScreenState extends State<MapScreen> {
 
   late CameraPosition _cameraPosition;
   Position? _currentPosition;
+
   _getCameraPosition() async {
     _currentPosition = await _mapCon.getCurrentPosition();
     _cameraPosition = CameraPosition(
@@ -62,6 +63,14 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Map'.tr),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: SvgPicture.asset(
+            'assets/image/arrow_back.svg',
+            width: 15,
+            height: 15,
+          ),
+        ),
       ),
       body: Stack(
         children: [
@@ -100,7 +109,10 @@ class _MapScreenState extends State<MapScreen> {
                   title: 'Save Your Location',
                   onPressed: _mapCon.currentAddress.value.country == null
                       ? null
-                      : () {},
+                      : () {
+                          Navigator.pop(context,
+                              '${_mapCon.currentAddress.value.village}${_mapCon.currentAddress.value.village != '' ? ', ' : ''}${_mapCon.currentAddress.value.commune}${_mapCon.currentAddress.value.commune != '' ? ',' : ''}${_mapCon.currentAddress.value.distict}${_mapCon.currentAddress.value.distict != '' ? ',' : ''} ${_mapCon.currentAddress.value.provice}${_mapCon.currentAddress.value.provice != '' ? ',' : ''} ${_mapCon.currentAddress.value.country}');
+                        },
                 ),
               )
             ],

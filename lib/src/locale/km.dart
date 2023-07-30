@@ -38,6 +38,12 @@ class Khmer {
     /// [MAP]
     'Map': 'ផែនទី',
     'Your Location': 'ទីតាំងរបស់អ្នក',
-    'Save Your Location': 'រក្សាអាស័យដ្ឋានរបស់អ្នក'
+    'Save Your Location': 'រក្សាអាស័យដ្ឋានរបស់អ្នក',
+    'Month': 'ខែ',
+    'Search': 'ស្វែងរក',
+    'Rent Type': 'ប្រភេទជួល',
+    'Choose Address': 'ជ្រើសរើសទីតាំង',
+    'Search Rent Property': 'ស្វែងអចលនាទ្រព្យជួល',
+    'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
   };
 }

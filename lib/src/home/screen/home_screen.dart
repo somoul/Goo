@@ -7,15 +7,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
-import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
 
 import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
 
-import 'package:goo_rent/src/home/widget/custom_after_loading_search_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_card_rent_widget.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
 import '../widget/custom_service_block.dart';
@@ -107,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             InkWell(
-              onTap: () => Get.to(const MapScreen()),
+              onTap: () => Get.to(const SearchRentScreen()),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 7),
                 color: AppConstant.kPrimaryColor,
@@ -140,21 +139,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          Obx(() =>
-                              _mapController.currentAddress.value.provice ==
-                                      null
-                                  ? const SizedBox()
-                                  : Padding(
-                                      padding: const EdgeInsets.only(left: 30),
-                                      child: Text(
-                                        '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
-                                        style: AppText.bodySmall!.copyWith(
-                                          color: Colors.white,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        // overflow: TextOverflow.ellipsis,
+                          Obx(
+                            () => _mapController.currentAddress.value.provice ==
+                                    null
+                                ? const SizedBox()
+                                : Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Text(
+                                      '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
+                                      style: AppText.bodySmall!.copyWith(
+                                        color: Colors.white,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
-                                    )),
+                                      // overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                          ),
                         ],
                       ),
                     ),
@@ -331,8 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: AppText.titleSmall),
                                         InkWell(
                                           onTap: () {
-                                            Get.to(() =>
-                                                const CustomAfterLoadingSearchWidget());
+                                            Get.to(() => const AllProperty());
                                             // GoRouter.of(context).push("/product_screen");
                                             // GoRouter.of(context).push(
                                             //     CustomAfterLoadingSearchWidget.routeName,

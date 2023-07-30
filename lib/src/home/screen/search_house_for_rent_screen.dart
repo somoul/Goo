@@ -3,215 +3,266 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+import 'package:goo_rent/src/home/controler/search_rent_controler/search_controler.dart';
+import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
+import 'package:goo_rent/src/home/screen/custom_default_butom_sheet.dart';
 
 import '../../../../cores/constant/app_constant.dart';
 import '../../../../cores/constant/app_text.dart';
-import '../../../../cores/utils/custom_button.dart';
 
-import '../controler/animation_background_banner_provider/home_controller.dart';
-import '../controler/search_rent_controler/search_controler.dart';
 import '../widget/custom_butomsheet_type_of_rent.dart';
 import '../widget/custom_rangevalue_widget.dart';
 
-class SearchRentScreen extends StatelessWidget {
+class SearchRentScreen extends StatefulWidget {
   const SearchRentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final homeController = Get.put(HomeController());
-    final searchTypeController = Get.put(SearchTypeController());
+  State<SearchRentScreen> createState() => _SearchRentScreenState();
+}
+
+class _SearchRentScreenState extends State<SearchRentScreen> {
+  // final MediaQueryData mediaQueryData = MediaQuery.of(context);
+  final homeController = Get.put(HomeController());
+  final searchTypeController = Get.put(SearchTypeController());
+  String? address;
+  @override
+  void initState() {
+    super.initState();
 
     homeController.startSlider = 0;
     homeController.endSlider = 100;
+  }
 
-    int indexTapber = 0;
+  @override
+  Widget build(BuildContext context) {
+    // int indexTapber = 0;
     return Scaffold(
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppConstant.paddingLarge,
-              vertical: AppConstant.paddingLarge + 30),
-          // padding: const EdgeInsets.only(
-          //     left: AppConstant.paddingMedium,
-          //     right: AppConstant.paddingMedium),
-          child: CustomButton(
-            onPressed: () {},
-            title: "ចាប់ផ្តើមស្វែងរក",
-            isOutline: false,
-          ),
-        ),
-        appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                navigator?.pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-              )),
-          title: Text("ស្វែងរក",
-              style: AppText.titleMedium!.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white)),
-        ),
-        body: Obx(
-          () => SingleChildScrollView(
-            child: Stack(
-              children: [
-                Container(
-                  height: 152,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: Colors.red,
-                      image: DecorationImage(
+      appBar: AppBar(
+        title: const Text('Search'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(
+              () => SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200]!,
+                        image: const DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTssFrcwen4UCJcOixuoZtOIlDRHr1yF1buHwXUfqkXbw&s'))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 120),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          width: double.infinity,
-                          height: 60,
-                          padding: const EdgeInsets.only(left: 16, right: 16),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color(0xffEEEEEE),
-                                    blurRadius: 1,
-                                    spreadRadius: 0.5,
-                                    offset: Offset(0.5, 0.5))
-                              ]),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/icons/search.png",
-                                height: 20,
-                                color: AppConstant.kPrimaryColor,
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT91omWX-gLTKP4Iy-Dun_iq1RoSjKR7-adJ8yUe74p6njj7ndyYsTuhLNVcFlB8sFs4IE&usqp=CAU'),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 120),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                    width: 0.8, color: Colors.grey[300]!),
                               ),
-                              const SizedBox(
-                                width: 10,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset('assets/image/search.svg'),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "Search Rent Property".tr,
+                                    style: AppText.bodySmall!
+                                        .copyWith(color: Colors.grey),
+                                  ),
+                                  Expanded(
+                                    child: Text("Search".tr,
+                                        textAlign: TextAlign.end,
+                                        style: AppText.bodySmall!.copyWith(
+                                            color: AppConstant.kPrimaryColor)),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "ស្វែងអចលនាទ្រព្យជួល",
-                                style: AppText.bodySmall!.copyWith(
-                                    color: const Color(0xffB3B3B3),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Expanded(
-                                child: Text("ស្វែងរក",
-                                    textAlign: TextAlign.end,
-                                    style: AppText.bodyMedium!.copyWith(
-                                        color: AppConstant.kPrimaryColor,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w700)),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppConstant.paddingLarge,
-                            bottom: AppConstant.paddingSmall),
-                        child: Text(
-                          "ទីតាំង",
-                          style: AppText.titleSmall,
-                        ),
-                      ),
-                      CustomContentTextField(
-                        leftIcon: "assets/icons/location.svg",
-                        //"assets/icons/location.svg",
-                        nameTextField: "ជ្រើសរើសទីតាំង",
-                        rightsIcons: "assets/icons/ic_vector.svg",
-                        colorText: const Color(0xffB3B3B3),
-                        onTap: () {},
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppConstant.paddingLarge,
-                            bottom: AppConstant.paddingSmall),
-                        child: Text(
-                          "ប្រភេទជួល",
-                          style: AppText.titleSmall,
-                        ),
-                      ),
-                      CustomContentTextField(
-                          leftIcon: "assets/icons/location.svg",
-                          nameTextField:
-                              searchTypeController.typeSearchRent.value != ""
-                                  ? searchTypeController.typeSearchRent.value
-                                  : "ជ្រើសរើសទីតាំង",
-                          rightsIcons: "assets/icons/ic_vector.svg",
-                          colorText:
-                              searchTypeController.typeSearchRent.value != ""
-                                  ? Colors.black
-                                  : const Color(0xffB3B3B3),
-                          onTap: () {
-                            customButtomSheetTypeOfRent(
-                                context: context,
-                                onTap: (String type) {
-                                  searchTypeController.typeSearchRent.value =
-                                      type;
-                                });
-                          }),
-                      Text(
-                        "តម្លៃ",
-                        style: AppText.titleSmall,
-                      ),
-                      const SizedBox(
-                        height: 95,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: 50,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: AppConstant.paddingLarge, bottom: 5),
+                            child: Text(
+                              "Address".tr,
+                              style: AppText.titleSmall,
+                            ),
                           ),
-                          child: CustomRangeValueWidget(
-                              // onDragging: (handlerIndex, lowerValue, upperValue) {
-                              //   if (handlerIndex == 0) {
-                              //     valueSlider.first = lowerValue;
-                              //     print("=====================slider 1   :$lowerValue ");
-                              //   } else {
-                              //     valueSlider.last = upperValue;
-                              //     print("=====================slider 2   :$upperValue ");
-                              //   }
-                              // },
-                              // valueSlider: valueSlider,
+                          CustomContentTextField(
+                              value: address,
+                              leftIcon: "assets/icons/location.svg",
+                              //"assets/icons/location.svg",
+                              nameTextField: "Choose Address".tr,
+                              rightsIcons: "assets/icons/ic_vector.svg",
+                              onTap: () async {
+                                var result = await Get.to(const MapScreen());
+                                if (result != null) {
+                                  address = result;
+                                  setState(() {});
+                                }
+                              }),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: AppConstant.paddingLarge, bottom: 5),
+                            child: Text(
+                              "Rent Type".tr,
+                              style: AppText.titleSmall,
+                            ),
+                          ),
+                          CustomContentTextField(
+                            leftIcon: "assets/icons/location.svg",
+                            value: searchTypeController.typeSearchRent.value,
+                            nameTextField: "Choose Property Type".tr,
+                            // rightsIcons: "assets/icons/ic_vector.svg",
+
+                            onTap: () async {
+                              var propertyType = await _onSelectPropertyType();
+                              searchTypeController.typeSearchRent.value =
+                                  propertyType;
+                              setState(() {});
+                            },
+                          ),
+                          const SizedBox(height: 15),
+                          Text(
+                            "Price".tr,
+                            style: AppText.titleSmall,
+                          ),
+                          const SizedBox(
+                            height: 95,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: 50,
                               ),
-                        ),
+                              child: CustomRangeValueWidget(
+                                  // onDragging: (handlerIndex, lowerValue, upperValue) {
+                                  //   if (handlerIndex == 0) {
+                                  //     valueSlider.first = lowerValue;
+                                  //     print("=====================slider 1   :$lowerValue ");
+                                  //   } else {
+                                  //     valueSlider.last = upperValue;
+                                  //     print("=====================slider 2   :$upperValue ");
+                                  //   }
+                                  // },
+                                  // valueSlider: valueSlider,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ));
+          Container(
+            margin:
+                const EdgeInsets.only(left: 20, right: 20, bottom: 30, top: 20),
+            child: CustomButton(
+              onPressed: () {},
+              title: "Search".tr,
+              isOutline: false,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<String> _onSelectPropertyType() async {
+    var result = await customBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: 50,
+                width: double.infinity,
+                // color: const Color.fromARGB(255, 201, 109, 109),
+                decoration: const BoxDecoration(
+                    color: Color(0xffF9F9F9),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Choose Property Type",
+                      style: AppText.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 400,
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: listType.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        child: CustomItemButtomsheet(
+                          title: listType[index],
+                        ),
+                        onTap: () => Navigator.pop(context, listType[index]),
+                      );
+                      // return null;
+                    }),
+              )
+            ],
+          ),
+        );
+      },
+    );
+    return result;
   }
 }
 
 class CustomContentTextField extends StatelessWidget {
-  final String leftIcon;
-  final String nameTextField;
-  final String rightsIcons;
+  final String? leftIcon;
+  final String? nameTextField;
+  final String? rightsIcons;
+  final String? value;
   final Function()? onTap;
-  final Color colorText;
+
   const CustomContentTextField(
       {super.key,
       required this.leftIcon,
-      required this.nameTextField,
-      required this.rightsIcons,
-      required this.colorText,
+      this.nameTextField,
+      this.rightsIcons,
+      this.value,
       this.onTap});
 
   @override
@@ -222,46 +273,44 @@ class CustomContentTextField extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 58,
-        padding: const EdgeInsets.only(left: 16, right: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: const [
-              BoxShadow(
-                  color: Color(0xffEEEEEE),
-                  blurRadius: 1,
-                  spreadRadius: 0.5,
-                  offset: Offset(0.5, 0.5))
-            ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(width: 0.8, color: Colors.grey[300]!),
+        ),
         child: Row(
           children: [
-            SvgPicture.asset(
-              leftIcon,
-              // "assets/icons/search.png",
-              height: 20,
-              color: AppConstant.kPrimaryColor,
+            leftIcon == null
+                ? const SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: SvgPicture.asset(
+                      leftIcon!,
+                      height: 20,
+                      color: AppConstant.kPrimaryColor,
+                    ),
+                  ),
+            Expanded(
+              child: Text(
+                value != null && value != '' ? '$value' : nameTextField ?? '',
+                // maxLines: 1,
+                // overflow: TextOverflow.ellipsis,
+                style: AppText.bodySmall!.copyWith(
+                  color:
+                      value != null && value != '' ? Colors.black : Colors.grey,
+                ),
+              ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              nameTextField,
-              // "ស្វែងអចលនាទ្រព្យជួល",
-              style: AppText.bodySmall!.copyWith(
-                  color: colorText,
-
-                  ///const Color(0xffB3B3B3),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-            const Spacer(),
-            SvgPicture.asset(
-              rightsIcons,
-              // "assets/icons/search.png",
-              height: 20,
-              color: AppConstant.kPrimaryColor,
-            ),
+            const SizedBox(width: 5),
+            rightsIcons == null
+                ? const SizedBox()
+                : SvgPicture.asset(
+                    rightsIcons!,
+                    // "assets/icons/search.png",
+                    height: 14,
+                    color: Colors.grey[400],
+                  ),
           ],
         ),
       ),

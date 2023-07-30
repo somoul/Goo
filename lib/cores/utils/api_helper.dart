@@ -80,7 +80,7 @@ class ApiHelper extends GetConnect {
     }
   }
 
-  dynamic _returnResponse(Response response) {
+  _returnResponse(Response response) {
     // debugPrint('Response Data : ${response.bodyString}');
     switch (response.statusCode) {
       case 200:

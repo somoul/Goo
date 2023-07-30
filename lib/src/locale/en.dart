@@ -39,6 +39,13 @@ class English {
     /// [MAP]
     'Map': 'Map',
     'Your Location': 'Your Location',
-    'Save Your Location': 'Save Your Location'
+    'Save Your Location': 'Save Your Location',
+
+    'Month': 'Month',
+    'Search': 'Search',
+    'Rent Type': 'Rent Type',
+    'Choose Address': 'Choose Address',
+    'Search Rent Property': 'Search Rent Property',
+    'Choose Property Type': 'Choose Property Type',
   };
 }
