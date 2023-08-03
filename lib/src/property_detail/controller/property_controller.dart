@@ -22,12 +22,13 @@ class PropertyController extends GetxController {
               url:
                   '/posts?lang=$lang&around=212.22&long=104.862920&lat=11.587222&page=1',
               methode: METHODE.get,
-              isAuthorize: false)
+              isAuthorize: true)
           .then((value) async {
         propertyData.value = PropertyModelResponse.fromJson(value['data']);
+      }).onError((ErrorModel error, stackTrace) {
+        BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
-    } catch (e) {
-      BaseToast.showErorrBaseToast(e.toString());
+    } catch (_) {
     } finally {
       isLoadAllProperty(false);
       BaseDialogLoading.dismiss();
@@ -44,10 +45,12 @@ class PropertyController extends GetxController {
           .onRequest(
               url: '/posts/popular?lat=11.587222&long=104.862920&$lang',
               methode: METHODE.get,
-              isAuthorize: false)
+              isAuthorize: true)
           .then((value) async {
         popularPropertyData.value =
             PopularPropertyModelResponse.fromJson(value);
+      }).onError((ErrorModel error, stackTrace) {
+        BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (e) {
       BaseToast.showErorrBaseToast(e.toString());

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/api_helper.dart';
 import 'package:goo_rent/cores/utils/loading_dialoge.dart';
-import 'package:goo_rent/cores/utils/loading_helper.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/data/register_model.dart';
@@ -17,6 +16,7 @@ class SignInController extends GetxController {
   final password = ''.obs;
   final countryCode = Country().obs;
   final userModel = RegisterModel().obs;
+  final isLoging = false.obs;
 
   ///Condiction
   bool get isEnableSignin =>
@@ -24,7 +24,8 @@ class SignInController extends GetxController {
 
   /// Method
   Future<void> onLogin() async {
-    BaseDialogLoading.show();
+    // BaseDialogLoading.show();
+    isLoging(true);
     var body = {
       'username': phoneNumber.value,
       'password': password.value,
@@ -38,15 +39,19 @@ class SignInController extends GetxController {
         body: body,
       )
           .then((value) async {
-        BaseDialogLoading.dismiss();
+        // BaseDialogLoading.dismiss();
         BaseToast.showSuccessBaseToast('Signin successfully!');
         userModel.value = RegisterModel.fromJson(value['data']);
         await LocalStorage.writeToken(userModel.value.token!);
         Get.offAllNamed(Routes.home);
+      }).onError((ErrorModel error, stackTrace) {
+        BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (e) {
-      BaseDialogLoading.dismiss();
+      // BaseDialogLoading.dismiss();
       // BaseToast.showErorrBaseToast(e.toString());
+    } finally {
+      isLoging(false);
     }
   }
 }

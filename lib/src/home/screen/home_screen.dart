@@ -173,160 +173,171 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                CarouselSlider(
-                                  items: imageSliders,
-                                  carouselController: _controller,
-                                  options: CarouselOptions(
-                                    padEnds: false,
-                                    autoPlay: true,
-                                    enlargeFactor: 0,
-                                    enlargeCenterPage: true,
-                                    viewportFraction: 1,
-                                    aspectRatio: 2,
-                                    enlargeStrategy:
-                                        CenterPageEnlargeStrategy.height,
-                                    onPageChanged: (index, reason) {
-                                      homeController.indexSlider.value = index;
-                                      setState(() {});
-                                    },
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  right: 0,
-                                  bottom: -28,
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 14),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 16),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: AppConstant.kPrimaryColor
-                                              .withOpacity(0.15),
-                                          blurRadius: 20,
-                                          offset: const Offset(
-                                            2.0,
-                                            2.0,
-                                          ),
-                                        )
-                                      ],
-                                      border: Border.all(
-                                          width: 3,
-                                          color: AppConstant.kPrimaryColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SearchRentScreen(),
-                                          ), //TabBarDemo
-                                        );
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  await homeController.fetchSlideBanner();
+                  await homeController.fetchSliderCategorie();
+                  await _propertyController.getPopularProperty(
+                      late: 1, long: 1);
+                  await _propertyController.getAllProperties(late: 1, long: 1);
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  CarouselSlider(
+                                    items: imageSliders,
+                                    carouselController: _controller,
+                                    options: CarouselOptions(
+                                      padEnds: false,
+                                      autoPlay: true,
+                                      enlargeFactor: 0,
+                                      enlargeCenterPage: true,
+                                      viewportFraction: 1,
+                                      aspectRatio: 2,
+                                      enlargeStrategy:
+                                          CenterPageEnlargeStrategy.height,
+                                      onPageChanged: (index, reason) {
+                                        homeController.indexSlider.value =
+                                            index;
+                                        setState(() {});
                                       },
-                                      child: Row(
-                                        children: [
-                                          SvgPicture.asset(
-                                              'assets/image/search.svg'),
-                                          const SizedBox(width: 10),
-                                          Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
-                                              style: AppText.bodySmall),
-                                          Expanded(
-                                            child: Text("Search".tr,
-                                                textAlign: TextAlign.end,
-                                                style: AppText.bodyMedium!
-                                                    .copyWith(
-                                                        color: AppConstant
-                                                            .kPrimaryColor)),
-                                          ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 0,
+                                    right: 0,
+                                    bottom: -28,
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 14),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 16),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: AppConstant.kPrimaryColor
+                                                .withOpacity(0.15),
+                                            blurRadius: 20,
+                                            offset: const Offset(
+                                              2.0,
+                                              2.0,
+                                            ),
+                                          )
                                         ],
+                                        border: Border.all(
+                                            width: 3,
+                                            color: AppConstant.kPrimaryColor),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SearchRentScreen(),
+                                            ), //TabBarDemo
+                                          );
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                                'assets/image/search.svg'),
+                                            const SizedBox(width: 10),
+                                            Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                                style: AppText.bodySmall),
+                                            Expanded(
+                                              child: Text("Search".tr,
+                                                  textAlign: TextAlign.end,
+                                                  style: AppText.bodyMedium!
+                                                      .copyWith(
+                                                          color: AppConstant
+                                                              .kPrimaryColor)),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const SizedBox(width: 10),
-                                  ...imageSliders.map((e) {
-                                    int index = imageSliders.indexOf(e);
-                                    return Container(
-                                      height: 8.5,
-                                      width: 8.5,
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 3),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: homeController
-                                                      .indexSlider.value ==
-                                                  index
-                                              ? AppConstant.kPrimaryColor
-                                              : Colors.white),
-                                    );
-                                  }).toList()
-                                ]),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        CustomCategoryBlock(
-                          categoryList: homeController.listSideBarDataCategorie,
-                        ),
-                        Container(
-                          color: const Color(0xffF9F9F9),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 5),
-
-                              /// Popular
-                              Obx(
-                                () => CustomPopularBlock(
-                                  popularList: _propertyController
-                                          .popularPropertyData.value.data ??
-                                      [],
-                                ),
+                                ],
                               ),
-                              const SizedBox(height: AppConstant.padding),
-
-                              ///Recommend
-                              Obx(
-                                () => CustomPropertyGrid(
-                                  title: 'Recommend'.tr,
-                                  actionTitle: 'See All'.tr,
-                                  onAction: () {
-                                    Get.to(() => const AllProperty());
-                                  },
-                                  propertyList: _propertyController
-                                          .propertyData.value.propertyList ??
-                                      [],
-                                ),
-                              ),
-                              const SizedBox(height: 20),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(width: 10),
+                                    ...imageSliders.map((e) {
+                                      int index = imageSliders.indexOf(e);
+                                      return Container(
+                                        height: 8.5,
+                                        width: 8.5,
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 3),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: homeController
+                                                        .indexSlider.value ==
+                                                    index
+                                                ? AppConstant.kPrimaryColor
+                                                : Colors.white),
+                                      );
+                                    }).toList()
+                                  ]),
                             ],
                           ),
-                        )
-                      ],
-                    ),
-                  ), // Container(
-                ],
+                          const SizedBox(height: 30),
+                          CustomCategoryBlock(
+                            categoryList:
+                                homeController.listSideBarDataCategorie,
+                          ),
+                          Container(
+                            color: const Color(0xffF9F9F9),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 5),
+
+                                /// Popular
+                                Obx(
+                                  () => CustomPopularBlock(
+                                    popularList: _propertyController
+                                            .popularPropertyData.value.data ??
+                                        [],
+                                  ),
+                                ),
+                                const SizedBox(height: AppConstant.padding),
+
+                                ///Recommend
+                                Obx(
+                                  () => CustomPropertyGrid(
+                                    title: 'Recommend'.tr,
+                                    actionTitle: 'See All'.tr,
+                                    onAction: () {
+                                      Get.to(() => const AllProperty());
+                                    },
+                                    propertyList: _propertyController
+                                            .propertyData.value.propertyList ??
+                                        [],
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ), // Container(
+                  ],
+                ),
               ),
             ),
           ],
