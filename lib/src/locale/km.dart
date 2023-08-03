@@ -44,10 +44,16 @@ class Khmer {
     'Rent Type': 'ប្រភេទជួល',
     'Choose Address': 'ជ្រើសរើសទីតាំង',
     'Search Rent Property': 'ស្វែងអចលនាទ្រព្យជួល',
-    'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
+    'Choose Property Types': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
     'See All': 'មើលទាំងអស់',
     'All Property': 'អចលនទ្រព្យទាំងអស់',
     'Recommend': 'ណែនាំ',
     'Popular': 'ពេញនិយម',
+    'Property Types': 'ប្រភេទអចលនទ្រព្យ',
+    'Continue': 'បន្ត',
+    'Title': 'ចំណងជើង',
+    'Enter title': 'បញ្ចូលចំណងជើង',
+    'Additional Information': 'ពត៌មានបន្ថែម',
+    'Enter additional information': 'បញ្ចូលពត៌មានបន្ថែម'
   };
 }

@@ -46,10 +46,16 @@ class English {
     'Rent Type': 'Rent Type',
     'Choose Address': 'Choose Address',
     'Search Rent Property': 'Search Rent Property',
-    'Choose Property Type': 'Choose Property Type',
+    'Choose Property Types': 'Choose Property Types',
     'See All': 'See All',
     'All Property': 'All Property',
     'Recommend': 'Recommend',
     'Popular': 'Popular',
+    'Property Types': 'Property Types',
+    'Continue': 'Continue',
+    'Title': 'Title',
+    'Enter title': 'Enter title',
+    'Additional Information': 'Additional Information',
+    'Enter additional information': 'Enter additional information'
   };
 }
