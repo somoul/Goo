@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 
@@ -78,12 +78,18 @@ class SearchTypeScreen extends StatelessWidget {
                         suffixInsets:
                             const EdgeInsetsDirectional.fromSTEB(10, 0, 5, 5),
                         itemSize: 0,
-                        placeholder: "ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល",
-                        placeholderStyle:
-                            AppText.bodyLarge!.copyWith(color: Colors.black26),
+                        placeholder: "Looking to rent a property for rent".tr,
+                        placeholderStyle: AppText.bodyLarge!.copyWith(
+                            color: Colors.black26,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
                         prefixIcon: Container(
                           width: 0,
                         ),
+                        style: AppText.bodyLarge!.copyWith(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
                         suffixIcon: const Icon(
                           null,
                           size: 0,
@@ -125,7 +131,7 @@ class SearchTypeScreen extends StatelessWidget {
                       height: 15,
                     ),
                     Text(
-                      "គ្មានប្រវត្តិស្វែងរក",
+                      "No search history".tr,
                       style: AppText.bodyMedium!
                           .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
                     )

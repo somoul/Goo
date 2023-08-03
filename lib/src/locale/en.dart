@@ -56,6 +56,9 @@ class English {
     'Title': 'Title',
     'Enter title': 'Enter title',
     'Additional Information': 'Additional Information',
-    'Enter additional information': 'Enter additional information'
+    'Enter additional information': 'Enter additional information',
+
+    //search property rent
+    'Looking to rent a property for rent': 'Looking to rent a property for rent'
   };
 }

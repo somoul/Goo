@@ -17,7 +17,9 @@ class CustomTextField extends StatefulWidget {
       this.hintStyle,
       this.valueStyle,
       this.initSelectionValue,
-      this.obscureText = false})
+      this.obscureText = false,
+      this.maxLines,
+      this.textInputAction})
       : super(key: key);
   final String hindText;
   final String labelText;
@@ -32,6 +34,8 @@ class CustomTextField extends StatefulWidget {
   final bool? isSelection;
   final Function? onTap;
   final String? initSelectionValue;
+  final int? maxLines;
+  final TextInputAction? textInputAction;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -89,6 +93,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 cursorRadius: const Radius.circular(10),
                 cursorHeight: 20,
                 cursorWidth: 2,
+                textInputAction: widget.textInputAction ?? TextInputAction.next,
+                maxLines: widget.maxLines ?? 1,
                 initialValue: widget.initialValue ?? '',
                 obscureText: widget.obscureText ?? false,
                 onChanged: widget.onChange,

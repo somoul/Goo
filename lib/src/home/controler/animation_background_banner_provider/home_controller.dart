@@ -83,23 +83,24 @@ class HomeController extends GetxController {
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     isfetchLoadingCategorie(true);
-    await apiHelper
-        .onRequest(
-      isAuthorize: false,
-      url: "/categories",
-      methode: METHODE.get,
-    )
-        .then((response) {
-      var jsonData = response['data'];
-      jsonData.map((json) {
-        sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
-        listSideBarDataCategorie.add(sideBarDataCategorie.value);
-      }).toList();
-
+    try {
+      await apiHelper
+          .onRequest(
+        isAuthorize: false,
+        url: "/categories",
+        methode: METHODE.get,
+      )
+          .then((response) {
+        var jsonData = response['data'];
+        jsonData.map((json) {
+          sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
+          listSideBarDataCategorie.add(sideBarDataCategorie.value);
+        }).toList();
+      }).onError((ErrorModel error, stackTrace) {});
+    } catch (_) {
+    } finally {
       isfetchLoadingCategorie(false);
-    }).onError((ErrorModel error, stackTrace) {
-      isfetchLoadingCategorie(false);
-    });
+    }
     return listSideBarDataCategorie;
   }
 

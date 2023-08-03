@@ -141,7 +141,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                           CustomContentTextField(
                             leftIcon: "assets/icons/location.svg",
                             value: searchTypeController.typeSearchRent.value,
-                            nameTextField: "Choose Property Type".tr,
+                            nameTextField: "Choose Property Types".tr,
                             // rightsIcons: "assets/icons/ic_vector.svg",
 
                             onTap: () async {
@@ -225,7 +225,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Choose Property Type",
+                      "Choose Property Types",
                       style: AppText.bodyMedium!.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Colors.black,

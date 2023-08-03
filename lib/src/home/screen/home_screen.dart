@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
@@ -10,15 +11,15 @@ import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 
 import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
 
-import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
+import 'package:goo_rent/src/home/widget/custom_service_block.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
-import '../widget/custom_service_block.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required}) : super(key: key);
@@ -93,8 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
         .toList();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor:
+          AppConstant.kPrimaryColor, //or set color with: Color(0xFF0000FF)
+    ));
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
+
       body: SafeArea(
         child: Column(
           children: [
@@ -170,27 +176,90 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: Stack(
+                    child: Column(
                       children: [
                         Stack(
                           children: [
-                            CarouselSlider(
-                              items: imageSliders,
-                              carouselController: _controller,
-                              options: CarouselOptions(
-                                padEnds: false,
-                                autoPlay: true,
-                                enlargeFactor: 0,
-                                enlargeCenterPage: true,
-                                viewportFraction: 1,
-                                aspectRatio: 2.0,
-                                enlargeStrategy:
-                                    CenterPageEnlargeStrategy.height,
-                                onPageChanged: (index, reason) {
-                                  homeController.indexSlider.value = index;
-                                  setState(() {});
-                                },
-                              ),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                CarouselSlider(
+                                  items: imageSliders,
+                                  carouselController: _controller,
+                                  options: CarouselOptions(
+                                    padEnds: false,
+                                    autoPlay: true,
+                                    enlargeFactor: 0,
+                                    enlargeCenterPage: true,
+                                    viewportFraction: 1,
+                                    aspectRatio: 2,
+                                    enlargeStrategy:
+                                        CenterPageEnlargeStrategy.height,
+                                    onPageChanged: (index, reason) {
+                                      homeController.indexSlider.value = index;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: -28,
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15, vertical: 14),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: AppConstant.kPrimaryColor
+                                              .withOpacity(0.15),
+                                          blurRadius: 20,
+                                          offset: const Offset(
+                                            2.0,
+                                            2.0,
+                                          ),
+                                        )
+                                      ],
+                                      border: Border.all(
+                                          width: 3,
+                                          color: AppConstant.kPrimaryColor),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SearchRentScreen(),
+                                          ), //TabBarDemo
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              'assets/image/search.svg'),
+                                          const SizedBox(width: 10),
+                                          Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                              style: AppText.bodySmall),
+                                          Expanded(
+                                            child: Text("Search".tr,
+                                                textAlign: TextAlign.end,
+                                                style: AppText.bodyMedium!
+                                                    .copyWith(
+                                                        color: AppConstant
+                                                            .kPrimaryColor)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -215,140 +284,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ]),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 170),
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 14),
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppConstant.kPrimaryColor
-                                        .withOpacity(0.15),
-                                    blurRadius: 20,
-                                    offset: const Offset(
-                                      2.0,
-                                      2.0,
-                                    ),
-                                  )
-                                ],
-                                border: Border.all(
-                                    width: 3, color: AppConstant.kPrimaryColor),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SearchRentScreen(),
-                                    ), //TabBarDemo
-                                  );
+                        const SizedBox(height: 30),
+                        CustomCategoryBlock(
+                          categoryList: homeController.listSideBarDataCategorie,
+                        ),
+                        Container(
+                          color: const Color(0xffF9F9F9),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 5),
 
-                                  // InkWell(
-                                  //   onTap: () {
-                                  //     // Navigator.push(
-                                  //     //   context,
-                                  //     //   MaterialPageRoute(
-                                  //     //       builder: (context) =>  SearchRentScreen()),
-                                  //     // );
-                                  //     showBottomSheetFunction(context: context);
-                                },
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset('assets/image/search.svg'),
-                                    const SizedBox(width: 10),
-                                    Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
-                                        style: AppText.bodySmall),
-                                    Expanded(
-                                      child: Text("Search".tr,
-                                          textAlign: TextAlign.end,
-                                          style: AppText.bodyMedium!.copyWith(
-                                              color:
-                                                  AppConstant.kPrimaryColor)),
-                                    ),
-                                  ],
+                              /// Popular
+                              Obx(
+                                () => CustomPopularBlock(
+                                  popularList: _propertyController
+                                          .popularPropertyData.value.data ??
+                                      [],
                                 ),
                               ),
-                            ),
+                              const SizedBox(height: AppConstant.padding),
 
-                            /// Service
-                            CustomCategoryBlock(
-                              categoryList:
-                                  homeController.listSideBarDataCategorie,
-                            ),
-                            Container(
-                              color: const Color(0xffF9F9F9),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(height: 5),
-
-                                  /// Popular
-                                  Obx(
-                                    () => CustomPopularBlock(
-                                      popularList: _propertyController
-                                              .popularPropertyData.value.data ??
-                                          [],
-                                    ),
-                                  ),
-                                  const SizedBox(height: AppConstant.padding),
-
-                                  ///Recommend
-                                  Obx(
-                                    () => CustomPropertyGrid(
-                                      title: 'Recommend'.tr,
-                                      actionTitle: 'See All'.tr,
-                                      onAction: () {
-                                        Get.to(() => const AllProperty());
-                                      },
-                                      propertyList: _propertyController
-                                              .propertyData
-                                              .value
-                                              .propertyList ??
-                                          [],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-
-                                  // Padding(
-                                  //   padding: const EdgeInsets.symmetric(
-                                  //       horizontal: AppConstant.padding),
-                                  //   child: getCardLocationScreen(
-                                  //       context: context,
-                                  //       titleAppBar: 'បន្ទប់ជួល',
-                                  //       e: const LocationItem(
-                                  //           imgSrc: 'assets/icons/roms.png',
-                                  //           areaName: 'ខណ្ឌសែន សុខ',
-                                  //           quantityLocationRoomForRent:
-                                  //               'មានបន្ទប់ជួល ១២ កន្លែង')),
-                                  // )
-                                ],
+                              ///Recommend
+                              Obx(
+                                () => CustomPropertyGrid(
+                                  title: 'Recommend'.tr,
+                                  actionTitle: 'See All'.tr,
+                                  onAction: () {
+                                    Get.to(() => const AllProperty());
+                                  },
+                                  propertyList: _propertyController
+                                          .propertyData.value.propertyList ??
+                                      [],
+                                ),
                               ),
-                            )
-                          ],
+                              const SizedBox(height: 20),
+                            ],
+                          ),
                         )
                       ],
                     ),
-                  ),
-                  // const SliverPadding(
-                  //   padding: EdgeInsets.only(right: AppConstant.padding),
-                  //   sliver: SliverToBoxAdapter(
-                  //     child:
-                  //
-                  //         /// Banner
-                  //         CustomMultiScrollWidget(),
-                  //   ),
-                  // )
+                  ), // Container(
                 ],
               ),
             ),
@@ -358,70 +335,6 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
     );
   }
-
-  // _buildIcon({required int value}) => Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //       children: [
-  //         ...List.generate(
-  //             4,
-  //             (index) => InkWell(
-  //                   highlightColor: Colors.transparent,
-  //                   splashColor: Colors.transparent,
-  //                   onTap: () {
-  //                     // var valueString = '';
-  //                     // switch (index + value + 1) {
-  //                     //   case 1:
-  //                     //     valueString = 'បន្ទប់ជួល';
-  //                     //     break;
-  //                     //   case 2:
-  //                     //     valueString = 'ផ្ទះជួល';
-  //                     //     break;
-  //                     //   case 3:
-  //                     //     valueString = 'ផ្ទះអាជីវកម្មជួល';
-
-  //                     //     break;
-  //                     //   case 4:
-  //                     //     valueString = 'ឃ្នាំងជួល';
-
-  //                     //     break;
-  //                     //   case 5:
-  //                     //     valueString = 'ខុនដូរ';
-
-  //                     //     break;
-  //                     //   case 6:
-  //                     //     valueString = 'ដីជួល';
-
-  //                     //     break;
-  //                     //   case 7:
-  //                     //     valueString = 'អាផាតមិនជួល';
-  //                     //     break;
-
-  //                     //   default:
-  //                     //     valueString = 'ការិយាល័យជួល';
-  //                     // }
-  //                     // GoRouter.of(context)
-  //                     //     .push('/location_rent_screen', extra: valueString);
-  //                   },
-  //                   child: Column(
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     children: [
-  //                       Image.asset(
-  //                         homeController.listIcon[index].iconSrc,
-  //                         width: 50,
-  //                         height: 50,
-  //                       ),
-  //                       SizedBox(
-  //                         height: 5.r,
-  //                       ),
-  //                       Text(
-  //                         homeController.listIcon[index + value].iconName,
-  //                         style: GoogleFonts.kantumruy(),
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ))
-  //       ],
-  //     );
 }
 
 class TypeOfRent {

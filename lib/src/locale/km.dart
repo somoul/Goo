@@ -54,6 +54,10 @@ class Khmer {
     'Title': 'ចំណងជើង',
     'Enter title': 'បញ្ចូលចំណងជើង',
     'Additional Information': 'ពត៌មានបន្ថែម',
-    'Enter additional information': 'បញ្ចូលពត៌មានបន្ថែម'
+    'Enter additional information': 'បញ្ចូលពត៌មានបន្ថែម',
+
+    //search propery rent
+    'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
+    'No search history': 'គ្មានប្រវត្តិស្វែងរក'
   };
 }

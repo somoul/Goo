@@ -40,13 +40,11 @@ class ApiHelper extends GetConnect {
     try {
       switch (methode) {
         case METHODE.get:
-          print('Header: $header0 \n URL: $fullUrl');
           final response = await get(
             fullUrl,
             headers: header ?? header0,
             contentType: 'application/json',
           );
-          print('dasfxgnhmc fxzvfds${jsonDecode(response.bodyString!)}');
           return _returnResponse(response);
         case METHODE.post:
           if (body != null) {

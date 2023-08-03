@@ -6,6 +6,7 @@ import '../data/slide_categorie_model/slide_categorie_model.dart';
 
 class CustomCategoryBlock extends StatelessWidget {
   final List<SlideCategorieModel> categoryList;
+
   const CustomCategoryBlock({super.key, required this.categoryList});
 
   @override
