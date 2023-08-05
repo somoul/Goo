@@ -70,6 +70,7 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   flutter_native_splash: ^2.2.5
   geocoding: ^2.1.0
+  shimmer: ^3.0.0
   
   
   

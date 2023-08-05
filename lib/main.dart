@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:goo_rent/cores/theme/theme_data.dart';
@@ -22,6 +23,10 @@ Future<void> main() async {
   await LocaleHelper.onCheckLanguages();
   await ScreenUtil.ensureScreenSize();
   // await NotificationHelper.onInitializeNotification();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.lightTheme,
       navigatorKey: ContextProvider.navigatorKey,
-      initialRoute: Routes.home,
+      initialRoute: Routes.initialize,
       getPages: AppPages.pages,
       // initialBinding: AuthBinding()
     );

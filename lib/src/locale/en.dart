@@ -54,9 +54,16 @@ class English {
     'No search history': 'No search history',
     'House for rent for business': 'House for rent for business',
 
+    'Choose Property Types': 'Choose Property Types',
     'See All': 'See All',
     'All Property': 'All Property',
     'Recommend': 'Recommend',
     'Popular': 'Popular',
+    'Property Types': 'Property Types',
+    'Continue': 'Continue',
+    'Title': 'Title',
+    'Enter title': 'Enter title',
+    'Additional Information': 'Additional Information',
+    'Enter additional information': 'Enter additional information',
   };
 }

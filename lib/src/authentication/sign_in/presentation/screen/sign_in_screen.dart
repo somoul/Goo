@@ -28,112 +28,119 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.2),
-                      Text(
-                        "Welcome",
-                        style: AppText.titleLarge!.copyWith(fontSize: 24),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Enter phone number and password to login",
-                        style: AppText.titleSmall,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          StatefulBuilder(
-                            builder: (context, setState) => IgnorePointer(
-                              child: BuildCountryPicker(
-                                onSelected: (val) {
-                                  signinCon.countryCode.value = val;
-                                  setState(() {});
+                  child: Obx(
+                () => signinCon.isLoging.value
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2),
+                            Text(
+                              "Welcome",
+                              style: AppText.titleLarge!.copyWith(fontSize: 24),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Enter phone number and password to login",
+                              style: AppText.titleSmall,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              children: [
+                                StatefulBuilder(
+                                  builder: (context, setState) => IgnorePointer(
+                                    child: BuildCountryPicker(
+                                      onSelected: (val) {
+                                        signinCon.countryCode.value = val;
+                                        setState(() {});
+                                      },
+                                      initCountry: signinCon.countryCode.value,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 15),
+                                Expanded(
+                                  child: CustomTextField(
+                                    textInputType: TextInputType.phone,
+                                    hindText: "XXX-XXX-XXX",
+                                    hintStyle: AppText.bodyMedium!.copyWith(
+                                      letterSpacing: 1,
+                                      color: Colors.grey,
+                                    ),
+                                    valueStyle: AppText.titleSmall!.copyWith(
+                                      letterSpacing: 1,
+                                    ),
+                                    onChange: (value) {
+                                      signinCon.phoneNumber.value = value;
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Obx(
+                              () => CustomTextField(
+                                suffixIcon: IconButton(
+                                  onPressed: () => signinCon.isShowPass.value =
+                                      !signinCon.isShowPass.value,
+                                  icon: Icon(signinCon.isShowPass.value
+                                      ? Icons.visibility_off
+                                      : Icons.visibility),
+                                ),
+                                obscureText: signinCon.isShowPass.value,
+                                textInputType: TextInputType.visiblePassword,
+                                hindText: "Please enter password",
+                                valueStyle: AppText.titleSmall!
+                                    .copyWith(letterSpacing: 1),
+                                onChange: (val) {
+                                  signinCon.password.value = val;
                                 },
-                                initCountry: signinCon.countryCode.value,
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 15),
-                          Expanded(
-                            child: CustomTextField(
-                              textInputType: TextInputType.phone,
-                              hindText: "XXX-XXX-XXX",
-                              hintStyle: AppText.bodyMedium!.copyWith(
-                                letterSpacing: 1,
-                                color: Colors.grey,
-                              ),
-                              valueStyle: AppText.titleSmall!.copyWith(
-                                letterSpacing: 1,
-                              ),
-                              onChange: (value) {
-                                signinCon.phoneNumber.value = value;
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Obx(
-                        () => CustomTextField(
-                          suffixIcon: IconButton(
-                            onPressed: () => signinCon.isShowPass.value =
-                                !signinCon.isShowPass.value,
-                            icon: Icon(signinCon.isShowPass.value
-                                ? Icons.visibility_off
-                                : Icons.visibility),
-                          ),
-                          obscureText: signinCon.isShowPass.value,
-                          textInputType: TextInputType.visiblePassword,
-                          hindText: "Please enter password",
-                          valueStyle:
-                              AppText.titleSmall!.copyWith(letterSpacing: 1),
-                          onChange: (val) {
-                            signinCon.password.value = val;
-                          },
+                            const SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Don\'t have account? ',
+                                  style: AppText.bodySmall,
+                                ),
+                                TextButton(
+                                    onPressed: () {
+                                      Get.offAndToNamed(Routes.signup);
+                                    },
+                                    child: const Text(
+                                      'Register',
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline),
+                                    ))
+                              ],
+                            )
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Don\'t have account? ',
-                            style: AppText.bodySmall,
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Get.offAndToNamed(Routes.signup);
-                              },
-                              child: const Text(
-                                'Register',
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
-                              ))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              )),
               Obx(
                 () => CustomButton(
                   title: 'Sign In',
-                  onPressed: signinCon.isEnableSignin
-                      ? () async {
-                          // KeyboardHeper.hideKeyborad();
-                          await signinCon.onLogin();
-                        }
-                      : null,
+                  onPressed:
+                      signinCon.isEnableSignin || signinCon.isLoging.value
+                          ? () async {
+                              // KeyboardHeper.hideKeyborad();
+                              await signinCon.onLogin();
+                            }
+                          : null,
                 ),
               ),
             ],

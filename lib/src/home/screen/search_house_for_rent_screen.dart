@@ -7,7 +7,6 @@ import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/controler/search_rent_controler/search_controler.dart';
 import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
-import 'package:goo_rent/src/home/screen/custom_default_butom_sheet.dart';
 import 'package:goo_rent/src/home/screen/search_type_screen.dart';
 
 import '../../../../cores/constant/app_constant.dart';
@@ -141,13 +140,16 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                           CustomContentTextField(
                             leftIcon: "assets/icons/location.svg",
                             value: searchTypeController.typeSearchRent.value,
-                            nameTextField: "Choose Property Type".tr,
+                            nameTextField: "Choose Property Types".tr,
                             // rightsIcons: "assets/icons/ic_vector.svg",
 
                             onTap: () async {
-                              var propertyType = await _onSelectPropertyType();
-                              searchTypeController.typeSearchRent.value =
-                                  propertyType;
+                              _onSelectPropertyType(context);
+                              // var propertyType = await _showBottomSheet(context);
+                              // searchTypeController.typeSearchRent.value =
+                              //     propertyType;
+                              // _showBottomSheet(context);
+
                               setState(() {});
                             },
                           ),
@@ -198,64 +200,133 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
     );
   }
 
-  Future<String> _onSelectPropertyType() async {
-    var result = await customBottomSheet(
+  // void _showBottomSheet(BuildContext context)
+  Future _onSelectPropertyType(BuildContext context) async {
+    showModalBottomSheet<void>(
       context: context,
-      builder: (context) {
-        return Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
-            ),
-          ),
-          child: Column(
-            children: [
-              Container(
-                height: 50,
-                width: double.infinity,
-                // color: const Color.fromARGB(255, 201, 109, 109),
-                decoration: const BoxDecoration(
-                    color: Color(0xffF9F9F9),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Choose Property Type",
-                      style: AppText.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                          fontSize: 16),
-                    )
-                  ],
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Container(
+            decoration: const BoxDecoration(
+                color: Color(0xffF9F9F9),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    "Choose Property Types",
+                    style: AppText.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 400,
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: listType.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
+                // const SizedBox(height: 16.0),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: homeController.listSideBarDataCategorie
+                      .length, // Replace with your actual content
+
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
                         child: CustomItemButtomsheet(
-                          title: listType[index],
+                          title: homeController
+                              .listSideBarDataCategorie[index].name,
                         ),
-                        onTap: () => Navigator.pop(context, listType[index]),
-                      );
-                      // return null;
-                    }),
-              )
-            ],
+                        onTap: () {
+                          searchTypeController.typeSearchRent.value =
+                              homeController
+                                  .listSideBarDataCategorie[index].name!;
+                          Navigator.pop(context);
+                        });
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
     );
-    return result;
   }
+
+  // Future<String> _onSelectPropertyType() async {
+  //   var result = await customBottomSheet(
+  //     context: context,
+  //     builder: (context) {
+  //       return Container(
+  //           decoration: const BoxDecoration(
+  //             borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(8),
+  //               topRight: Radius.circular(8),
+  //             ),
+  //           ),
+  //           child: ListView.builder(
+  //               scrollDirection: Axis.vertical,
+  //               itemCount: homeController.listSideBarDataCategorie.length,
+  //               itemBuilder: (BuildContext context, int index) {
+  //                 return InkWell(
+  //                   child: CustomItemButtomsheet(
+  //                     title:
+  //                         homeController.listSideBarDataCategorie[index].name,
+  //                   ),
+  //                   onTap: () => Navigator.pop(context,
+  //                       homeController.listSideBarDataCategorie[index].name),
+  //                 );
+  //                 // return null;
+  //               })
+  //           // Column(
+  //           //   children: [
+  //           //     Container(
+  //           //       height: 50,
+  //           //       width: double.infinity,
+  //           //       // color: const Color.fromARGB(255, 201, 109, 109),
+  //           // decoration: const BoxDecoration(
+  //           //     color: Color(0xffF9F9F9),
+  //           //     borderRadius: BorderRadius.only(
+  //           //         topLeft: Radius.circular(20),
+  //           //         topRight: Radius.circular(20))),
+  //           //       child: Row(
+  //           //         mainAxisAlignment: MainAxisAlignment.center,
+  //           //         crossAxisAlignment: CrossAxisAlignment.center,
+  //           //         children: [
+  //           // Text(
+  //           //   "Choose Property Types",
+  //           //   style: AppText.bodyMedium!.copyWith(
+  //           //       fontWeight: FontWeight.w500,
+  //           //       color: Colors.black,
+  //           //       fontSize: 16),
+  //           // )
+  //           //         ],
+  //           //       ),
+  //           //     ),
+  //           //     ListView.builder(
+  //           //         scrollDirection: Axis.vertical,
+  //           //         itemCount: homeController.listSideBarDataCategorie.length,
+  //           //         itemBuilder: (BuildContext context, int index) {
+  //           // return InkWell(
+  //           //   child: CustomItemButtomsheet(
+  //           //     title:
+  //           //         homeController.listSideBarDataCategorie[index].name,
+  //           //   ),
+  //           //   onTap: () => Navigator.pop(context,
+  //           //       homeController.listSideBarDataCategorie[index].name),
+  //           // );
+  //           //           // return null;
+  //           //         })
+  //           //   ],
+  //           // ),
+  //           );
+  //     },
+  //   );
+  //   return result;
+  // }
 }
 
 class CustomContentTextField extends StatelessWidget {

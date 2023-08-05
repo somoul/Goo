@@ -1,0 +1,243 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/cores/utils/custom_text_field.dart';
+import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/src/post_property/controller/post_property_controller.dart';
+import 'package:goo_rent/src/post_property/presentation/screens/rent_step_2_.dart';
+
+class RentStepOne extends StatefulWidget {
+  const RentStepOne({super.key});
+
+  @override
+  State<RentStepOne> createState() => _RentStepOneState();
+}
+
+class _RentStepOneState extends State<RentStepOne> {
+  final _postPropertyController = Get.put(PostPropertyController());
+  List<Map<String, dynamic>> selectedList = [];
+  List<Map<String, dynamic>> accessoryList = [
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Ford Rapter 2023 New',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Ford Rapter 2023 New',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+    {
+      'icon':
+          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
+      'title': 'Cars',
+    },
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => KeyboardHeper.hideKeyborad(),
+      child: Scaffold(
+        backgroundColor: const Color(0xfff9f9f9),
+        appBar: AppBar(
+          backgroundColor: const Color(0xfff9f9f9),
+          leading: IconButton(
+              onPressed: () => Get.back(),
+              icon: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: const Icon(Icons.clear, color: Colors.black),
+              )),
+          title: Text('Rent'.tr, style: AppText.bodyLarge),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+                child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              children: [
+                CustomTextField(
+                  labelText: 'Title'.tr,
+                  hindText: 'Enter title'.tr,
+                  onChange: (val) => _postPropertyController.title.value = val,
+                ),
+                CustomTextField(
+                  labelText: 'Additional Information'.tr,
+                  hindText: 'Enter additional information'.tr,
+                  maxLines: 7,
+                  textInputAction: TextInputAction.done,
+                  onChange: (val) =>
+                      _postPropertyController.additionalInformation.value = val,
+                )
+              ],
+            )),
+            Container(
+              color: Colors.grey[100],
+              padding: const EdgeInsets.only(
+                  left: 15, right: 15, bottom: 30, top: 20),
+              child: Obx(
+                () => CustomButton(
+                  onPressed: _postPropertyController.title.value == ''
+                      ? null
+                      : () => _onShowSelectAccessory(),
+                  title: 'Continue'.tr,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  _onShowSelectAccessory() {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) => StatefulBuilder(
+              builder: (context, setState) => Container(
+                height: 650,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(10), right: Radius.circular(10))),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Row(children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Accessories',
+                                  style: AppText.titleMedium,
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () => Get.back(),
+                                icon: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: const Icon(Icons.clear)))
+                          ]),
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 15),
+                            itemCount: accessoryList.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 10,
+                              // childAspectRatio: 2 / 2.9,
+                              mainAxisExtent: 100,
+                            ),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  if (!selectedList
+                                      .contains(accessoryList[index])) {
+                                    selectedList.add(accessoryList[index]);
+                                  } else {
+                                    selectedList.remove(accessoryList[index]);
+                                  }
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1,
+                                          color: selectedList.contains(
+                                                  accessoryList[index])
+                                              ? AppConstant.kPrimaryColor
+                                              : Colors.transparent)),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(height: 5),
+                                      Container(
+                                        padding: const EdgeInsets.all(14),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200]!,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.network(
+                                            accessoryList[index]['icon'],
+                                            width: 30),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        accessoryList[index]['title'],
+                                        style: AppText.bodySmall,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                    ],
+                                  ),
+                                ), //_buildAccessoryItem(accessoryList[index]),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Colors.grey[100],
+                      padding: const EdgeInsets.only(
+                          left: 15, right: 15, bottom: 30, top: 20),
+                      child: CustomButton(
+                        onPressed: selectedList.isEmpty
+                            ? null
+                            : () {
+                                KeyboardHeper.hideKeyborad();
+                                Get.back();
+                                Get.to(const RentStepTwo());
+                              },
+                        title: 'Continue'.tr,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
+  }
+}

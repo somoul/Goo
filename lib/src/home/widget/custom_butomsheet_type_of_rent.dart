@@ -20,8 +20,14 @@ class CustomItemButtomsheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const SizedBox(width: 10),
-                  Text(title ?? "", style: AppText.bodyMedium),
+                  const SizedBox(width: 16),
+                  Text(
+                    title ?? "",
+                    style: AppText.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16),
+                  ),
                   const Spacer(),
                   const Icon(Icons.arrow_forward_ios_rounded,
                       size: 14, color: Colors.grey),

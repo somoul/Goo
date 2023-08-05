@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/utils/api_helper.dart';
+import 'package:goo_rent/cores/utils/loading_dialoge.dart';
 
 import '../../data/slide_categorie_model/slide_categorie_model.dart';
 import '../../data/slider_ banners_model/slide_model.dart';
@@ -55,10 +56,9 @@ class HomeController extends GetxController {
   final listSideBarData = <SlideModel>[].obs;
   final apiHelper = ApiHelper();
   Future<List<SlideModel>> fetchSlideBanner() async {
-    isfetchLoadingBanner(true);
     await apiHelper
         .onRequest(
-      isAuthorize: false, methode: METHODE.get, url: "/banners",
+      isAuthorize: true, methode: METHODE.get, url: "/banners",
       // isAuthorize: false,
       // url: "banners",
       // methode: METHODE.get,
@@ -72,7 +72,7 @@ class HomeController extends GetxController {
       }).toList();
       // isfetchLoadingBanner(false);
     }).onError((ErrorModel error, stackTrace) {
-      // isfetchLoadingBanner(false);
+      BaseToast.showErorrBaseToast('${error.bodyString['message']}');
     });
     return listSideBarData;
   }
@@ -83,23 +83,26 @@ class HomeController extends GetxController {
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     isfetchLoadingCategorie(true);
-    await apiHelper
-        .onRequest(
-      isAuthorize: false,
-      url: "/categories",
-      methode: METHODE.get,
-    )
-        .then((response) {
-      var jsonData = response['data'];
-      jsonData.map((json) {
-        sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
-        listSideBarDataCategorie.add(sideBarDataCategorie.value);
-      }).toList();
-
+    try {
+      await apiHelper
+          .onRequest(
+        isAuthorize: true,
+        url: "/categories",
+        methode: METHODE.get,
+      )
+          .then((response) {
+        var jsonData = response['data'];
+        jsonData.map((json) {
+          sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
+          listSideBarDataCategorie.add(sideBarDataCategorie.value);
+        }).toList();
+      }).onError((ErrorModel error, stackTrace) {
+        BaseToast.showErorrBaseToast('${error.bodyString['message']}');
+      });
+    } catch (_) {
+    } finally {
       isfetchLoadingCategorie(false);
-    }).onError((ErrorModel error, stackTrace) {
-      isfetchLoadingCategorie(false);
-    });
+    }
     return listSideBarDataCategorie;
   }
 

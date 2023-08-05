@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'package:get/get_connect/connect.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_string.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
 
 class ErrorModel {
   final int? statusCode;
@@ -37,16 +39,15 @@ class ApiHelper extends GetConnect {
       'Accept': 'application/json',
       'Authorization': isAuthorize ? 'Bearer $token' : ''
     };
+
     try {
       switch (methode) {
         case METHODE.get:
-          print('Header: $header0 \n URL: $fullUrl');
           final response = await get(
             fullUrl,
             headers: header ?? header0,
             contentType: 'application/json',
           );
-          print('dasfxgnhmc fxzvfds${jsonDecode(response.bodyString!)}');
           return _returnResponse(response);
         case METHODE.post:
           if (body != null) {
@@ -80,8 +81,16 @@ class ApiHelper extends GetConnect {
     }
   }
 
-  _returnResponse(Response response) {
+  _returnResponse(Response response) async {
     // debugPrint('Response Data : ${response.bodyString}');
+    if (response.statusCode != 200) {
+      debugPrint(
+          'Error Response ${response.statusCode} > ${response.bodyString}');
+    } else if (response.statusCode == 401) {
+      LocalStorage.removeToken();
+      Get.offAll(() => const SignInScreen());
+      return;
+    }
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.bodyString!);

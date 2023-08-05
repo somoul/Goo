@@ -18,6 +18,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,13 +35,14 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
   void onCheckUser() async {
-    Get.offAllNamed(Routes.home);
-    // var tokenKey = await LocalStorage.readToken();
-    // if (tokenKey != '') {
-    //   Get.offAllNamed(Routes.home);
-    // } else {
-    //   Get.offAllNamed(Routes.signin);
-    // }
+    // Get.offAllNamed(Routes.home);
+    var tokenKey = await LocalStorage.readToken();
+    print('Token -> $tokenKey');
+    if (tokenKey != '' && tokenKey != null) {
+      Get.offAllNamed(Routes.home);
+    } else {
+      Get.offAllNamed(Routes.signin);
+    }
   }
 
   @override

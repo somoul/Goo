@@ -50,9 +50,16 @@ class Khmer {
     'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
     'No search history': 'គ្មានប្រវត្តិស្វែងរក',
     'House for rent for business': 'ផ្ទះជួលសម្រាប់អាជីវកម្ម',
+    'Choose Property Types': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
     'See All': 'មើលទាំងអស់',
     'All Property': 'អចលនទ្រព្យទាំងអស់',
     'Recommend': 'ណែនាំ',
     'Popular': 'ពេញនិយម',
+    'Property Types': 'ប្រភេទអចលនទ្រព្យ',
+    'Continue': 'បន្ត',
+    'Title': 'ចំណងជើង',
+    'Enter title': 'បញ្ចូលចំណងជើង',
+    'Additional Information': 'ពត៌មានបន្ថែម',
+    'Enter additional information': 'បញ្ចូលពត៌មានបន្ថែម',
   };
 }
