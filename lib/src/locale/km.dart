@@ -6,7 +6,7 @@ class Khmer {
     'About Us': 'អំពីយើង',
     'Share': 'ការចែករំលែក',
     'Security': 'សុវត្ថិភាព',
-    'Language': 'ប្តូភាសា',
+    'Change Language': 'ប្តូរភាសា',
     //Menu
     'ID': 'លេខសម្គាល់',
     'Property': 'អចលនទ្រព្យ',
@@ -48,6 +48,11 @@ class Khmer {
 
     //search propery rent
     'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
-    'No search history': 'គ្មានប្រវត្តិស្វែងរក'
+    'No search history': 'គ្មានប្រវត្តិស្វែងរក',
+    'House for rent for business': 'ផ្ទះជួលសម្រាប់អាជីវកម្ម',
+    'See All': 'មើលទាំងអស់',
+    'All Property': 'អចលនទ្រព្យទាំងអស់',
+    'Recommend': 'ណែនាំ',
+    'Popular': 'ពេញនិយម',
   };
 }
