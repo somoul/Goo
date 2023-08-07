@@ -44,6 +44,12 @@ class Khmer {
     'Rent Type': 'ប្រភេទជួល',
     'Choose Address': 'ជ្រើសរើសទីតាំង',
     'Search Rent Property': 'ស្វែងអចលនាទ្រព្យជួល',
+    'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
+
+    //search propery rent
+    'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
+    'No search history': 'គ្មានប្រវត្តិស្វែងរក',
+    'House for rent for business': 'ផ្ទះជួលសម្រាប់អាជីវកម្ម',
     'Choose Property Types': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
     'See All': 'មើលទាំងអស់',
     'All Property': 'អចលនទ្រព្យទាំងអស់',
@@ -71,8 +77,6 @@ class Khmer {
     'Ok': 'យល់ព្រម',
 
     //search propery rent
-    'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
-    'No search history': 'គ្មានប្រវត្តិស្វែងរក',
     'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម'
   };
 }

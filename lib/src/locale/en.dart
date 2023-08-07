@@ -46,6 +46,14 @@ class English {
     'Rent Type': 'Rent Type',
     'Choose Address': 'Choose Address',
     'Search Rent Property': 'Search Rent Property',
+    'Choose Property Type': 'Choose Property Type',
+
+    //search property rent
+    'Looking to rent a property for rent':
+        'Looking to rent a property for rent',
+    'No search history': 'No search history',
+    'House for rent for business': 'House for rent for business',
+
     'Choose Property Types': 'Choose Property Types',
     'See All': 'See All',
     'All Property': 'All Property',
@@ -72,9 +80,6 @@ class English {
     'Enter floor': 'Enter floor',
 
     //search property rent
-    'Looking to rent a property for rent':
-        'Looking to rent a property for rent',
-    'No search history': 'No search history',
     'Apartment for business': 'Apartment for business',
   };
 }
