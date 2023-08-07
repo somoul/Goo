@@ -35,6 +35,7 @@ class CustomButton extends StatelessWidget {
               ? OutlinedButton(
                   onPressed: onPressed == null ? null : () => onPressed!(),
                   style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     side: BorderSide(
                       width: 1,
                       color: onPressed == null
@@ -67,9 +68,11 @@ class CustomButton extends StatelessWidget {
               : ElevatedButton(
                   onPressed: onPressed == null ? null : () => onPressed!(),
                   style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(horizontal: 10)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                          borderRadius: BorderRadius.circular(8)),
                     ),
                     backgroundColor: MaterialStateProperty.all(onPressed != null
                         ? (enableColor ?? AppConstant.kPrimaryColor)
@@ -88,7 +91,7 @@ class CustomButton extends StatelessWidget {
           : isOutline == true
               ? Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
                       color: onPressed == null
                           ? (disableColor ?? Colors.grey /*Color(0xffD9D9D9)*/)
@@ -98,7 +101,7 @@ class CustomButton extends StatelessWidget {
                   child: CupertinoButton(
                     onPressed: onPressed == null ? null : () => onPressed!(),
                     padding: const EdgeInsets.all(0),
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(8),
                     child: Text(
                       title.tr,
                       style: onPressed == null
@@ -126,7 +129,7 @@ class CustomButton extends StatelessWidget {
                   color: onPressed == null
                       ? (disableColor ?? Colors.grey.shade400)
                       : (enableColor ?? AppConstant.kPrimaryColor),
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(8),
                   child: Text(
                     title.tr,
                     style: const TextStyle(

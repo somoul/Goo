@@ -3,24 +3,25 @@ import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField(
-      {Key? key,
-      this.onTap,
-      this.isSelection = false,
-      this.hindText = "",
-      this.labelText = "",
-      this.trailingWidget = const SizedBox(),
-      this.suffixIcon,
-      this.textInputType = TextInputType.text,
-      this.initialValue,
-      required this.onChange,
-      this.hintStyle,
-      this.valueStyle,
-      this.initSelectionValue,
-      this.obscureText = false,
-      this.maxLines,
-      this.textInputAction})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    this.onTap,
+    this.isSelection = false,
+    this.hindText = "",
+    this.labelText = "",
+    this.trailingWidget = const SizedBox(),
+    this.suffixIcon,
+    this.textInputType = TextInputType.text,
+    this.initialValue,
+    required this.onChange,
+    this.hintStyle,
+    this.valueStyle,
+    this.initSelectionValue,
+    this.obscureText = false,
+    this.maxLines,
+    this.textInputAction,
+    this.suffix,
+  }) : super(key: key);
   final String hindText;
   final String labelText;
   final Widget trailingWidget;
@@ -36,6 +37,7 @@ class CustomTextField extends StatefulWidget {
   final String? initSelectionValue;
   final int? maxLines;
   final TextInputAction? textInputAction;
+  final Widget? suffix;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -111,6 +113,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     borderRadius: BorderRadius.circular(5),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  suffix: widget.suffix,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: const BorderSide(

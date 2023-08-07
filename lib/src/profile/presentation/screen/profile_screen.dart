@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
+import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';
@@ -10,7 +11,6 @@ import 'package:goo_rent/src/profile/presentation/screen/components/custom_listi
 import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
-import 'package:goo_rent/src/profile/presentation/widget/custom_toggle_button.dart';
 
 import 'package:share_plus/share_plus.dart';
 
@@ -87,22 +87,19 @@ class ProfileScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               children: [
                 const SizedBox(height: 20),
-                CustomListile(
-                  title: 'Dark Mode'.tr,
-                  onTap: null,
-                  leadingAsset: 'assets/icons/Darks.png',
-                  trailing: StyledSwitch(
-                    onToggled: (bool isToggled) {},
-                  ),
-                ),
-                CustomListile(
-                    title: 'Notification'.tr,
-                    onTap: () {},
-                    leadingAsset: 'assets/icons/notifications.png'),
-                CustomListile(
-                    title: 'About Us'.tr,
-                    onTap: () {},
-                    leadingAsset: 'assets/icons/About.png'),
+                // CustomListile(
+                //   title: 'Dark Mode'.tr,
+                //   onTap: null,
+                //   leadingAsset: 'assets/icons/Darks.png',
+                //   trailing: StyledSwitch(
+                //     onToggled: (bool isToggled) {},
+                //   ),
+                // ),
+                // CustomListile(
+                //     title: 'Notification'.tr,
+                //     onTap: () {},
+                //     leadingAsset: 'assets/icons/notifications.png'),
+
                 CustomListile(
                   title: 'Share'.tr,
                   leadingAsset: 'assets/icons/share.png',
@@ -119,11 +116,12 @@ class ProfileScreen extends StatelessWidget {
                     onTap: onShowChangeLanguage,
                     leadingAsset: 'assets/icons/lange.png'),
                 CustomListile(
+                    title: 'About Us'.tr,
+                    onTap: () {},
+                    leadingAsset: 'assets/icons/About.png'),
+                CustomListile(
                   title: 'Logout'.tr,
-                  onTap: () async {
-                    await LocalStorage.removeToken();
-                    Get.offAllNamed(Routes.signin);
-                  },
+                  onTap: () => _onLogout(context),
                   leadingAsset: 'assets/icons/Security.png',
                 ),
               ],
@@ -195,6 +193,57 @@ class ProfileScreen extends StatelessWidget {
       )
     ]));
   }
+}
+
+_onLogout(BuildContext context) async {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      titlePadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+      actionsPadding: const EdgeInsets.all(15),
+      title: Text(
+        'Logout',
+        style: AppText.titleMedium,
+      ),
+      content: const Text(
+        'Your account will logout unless you login again. Are you sure to logout?',
+        textAlign: TextAlign.justify,
+      ),
+      actions: [
+        const SizedBox(height: 10),
+        SizedBox(
+          height: 35,
+          child: Row(
+            children: [
+              const Spacer(),
+              SizedBox(
+                width: 70,
+                child: CustomButton(
+                  title: 'Cancel'.tr,
+                  isOutline: true,
+                  onPressed: () => Get.back(),
+                ),
+              ),
+              const SizedBox(width: 15),
+              SizedBox(
+                width: 80,
+                child: CustomButton(
+                  title: 'Ok'.tr,
+                  onPressed: () async {
+                    await LocalStorage.removeToken();
+                    Get.back();
+                    Get.offAllNamed(Routes.signin);
+                  },
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    ),
+  );
 }
 
 onShowChangeLanguage() {

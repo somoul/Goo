@@ -57,8 +57,24 @@ class English {
     'Enter title': 'Enter title',
     'Additional Information': 'Additional Information',
     'Enter additional information': 'Enter additional information',
+    ' | Month': ' | Month',
+    ' | Square metre': ' |M2',
+    'Price': 'Price',
+    'Enter price': 'Enter price',
+    'Size': 'Size',
+    'Enter size': 'Enter size',
+    'Enter address': 'Enter address',
+    'Room types': 'Room types',
+    'Select room types': 'Select room types',
+    'Area': 'Area',
+    'Select area': 'Select area',
+    'Floor': 'Floor',
+    'Enter floor': 'Enter floor',
 
     //search property rent
-    'Looking to rent a property for rent': 'Looking to rent a property for rent'
+    'Looking to rent a property for rent':
+        'Looking to rent a property for rent',
+    'No search history': 'No search history',
+    'Apartment for business': 'Apartment for business',
   };
 }

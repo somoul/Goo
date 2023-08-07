@@ -6,6 +6,7 @@ import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/custom_text_field.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/src/post_property/controller/post_property_controller.dart';
+import 'package:goo_rent/src/post_property/data/accessory_model.dart';
 import 'package:goo_rent/src/post_property/presentation/screens/rent_step_2_.dart';
 
 class RentStepOne extends StatefulWidget {
@@ -17,49 +18,7 @@ class RentStepOne extends StatefulWidget {
 
 class _RentStepOneState extends State<RentStepOne> {
   final _postPropertyController = Get.put(PostPropertyController());
-  List<Map<String, dynamic>> selectedList = [];
-  List<Map<String, dynamic>> accessoryList = [
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Ford Rapter 2023 New',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Ford Rapter 2023 New',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-    {
-      'icon':
-          'https://p1.hiclipart.com/preview/837/900/1022/insurance-icon-car-share-icon-vehicle-sedan-transport-automobile-repair-shop-electric-car-png-clipart.jpg',
-      'title': 'Cars',
-    },
-  ];
+  List<AccessoryModel> selectedList = [];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -109,7 +68,10 @@ class _RentStepOneState extends State<RentStepOne> {
                 () => CustomButton(
                   onPressed: _postPropertyController.title.value == ''
                       ? null
-                      : () => _onShowSelectAccessory(),
+                      : () async {
+                          await _postPropertyController.getAccessories();
+                          await _onShowSelectAccessory();
+                        },
                   title: 'Continue'.tr,
                 ),
               ),
@@ -136,90 +98,110 @@ class _RentStepOneState extends State<RentStepOne> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: Column(
-                        children: [
-                          Row(children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Accessories',
-                                  style: AppText.titleMedium,
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () => Get.back(),
-                                icon: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: const Icon(Icons.clear)))
-                          ]),
-                          GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 15),
-                            itemCount: accessoryList.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 10,
-                              // childAspectRatio: 2 / 2.9,
-                              mainAxisExtent: 100,
-                            ),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  if (!selectedList
-                                      .contains(accessoryList[index])) {
-                                    selectedList.add(accessoryList[index]);
-                                  } else {
-                                    selectedList.remove(accessoryList[index]);
-                                  }
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: selectedList.contains(
-                                                  accessoryList[index])
-                                              ? AppConstant.kPrimaryColor
-                                              : Colors.transparent)),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 5),
-                                      Container(
-                                        padding: const EdgeInsets.all(14),
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey[200]!,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.network(
-                                            accessoryList[index]['icon'],
-                                            width: 30),
+                        child: Obx(
+                      () => _postPropertyController.isLoadAccessory.value
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Column(
+                              children: [
+                                Row(children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Text(
+                                        'Accessories',
+                                        style: AppText.titleMedium,
                                       ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        accessoryList[index]['title'],
-                                        style: AppText.bodySmall,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ), //_buildAccessoryItem(accessoryList[index]),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ),
+                                  IconButton(
+                                      onPressed: () => Get.back(),
+                                      icon: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          child: const Icon(Icons.clear)))
+                                ]),
+                                GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 15),
+                                  itemCount: _postPropertyController
+                                      .accessoryData.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 8,
+                                    mainAxisSpacing: 10,
+                                    // childAspectRatio: 2 / 2.9,
+                                    mainAxisExtent: 100,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (!selectedList.contains(
+                                            _postPropertyController
+                                                .accessoryData[index])) {
+                                          selectedList.add(
+                                              _postPropertyController
+                                                  .accessoryData[index]);
+                                        } else {
+                                          selectedList.remove(
+                                              _postPropertyController
+                                                  .accessoryData[index]);
+                                        }
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 4),
+                                        decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                                width: 1,
+                                                color: selectedList.contains(
+                                                        _postPropertyController
+                                                                .accessoryData[
+                                                            index])
+                                                    ? AppConstant.kPrimaryColor
+                                                    : Colors.transparent)),
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            Container(
+                                              padding: const EdgeInsets.all(14),
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[200]!,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                  _postPropertyController
+                                                          .accessoryData[index]
+                                                          .icon ??
+                                                      '',
+                                                  width: 30),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              _postPropertyController
+                                                      .accessoryData[index]
+                                                      .name ??
+                                                  "",
+                                              style: AppText.bodySmall,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                      ), //_buildAccessoryItem(accessoryList[index]),
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                    )),
                     Container(
                       color: Colors.grey[100],
                       padding: const EdgeInsets.only(

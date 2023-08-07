@@ -47,23 +47,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    onCheckUser();
     Timer(const Duration(seconds: 2), () {
       onCheckUser();
     });
-    // controller = AnimationController(
-    //   /// [AnimationController]s can be created with `vsync: this` because of
-    //   /// [TickerProviderStateMixin].
-    //   vsync: this,
-    //   duration: const Duration(seconds: 5),
-    // )..addListener(() {
-    //     setState(() {});
-    //   });
-    // controller.addStatusListener((status) {
-    //   if (status == AnimationStatus.completed) {
-    //     showAlertDialog(context: context);
-    //   }
-    // });
+
     super.initState();
   }
 
@@ -73,7 +60,6 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
-  final BestTutorSite _site = BestTutorSite.khmer;
   int currentLanguage = 1;
   bool test = false;
 

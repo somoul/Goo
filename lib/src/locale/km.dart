@@ -4,7 +4,7 @@ class Khmer {
     'Dark Mode': 'មុខងារងងិត',
     'Notifications': 'ការជូនដំណឹង',
     'About Us': 'អំពីយើង',
-    'Share': 'ការចែករំលែក',
+    'Share': 'ចែករំលែក',
     'Security': 'សុវត្ថិភាព',
     'Change Language': 'ប្តូរភាសា',
     //Menu
@@ -55,9 +55,24 @@ class Khmer {
     'Enter title': 'បញ្ចូលចំណងជើង',
     'Additional Information': 'ពត៌មានបន្ថែម',
     'Enter additional information': 'បញ្ចូលពត៌មានបន្ថែម',
+    ' | Month': ' | ខែ',
+    ' | Square metre': ' | ការ៉េ',
+    'Price': 'តម្លៃ',
+    'Enter price': 'បញ្ចូលតម្លៃជួល',
+    'Size': 'ទំហំ',
+    'Enter size': 'បញ្ចូលទំហំ',
+    'Enter address': 'បញ្ចូលអាស័យដ្ឋាន',
+    'Room types': 'ប្រភេទបន្ទប់',
+    'Select room types': 'ជ្រើសរើសប្រភេទបន្ទប់',
+    'Area': 'តំបន់',
+    'Select area': 'ជ្រើសរើសតំបន់',
+    'Floor': 'ជាន់',
+    'Enter floor': 'បញ្ចូលជាន់',
+    'Ok': 'យល់ព្រម',
 
     //search propery rent
     'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
-    'No search history': 'គ្មានប្រវត្តិស្វែងរក'
+    'No search history': 'គ្មានប្រវត្តិស្វែងរក',
+    'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម'
   };
 }

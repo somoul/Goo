@@ -213,52 +213,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Positioned(
                                     left: 0,
                                     right: 0,
-                                    bottom: -28,
-                                    child: Container(
-                                      width: double.infinity,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 14),
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 16),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: AppConstant.kPrimaryColor
-                                                .withOpacity(0.15),
-                                            blurRadius: 20,
-                                            offset: const Offset(
-                                              2.0,
-                                              2.0,
-                                            ),
-                                          )
-                                        ],
-                                        border: Border.all(
-                                            width: 3,
-                                            color: AppConstant.kPrimaryColor),
-                                        borderRadius: BorderRadius.circular(50),
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SearchRentScreen(),
-                                            ), //TabBarDemo
-                                          );
-                                        },
+                                    bottom: -22,
+                                    child: InkWell(
+                                      onTap: () => Get.to(
+                                          () => const SearchRentScreen()),
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 10),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: AppConstant.kPrimaryColor
+                                                  .withOpacity(0.15),
+                                              blurRadius: 20,
+                                              offset: const Offset(
+                                                2.0,
+                                                2.0,
+                                              ),
+                                            )
+                                          ],
+                                          border: Border.all(
+                                              width: 2,
+                                              color: AppConstant.kPrimaryColor),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
                                         child: Row(
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/image/search.svg'),
                                             const SizedBox(width: 10),
-                                            Text("ផ្ទះជួលសម្រាប់អាជីវកម្ម",
+                                            Text("Apartment for business".tr,
                                                 style: AppText.bodySmall),
                                             Expanded(
                                               child: Text("Search".tr,
                                                   textAlign: TextAlign.end,
-                                                  style: AppText.bodyMedium!
+                                                  style: AppText.bodySmall!
                                                       .copyWith(
                                                           color: AppConstant
                                                               .kPrimaryColor)),
