@@ -78,7 +78,13 @@ class English {
     'Select area': 'Select area',
     'Floor': 'Floor',
     'Enter floor': 'Enter floor',
-
+    'English': 'English',
+    'Khmer': 'Khmer',
+    'Delete Account': 'Delete Account',
+    'Edit Account': 'Edit Account',
+    'label_no': 'No ',
+    'Date Of Birth': 'Date Of Birth',
+    'Choose Date of Birth': 'Choose Date of Birth',
     //search property rent
     'Apartment for business': 'Apartment for business',
   };

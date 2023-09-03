@@ -15,6 +15,7 @@ import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_service_block.dart';
+import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Animation<double> animation;
-  final homeController = Get.put(HomeController());
+  final _homeController = Get.put(HomeController());
 //
   late int selectedPage;
   // late final PageController _pageController;
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final CarouselController _controller = CarouselController();
   final _mapController = Get.put(MapController());
   final _propertyController = Get.put(PropertyController());
-
+  final _profileCon = Get.put(ProfileController());
   @override
   void initState() {
     super.initState();
@@ -49,13 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _onInit() async {
-    homeController.fetchSlideBanner();
-    homeController.fetchSliderCategorie();
+    _homeController.fetchSlideBanner();
+    _homeController.fetchSliderCategorie();
     _propertyController.getPopularProperty(late: 1, long: 1);
     _propertyController.getAllProperties(late: 1, long: 1);
+    _profileCon.getUserInfo();
+
     selectedPage = 0;
-    homeController.pageController = PageController(initialPage: 0);
-    homeController.callStartAnimation();
+    _homeController.pageController = PageController(initialPage: 0);
+    _homeController.callStartAnimation();
     _mapController.getCurrentAddress();
 
     // _pageController = PageController(initialPage: selectedPage);
@@ -68,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // _iniAnimated({required int value}) async {
   //   Timer(const Duration(seconds: 1), () {
-  //     homeController.pageController.animateToPage(
+  //     _homeController.pageController.animateToPage(
   //       value,
   //       duration: const Duration(milliseconds: 350),
   //       curve: Curves.easeIn,
@@ -80,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = homeController.listSideBarData
+    final List<Widget> imageSliders = _homeController.listSideBarData
         .map(
           (item) => SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -100,7 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-
       body: SafeArea(
         child: Column(
           children: [
@@ -175,8 +177,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async {
-                  await homeController.fetchSlideBanner();
-                  await homeController.fetchSliderCategorie();
+                  await _homeController.fetchSlideBanner();
+                  await _homeController.fetchSliderCategorie();
                   await _propertyController.getPopularProperty(
                       late: 1, long: 1);
                   await _propertyController.getAllProperties(late: 1, long: 1);
@@ -204,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       enlargeStrategy:
                                           CenterPageEnlargeStrategy.height,
                                       onPageChanged: (index, reason) {
-                                        homeController.indexSlider.value =
+                                        _homeController.indexSlider.value =
                                             index;
                                         setState(() {});
                                       },
@@ -277,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             vertical: 10, horizontal: 3),
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: homeController
+                                            color: _homeController
                                                         .indexSlider.value ==
                                                     index
                                                 ? AppConstant.kPrimaryColor
@@ -290,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 30),
                           CustomCategoryBlock(
                             categoryList:
-                                homeController.listSideBarDataCategorie,
+                                _homeController.listSideBarDataCategorie,
                           ),
                           Container(
                             color: const Color(0xffF9F9F9),
@@ -337,7 +339,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      // ),
     );
   }
 }
@@ -443,7 +444,7 @@ void imageSlider(
         onPageChanged: onChanged
         // (index, reason) {
         // setState(() {
-        //   homeController.indexSlider.value = index;
+        //   _homeController.indexSlider.value = index;
         // });
         // }
 

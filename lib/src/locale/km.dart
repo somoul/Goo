@@ -75,6 +75,13 @@ class Khmer {
     'Floor': 'ជាន់',
     'Enter floor': 'បញ្ចូលជាន់',
     'Ok': 'យល់ព្រម',
+    'English': 'អង់គ្លេស',
+    'Khmer': 'ខ្មែរ',
+    'Delete Account': 'លុបគណនី',
+    'Edit Account': 'កែប្រែគណនី',
+    'label_no': 'គ្មាន',
+    'Date Of Birth': 'កាលបរិច្ឆេទកំណើត',
+    'Choose Date of Birth': 'ជ្រើសរើសកាលបរិច្ឆេទ',
 
     //search propery rent
     'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម'

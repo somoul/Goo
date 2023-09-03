@@ -60,7 +60,7 @@ class HomeController extends GetxController {
         .onRequest(
       isAuthorize: true,
       methode: METHODE.get,
-      url: "/banners",
+      url: '/banners',
     )
         .then((response) {
       var jsonData = response['data'];
@@ -69,7 +69,6 @@ class HomeController extends GetxController {
         sideBarData.value = SlideModel.fromJson(json);
         listSideBarData.add(sideBarData.value);
       }).toList();
-      // isfetchLoadingBanner(false);
     }).onError((ErrorModel error, stackTrace) {
       BaseToast.showErorrBaseToast('${error.bodyString['message']}');
     });

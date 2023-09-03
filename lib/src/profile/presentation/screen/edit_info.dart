@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 
+// ignore: must_be_immutable
 class ProfileInfoPage extends StatefulWidget {
-  static const String routeName = '/modified_page';
   final String? title;
-  final String? value;
-  const ProfileInfoPage({
+  String? value1;
+  String? value2;
+  final String? hint1;
+  final String? hint2;
+  ProfileInfoPage({
     Key? key,
     this.title,
-    this.value,
+    this.value1,
+    this.value2,
+    this.hint1,
+    this.hint2,
   }) : super(key: key);
 
   @override
@@ -39,46 +45,89 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               children: [
-                Obx(
-                  () => TextField(
-                    controller: profileController.textEditController.value,
-                    onChanged: (val) {
-                      setState(() {});
-                    },
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: SvgPicture.asset(
-                          ("assets/image2/closecircle.svg"),
-                        ),
-                        onPressed: () {
-                          profileController.textEditController.value.clear();
-                        },
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 15),
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                      border: InputBorder.none,
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              const BorderSide(color: Color(0xFF21A6F8))),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide.none),
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
+                TextFormField(
+                  style: AppText.bodyLarge,
+                  // controller: profileController.firstValue.value,
+                  onChanged: (val) {
+                    widget.value1 = val;
+                    setState(() {});
+                  },
+                  initialValue: widget.value1,
+                  decoration: InputDecoration(
+                    // suffixIcon: IconButton(
+                    //   icon: SvgPicture.asset(
+                    //     ("assets/image2/closecircle.svg"),
+                    //   ),
+                    //   onPressed: () {
+                    //     profileController.firstValue.value.clear();
+                    //   },
+                    // ),
+                    hintText: widget.hint1,
+                    hintStyle: AppText.bodyLarge!.copyWith(color: Colors.grey),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 15),
+                    fillColor: Colors.grey[200],
+                    filled: true,
+                    border: InputBorder.none,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: Color(0xFF21A6F8))),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none),
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
                   ),
                 ),
+                const SizedBox(height: 20),
+                widget.value2 != null && widget.value2 != ''
+                    ? TextFormField(
+                        style: AppText.bodyLarge,
+                        onChanged: (val) {
+                          widget.value2 = val;
+                          setState(() {});
+                        },
+                        initialValue: widget.value2,
+                        decoration: InputDecoration(
+                          hintText: widget.hint2,
+                          // suffixIcon: IconButton(
+                          //   icon: SvgPicture.asset(
+                          //     ("assets/image2/closecircle.svg"),
+                          //   ),
+                          //   onPressed: () =>
+                          //       profileController.secondtValue.value.clear(),
+                          // ),
+
+                          hintStyle:
+                              AppText.bodyLarge!.copyWith(color: Colors.grey),
+
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 15),
+                          fillColor: Colors.grey[200],
+                          filled: true,
+                          border: InputBorder.none,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  const BorderSide(color: Color(0xFF21A6F8))),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide.none),
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      )
+                    : Container(),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.3),
                 Obx(
                   () => CustomButton(
-                    title: 'Save',
-                    onPressed:
-                        profileController.textEditController.value.text.isEmpty
-                            ? null
-                            : () {},
+                    title: 'Save'.tr,
+                    onPressed: profileController.firstValue.value.text.isEmpty
+                        ? null
+                        : () => profileController.onSaveProfileInfo(
+                              firstValue: widget.value1,
+                              secondValue: widget.value2,
+                            ),
                   ),
                 ),
               ],

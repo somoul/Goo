@@ -6,12 +6,14 @@ class CustomListile extends StatelessWidget {
   final Function? onTap;
   final String leadingAsset;
   final Widget? trailing;
+  final double? leadingSize;
   const CustomListile({
     super.key,
     required this.title,
     this.onTap,
     required this.leadingAsset,
     this.trailing,
+    this.leadingSize,
   });
 
   @override
@@ -23,7 +25,7 @@ class CustomListile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
-            Image.asset(leadingAsset, height: 40),
+            Image.asset(leadingAsset, height: leadingSize ?? 40),
             const SizedBox(width: 15),
             Expanded(
               child: Text(title, style: AppText.bodyMedium),
