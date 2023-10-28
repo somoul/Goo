@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheen_request_rent.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 
-import 'main_tab_view_screen.dart';
-
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
-  static const String routeName = '/details_screen';
+  // static const String routeName = '/details_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 200.r,
+            height: 200,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -51,6 +48,7 @@ class DetailsScreen extends StatelessWidget {
                   controller: detailsPageController,
                   itemCount: 5,
                 ),
+
                 Positioned(
                   bottom: 10,
                   child: Container(
@@ -101,7 +99,7 @@ class DetailsScreen extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(child: DetailsPageByType()),
+          // Expanded(child: DetailsPageByType()),
         ],
       ),
       bottomNavigationBar: Padding(

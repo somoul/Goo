@@ -9,7 +9,7 @@ import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 
-import 'package:goo_rent/src/home/screen/search_house_for_rent_screen.dart';
+import 'package:goo_rent/src/home/screen/detail_property_type/search_house_for_rent_screen.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
