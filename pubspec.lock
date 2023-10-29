@@ -321,6 +321,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.4"
+  dynamic_height_grid_view:
+    dependency: "direct main"
+    description:
+      name: dynamic_height_grid_view
+      sha256: "618d9f529a00fd68238e03fa9c6cc29a2fc9ad6fae1248505fc86972f2e0f716"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -1149,6 +1157,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  readmore:
+    dependency: "direct main"
+    description:
+      name: readmore
+      sha256: "99c2483202f7c7e98c50834d72be2b119aefecf4497ca1960ae9d5f418eb1481"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   rxdart:
     dependency: transitive
     description:
@@ -1210,6 +1226,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smart_grid_view_nls:
+    dependency: "direct main"
+    description:
+      name: smart_grid_view_nls
+      sha256: "6670813e8d95fa011733e6c7a129cd670b8b17e03fdad6d41afbaf00e99d1e59"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   source_gen:
     dependency: transitive
     description:

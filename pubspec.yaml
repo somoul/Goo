@@ -71,6 +71,9 @@ dependencies:
   flutter_native_splash: ^2.2.5
   geocoding: ^2.1.0
   shimmer: ^3.0.0
+  readmore: ^2.2.0
+  dynamic_height_grid_view: ^0.0.3
+  smart_grid_view_nls: ^0.2.2
   
   
   

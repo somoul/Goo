@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/theme/color_schemes.g.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
+import '../screen/detail_property_type/detail_property_type_screen.dart';
 
 class CustomCategoryBlock extends StatelessWidget {
   final bool loading;
@@ -62,7 +62,14 @@ class CustomCategoryBlock extends StatelessWidget {
                   itemCount: categoryList.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailPropertyScreen(),
+                        ), //TabBarDemo
+                      );
+                    },
                     child: _categoryItem(categoryList[index].icon!,
                         categoryList[index].name ?? ''),
                   ),
