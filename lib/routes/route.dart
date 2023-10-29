@@ -34,10 +34,10 @@ abstract class AppPages {
     //   name: Routes.createName,
     //   page: () => CreateNameScreen(),
     // ),
-    GetPage(
-      name: Routes.createPassword,
-      page: () => const CreatePasswordScreen(),
-    ),
+    // GetPage(
+    //   name: Routes.createPassword,
+    //   page: () => const CreatePasswordScreen(),
+    // ),
     GetPage(
       name: Routes.home,
       page: () => const MainPage(),

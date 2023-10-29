@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -211,6 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _onRefresh();
                 },
                 child: CustomScrollView(
+                  physics: const ClampingScrollPhysics(),
                   slivers: [
                     SliverToBoxAdapter(
                       child: Column(
@@ -222,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   _loading
                                       ? AspectRatio(
-                                          aspectRatio: 16 / 9,
+                                          aspectRatio: 2,
                                           child: Container(
                                             color: AppConstant.kPrimaryColor
                                                 .withOpacity(0.1),
@@ -291,42 +293,34 @@ class _HomeScreenState extends State<HomeScreen> {
                             categoryList:
                                 _homeController.listSideBarDataCategorie,
                           ),
-                          Container(
-                            color: const Color(0xffF9F9F9),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 5),
 
-                                /// Popular
-                                Obx(
-                                  () => CustomPopularBlock(
-                                    popularList: _propertyController
-                                            .popularPropertyData.value.data ??
-                                        [],
-                                  ),
-                                ),
-                                const SizedBox(height: AppConstant.padding),
-
-                                ///Recommend
-                                Obx(
-                                  () => CustomPropertyGrid(
-                                    title: 'Recommend'.tr,
-                                    actionTitle: 'See All'.tr,
-                                    onAction: () {
-                                      Get.to(() => const AllProperty());
-                                    },
-                                    propertyList: _propertyController
-                                            .propertyData.value.propertyList ??
-                                        [],
-                                    propertyController: _propertyController,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                              ],
+                          /// Popular
+                          Obx(
+                            () => CustomPopularBlock(
+                              loading: _loading,
+                              popularList: _propertyController
+                                      .popularPropertyData.value.data ??
+                                  [],
                             ),
-                          )
+                          ),
+                          const SizedBox(height: AppConstant.padding),
+
+                          ///Recommend
+                          Obx(
+                            () => CustomPropertyGrid(
+                              title: 'Recommend'.tr,
+                              actionTitle: 'See All'.tr,
+                              loading: _loading,
+                              onAction: () {
+                                Get.to(() => const AllProperty());
+                              },
+                              propertyList: _propertyController
+                                      .propertyData.value.propertyList ??
+                                  [],
+                              propertyController: _propertyController,
+                            ),
+                          ),
+                          const SizedBox(height: 20)
                         ],
                       ),
                     ), // Container(

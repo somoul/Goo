@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:goo_rent/cores/theme/theme_data.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:goo_rent/cores/utils/locale_helper.dart';
 import 'package:goo_rent/firebase_options.dart';
 import 'package:goo_rent/routes/route.dart';
@@ -21,7 +21,7 @@ Future<void> main() async {
   await GetStorage.init();
 
   await LocaleHelper.onCheckLanguages();
-  await ScreenUtil.ensureScreenSize();
+  // await ScreenUtil.ensureScreenSize();
   // await NotificationHelper.onInitializeNotification();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

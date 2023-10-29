@@ -5,11 +5,15 @@ class DeviceHelper {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   static Future<String> getDeviceID() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
-    return Platform.isAndroid
-        ? androidInfo.id
-        : iosDeviceInfo.identifierForVendor!;
+    AndroidDeviceInfo androidInfo;
+    IosDeviceInfo iosDeviceInfo;
+    if (Platform.isAndroid) {
+      androidInfo = await deviceInfo.androidInfo;
+      return androidInfo.id;
+    } else {
+      iosDeviceInfo = await deviceInfo.iosInfo;
+      return iosDeviceInfo.identifierForVendor!;
+    }
   }
 
   static bool isAndroid() => Platform.isAndroid;

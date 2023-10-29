@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
 
@@ -102,7 +102,7 @@ class BuildButtonCameraWidget extends StatelessWidget {
                 "ដាក់រូបទីនេះ",
                 style: AppText.bodySmall!.copyWith(
                     color: Colors.lightBlueAccent.shade700,
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600),
               )
             ],

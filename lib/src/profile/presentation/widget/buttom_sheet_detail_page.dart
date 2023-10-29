@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:goo_rent/src/home/screen/tap_view/general_news_page.dart';
 
 void showBottomSheetDefault({required BuildContext context}) {
@@ -23,7 +23,7 @@ void showBottomSheetDefault({required BuildContext context}) {
               Column(
                 children: [
                   SizedBox(
-                    height: 200.r,
+                    height: 200,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [

@@ -201,144 +201,139 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     .editUserModel.value.address));
                           }),
                       _buildEditItem(
-                          labelName: "Date Of Birth".tr,
-                          contentName:
-                              _profileController.editUserModel.value.address ??
-                                  '',
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (bulder) {
-                                  return Dialog(
-                                    insetPadding: const EdgeInsets.symmetric(
-                                        horizontal: 6 * 3),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const SizedBox(height: 16),
-                                        Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                "Choose Date of Birth".tr,
-                                                style: AppText.titleSmall,
-                                              ),
+                        labelName: "Date Of Birth".tr,
+                        contentName:
+                            _profileController.editUserModel.value.address ??
+                                '',
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (bulder) {
+                                return Dialog(
+                                  insetPadding: const EdgeInsets.symmetric(
+                                      horizontal: 6 * 3),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const SizedBox(height: 16),
+                                      Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Choose Date of Birth".tr,
+                                              style: AppText.titleSmall,
                                             ),
-                                            Positioned(
-                                              left: 0,
-                                              child: IconButton(
-                                                onPressed: () => Get.back(),
-                                                icon: const Icon(
-                                                    Icons.arrow_back),
-                                              ),
-                                            )
+                                          ),
+                                          Positioned(
+                                            left: 0,
+                                            child: IconButton(
+                                              onPressed: () => Get.back(),
+                                              icon:
+                                                  const Icon(Icons.arrow_back),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.0 * 4),
+                                        child: Divider(),
+                                      ),
+                                      CalendarDatePicker2(
+                                        config:
+                                            CalendarDatePicker2WithActionButtonsConfig(
+                                          firstDayOfWeek: 0,
+                                          controlsTextStyle: AppText.titleSmall,
+                                          weekdayLabels: [
+                                            'Sun',
+                                            'Mon',
+                                            'Tue',
+                                            'Wed',
+                                            'Thu',
+                                            'Fri',
+                                            'Sat'
+                                          ],
+                                          calendarType:
+                                              CalendarDatePicker2Type.single,
+                                          selectedDayTextStyle: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700),
+                                          selectedDayHighlightColor:
+                                              Colors.blue[800],
+                                          dayTextStyle: AppText.bodyMedium,
+                                        ),
+                                        onValueChanged: (value) {
+                                          _profileController.editUserModel.value
+                                              .gender = value[0].toString();
+                                        },
+                                        value: [DateTime.now()],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0 * 4),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                                child: SizedBox(
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton
+                                                      .styleFrom(),
+                                                  onPressed: _profileController
+                                                              .editUserModel
+                                                              .value
+                                                              .dob ==
+                                                          null
+                                                      ? null
+                                                      : () {
+                                                          _profileController
+                                                                  .editUserModel
+                                                                  .value
+                                                                  .dob =
+                                                              _profileController
+                                                                  .editUserModel
+                                                                  .value
+                                                                  .dob;
+                                                          Get.back();
+                                                        },
+                                                  child: Text(
+                                                    "Cancel".tr,
+                                                    style: AppText.titleSmall!
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.white),
+                                                  )),
+                                            )),
+                                            const SizedBox(
+                                              width: 16,
+                                            ),
+                                            Expanded(
+                                                child: SizedBox(
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                  onPressed: () => Get.back(),
+                                                  child: Text(
+                                                    "Ok".tr,
+                                                    style: const TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                            ))
                                           ],
                                         ),
-                                        const SizedBox(height: 10),
-                                        const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 8.0 * 4),
-                                          child: Divider(),
-                                        ),
-                                        CalendarDatePicker2(
-                                          config:
-                                              CalendarDatePicker2WithActionButtonsConfig(
-                                            firstDayOfWeek: 0,
-                                            controlsTextStyle:
-                                                AppText.titleSmall,
-                                            weekdayLabels: [
-                                              'Sun',
-                                              'Mon',
-                                              'Tue',
-                                              'Wed',
-                                              'Thu',
-                                              'Fri',
-                                              'Sat'
-                                            ],
-                                            calendarType:
-                                                CalendarDatePicker2Type.single,
-                                            selectedDayTextStyle:
-                                                const TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                            selectedDayHighlightColor:
-                                                Colors.blue[800],
-                                            dayTextStyle: AppText.bodyMedium,
-                                          ),
-                                          onValueChanged: (value) {
-                                            _profileController
-                                                .editUserModel
-                                                .value
-                                                .gender = value[0].toString();
-                                          },
-                                          value: [DateTime.now()],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.0 * 4),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                  child: SizedBox(
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(),
-                                                    onPressed: _profileController
-                                                                .editUserModel
-                                                                .value
-                                                                .dob ==
-                                                            null
-                                                        ? null
-                                                        : () {
-                                                            _profileController
-                                                                    .editUserModel
-                                                                    .value
-                                                                    .dob =
-                                                                _profileController
-                                                                    .editUserModel
-                                                                    .value
-                                                                    .dob;
-                                                            Get.back();
-                                                          },
-                                                    child: Text(
-                                                      "Cancel".tr,
-                                                      style: AppText.titleSmall!
-                                                          .copyWith(
-                                                              color:
-                                                                  Colors.white),
-                                                    )),
-                                              )),
-                                              const SizedBox(
-                                                width: 16,
-                                              ),
-                                              Expanded(
-                                                  child: SizedBox(
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                    onPressed: () => Get.back(),
-                                                    child: Text(
-                                                      "Ok".tr,
-                                                      style: const TextStyle(
-                                                          color: Colors.white),
-                                                    )),
-                                              ))
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(height: 16 * 2),
-                                      ],
-                                    ),
-                                  );
-                                });
-                          }),
+                                      ),
+                                      const SizedBox(height: 16 * 2),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                      ),
                       _buildEditItem(
                           labelName: "Gender".tr,
                           contentName:

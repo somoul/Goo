@@ -120,11 +120,7 @@ class SignInScreen extends StatelessWidget {
                                     onPressed: () {
                                       Get.offAndToNamed(Routes.signup);
                                     },
-                                    child: const Text(
-                                      'Register',
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline),
-                                    ))
+                                    child: const Text('Register'))
                               ],
                             )
                           ],
@@ -132,15 +128,18 @@ class SignInScreen extends StatelessWidget {
                       ),
               )),
               Obx(
-                () => CustomButton(
-                  title: 'Sign In',
-                  onPressed:
-                      signinCon.isEnableSignin || signinCon.isLoging.value
-                          ? () async {
-                              // KeyboardHeper.hideKeyborad();
-                              await signinCon.onLogin();
-                            }
-                          : null,
+                () => SafeArea(
+                  top: false,
+                  child: CustomButton(
+                    title: 'Sign In',
+                    onPressed:
+                        signinCon.isEnableSignin || signinCon.isLoging.value
+                            ? () async {
+                                // KeyboardHeper.hideKeyborad();
+                                await signinCon.onLogin();
+                              }
+                            : null,
+                  ),
                 ),
               ),
             ],

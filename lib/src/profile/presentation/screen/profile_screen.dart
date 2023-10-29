@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
@@ -15,7 +14,8 @@ import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart'
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 
-import 'package:share_plus/share_plus.dart';
+import '../../../../cores/helper/dialog.dart';
+import '../../../../cores/helper/general.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -217,12 +217,14 @@ _onLogout(BuildContext context) async {
       contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       actionsPadding: const EdgeInsets.all(15),
       title: Text(
-        'Logout',
+        'Logout'.tr,
         style: AppText.titleMedium,
       ),
-      content: const Text(
-        'Your account will logout unless you login again. Are you sure to logout?',
+      content: Text(
+        'Your account will logout unless you login again. Are you sure to logout?'
+            .tr,
         textAlign: TextAlign.justify,
+        style: const TextStyle(fontSize: 18),
       ),
       actions: [
         const SizedBox(height: 10),
@@ -257,120 +259,4 @@ _onLogout(BuildContext context) async {
       ],
     ),
   );
-}
-
-String get langCode => Get.locale?.languageCode ?? 'km';
-onShowChangeLanguage() {
-  showDialog(
-    context: ContextProvider.context,
-    builder: (context) => AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      titlePadding: EdgeInsets.zero,
-      insetPadding: const EdgeInsets.symmetric(horizontal: 20),
-      contentPadding: const EdgeInsets.all(0),
-      title: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        decoration: const BoxDecoration(
-            color: AppConstant.kPrimaryColor,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-        child: Center(
-          child: Text(
-            'Change Language'.tr,
-            style: AppText.titleSmall!.copyWith(color: Colors.white),
-          ),
-        ),
-      ),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: 160,
-        child: Column(
-          children: langList
-              .asMap()
-              .entries
-              .map(
-                (e) => Column(
-                  children: [
-                    if (e.key == 1)
-                      Divider(
-                        height: 0,
-                        thickness: 0.5,
-                        color: Colors.grey[300],
-                      ),
-                    InkWell(
-                      onTap: () async {
-                        if (e.key == 0) {
-                          await onUpdateLanguage(isKhmer: true);
-                        } else {
-                          await onUpdateLanguage(isKhmer: false);
-                        }
-                      },
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 25),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              e.value['icon'],
-                              width: 30,
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              e.value['name'],
-                              style: AppText.titleSmall,
-                            ),
-                            const Spacer(),
-                            langCode != e.value['code']
-                                ? const SizedBox()
-                                : const Icon(
-                                    Icons.check_circle,
-                                    color: AppConstant.kPrimaryColor,
-                                  )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-              .toList(),
-        ),
-      ),
-    ),
-  );
-}
-
-List<Map<String, dynamic>> langList = [
-  {
-    'name': 'ភាសាខ្មែរ',
-    'code': 'km',
-    'icon': 'assets/image/ic_cam.png',
-  },
-  {
-    'name': 'English',
-    'code': 'en',
-    'icon': 'assets/image/ic_en.png',
-  },
-];
-
-Future<void> onUpdateLanguage({bool isKhmer = true}) async {
-  if (isKhmer) {
-    var locale = const Locale('km', 'KH');
-    Get.updateLocale(locale);
-    await LocalStorage.writeLocale('km');
-    Get.back();
-  } else {
-    var locale = const Locale('en', 'US');
-    Get.updateLocale(locale);
-    await LocalStorage.writeLocale('en');
-    Get.back();
-  }
-}
-
-onShare(BuildContext context) async {
-  final box = context.findRenderObject() as RenderBox?;
-  await Share.share("This is contents",
-      subject: "Share App",
-      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
 }

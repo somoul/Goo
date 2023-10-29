@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//
 import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:get/get.dart';
 import 'dialog_laoder.dart';
@@ -32,8 +32,8 @@ class BaseLoading extends StatelessWidget {
     return Center(
       child: Container(
         alignment: Alignment.center,
-        width: 100.sp,
-        height: 100.sp,
+        width: 100,
+        height: 100,
         child: !Platform.isAndroid
             ? const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(AppConstant.kSecondaryColor),

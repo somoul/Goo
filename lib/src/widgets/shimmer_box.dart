@@ -16,7 +16,7 @@ class ShimmerBox extends StatelessWidget {
     this.circle = false,
     this.highlightColor,
     this.baseColor,
-    this.borderRadius = 5,
+    this.borderRadius = 7,
   });
 
   static Widget pill({
@@ -67,8 +67,8 @@ class ShimmerBox extends StatelessWidget {
       // highlightColor: highlightColor ?? Colors.white,
       // baseColor: baseColor ?? Colors.grey[200]!,
       child: Container(
-        height: height ?? 16,
-        width: width ?? 200,
+        height: height ?? 13,
+        width: width ?? 100,
         decoration: circle
             ? BoxDecoration(color: Colors.grey[200]!, shape: BoxShape.circle)
             : BoxDecoration(

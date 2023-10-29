@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//
 
 enum LoaderTheme { dialogDefault, dialogCircle }
 
@@ -160,9 +160,9 @@ class CircleTheme extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                constraints: BoxConstraints(
-                  maxHeight: 80.sp,
-                  maxWidth: 80.sp,
+                constraints: const BoxConstraints(
+                  maxHeight: 80,
+                  maxWidth: 80,
                 ),
                 padding: const EdgeInsets.only(
                   left: padding,

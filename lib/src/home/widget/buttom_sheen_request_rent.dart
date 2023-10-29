@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 
@@ -66,7 +65,7 @@ class BottomSheetScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
                       'assets/image2/bed_room.png',
-                      width: 100.w,
+                      width: 100,
                       height: 110,
                     )),
                 const SizedBox(
@@ -78,7 +77,7 @@ class BottomSheetScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          width: 180.w,
+                          width: 180,
                           child: Text("បន្ទប់ជួលផ្សាឈូកមាសស្រួលរស់នៅ",
                               style: AppText.bodySmall!.copyWith(
                                   color: const Color(0xFF21A6F8),
@@ -258,7 +257,7 @@ class BottomSheetScreen extends StatelessWidget {
                                     : Colors.grey.withOpacity(0.2)),
                             child: Text(longTimeToRent[i],
                                 style: AppText.bodySmall!.copyWith(
-                                    fontSize: 14.sp,
+                                    fontSize: 14,
                                     color: index == i ? Colors.white : null)),
                           ),
                         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/cores/utils/extension/num.dart';
 import "dart:math" as math;
 
 import 'button_navigation_item.dart';
@@ -115,25 +116,34 @@ class _ButtonNavigationGooRentState extends State<ButtonNavigationGooRent>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ScaleTransition(
-                        alignment: Alignment.center,
-                        //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                        scale: scaleAnimationController,
-                        child: SvgPicture.asset(
-                          widget.items[index].svgPicturePath,
-                          color: _currentIndex != index
-                              ? inactiveIconColor
-                              : activeIconColor,
-                          width: widget.items[index].iconSize,
-                          height: widget.items[index].iconSize,
-                        ),
-                      ),
-                      Text(widget.items[index].label,
+                      widget.items[index].svgPicturePath == ''
+                          ? 22.gap
+                          : ScaleTransition(
+                              alignment: Alignment.center,
+                              //transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+                              scale: scaleAnimationController,
+                              child: SvgPicture.asset(
+                                widget.items[index].svgPicturePath,
+                                color: _currentIndex != index
+                                    ? inactiveIconColor
+                                    : activeIconColor,
+                                width: widget.items[index].iconSize,
+                                height: widget.items[index].iconSize,
+                              ),
+                            ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          widget.items[index].label,
                           textAlign: TextAlign.center,
                           style: AppText.bodySmall!.copyWith(
                               color: _currentIndex != index
                                   ? inactiveIconColor
-                                  : activeIconColor)),
+                                  : activeIconColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
                     ],
                   ),
                 ),

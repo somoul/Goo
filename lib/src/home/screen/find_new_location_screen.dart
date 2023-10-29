@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
@@ -29,7 +29,7 @@ class FindNewLocationScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 155.r,
+                height: 155,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
@@ -44,7 +44,7 @@ class FindNewLocationScreen extends StatelessWidget {
               children: [
                 SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: 50.r,
+                    height: 50,
                     child: searchText()),
                 const Spacer(),
                 const Align(
@@ -93,8 +93,8 @@ class FindNewLocationScreen extends StatelessWidget {
                           width: 30,
                           height: 30,
                         ),
-                        SizedBox(
-                          width: 5.r,
+                        const SizedBox(
+                          width: 5,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,9 +114,7 @@ class FindNewLocationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20.r,
-                ),
+                const SizedBox(height: 20),
                 SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_constant.dart';
@@ -196,7 +196,7 @@ class CustomScrenBottomSheet extends StatelessWidget {
             style: AppText.titleMedium!.copyWith(fontWeight: FontWeight.w600),
             decoration: InputDecoration(
               hintStyle: AppText.titleSmall!
-                  .copyWith(fontSize: 14.sp, color: const Color(0XFFDADADA)),
+                  .copyWith(fontSize: 14, color: const Color(0XFFDADADA)),
               hintText: "បញ្ចូលទីតាំងរបស់អ្នកត្រូវជួល",
               contentPadding: const EdgeInsets.all(0),
               suffixIcon: IconButton(

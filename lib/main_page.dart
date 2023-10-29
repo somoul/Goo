@@ -32,26 +32,12 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: const Color(0xFF21A6F8),
         onPressed: () => Get.to(const SelectCategoryScreen()),
         // showBottomTypeOfRent(context: context);
-
-        tooltip: "Rent property",
+        tooltip: "Rent property".tr,
         elevation: 5,
         child: const Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: ButtonNavigationGooRent(
-        items: [
-          BottomNavItem(
-              svgPicturePath: 'assets/icons/active_home_nagivation.svg',
-              label: "home".tr),
-          BottomNavItem(
-              svgPicturePath: 'assets/icons/sales.svg', label: "sell".tr),
-          BottomNavItem(
-              svgPicturePath: 'assets/icons/user.svg', label: "rent".tr),
-          BottomNavItem(
-              svgPicturePath: 'assets/icons/notification.svg',
-              label: "notify".tr),
-          BottomNavItem(
-              svgPicturePath: 'assets/icons/user.svg', label: "account".tr),
-        ],
+        items: _bottomMenu,
         onTapChange: (index) {
           if (index == 2) {
             return;
@@ -66,17 +52,39 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  final List<Widget> _page = const [
-    HomeScreen(),
-    MyPropertyPage(
-      isMantenance: true,
-      checkAccount: "default",
-    ),
-    MyPropertyPage(
-      isMantenance: true,
-      checkAccount: "default",
-    ),
-    NotificationScreen(),
-    ProfileScreen(),
-  ];
+  List<Widget> get _page => const [
+        HomeScreen(),
+        MyPropertyPage(
+          isMantenance: true,
+          checkAccount: "default",
+        ),
+        MyPropertyPage(
+          isMantenance: true,
+          checkAccount: "default",
+        ),
+        NotificationScreen(),
+        ProfileScreen(),
+      ];
+
+  List<BottomNavItem> get _bottomMenu => [
+        BottomNavItem(
+          svgPicturePath: 'assets/icons/active_home_nagivation.svg',
+          label: "Home".tr,
+        ),
+        BottomNavItem(
+          svgPicturePath: 'assets/icons/sales.svg',
+          label: "Sell".tr,
+        ),
+        BottomNavItem(
+          svgPicturePath: '',
+          label: "Rent".tr,
+        ),
+        BottomNavItem(
+            svgPicturePath: 'assets/icons/notification.svg',
+            label: "Notification".tr),
+        BottomNavItem(
+          svgPicturePath: 'assets/icons/user.svg',
+          label: "Account".tr,
+        ),
+      ];
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/cores/utils/extension/num.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/src/authentication/country_code/countdown_otp_provider.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
@@ -35,24 +35,18 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 120.h,
-                        ),
+                        const SizedBox(height: 120),
                         const Text(
                           "Verification OTP",
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        5.gap,
                         const Text(
                           "Enter the 6 OTP code sent to +(855)887821785 by SMS",
                           style: TextStyle(fontSize: 14),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
+                        30.gap,
                         Center(
                           child: SizedBox(
                             width: 290,
@@ -104,9 +98,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        10.gap,
                         Center(
                             child: TextButton(
                                 onPressed: () {
@@ -143,13 +135,16 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     ),
                   ),
                 ),
-                CustomButton(
-                  title: 'Confirm',
-                  onPressed:
-                      //  signUpController.otpCode.value.length < 6
-                      //     ? null
-                      //     :
-                      () async => await signUpController.onRegister(),
+                Obx(
+                  () => SafeArea(
+                    top: false,
+                    child: CustomButton(
+                      title: 'Confirm',
+                      onPressed: signUpController.otpCode.value.length < 6
+                          ? null
+                          : () async => await signUpController.onRegister(),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -160,7 +155,10 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   }
 
   _onRequestOTP() {
-    otpCon.changeIndex();
-    signUpController.onRequestOTP();
+    signUpController.onRequestOTP(
+      onCounting: () {
+        otpCon.changeIndex();
+      },
+    );
   }
 }

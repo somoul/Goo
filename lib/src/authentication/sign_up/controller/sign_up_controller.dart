@@ -28,6 +28,7 @@ class SignUpController extends GetxController {
   final dob = ''.obs;
   final verificationId = ''.obs;
   final otpCode = ''.obs;
+  final signingUp = false.obs;
 
   ///
   ///Condiction
@@ -90,12 +91,12 @@ class SignUpController extends GetxController {
 
   /// Method
 
-  Future<void> onRequestOTP() async {
+  Future<void> onRequestOTP({VoidCallback? onCounting}) async {
     var body = {
       'm_prefix': '855',
       'phone': phoneNumber.value,
     };
-
+    signingUp(true);
     await apiHelper
         .onRequest(
             url: '/send-sms',
@@ -103,8 +104,13 @@ class SignUpController extends GetxController {
             isAuthorize: false,
             body: body)
         .then((value) async {
+      if (onCounting != null) {
+        onCounting;
+      }
+      signingUp(false);
       Get.toNamed(Routes.verifyOtp);
     }).onError((ErrorModel error, stackTrace) {
+      signingUp(false);
       BaseToast.showErorrBaseToast('${error.bodyString['message']}');
     });
   }
@@ -114,7 +120,7 @@ class SignUpController extends GetxController {
     phoneNumber.value = phoneNumber.value.trim();
     var deviceId = await DeviceHelper.getDeviceID();
     var deviceType = DeviceHelper.platformName();
-    var notificationKey = LocalStorage.readToken();
+    var notificationKey = await LocalStorage.readToken();
     var body = {
       'm_prefix': '855',
       'avatar': '',
