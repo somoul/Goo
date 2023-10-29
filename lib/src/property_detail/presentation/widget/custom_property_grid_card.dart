@@ -7,7 +7,14 @@ import 'package:goo_rent/src/property_detail/data/property_models.dart';
 
 class CustomGridCard extends StatelessWidget {
   final PropertyModel propertyModel;
-  const CustomGridCard({super.key, required this.propertyModel});
+  final Function onFavorite;
+  final bool isFavorite;
+  const CustomGridCard({
+    super.key,
+    required this.propertyModel,
+    required this.onFavorite,
+    this.isFavorite = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +56,7 @@ class CustomGridCard extends StatelessWidget {
                           const Icon(Icons.remove_red_eye, size: 14),
                           const SizedBox(width: 3),
                           Text(
-                            '90',
+                            '${propertyModel.like}',
                             style: AppText.bodySmall!.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -118,7 +125,20 @@ class CustomGridCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                SvgPicture.asset('assets/image/favorite.svg', width: 22),
+                SizedBox(
+                  height: 32,
+                  width: 32,
+                  child: IconButton(
+                    splashRadius: 30,
+                    onPressed: () => onFavorite(),
+                    icon: SvgPicture.asset(
+                      'assets/image/favorite.svg',
+                      width: 22,
+                      color:
+                          isFavorite ? Colors.red : AppConstant.kPrimaryColor,
+                    ),
+                  ),
+                )
               ],
             ),
           ],

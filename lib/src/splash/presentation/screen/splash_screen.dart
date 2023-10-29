@@ -33,7 +33,7 @@ enum BestTutorSite { khmer, english, china, korea }
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  late AnimationController controller;
+  // late AnimationController controller;
   void onCheckUser() async {
     // Get.offAllNamed(Routes.home);
     var tokenKey = await LocalStorage.readToken();
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    controller.dispose();
+    // controller.dispose();
     super.dispose();
   }
 
@@ -229,44 +229,47 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff21A6F8),
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: test
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset("assets/image2/logoG.svg"),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 2.2,
-                        child: LinearProgressIndicator(
-                          value: controller.value,
-                          color: Colors.white,
-                          backgroundColor: Colors.white.withOpacity(0.5),
-                          semanticsLabel: 'Linear progress indicator',
-                        ),
-                      ),
-                    ],
-                  )
-                : SvgPicture.asset("assets/image2/Logo.svg"),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Image.asset(
-              "assets/image2/logo1.png",
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-            ),
-          ),
-        ],
-      ),
-    );
+    return const Scaffold(
+        backgroundColor: Color(0xff21A6F8),
+        body: Center(
+          child: Text('Loading...'),
+        )
+        //  Stack(
+        //   children: [
+        //     Align(
+        //       alignment: Alignment.center,
+        //       child: test
+        //           ? Column(
+        //               mainAxisAlignment: MainAxisAlignment.center,
+        //               children: [
+        //                 SvgPicture.asset("assets/image2/logoG.svg"),
+        //                 const SizedBox(
+        //                   height: 15,
+        //                 ),
+        //                 SizedBox(
+        //                   width: MediaQuery.of(context).size.width / 2.2,
+        //                   child: LinearProgressIndicator(
+        //                     value: controller.value,
+        //                     color: Colors.white,
+        //                     backgroundColor: Colors.white.withOpacity(0.5),
+        //                     semanticsLabel: 'Linear progress indicator',
+        //                   ),
+        //                 ),
+        //               ],
+        //             )
+        //           : SvgPicture.asset("assets/image2/Logo.svg"),
+        //     ),
+        //     Positioned(
+        //       bottom: 0,
+        //       child: Image.asset(
+        //         "assets/image2/logo1.png",
+        //         fit: BoxFit.cover,
+        //         width: MediaQuery.of(context).size.width,
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        );
   }
 
   showBottomEditProfilePhotoSplash(

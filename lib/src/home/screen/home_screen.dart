@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,6 +20,7 @@ import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
 
@@ -28,6 +30,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+bool _loading = false;
 
 class _HomeScreenState extends State<HomeScreen> {
   late Animation<double> animation;
@@ -41,25 +45,49 @@ class _HomeScreenState extends State<HomeScreen> {
   final _mapController = Get.put(MapController());
   final _propertyController = Get.put(PropertyController());
   final _profileCon = Get.put(ProfileController());
+  List<Widget> imageSliders = [];
   @override
   void initState() {
     super.initState();
+
     Timer.run(() {
       _onInit();
     });
   }
 
-  _onInit() async {
-    _homeController.fetchSlideBanner();
-    _homeController.fetchSliderCategorie();
-    _propertyController.getPopularProperty(late: 1, long: 1);
-    _propertyController.getAllProperties(late: 1, long: 1);
-    _profileCon.getUserInfo();
+  _onRefresh() async {
+    setState(() {
+      _loading = true;
+    });
+    await _homeController.fetchSlideBanner();
+    await _homeController.fetchSliderCategorie();
+    await _propertyController.getPopularProperty(late: 1, long: 1);
+    await _propertyController.getAllProperties(late: 1, long: 1);
+    setState(() {
+      _loading = false;
+    });
+  }
 
-    selectedPage = 0;
-    _homeController.pageController = PageController(initialPage: 0);
-    _homeController.callStartAnimation();
-    _mapController.getCurrentAddress();
+  _onInit() async {
+    setState(() {
+      _loading = true;
+    });
+    try {
+      await _homeController.fetchSlideBanner();
+      await _homeController.fetchSliderCategorie();
+      await _propertyController.getPopularProperty(late: 1, long: 1);
+      await _propertyController.getAllProperties(late: 1, long: 1);
+      await _profileCon.getUserInfo();
+      selectedPage = 0;
+      _homeController.pageController = PageController(initialPage: 0);
+      await _homeController.callStartAnimation();
+      await _mapController.getCurrentAddress();
+    } catch (_) {
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
 
     // _pageController = PageController(initialPage: selectedPage);
   }
@@ -83,15 +111,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = _homeController.listSideBarData
+    imageSliders = _homeController.listSideBarData
         .map(
           (item) => SizedBox(
             width: MediaQuery.of(context).size.width,
             child: CachedNetworkImage(
               fit: BoxFit.cover,
-              placeholder: (context, url) => Container(
-                color: Colors.grey[200],
-              ),
+              placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[100]!,
+                  highlightColor: Colors.white,
+                  child: Container(
+                    color: Colors.red,
+                  )),
               imageUrl: item.imageUrl!,
             ),
           ),
@@ -177,11 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async {
-                  await _homeController.fetchSlideBanner();
-                  await _homeController.fetchSliderCategorie();
-                  await _propertyController.getPopularProperty(
-                      late: 1, long: 1);
-                  await _propertyController.getAllProperties(late: 1, long: 1);
+                  _onRefresh();
                 },
                 child: CustomScrollView(
                   slivers: [
@@ -193,84 +220,51 @@ class _HomeScreenState extends State<HomeScreen> {
                               Stack(
                                 clipBehavior: Clip.none,
                                 children: [
-                                  CarouselSlider(
-                                    items: imageSliders,
-                                    carouselController: _controller,
-                                    options: CarouselOptions(
-                                      padEnds: false,
-                                      autoPlay: true,
-                                      enlargeFactor: 0,
-                                      enlargeCenterPage: true,
-                                      viewportFraction: 1,
-                                      aspectRatio: 2,
-                                      enlargeStrategy:
-                                          CenterPageEnlargeStrategy.height,
-                                      onPageChanged: (index, reason) {
-                                        _homeController.indexSlider.value =
-                                            index;
-                                        setState(() {});
-                                      },
-                                    ),
-                                  ),
+                                  _loading
+                                      ? AspectRatio(
+                                          aspectRatio: 16 / 9,
+                                          child: Container(
+                                            color: AppConstant.kPrimaryColor
+                                                .withOpacity(0.1),
+                                            child: const Center(
+                                              child:
+                                                  CupertinoActivityIndicator(),
+                                            ),
+                                          ))
+                                      : CarouselSlider(
+                                          items: imageSliders,
+                                          carouselController: _controller,
+                                          options: CarouselOptions(
+                                            padEnds: false,
+                                            autoPlay: true,
+                                            enlargeFactor: 0,
+                                            enlargeCenterPage: true,
+                                            viewportFraction: 1,
+                                            aspectRatio: 2,
+                                            enlargeStrategy:
+                                                CenterPageEnlargeStrategy
+                                                    .height,
+                                            onPageChanged: (index, reason) {
+                                              _homeController
+                                                  .indexSlider.value = index;
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
                                   Positioned(
                                     left: 0,
                                     right: 0,
                                     bottom: -22,
-                                    child: InkWell(
-                                      onTap: () => Get.to(
-                                          () => const SearchRentScreen()),
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 10),
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 16),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: AppConstant.kPrimaryColor
-                                                  .withOpacity(0.15),
-                                              blurRadius: 20,
-                                              offset: const Offset(
-                                                2.0,
-                                                2.0,
-                                              ),
-                                            )
-                                          ],
-                                          border: Border.all(
-                                              width: 2,
-                                              color: AppConstant.kPrimaryColor),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            SvgPicture.asset(
-                                                'assets/image/search.svg'),
-                                            const SizedBox(width: 10),
-                                            Text("Apartment for business".tr,
-                                                style: AppText.bodySmall),
-                                            Expanded(
-                                              child: Text("Search".tr,
-                                                  textAlign: TextAlign.end,
-                                                  style: AppText.bodySmall!
-                                                      .copyWith(
-                                                          color: AppConstant
-                                                              .kPrimaryColor)),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                    child: _serchBox(),
                                   ),
                                 ],
                               ),
                               Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(width: 10),
-                                    ...imageSliders.map((e) {
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(width: 10),
+                                  ...imageSliders.map(
+                                    (e) {
                                       int index = imageSliders.indexOf(e);
                                       return Container(
                                         height: 8.5,
@@ -285,12 +279,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ? AppConstant.kPrimaryColor
                                                 : Colors.white),
                                       );
-                                    }).toList()
-                                  ]),
+                                    },
+                                  ).toList()
+                                ],
+                              ),
                             ],
                           ),
                           const SizedBox(height: 30),
                           CustomCategoryBlock(
+                            loading: _loading,
                             categoryList:
                                 _homeController.listSideBarDataCategorie,
                           ),
@@ -323,6 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     propertyList: _propertyController
                                             .propertyData.value.propertyList ??
                                         [],
+                                    propertyController: _propertyController,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
@@ -335,6 +333,45 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _serchBox() {
+    return InkWell(
+      onTap: () => Get.to(() => const SearchRentScreen()),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: AppConstant.kPrimaryColor.withOpacity(0.15),
+              blurRadius: 20,
+              offset: const Offset(
+                2.0,
+                2.0,
+              ),
+            )
+          ],
+          border: Border.all(width: 2, color: AppConstant.kPrimaryColor),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Row(
+          children: [
+            SvgPicture.asset('assets/image/search.svg'),
+            const SizedBox(width: 10),
+            Text("Apartment for business".tr, style: AppText.bodySmall),
+            Expanded(
+              child: Text("Search".tr,
+                  textAlign: TextAlign.end,
+                  style: AppText.bodySmall!
+                      .copyWith(color: AppConstant.kPrimaryColor)),
             ),
           ],
         ),

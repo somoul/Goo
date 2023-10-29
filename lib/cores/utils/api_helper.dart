@@ -41,6 +41,10 @@ class ApiHelper extends GetConnect {
     };
 
     try {
+      debugPrint('Body : $body');
+      debugPrint('URL : $url');
+      debugPrint('Header : ${header ?? header0}');
+
       switch (methode) {
         case METHODE.get:
           final response = await get(
@@ -50,11 +54,12 @@ class ApiHelper extends GetConnect {
           );
           return _returnResponse(response);
         case METHODE.post:
-          if (body != null) {
-            final response = await post(fullUrl, json.encode(body),
-                headers: header ?? header0);
-            return _returnResponse(response);
-          }
+          // if (body != null) {
+
+          final response = await post(fullUrl, json.encode(body),
+              headers: header ?? header0);
+          return _returnResponse(response);
+          // }
           return Future.error(
               const ErrorModel(bodyString: 'Body must be included'));
 
@@ -94,6 +99,7 @@ class ApiHelper extends GetConnect {
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.bodyString!);
+        print('vkakvnvanivvnrfisnafinevfasivividvinasviwivw : $responseJson');
         return responseJson;
       case 201:
         var responseJson = json.decode(response.bodyString!);

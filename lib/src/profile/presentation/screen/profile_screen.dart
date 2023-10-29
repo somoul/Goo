@@ -7,6 +7,7 @@ import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/src/favorite/pages/favorite_list_page.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_listile.dart';
@@ -192,7 +193,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   CustomItemButton(
                     onTap: () {
-                      // Get.to(() => const ProblemPage());
+                      Get.to(() => const FavoriteListPage());
                     },
                     title: 'Favorite'.tr,
                     iconAsset: 'assets/icons/save.png',

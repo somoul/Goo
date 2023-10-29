@@ -63,6 +63,7 @@ class HomeController extends GetxController {
       url: '/banners',
     )
         .then((response) {
+      print('Banner Data : $response');
       var jsonData = response['data'];
       listSideBarData.clear();
       jsonData.map((json) {

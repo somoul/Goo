@@ -87,40 +87,43 @@ class PropertyModel {
   String? categoryNameKh;
   String? duration;
   String? distance;
+  bool favorite = false;
 
-  PropertyModel(
-      {this.userId,
-      this.title,
-      this.description,
-      this.price,
-      this.like,
-      this.attachments,
-      this.comment,
-      this.latitude,
-      this.longitude,
-      this.categoryId,
-      this.address,
-      this.status,
-      this.postType,
-      this.createdAt,
-      this.updatedAt,
-      this.id,
-      this.lang,
-      this.bookingPrice,
-      this.size,
-      this.landSize,
-      this.electricPrice,
-      this.waterPrice,
-      this.accessoryId,
-      this.thumbnail,
-      this.firstName,
-      this.lastName,
-      this.username,
-      this.avatar,
-      this.categoryName,
-      this.categoryNameKh,
-      this.duration,
-      this.distance});
+  PropertyModel({
+    this.userId,
+    this.title,
+    this.description,
+    this.price,
+    this.like,
+    this.attachments,
+    this.comment,
+    this.latitude,
+    this.longitude,
+    this.categoryId,
+    this.address,
+    this.status,
+    this.postType,
+    this.createdAt,
+    this.updatedAt,
+    this.id,
+    this.lang,
+    this.bookingPrice,
+    this.size,
+    this.landSize,
+    this.electricPrice,
+    this.waterPrice,
+    this.accessoryId,
+    this.thumbnail,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.avatar,
+    this.categoryName,
+    this.categoryNameKh,
+    this.duration,
+    this.distance,
+    this.favorite = false,
+  });
 
   PropertyModel.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
@@ -155,6 +158,7 @@ class PropertyModel {
     categoryNameKh = json['category_name_kh'];
     duration = json['duration'];
     distance = json['distance'];
+    favorite = json['favorite'];
   }
 
   Map<String, dynamic> toJson() {

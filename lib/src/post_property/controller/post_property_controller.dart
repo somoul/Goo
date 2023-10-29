@@ -20,6 +20,7 @@ class PostPropertyController extends GetxController {
         methode: METHODE.get,
       )
           .then((response) {
+        print('fvdksnvjuvnaijvnrwig  ::: :$response');
         var data = response['data'];
         accessoryData.clear();
         data.forEach((e) {

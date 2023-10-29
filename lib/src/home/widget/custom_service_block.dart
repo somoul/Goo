@@ -1,13 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/cores/theme/color_schemes.g.dart';
+import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
 
 class CustomCategoryBlock extends StatelessWidget {
+  final bool loading;
   final List<SlideCategorieModel> categoryList;
 
-  const CustomCategoryBlock({super.key, required this.categoryList});
+  const CustomCategoryBlock(
+      {super.key, required this.categoryList, required this.loading});
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +32,41 @@ class CustomCategoryBlock extends StatelessWidget {
           height: 60,
           width: double.infinity,
           margin: const EdgeInsets.only(top: 14),
-          child: ListView.builder(
-            itemCount: categoryList.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () {},
-              child: _categoryItem(
-                  categoryList[index].icon!, categoryList[index].name ?? ''),
-            ),
-          ),
+          child: loading
+              ? ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  scrollDirection: Axis.horizontal,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    ...List.generate(
+                      5,
+                      (index) => const Padding(
+                        padding: EdgeInsets.only(right: 36),
+                        child: Column(
+                          children: [
+                            ShimmerBox(
+                              height: 30,
+                              width: 30,
+                              circle: true,
+                            ),
+                            Spacer(),
+                            ShimmerBox(width: 50),
+                            SizedBox(height: 8),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : ListView.builder(
+                  itemCount: categoryList.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {},
+                    child: _categoryItem(categoryList[index].icon!,
+                        categoryList[index].name ?? ''),
+                  ),
+                ),
         ),
       ],
     );

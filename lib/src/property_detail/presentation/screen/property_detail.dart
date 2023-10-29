@@ -55,6 +55,7 @@ class _AllPropertyState extends State<AllProperty> {
                 title: null,
                 propertyList:
                     _propertyController.propertyData.value.propertyList ?? [],
+                propertyController: _propertyController,
               ),
       ),
     );
