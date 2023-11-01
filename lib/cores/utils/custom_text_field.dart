@@ -58,6 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         SizedBox(height: widget.labelText != '' ? 5 : 0),
         widget.isSelection == true
             ? GestureDetector(
+                onTap: () => widget.onTap!(),
                 child: Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.symmetric(horizontal: 15),

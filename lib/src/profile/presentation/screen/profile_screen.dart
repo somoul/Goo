@@ -128,7 +128,9 @@ class ProfileScreen extends StatelessWidget {
                     leadingAsset: 'assets/icons/Security.png'),
                 CustomListile(
                   title: 'Change Language'.tr,
-                  onTap: onShowChangeLanguage,
+                  onTap: () {
+                    onShowChangeLanguage(barrierDismissible: true);
+                  },
                   leadingAsset: 'assets/icons/lange.png',
                   trailing:
                       langCode != 'en' ? Text('Khmer'.tr) : Text('English'.tr),

@@ -8,6 +8,8 @@ import 'package:goo_rent/cores/helper/dialog.dart';
 import 'package:goo_rent/cores/utils/context_provider.dart';
 import 'package:goo_rent/cores/utils/custom_button.dart';
 import 'package:goo_rent/cores/utils/custom_text_field.dart';
+import 'package:goo_rent/cores/utils/extension/num.dart';
+import 'package:goo_rent/cores/utils/extension/widget.dart';
 import 'package:goo_rent/cores/utils/hide_keybaord.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
@@ -73,6 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // ),
                             onChange: (value) {
                               signUpCon.phoneNumber.value = value;
+                              setState(() {});
                             },
                           ),
                         )
@@ -95,6 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hindText: "Please enter password".tr,
                         onChange: (val) {
                           signUpCon.password.value = val;
+                          setState(() {});
                         },
                       ),
                     ),
@@ -163,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.name,
                         style: AppText.bodyMedium,
                         onChanged: (val) {
-                          // setState(() {});
+                          setState(() {});
                         },
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -202,31 +206,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
+                    10.gap,
+                    Text(
+                      'Select Date of Birth'.tr,
+                    ),
+                    5.gap,
                     Obx(
                       () => GestureDetector(
-                        onTap: () {
-                          _chooseDOB();
-                        },
-                        child: CustomTextField(
-                          labelText: 'Select Date of Birth'.tr,
-                          isSelection: true,
-                          initSelectionValue: signUpCon.dob.value == ''
-                              ? null
-                              : AppDateTime.getDate(signUpCon.dob.value),
-                          textInputType: TextInputType.phone,
-                          hindText: "Date of Birth",
-                          hintStyle: AppText.bodyMedium!.copyWith(
-                            letterSpacing: 1,
-                            color: Colors.grey,
-                          ),
-                          valueStyle: AppText.titleSmall!.copyWith(
-                            letterSpacing: 1,
-                          ),
-                          onChange: (value) {
-                            // signUpCon.phoneNumber.value = value;
+                          onTap: () {
+                            _chooseDOB();
                           },
-                        ),
-                      ),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    signUpCon.dob.value == ''
+                                        ? 'Select Date of Birth'
+                                        : AppDateTime.getDate(
+                                            signUpCon.dob.value),
+                                    style: TextStyle(
+                                      color: signUpCon.dob.value == ''
+                                          ? Colors.grey
+                                          : Colors.black,
+                                    ),
+                                  ).px(15),
+                                ),
+                                const Icon(Icons.arrow_drop_down_rounded).pr(10)
+                              ],
+                            ),
+                          )
+                          // CustomTextField(
+                          //   labelText: 'Select Date of Birth'.tr,
+                          //   isSelection: true,
+                          //   initSelectionValue: signUpCon.dob.value == ''
+                          //       ? null
+                          //       : AppDateTime.getDate(signUpCon.dob.value),
+                          //   textInputType: TextInputType.phone,
+                          //   hindText: "Date of Birth",
+                          //   hintStyle: AppText.bodyMedium!.copyWith(
+                          //     letterSpacing: 1,
+                          //     color: Colors.grey,
+                          //   ),
+                          //   valueStyle:
+                          //       AppText.titleSmall!.copyWith(letterSpacing: 1),
+                          //   onChange: (value) {
+                          //     // signUpCon.phoneNumber.value = value;
+                          //   },
+                          //   onTap: () {
+                          //     _chooseDOB();
+                          //   },
+                          // ),
+                          ),
                     ),
                     const SizedBox(height: 15),
                     Row(
@@ -349,6 +387,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: ElevatedButton.styleFrom(),
                             onPressed: () {
                               signUpCon.dob.value = temp;
+                              KeyboardHeper.hideKeyborad();
                               Get.back();
                             },
                             child: Text(
@@ -364,7 +403,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () => Get.back(),
+                            onPressed: () {
+                              KeyboardHeper.hideKeyborad();
+                              Get.back();
+                            },
                             child: Text(
                               "Ok".tr,
                               style: const TextStyle(color: Colors.white),

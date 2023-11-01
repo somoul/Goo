@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +19,7 @@ import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
+import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
@@ -32,7 +31,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-bool _loading = false;
+bool _loading = true;
 
 class _HomeScreenState extends State<HomeScreen> {
   late Animation<double> animation;
@@ -353,20 +352,32 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           ],
-          border: Border.all(width: 2, color: AppConstant.kPrimaryColor),
+          border: Border.all(
+              width: 2,
+              color: _loading ? Colors.grey[100]! : AppConstant.kPrimaryColor),
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
           children: [
-            SvgPicture.asset('assets/image/search.svg'),
+            _loading
+                ? ShimmerBox.wrap(
+                    child: SvgPicture.asset('assets/image/search.svg'))
+                : SvgPicture.asset('assets/image/search.svg'),
             const SizedBox(width: 10),
-            Text("Apartment for business".tr, style: AppText.bodySmall),
-            Expanded(
-              child: Text("Search".tr,
-                  textAlign: TextAlign.end,
-                  style: AppText.bodySmall!
-                      .copyWith(color: AppConstant.kPrimaryColor)),
-            ),
+            _loading
+                ? const ShimmerBox(
+                    width: 150,
+                  )
+                : Text("Apartment for business".tr, style: AppText.bodySmall),
+            if (_loading) const Spacer(),
+            _loading
+                ? const ShimmerBox()
+                : Expanded(
+                    child: Text("Search".tr,
+                        textAlign: TextAlign.end,
+                        style: AppText.bodySmall!
+                            .copyWith(color: AppConstant.kPrimaryColor)),
+                  ),
           ],
         ),
       ),

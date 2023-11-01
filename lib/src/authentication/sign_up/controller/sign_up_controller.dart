@@ -33,12 +33,11 @@ class SignUpController extends GetxController {
   ///
   ///Condiction
   bool get isDisabelSignup =>
-      // phoneNumber.value != '' &&
-      // phoneNumber.value.length > 7 &&
-      // password.value.length <= 4 &&
-      // firstName.value.text != '' &&
-      // lastName.value.text != '' &&
-      dob.value == '';
+      phoneNumber.value.length > 7 &&
+      password.value.length >= 4 &&
+      firstName.value.text != '' &&
+      lastName.value.text != '' &&
+      dob.value != '';
 
   /// Firebase Signup
   // Future<void> onCreateAccount() async {
