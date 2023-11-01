@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:goo_rent/src/widgets/buttom_navigation_bar/buttom_navigation_bar.dart';
+import 'package:goo_rent/src/widgets/buttom_navigation_bar/button_navigation_item.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/notification/presentation/screen/notification_screen.dart';
 import 'package:goo_rent/src/post_property/presentation/screens/select_category.dart';
 import 'package:goo_rent/src/profile/presentation/screen/my_property_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/profile_screen.dart';
 import 'package:get/get.dart';
-import 'cores/buttom_navigation_bar/buttom_navigation_bar.dart';
-import 'cores/buttom_navigation_bar/button_navigation_item.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

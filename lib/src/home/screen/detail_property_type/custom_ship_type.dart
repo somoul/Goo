@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 // ignore: must_be_immutable
 class CustomShipTypeRent extends StatelessWidget {

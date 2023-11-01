@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_constant.dart';
 
 class CustomMultiScrollWidget extends StatelessWidget {
   const CustomMultiScrollWidget({Key? key}) : super(key: key);

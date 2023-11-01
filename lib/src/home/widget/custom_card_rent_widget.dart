@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 

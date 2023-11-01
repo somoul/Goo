@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
 import 'package:goo_rent/src/post_property/data/accessory_model.dart';
+
+import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 
 class PostPropertyController extends GetxController {
   final title = ''.obs;

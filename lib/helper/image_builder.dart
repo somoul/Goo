@@ -10,9 +10,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
-import 'package:goo_rent/cores/enum/media_type.dart';
-import 'package:goo_rent/cores/helper/general.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
+import 'package:goo_rent/enum/media_type.dart';
+import 'package:goo_rent/helper/general.dart';
+import 'package:goo_rent/utils/extension/num.dart';
 import 'package:shimmer/shimmer.dart';
 
 ImageProvider getImageProvider({

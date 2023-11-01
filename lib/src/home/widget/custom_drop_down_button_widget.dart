@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 class CustomDropDownButtonWidget extends StatelessWidget {
   const CustomDropDownButtonWidget(

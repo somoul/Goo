@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
-import 'package:goo_rent/cores/utils/loading_helper.dart';
-import 'package:goo_rent/src/property_detail/data/popular_property.dart';
+import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
+import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
+import 'package:goo_rent/src/property_detail/data/popular_property.dart';
 
 class PropertyController extends GetxController {
   final _apiHelper = ApiHelper();

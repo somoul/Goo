@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/data/slide_categorie_model/slide_categorie_model.dart';
 import 'package:goo_rent/src/post_property/presentation/screens/rent_step_1_.dart';

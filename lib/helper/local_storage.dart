@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get_storage/get_storage.dart';
-import 'package:goo_rent/cores/constant/app_string.dart';
+import 'package:goo_rent/constant/app_string.dart';
 
 class LocalStorage {
   static final GetStorage box = GetStorage();

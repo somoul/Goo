@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/helper/dialog.dart';
+import 'package:goo_rent/helper/general.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/favorite/pages/favorite_list_page.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
@@ -13,9 +12,9 @@ import 'package:goo_rent/src/profile/presentation/screen/components/custom_listi
 import 'package:goo_rent/src/profile/presentation/screen/edit_profile_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/problem_page.dart';
 import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
-
-import '../../../../cores/helper/dialog.dart';
-import '../../../../cores/helper/general.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

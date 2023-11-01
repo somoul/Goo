@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_button.dart';
 import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

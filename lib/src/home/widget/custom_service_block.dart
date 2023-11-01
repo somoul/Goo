@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/theme/color_schemes.g.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
-import 'package:goo_rent/cores/utils/extension/widget.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
+import 'package:goo_rent/theme/color_schemes.g.dart';
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
 import '../screen/detail_property_type/detail_property_type_screen.dart';
 

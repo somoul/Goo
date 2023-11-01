@@ -7,7 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 
 class NotificationHelper with NotificationInteractionHandler {
   NotificationHelper._internal();

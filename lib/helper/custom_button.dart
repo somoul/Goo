@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/constant/app_constant.dart';
 import 'dart:io';
-
-import 'package:goo_rent/cores/constant/app_constant.dart';
 
 ///[Noted] If you want to disable it => onPressed: null
 class CustomButton extends StatelessWidget {

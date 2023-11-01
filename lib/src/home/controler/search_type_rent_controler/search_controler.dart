@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
+import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 
 import '../../data/search_type_rent_model/SearchTypeRentModel.dart';
 
@@ -13,7 +13,6 @@ class SearchTypeRentController extends GetxController {
   final listSearchTypeRentModel = <SearchTypeRentModel>[].obs;
 
   Future<void> onSearchTypeRen() async {
-    print("===== show 11=====");
     await apiHelper
         .onRequest(
       isAuthorize: true, methode: METHODE.get,
@@ -23,15 +22,11 @@ class SearchTypeRentController extends GetxController {
       // methode: METHODE.get,
     )
         .then((response) {
-      print("===== show 22222=====");
       var jsonData = response['data'];
-      listSearchTypeRentModel.value.clear();
+      listSearchTypeRentModel.clear();
       jsonData.map((json) {
-        print("===== show 3333=====:$json");
         searchTypeRentModel.value = SearchTypeRentModel.fromJson(json);
         listSearchTypeRentModel.add(searchTypeRentModel.value);
-        print("===== show 44=====");
-        print("=========show listSearch :$listSearchTypeRentModel");
       }).toList();
       // isfetchLoadingBanner(false);
     }).onError((ErrorModel error, stackTrace) {

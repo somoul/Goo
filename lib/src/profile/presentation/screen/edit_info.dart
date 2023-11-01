@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
+
+import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 // ignore: must_be_immutable
 class ProfileInfoPage extends StatefulWidget {

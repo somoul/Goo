@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:goo_rent/cores/theme/theme_data.dart';
-import 'package:goo_rent/cores/utils/context_provider.dart';
-
-import 'package:goo_rent/cores/utils/locale_helper.dart';
 import 'package:goo_rent/firebase_options.dart';
+import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/locale/translator.dart';
+import 'package:goo_rent/theme/theme_data.dart';
+import 'helper/locale_helper.dart';
+// import 'package:goo_rent/utils/locale_helper.dart';
 
 ///Flutter version 3.10.2
 Future<void> main() async {

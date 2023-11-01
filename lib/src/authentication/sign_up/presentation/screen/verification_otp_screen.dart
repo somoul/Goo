@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/authentication/country_code/countdown_otp_provider.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
+
+import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 

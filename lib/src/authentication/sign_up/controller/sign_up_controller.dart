@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/device_info_helper.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/device_info_helper.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/data/register_model.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
+
+import 'package:goo_rent/utils/hide_keybaord.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 
 class SignUpController extends GetxController {
   ///Firebase

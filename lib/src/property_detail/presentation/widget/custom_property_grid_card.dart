@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 
 class CustomGridCard extends StatelessWidget {

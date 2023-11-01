@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/custom_text_field.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_text_field.dart';
+import 'package:goo_rent/helper/custom_button.dart';
 import 'package:goo_rent/src/post_property/controller/post_property_controller.dart';
 import 'package:goo_rent/src/post_property/data/accessory_model.dart';
 import 'package:goo_rent/src/post_property/presentation/screens/rent_step_2_.dart';
+
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class RentStepOne extends StatefulWidget {
   const RentStepOne({super.key});

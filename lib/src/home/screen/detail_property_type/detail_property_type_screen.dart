@@ -2,14 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:readmore/readmore.dart';
-
-import '../../../../cores/constant/app_constant.dart';
-import '../../../../cores/constant/app_text.dart';
 import '../../controler/animation_background_banner_provider/home_controller.dart';
-
 import '../../controler/detail_property_type_controler.dart';
 import 'CustomImage.dart';
 import 'bottomSheet_rent_room.dart';

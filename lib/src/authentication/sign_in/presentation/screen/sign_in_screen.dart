@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/utils/custom_text_field.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_button.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_in/controller/signin_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+
 import 'package:get/get.dart';
+import 'package:goo_rent/helper/custom_text_field.dart';
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);

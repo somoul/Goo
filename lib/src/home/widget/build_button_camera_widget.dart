@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/profile/presentation/widget/buttom_sheet_edit_profile_photo.dart';
 
 class BuildButtonCameraWidget extends StatelessWidget {

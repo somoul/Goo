@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//
-import 'package:goo_rent/cores/constant/app_constant.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/constant/app_constant.dart';
 import 'dialog_laoder.dart';
 
 class BaseDialogLoading {

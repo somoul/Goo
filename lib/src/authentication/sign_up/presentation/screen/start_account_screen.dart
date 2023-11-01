@@ -2,8 +2,8 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
 import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 class StartAccountScreen extends StatelessWidget {
   const StartAccountScreen({Key? key}) : super(key: key);

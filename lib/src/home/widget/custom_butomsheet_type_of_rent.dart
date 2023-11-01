@@ -1,8 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
-import '../../../cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 class CustomItemButtomsheet extends StatelessWidget {
   String? title;

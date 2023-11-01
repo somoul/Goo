@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
 
 class SplashController extends GetxController {

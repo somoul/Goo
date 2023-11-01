@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_string.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/constant/app_string.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 
 class ErrorModel {
   final int? statusCode;
@@ -54,12 +54,11 @@ class ApiHelper extends GetConnect {
           );
           return _returnResponse(response);
         case METHODE.post:
-          // if (body != null) {
-
-          final response = await post(fullUrl, json.encode(body),
-              headers: header ?? header0);
-          return _returnResponse(response);
-          // }
+          if (body != null) {
+            final response = await post(fullUrl, json.encode(body),
+                headers: header ?? header0);
+            return _returnResponse(response);
+          }
           return Future.error(
               const ErrorModel(bodyString: 'Body must be included'));
 
@@ -88,6 +87,7 @@ class ApiHelper extends GetConnect {
 
   _returnResponse(Response response) async {
     // debugPrint('Response Data : ${response.bodyString}');
+
     if (response.statusCode != 200) {
       debugPrint(
           'Error Response ${response.statusCode} > ${response.bodyString}');
@@ -99,7 +99,6 @@ class ApiHelper extends GetConnect {
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.bodyString!);
-        print('vkakvnvanivvnrfisnafinevfasivividvinasviwivw : $responseJson');
         return responseJson;
       case 201:
         var responseJson = json.decode(response.bodyString!);

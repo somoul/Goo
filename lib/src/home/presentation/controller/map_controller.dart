@@ -1,11 +1,12 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
 import 'package:goo_rent/src/home/data/location_model/location_model.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 
 class MapController extends GetxController {
   final currentAddress = const LocationModel().obs;
+
   Future<Position> getCurrentPosition() async {
     bool serviceEnabled;
     LocationPermission permission;

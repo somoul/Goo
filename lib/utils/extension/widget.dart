@@ -1,9 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/utils/extension/edge_insets.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/utils/extension/edge_insets.dart';
+import 'package:goo_rent/utils/extension/num.dart';
 
 extension ExtendWidget on Widget {
   RenderObjectWidget get sliver {

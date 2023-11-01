@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-
-import '../../../../cores/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 class CustomContainTypeRentRow extends StatelessWidget {
   const CustomContainTypeRentRow({super.key});

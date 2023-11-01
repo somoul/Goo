@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
-import 'package:goo_rent/cores/utils/extension/widget.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid_card.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 
 class CustomPropertyGrid extends StatefulWidget {
   final String? title;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_constant.dart';
 
 class FindNewLocationScreen extends StatelessWidget {
   const FindNewLocationScreen({Key? key}) : super(key: key);

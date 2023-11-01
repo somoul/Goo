@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/utils.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/utils.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
-
-import 'country.dart';
+import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
 
 class BuildCountryPicker extends StatelessWidget {
   const BuildCountryPicker({

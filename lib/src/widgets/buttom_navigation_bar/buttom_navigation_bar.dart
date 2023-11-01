@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/utils/extension/num.dart';
 import "dart:math" as math;
 
 import 'button_navigation_item.dart';

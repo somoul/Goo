@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-
+import 'package:goo_rent/constant/app_text.dart';
 import 'buttom_sheet_pick_date_ios_platform.dart';
 
 void showBottomSheetRequestRentFunction({required BuildContext context}) {

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-
-import '../../../cores/constant/app_text.dart';
-import '../../../cores/utils/custom_button.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_button.dart';
 import '../controler/animation_background_banner_provider/home_controller.dart';
-
 import 'custom_drop_down_button_widget.dart';
 import 'custom_rangevalue_widget.dart';
 

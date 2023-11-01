@@ -1,11 +1,11 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/helper/general.dart';
-import 'package:goo_rent/cores/utils/context_provider.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/context_provider.dart';
+import 'package:goo_rent/helper/general.dart';
+import 'package:goo_rent/utils/extension/num.dart';
 
 onShowChangeLanguage(
     {VoidCallback? onSelected, bool barrierDismissible = false}) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 void showButtomSheetPickDateIOSPlatForm({required BuildContext context}) {
   showModalBottomSheet(

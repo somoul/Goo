@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/helper/dialog.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
-import 'package:goo_rent/cores/utils/extension/widget.dart';
-import 'package:goo_rent/cores/utils/image_builder.dart';
-import 'package:goo_rent/cores/utils/local_storage.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/helper/dialog.dart';
+import 'package:goo_rent/helper/image_builder.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 
 // // import 'package:flutter/material.dart';
 

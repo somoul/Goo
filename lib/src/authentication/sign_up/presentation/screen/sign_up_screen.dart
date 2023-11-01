@@ -1,21 +1,19 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
-import 'package:goo_rent/cores/helper/date_time.dart';
-import 'package:goo_rent/cores/helper/dialog.dart';
-import 'package:goo_rent/cores/utils/context_provider.dart';
-import 'package:goo_rent/cores/utils/custom_button.dart';
-import 'package:goo_rent/cores/utils/custom_text_field.dart';
-import 'package:goo_rent/cores/utils/extension/num.dart';
-import 'package:goo_rent/cores/utils/extension/widget.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/helper/custom_text_field.dart';
+import 'package:goo_rent/helper/date_time.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/controller/sign_up_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
-import 'package:intl/intl.dart';
+
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);

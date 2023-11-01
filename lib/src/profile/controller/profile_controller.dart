@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/utils/api_helper.dart';
-import 'package:goo_rent/cores/utils/hide_keybaord.dart';
-import 'package:goo_rent/cores/utils/loading_dialoge.dart';
+import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/src/profile/data/user_model.dart';
+import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class ProfileController extends GetxController {
   final firstValue = TextEditingController(text: '').obs;

@@ -1,16 +1,14 @@
 import 'dart:async';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
-import 'package:goo_rent/cores/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
-
 import 'package:goo_rent/src/home/screen/detail_property_type/search_house_for_rent_screen.dart';
-
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
@@ -20,7 +18,6 @@ import 'package:goo_rent/src/property_detail/controller/property_controller.dart
 import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../controler/animation_background_banner_provider/home_controller.dart';
 
@@ -92,11 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // _pageController = PageController(initialPage: selectedPage);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   // _iniAnimated({required int value}) async {
   //   Timer(const Duration(seconds: 1), () {
   //     _homeController.pageController.animateToPage(
@@ -106,28 +98,13 @@ class _HomeScreenState extends State<HomeScreen> {
   //     );
   //   });
   // }
-
-  int activePage = 1;
+  // int activePage = 1;
+  _onClickBaner(int id) async {
+    await _homeController.onClickBanner(id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    imageSliders = _homeController.listSideBarData
-        .map(
-          (item) => SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.grey[100]!,
-                  highlightColor: Colors.white,
-                  child: Container(
-                    color: Colors.red,
-                  )),
-              imageUrl: item.imageUrl!,
-            ),
-          ),
-        )
-        .toList();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor:
           AppConstant.kPrimaryColor, //or set color with: Color(0xFF0000FF)
@@ -137,74 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            InkWell(
-              onTap: () => Get.to(const SearchRentScreen()),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                color: AppConstant.kPrimaryColor,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 54,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 30,
-                                child: SvgPicture.asset(
-                                  'assets/icons/location.svg',
-                                  fit: BoxFit.contain,
-                                  color: Colors.white,
-                                  width: 24,
-                                ),
-                              ),
-                              Text(
-                                'Your Current Location'.tr,
-                                style: AppText.titleSmall!.copyWith(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          Obx(
-                            () => _mapController.currentAddress.value.provice ==
-                                    null
-                                ? const SizedBox()
-                                : Padding(
-                                    padding: const EdgeInsets.only(left: 30),
-                                    child: Text(
-                                      '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
-                                      style: AppText.bodySmall!.copyWith(
-                                        color: Colors.white,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      // overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    const SizedBox(
-                      width: 40,
-                      child: Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_sharp,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            _buildLocation(),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async {
@@ -218,48 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Stack(
                             children: [
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children: [
-                                  _loading
-                                      ? AspectRatio(
-                                          aspectRatio: 2,
-                                          child: Container(
-                                            color: AppConstant.kPrimaryColor
-                                                .withOpacity(0.1),
-                                            child: const Center(
-                                              child:
-                                                  CupertinoActivityIndicator(),
-                                            ),
-                                          ))
-                                      : CarouselSlider(
-                                          items: imageSliders,
-                                          carouselController: _controller,
-                                          options: CarouselOptions(
-                                            padEnds: false,
-                                            autoPlay: true,
-                                            enlargeFactor: 0,
-                                            enlargeCenterPage: true,
-                                            viewportFraction: 1,
-                                            aspectRatio: 2,
-                                            enlargeStrategy:
-                                                CenterPageEnlargeStrategy
-                                                    .height,
-                                            onPageChanged: (index, reason) {
-                                              _homeController
-                                                  .indexSlider.value = index;
-                                              setState(() {});
-                                            },
-                                          ),
-                                        ),
-                                  Positioned(
-                                    left: 0,
-                                    right: 0,
-                                    bottom: -22,
-                                    child: _serchBox(),
-                                  ),
-                                ],
-                              ),
+                              _buildSlider(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -383,6 +252,130 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget _buildSlider() {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        _loading
+            ? AspectRatio(
+                aspectRatio: 2,
+                child: Container(
+                  color: AppConstant.kPrimaryColor.withOpacity(0.1),
+                  child: const Center(
+                    child: CupertinoActivityIndicator(),
+                  ),
+                ))
+            : CarouselSlider(
+                items: _homeController.listSideBarData
+                    .map(
+                      (item) => GestureDetector(
+                        onTap: () => _onClickBaner(item.id!),
+                        child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child:
+                                ImageBuilder(fit: BoxFit.cover, canView: true)
+                                    .network(
+                              item.imageUrl!,
+                            )),
+                      ),
+                    )
+                    .toList(),
+                carouselController: _controller,
+                options: CarouselOptions(
+                  padEnds: false,
+                  autoPlay: true,
+                  enlargeFactor: 0,
+                  enlargeCenterPage: true,
+                  viewportFraction: 1,
+                  aspectRatio: 2,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _homeController.indexSlider.value = index;
+                    });
+                  },
+                ),
+              ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: -22,
+          child: _serchBox(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLocation() {
+    return InkWell(
+      onTap: () => Get.to(const SearchRentScreen()),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        color: AppConstant.kPrimaryColor,
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          children: [
+            const SizedBox(width: 10),
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 54,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 30,
+                        child: SvgPicture.asset(
+                          'assets/icons/location.svg',
+                          fit: BoxFit.contain,
+                          color: Colors.white,
+                          width: 24,
+                        ),
+                      ),
+                      Text(
+                        'Your Current Location'.tr,
+                        style: AppText.titleSmall!
+                            .copyWith(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  Obx(
+                    () => _mapController.currentAddress.value.provice == null
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(
+                              '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
+                              style: AppText.bodySmall!.copyWith(
+                                color: Colors.white,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              // overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 4),
+            const SizedBox(
+              width: 40,
+              child: Center(
+                child: Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  size: 18,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class TypeOfRent {
@@ -427,85 +420,4 @@ List<TypeOfRent> listTypeOfRent = [
       sizeRent: ' ៦០ដុល្លា ១ខែ',
       iconCard:
           IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
 ];
-
-// class CategoriesItem {
-//   final String iconSrc;
-//   final String iconName;
-
-//   const CategoriesItem({required this.iconName, required this.iconSrc});
-// }
-
-Padding padding = const Padding(
-    padding: EdgeInsets.only(left: 16, top: 0, right: 16, bottom: 0));
-
-//
-const colors = [
-  Colors.red,
-  Colors.green,
-  Colors.greenAccent,
-  Colors.amberAccent,
-  Colors.blue,
-  Colors.amber,
-];
-
-void imageSlider(
-    List<Widget>? imageSliders,
-    CarouselController? controller,
-    Function(int, CarouselPageChangedReason) onChanged,
-    HomeController homeController) {
-  CarouselSlider(
-    items: imageSliders,
-    carouselController: controller,
-    options: CarouselOptions(
-        padEnds: false,
-        autoPlay: true,
-        enlargeFactor: 0,
-        enlargeCenterPage: true,
-        viewportFraction: 1,
-        aspectRatio: 2.0,
-        enlargeStrategy: CenterPageEnlargeStrategy.height,
-        onPageChanged: onChanged
-        // (index, reason) {
-        // setState(() {
-        //   _homeController.indexSlider.value = index;
-        // });
-        // }
-
-        ),
-  );
-  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-    const SizedBox(width: 10),
-    ...imageSliders!.map((e) {
-      int index = imageSliders.indexOf(e);
-      return Container(
-        height: 8.5,
-        width: 8.5,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: homeController.indexSlider.value == index
-                ? AppConstant.kPrimaryColor
-                : Colors.white),
-      );
-    }).toList()
-  ]);
-}

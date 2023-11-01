@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/cores/constant/app_text.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 class SelectPhotoScreen extends StatelessWidget {
   const SelectPhotoScreen({super.key});
