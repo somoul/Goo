@@ -6,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/enum/storage_key.dart';
 import 'package:goo_rent/helper/image_builder.dart';
+import 'package:goo_rent/helper/local_storage.dart';
+import 'package:goo_rent/src/home/data/slider_%20banners_model/slide_model.dart';
 import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 import 'package:goo_rent/src/home/screen/detail_property_type/search_house_for_rent_screen.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -115,6 +118,21 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             _buildLocation(),
+            // FilledButton(
+            //   onPressed: () async {
+            //     // await LocalStorage.put(
+            //     //     storageKey: StorageKeys.banner, value: '{"name":"Chenda"}');
+            //   },
+            //   child: const Text('Write'),
+            // ),
+            // FilledButton(
+            //   onPressed: () async {
+            //     var value = await LocalStorage.get<List<SlideModel>>(
+            //         StorageKeys.banner);
+            //     print('DATA LOCALE : $value');
+            //   },
+            //   child: const Text('Read'),
+            // ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async {
@@ -122,6 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: CustomScrollView(
                   physics: const ClampingScrollPhysics(),
+                  // physics: const BouncingScrollPhysics(),
                   slivers: [
                     SliverToBoxAdapter(
                       child: Column(
@@ -203,8 +222,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _serchBox() {
-    return InkWell(
-      onTap: () => Get.to(() => const SearchRentScreen()),
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => const SearchRentScreen());
+      },
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

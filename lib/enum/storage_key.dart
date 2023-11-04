@@ -1,4 +1,5 @@
 class StorageKeys {
-  static const appState = 'APP_STATE';
   StorageKeys._();
+  static const appState = 'APP_STATE';
+  static const banner = 'BANNER';
 }

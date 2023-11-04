@@ -132,10 +132,10 @@ class CustomGridCard extends StatelessWidget {
                     splashRadius: 30,
                     onPressed: () => onFavorite(),
                     icon: SvgPicture.asset(
-                      'assets/image/favorite.svg',
+                      isFavorite
+                          ? 'assets/image2/active_favorite.svg'
+                          : 'assets/image/favorite.svg',
                       width: 22,
-                      color:
-                          isFavorite ? Colors.red : AppConstant.kPrimaryColor,
                     ),
                   ),
                 )

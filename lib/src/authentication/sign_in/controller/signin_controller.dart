@@ -39,8 +39,6 @@ class SignInController extends GetxController {
         body: body,
       )
           .then((value) async {
-        // BaseDialogLoading.dismiss();
-        BaseToast.showSuccessBaseToast('Signin successfully!');
         userModel.value = RegisterModel.fromJson(value['data']);
         await LocalStorage.writeToken(userModel.value.token!);
         Get.offAllNamed(Routes.home);

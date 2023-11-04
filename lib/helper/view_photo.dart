@@ -31,7 +31,7 @@
 //       initialIndex: initialIndex,
 //     ),
 //   );
-// }
+// } 
 
 // Future viewPhotoByProvider({
 //   required List<ImageProvider> imageProviders,

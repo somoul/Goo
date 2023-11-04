@@ -106,7 +106,7 @@ class _MapScreenState extends State<MapScreen> {
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, bottom: 30, top: 45),
                 child: CustomButton(
-                  title: 'Save Your Location',
+                  title: 'Save Your Location'.tr,
                   onPressed: _mapCon.currentAddress.value.country == null
                       ? null
                       : () {

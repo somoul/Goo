@@ -25,12 +25,10 @@ class PropertyController extends GetxController {
     required double long,
     int? pageNumber,
   }) async {
-    var lang = Get.locale?.languageCode;
     try {
       await _apiHelper
           .onRequest(
-              url:
-                  '/posts?lang=$lang&around=212.22&long=104.862920&lat=11.587222&page=1',
+              url: '/posts?around=212.22&long=104.862920&lat=11.587222&page=1',
               methode: METHODE.get,
               isAuthorize: true)
           .then((value) async {

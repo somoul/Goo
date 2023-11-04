@@ -23,6 +23,8 @@ enum METHODE {
 
 class ApiHelper extends GetConnect {
   final String baseurl = AppString.baseUrl;
+
+  String get _langCode => Get.locale?.languageCode ?? 'kh';
   Future<dynamic> onRequest(
       {required String url,
       Map<String, String>? header,
@@ -33,7 +35,8 @@ class ApiHelper extends GetConnect {
     final token = await LocalStorage.readToken();
     // tockenTest = _token;
     // BaseDialogLoading.show();
-    final fullUrl = baseurl + url;
+
+    final fullUrl = '$baseurl$url?lang=$_langCode';
     Map<String, String> header0 = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -41,10 +44,6 @@ class ApiHelper extends GetConnect {
     };
 
     try {
-      debugPrint('Body : $body');
-      debugPrint('URL : $url');
-      debugPrint('Header : ${header ?? header0}');
-
       switch (methode) {
         case METHODE.get:
           final response = await get(
@@ -52,6 +51,8 @@ class ApiHelper extends GetConnect {
             headers: header ?? header0,
             contentType: 'application/json',
           );
+          debugPrint('URL : $url');
+          debugPrint('Resposne : ${response.body}\n\n');
           return _returnResponse(response);
         case METHODE.post:
           if (body != null) {
@@ -115,6 +116,8 @@ class ApiHelper extends GetConnect {
             statusCode: response.statusCode,
             bodyString: json.decode(response.bodyString!)));
       case 401:
+
+        ///Session expired
         return Future.error(ErrorModel(
             statusCode: response.statusCode,
             bodyString: json.decode(response.bodyString!)));

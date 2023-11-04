@@ -2,9 +2,37 @@ import 'dart:async';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:goo_rent/constant/app_string.dart';
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
+
+// import 'package:dio/dio.dart';
+// import 'package:dio/io.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:primary/data/enum/api.dart';
+// import 'package:primary/utils/core/configure.dart';
+// import 'package:primary/utils/exceptions/api_error.dart';
+// import 'package:primary/utils/exceptions/api_null_data.dart';
+// import 'package:primary/utils/exceptions/session_expired.dart';
+// import 'package:primary/utils/extensions/stack_trace.dart';
+// import 'package:primary/utils/helpers/accessor.dart';
+// import 'package:primary/utils/helpers/general.dart';
+// import 'package:primary/utils/helpers/serailize.dart';
 
 class LocalStorage {
   static final GetStorage box = GetStorage();
+
+  static Future<void> put({required String storageKey, value}) async {
+    await box.write(storageKey.toString(), value);
+  }
+
+  static Future<T?> get<T>(String storageKey) async {
+    var value = await box.read(storageKey.toString());
+    return value;
+  }
 
   /// Locale [Languages]
   static Future<void> writeLocale(String locale) async {

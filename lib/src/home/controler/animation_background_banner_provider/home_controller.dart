@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/enum/storage_key.dart';
 
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 
 import '../../data/slide_categorie_model/slide_categorie_model.dart';
 import '../../data/slider_ banners_model/slide_model.dart';
@@ -38,20 +40,28 @@ class HomeController extends GetxController {
   final apiHelper = ApiHelper();
 
   Future<List<SlideModel>> fetchSlideBanner() async {
+    // var list = await LocalStorage.get<List<SlideModel>>(StorageKeys.banner);
+    // print('LIST : $list');
+    // if (list?.isNotEmpty ?? false) {
+    //   // list!.map((e) {
+    //   //   listSideBarData.add(e);
+    //   // });
+    // }
     await apiHelper
         .onRequest(
       isAuthorize: true,
       methode: METHODE.get,
       url: '/banners',
     )
-        .then((response) {
-      print('Banner Data : $response');
+        .then((response) async {
       var jsonData = response['data'];
       listSideBarData.clear();
       jsonData.map((json) {
         sideBarData.value = SlideModel.fromJson(json);
         listSideBarData.add(sideBarData.value);
       }).toList();
+      await LocalStorage.put(
+          storageKey: StorageKeys.banner, value: listSideBarData);
     }).onError((ErrorModel error, stackTrace) {
       BaseToast.showErorrBaseToast('${error.bodyString['message']}');
     });

@@ -16,7 +16,7 @@ class MyPropertyPage extends StatelessWidget {
     return isMantenance
         ? const Scaffold(
             body: Center(
-              child: Text("Maintenance Page"),
+              child: Text("History"),
             ),
           )
         : Scaffold(
