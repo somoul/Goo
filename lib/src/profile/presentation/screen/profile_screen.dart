@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:goo_rent/helper/dialog.dart';
 import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/local_storage.dart';
-import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
 import 'package:goo_rent/src/favorite/pages/favorite_list_page.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';
@@ -16,12 +16,17 @@ import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/helper/custom_button.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final profileController = Get.put(ProfileController());
+  @override
   Widget build(BuildContext context) {
-    final profileController = Get.put(ProfileController());
     return Scaffold(
         body: Stack(children: [
       Column(
@@ -82,23 +87,6 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            shadowColor: Colors.grey,
-                            shape: const StadiumBorder(),
-
-                            backgroundColor:
-                                const Color(0xff8bd3ff), // Background color
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Delete Account'.tr,
-                            style: AppText.titleSmall,
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -207,57 +195,59 @@ class ProfileScreen extends StatelessWidget {
       )
     ]));
   }
-}
 
-_onLogout(BuildContext context) async {
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      titlePadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-      actionsPadding: const EdgeInsets.all(15),
-      title: Text(
-        'Logout'.tr,
-        style: AppText.titleMedium,
-      ),
-      content: Text(
-        'Your account will logout unless you login again. Are you sure to logout?'
-            .tr,
-        textAlign: TextAlign.justify,
-        style: const TextStyle(fontSize: 18),
-      ),
-      actions: [
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 35,
-          child: Row(
-            children: [
-              const Spacer(),
-              SizedBox(
-                width: 75,
-                child: CustomButton(
-                  title: 'Cancel'.tr,
-                  isOutline: true,
-                  onPressed: () => Get.back(),
+  _onLogout(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+        actionsPadding: const EdgeInsets.all(15),
+        title: Text(
+          'Logout'.tr,
+          style: AppText.titleMedium,
+        ),
+        content: Text(
+          'Your account will logout unless you login again. Are you sure to logout?'
+              .tr,
+          textAlign: TextAlign.start,
+          style: const TextStyle(fontSize: 18),
+        ),
+        actions: [
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 35,
+            child: Row(
+              children: [
+                const Spacer(),
+                SizedBox(
+                  width: 75,
+                  child: CustomButton(
+                    title: 'Cancel'.tr,
+                    isOutline: true,
+                    onPressed: () => Get.back(),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 15),
-              SizedBox(
-                width: 80,
-                child: CustomButton(
-                  title: 'Ok'.tr,
-                  onPressed: () async {
-                    await LocalStorage.removeToken();
-                    Get.back();
-                    Get.offAllNamed(Routes.signin);
-                  },
-                ),
-              )
-            ],
-          ),
-        )
-      ],
-    ),
-  );
+                const SizedBox(width: 15),
+                SizedBox(
+                  width: 80,
+                  child: CustomButton(
+                    title: 'Ok'.tr,
+                    onPressed: () async {
+                      Get.back();
+                      profileController.logout().then((value) async {
+                        await LocalStorage.removeToken();
+                        Get.offAll(const SignInScreen());
+                      });
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
+import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/src/profile/data/user_model.dart';
 import 'package:goo_rent/utils/hide_keybaord.dart';
 
@@ -47,11 +48,10 @@ class ProfileController extends GetxController {
   }
 
   Future<void> getUserInfo() async {
-    String lang = Get.locale?.languageCode ?? 'km';
     try {
       await apiHelper
           .onRequest(
-        url: '/user_info?lang=$lang',
+        url: '/user_info',
         methode: METHODE.get,
         isAuthorize: true,
       )
@@ -63,6 +63,22 @@ class ProfileController extends GetxController {
       BaseToast.showErorrBaseToast(e.toString());
     } finally {
       isLoadingProfile(false);
+    }
+  }
+
+  Future logout() async {
+    // BaseDialogLoading.show();
+    try {
+      BaseDialogLoading.show();
+      return await apiHelper.onRequest(
+        url: '/logout',
+        methode: METHODE.post,
+        isAuthorize: true,
+      );
+    } catch (_) {
+      BaseDialogLoading.dismiss();
+    } finally {
+      BaseDialogLoading.dismiss();
     }
   }
 }

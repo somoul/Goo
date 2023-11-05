@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text("Create Account".tr,
                         style: AppText.titleLarge!.copyWith(fontSize: 30)),
                     const SizedBox(height: 30),
-                    Text('Enter Phone Number'.tr),
+                    Text('Phone Number'.tr),
                     const SizedBox(height: 5),
                     Row(
                       children: [
@@ -80,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text('Enter Password'.tr),
+                    Text('Password'.tr),
                     const SizedBox(height: 5),
                     Obx(
                       () => CustomTextField(
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text('Enter Firstname'.tr),
+                    Text('First Name'.tr),
                     const SizedBox(height: 5),
                     Obx(
                       () => TextFormField(
@@ -152,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text('Enter Last Name'.tr),
+                    Text('Last Name'.tr),
                     const SizedBox(height: 5),
                     SizedBox(
                       height: 46,
@@ -182,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // ),
                           hintStyle:
                               AppText.bodyMedium!.copyWith(color: Colors.grey),
-                          hintText: "Please enter your name".tr,
+                          hintText: "Enter last name".tr,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
                             borderSide: const BorderSide(color: Colors.grey),
@@ -227,7 +227,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Expanded(
                                   child: Text(
                                     signUpCon.dob.value == ''
-                                        ? 'Select Date of Birth'
+                                        ? 'Date of Birth'.tr
                                         : AppDateTime.getDate(
                                             signUpCon.dob.value),
                                     style: TextStyle(
@@ -270,14 +270,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Already have ave an account?',
+                          'Already have an account?'.tr,
                           style: AppText.bodySmall,
                         ),
                         TextButton(
                           onPressed: () {
                             Get.offAndToNamed(Routes.signin);
                           },
-                          child: const Text('Login'),
+                          child: Text(
+                            'Login'.tr,
+                            style: const TextStyle(fontFamily: "Kantumruy"),
+                          ),
                         )
                       ],
                     )
@@ -350,23 +353,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     firstDayOfWeek: 0,
                     controlsTextStyle: AppText.titleSmall,
                     weekdayLabels: [
-                      'Sun',
-                      'Mon',
-                      'Tue',
-                      'Wed',
-                      'Thu',
-                      'Fri',
-                      'Sat'
+                      'Sun'.tr,
+                      'Mon'.tr,
+                      'Tue'.tr,
+                      'Wed'.tr,
+                      'Thu'.tr,
+                      'Fri'.tr,
+                      'Sat'.tr
                     ],
                     currentDate: DateTime.parse(signUpCon.dob.value != ''
                         ? signUpCon.dob.value
                         : DateTime.now().toString()),
                     calendarType: CalendarDatePicker2Type.single,
                     selectedDayTextStyle: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Colors.white,
-                        fontWeight: FontWeight.w700),
-                    selectedDayHighlightColor: Colors.blue[800],
+                        fontWeight: FontWeight.w600),
+                    selectedDayHighlightColor: AppConstant.kPrimaryColor,
                     dayTextStyle: AppText.bodyMedium,
                   ),
                   onValueChanged: (value) {

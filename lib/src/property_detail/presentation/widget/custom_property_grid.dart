@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/src/home/screen/detail_property_type/detail_property_type_screen.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid_card.dart';
@@ -79,16 +80,27 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                 ),
                 itemBuilder: (context, index) => widget.loading
                     ? _buildShimer()
-                    : CustomGridCard(
-                        propertyModel: widget.propertyList[index],
-                        isFavorite: widget.propertyList[index].favorite,
-                        onFavorite: () {
-                          widget.propertyList[index].favorite =
-                              !widget.propertyList[index].favorite;
-                          setState(() {});
-                          widget.propertyController.onFavorit(
-                              propertyId: '${widget.propertyList[index].id}');
+                    : GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const DetailPropertyScreen(),
+                            ), //TabBarDemo
+                          );
                         },
+                        child: CustomGridCard(
+                          propertyModel: widget.propertyList[index],
+                          isFavorite: widget.propertyList[index].favorite,
+                          onFavorite: () {
+                            widget.propertyList[index].favorite =
+                                !widget.propertyList[index].favorite;
+                            setState(() {});
+                            widget.propertyController.onFavorit(
+                                propertyId: '${widget.propertyList[index].id}');
+                          },
+                        ),
                       ),
               ),
             ],

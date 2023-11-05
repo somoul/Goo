@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 import "dart:math" as math;
 
 import 'button_navigation_item.dart';
@@ -81,7 +84,7 @@ class _ButtonNavigationGooRentState extends State<ButtonNavigationGooRent>
                     activeIconColor: const Color(0xFF21A6F8),
                     inactiveIconColor: Colors.grey,
                   )),
-            ),
+            ).pb(Platform.isAndroid ? 20 : 0).pt(10),
             // Container(
             //   height: MediaQuery.of(context).padding.bottom,
             //   color: widget.backgroundColor ?? Theme.of(context).primaryColor,

@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
-import 'package:goo_rent/src/property_detail/data/popular_property.dart';
+import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 
 class CustomPopularBlock extends StatelessWidget {
-  final List<PopularModel> popularList;
+  final List<PropertyModel> popularList;
   final bool loading;
   const CustomPopularBlock(
       {Key? key,
@@ -54,7 +54,7 @@ class CustomPopularBlock extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              PopularModel item = popularList[index];
+                              PropertyModel item = popularList[index];
                               return Container(
                                 width: 300,
                                 margin:

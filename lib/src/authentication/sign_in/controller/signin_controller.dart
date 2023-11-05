@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
+import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/helper/local_storage.dart';
-import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/data/register_model.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
 import 'package:goo_rent/helper/api_helper.dart';
@@ -23,32 +23,32 @@ class SignInController extends GetxController {
       phoneNumber.value.length > 7 && password.value.length > 4;
 
   /// Method
-  Future<void> onLogin() async {
-    // BaseDialogLoading.show();
+  Future onLogin() async {
+    BaseDialogLoading.show();
     isLoging(true);
     var body = {
       'username': phoneNumber.value,
       'password': password.value,
     };
     try {
-      await apiHelper
+      var response = await apiHelper
           .onRequest(
         url: '/login',
         methode: METHODE.post,
         isAuthorize: false,
         body: body,
       )
-          .then((value) async {
-        userModel.value = RegisterModel.fromJson(value['data']);
-        await LocalStorage.writeToken(userModel.value.token!);
-        Get.offAllNamed(Routes.home);
-      }).onError((ErrorModel error, stackTrace) {
+          .onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
+        return;
       });
-    } catch (e) {
-      // BaseDialogLoading.dismiss();
+      userModel.value = RegisterModel.fromJson(response['data']);
+      await LocalStorage.writeToken(userModel.value.token!);
+      return response;
+    } catch (_) {
       // BaseToast.showErorrBaseToast(e.toString());
     } finally {
+      BaseDialogLoading.dismiss();
       isLoging(false);
     }
   }

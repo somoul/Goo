@@ -25,7 +25,7 @@ import 'dart:math';
 class LocalStorage {
   static final GetStorage box = GetStorage();
 
-  static Future<void> put({required String storageKey, value}) async {
+  static Future<void> put({required String storageKey, required value}) async {
     await box.write(storageKey.toString(), value);
   }
 

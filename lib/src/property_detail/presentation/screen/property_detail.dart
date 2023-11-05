@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 
@@ -12,11 +13,11 @@ class AllProperty extends StatefulWidget {
 }
 
 class _AllPropertyState extends State<AllProperty> {
-  final _propertyController = Get.put(PropertyController());
+  final _homeCon = Get.put(HomeController());
   @override
   void initState() {
     super.initState();
-    _propertyController.getAllProperties(late: 1, long: 1);
+    _homeCon.getAllProperties(late: 1, long: 1);
   }
 
   @override
@@ -46,16 +47,15 @@ class _AllPropertyState extends State<AllProperty> {
         ],
       ),
       body: Obx(
-        () => _propertyController.isLoadAllProperty.value
+        () => _homeCon.isLoadAllProperty.value
             ? const Center(
                 child: CircularProgressIndicator(),
               )
             : CustomPropertyGrid(
                 actionTitle: null,
                 title: null,
-                propertyList:
-                    _propertyController.propertyData.value.propertyList ?? [],
-                propertyController: _propertyController,
+                propertyList: _homeCon.propertyData.value.propertyList ?? [],
+                propertyController: PropertyController(),
               ),
       ),
     );

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_escapes
+
 class Khmer {
   static Map<String, String> get lang => {
         //Setting
@@ -88,5 +90,33 @@ class Khmer {
         'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម',
         'Your account will logout unless you login again. Are you sure to logout?':
             'អ្នកនឹងចាកចេញពីគណនីរបស់អ្នក។ តើអ្នកចង់ចាកចេញ ឬទេ?',
+        "Welcome": "សូមស្វាគមន៍",
+        "Enter phone number and password to login":
+            "សូមបញ្ចូលលេខទូរស័ព្ទ​ និងលេខសម្ងាត់របស់អ្នកដើម្បីចូលគណនី",
+        "Please enter password": "បញ្ចូលលេខសម្ងាត់",
+        "Don\'t have account?": "មិនទាន់មានគណនី?",
+        "Register": "បង្កើតគណនីថ្មី",
+        "Sign In": "ចូលគណនី",
+        "Create Account": "បង្កើតគណនី",
+        "Enter phone number": "បញ្ចូលលេខទូរស័ព្ទ",
+        "Enter password": "បញ្ចូលលេខសម្ងាត់",
+        "First Name": "នាមត្រកូល",
+        "Last Name": "នាមខ្លួន",
+        "Enter first name": "បញ្ចូលនាមត្រកូល",
+        "Enter last name": "បញ្ចូលនាមខ្លួន",
+        "Select Date of Birth": "ជ្រើសរើសថ្ងៃកំណើត",
+        "Already have an account?": "មានគណនីរួចហើយ",
+        "Login": "ចូលគណនី",
+        "Sign Up": "បង្កើតគណនី",
+        "Password": "លេខសម្ងាត់",
+        "Sun": "អាទិត្យ",
+        "Mon": "ចន្ទ",
+        "Tue": "អង្គារ៍",
+        "Wed": "ពុធ",
+        "Thu": "ព្រ.ហ",
+        "Fri": "សុក្រ",
+        "Sat": "សៅរ៍",
+        "No Data": "ទិន្នន័យ",
+        "Request Rent": "ស្នើរសុំ​ជួល"
       };
 }

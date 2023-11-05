@@ -28,7 +28,6 @@ class SearchTypeRentController extends GetxController {
         searchTypeRentModel.value = SearchTypeRentModel.fromJson(json);
         listSearchTypeRentModel.add(searchTypeRentModel.value);
       }).toList();
-      // isfetchLoadingBanner(false);
     }).onError((ErrorModel error, stackTrace) {
       BaseToast.showErorrBaseToast('${error.bodyString['message']}');
     });

@@ -1,15 +1,18 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:goo_rent/enum/storage_key.dart';
+import 'package:goo_rent/helper/loading_helper.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/src/home/data/location_model/location_model.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
 
 class MapController extends GetxController {
   final currentAddress = const LocationModel().obs;
-
+  late LocationPermission permission;
   Future<Position> getCurrentPosition() async {
     bool serviceEnabled;
-    LocationPermission permission;
+
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       BaseToast.showErorrBaseToast('Location services are disabled');
@@ -19,7 +22,6 @@ class MapController extends GetxController {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         // return Future.error('Location permissions are denied');
-        BaseToast.showErorrBaseToast('Location permissions are denied');
       }
     }
     if (permission == LocationPermission.deniedForever) {
@@ -37,7 +39,7 @@ class MapController extends GetxController {
       var long = currentLocation.longitude;
       await placemarkFromCoordinates(late, long,
               localeIdentifier: Get.locale?.languageCode ?? "km_KH")
-          .then((List<Placemark> placemarks) {
+          .then((List<Placemark> placemarks) async {
         var place = placemarks[0];
         currentAddress.value = LocationModel(
           street: place.street,
@@ -47,9 +49,19 @@ class MapController extends GetxController {
           provice: place.locality,
           country: place.country,
         );
+        await LocalStorage.put(
+            storageKey: StorageKeys.location, value: currentAddress.value);
       }).catchError((_) {});
     });
 
     return currentAddress.value;
+  }
+
+  Future getLocalAddress() async {
+    permission = await Geolocator.checkPermission();
+    var data = await LocalStorage.get(StorageKeys.location);
+    if (data != null) {
+      currentAddress.value = LocationModel.fromJson(data);
+    }
   }
 }

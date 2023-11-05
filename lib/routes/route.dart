@@ -3,7 +3,7 @@ import 'package:goo_rent/main_page.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/create_passwrod_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/sign_up_screen.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/sign_in_screen.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/start_account_screen.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/verification_otp_screen.dart';
 import 'package:goo_rent/src/splash/presentation/screen/splash_screen.dart';

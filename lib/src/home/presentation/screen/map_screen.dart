@@ -63,14 +63,6 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Map'.tr),
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: SvgPicture.asset(
-            'assets/image/arrow_back.svg',
-            width: 15,
-            height: 15,
-          ),
-        ),
       ),
       body: Stack(
         children: [

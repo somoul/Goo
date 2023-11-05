@@ -26,6 +26,7 @@ class BuildCountryPicker extends StatelessWidget {
         child: DropdownButton<Country>(
           icon: const Icon(
             Icons.arrow_drop_down_rounded,
+            // color: Colors.transparent,
             color: Colors.grey,
           ),
           value: initCountry,

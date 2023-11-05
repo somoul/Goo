@@ -522,7 +522,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ));
   }
 
-  String get langCode => Get.locale?.languageCode ?? 'km';
   _buildEditItem(
       {required String labelName,
       required String contentName,

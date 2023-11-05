@@ -60,7 +60,7 @@ class PropertyModel {
   String? description;
   String? price;
   int? like;
-  String? attachments;
+  List<String>? attachments;
   int? comment;
   String? latitude;
   String? longitude;
@@ -131,7 +131,8 @@ class PropertyModel {
     description = json['description'];
     price = json['price'];
     like = json['like'];
-    attachments = json['attachments'];
+    attachments =
+        json['attachments'] != null ? json['attachments'].cast<String>() : [];
     comment = json['comment'];
     latitude = json['latitude'];
     longitude = json['longitude'];
@@ -158,7 +159,7 @@ class PropertyModel {
     categoryNameKh = json['category_name_kh'];
     duration = json['duration'];
     distance = json['distance'];
-    favorite = json['favorite'];
+    favorite = json['favorite'] ?? false;
   }
 
   Map<String, dynamic> toJson() {

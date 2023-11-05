@@ -12,6 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
 import 'package:goo_rent/enum/media_type.dart';
 import 'package:goo_rent/helper/general.dart';
+import 'package:goo_rent/helper/view_photo.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -152,6 +153,7 @@ ImageProvider getImageProvider({
   }
 }
 
+// ignore: unused_element
 class _ImageProviderConstruct {
   final dynamic path;
   final MediaSourceTypes source;
@@ -251,6 +253,13 @@ Widget _defaultLoadingBuilder(
               //     imageProviders: [imageProvider],
               //   );
               // }
+              var index = imageBuilder.images.indexOf(imageProvider);
+              if (index >= 0) {
+                viewPhotoByProvider(
+                    imageProviders: imageBuilder.images, initialIndex: index);
+              } else {
+                viewPhotoByProvider(imageProviders: [imageProvider]);
+              }
             }
           : null,
       child: child,
@@ -274,13 +283,6 @@ Widget _defaultLoadingBuilder(
               borderRadius: imageBuilder.clipRadius?.borderRadius,
             ),
           ),
-        ),
-      ),
-      Positioned.fill(
-        child: Center(
-          child: Platform.isAndroid
-              ? const CircularProgressIndicator()
-              : const CupertinoActivityIndicator(),
         ),
       ),
     ],
