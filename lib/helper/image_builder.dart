@@ -205,25 +205,19 @@ Widget _defaultErrorBuilder(
                   builder:
                       (BuildContext context, bool isLoading, Widget? child) {
                     if (isLoading) {
-                      return Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Platform.isAndroid
-                            ? const CircularProgressIndicator()
-                            : const CupertinoActivityIndicator(),
+                      return const Padding(
+                        padding: EdgeInsets.all(2),
+                        child: CupertinoActivityIndicator(),
                       );
                     } else {
-                      return Icon(
-                        Icons.image_not_supported,
-                        color: Colors.grey[500],
-                      );
+                      return ImageBuilder(width: 40, height: 40)
+                          .asset("assets/image/app_logo.png");
                     }
                   },
                 );
               } else {
-                return Icon(
-                  Icons.image_not_supported,
-                  color: Colors.grey[500],
-                );
+                return ImageBuilder(width: 40, height: 40)
+                    .asset("assets/image/app_logo.png");
               }
             },
           ),

@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await _homeController.fetchSliderCategorie();
     await _homeController.getPopularProperty(late: 1, long: 1);
     await _homeController.getAllProperties(late: 1, long: 1);
-    await _mapController.getLocalAddress();
+    // await _mapController.getLocalAddress();
   }
 
   _onInit() async {

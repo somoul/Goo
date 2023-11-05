@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 
 class CustomGridCard extends StatelessWidget {
@@ -36,10 +37,16 @@ class CustomGridCard extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(propertyModel.avatar ?? ''),
-                    ),
+                    // image: DecorationImage(
+                    //   fit: BoxFit.cover,
+                    //   image: NetworkImage(propertyModel.attachments?[0] ??
+                    //       propertyModel.avatar!),
+                    // ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                    child: ImageBuilder(fit: BoxFit.cover).network(
+                        propertyModel.attachments?[0] ?? propertyModel.avatar!),
                   ),
                 ),
                 Positioned(
