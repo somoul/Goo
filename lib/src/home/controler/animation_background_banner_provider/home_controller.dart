@@ -59,10 +59,20 @@ class HomeController extends GetxController {
     try {
       await apiHelper
           .onRequest(
-        isAuthorize: true,
-        methode: METHODE.get,
-        url: '/banners',
-      )
+              isAuthorize: true,
+              methode: METHODE.get,
+              url: '/banners',
+              whenRequestFailed: () async {
+                var data = await LocalStorage.get(StorageKeys.banner);
+                if (data != null) {
+                  data.map((element) {
+                    listSideBarData.add(SlideModel.fromJson(element));
+                  }).toList();
+                  listSideBarData.map((element) {
+                    homeslideList.add(element.imageUrl!);
+                  }).toList();
+                }
+              })
           .then((response) async {
         var jsonData = response['data'];
         listSideBarData.clear();
@@ -76,7 +86,7 @@ class HomeController extends GetxController {
         }).toList();
         await LocalStorage.put(
             storageKey: StorageKeys.banner, value: listSideBarData);
-      }).onError((ErrorModel error, stackTrace) {
+      }).onError((ErrorModel error, stackTrace) async {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (_) {
@@ -121,6 +131,7 @@ class HomeController extends GetxController {
       isLoadAllProperty(false);
     }
   }
+  // /posts/recomment?lang=kh&lat=11.587222&long=104.862920
 
   ///Function  get data on  Categorie
   final loadingCategory = false.obs;

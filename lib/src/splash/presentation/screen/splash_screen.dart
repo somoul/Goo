@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/helper/dialog.dart';
+import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/routes/route_name.dart';
+import 'package:goo_rent/src/provider/app_ref.dart';
+import 'package:goo_rent/src/provider/connection.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 
@@ -302,14 +306,14 @@ import 'package:goo_rent/utils/extension/widget.dart';
 //   }
 // }
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   String? tokenKey;
   String langCode = '';
   bool loading = true;
@@ -351,7 +355,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void didChangeDependencies() {
+    _preload();
     super.didChangeDependencies();
+  }
+
+  void _preload() async {
+    postFrameCallback(
+        () => appRef.read(exitEntryPointProvider.notifier).state = true);
   }
 
   @override

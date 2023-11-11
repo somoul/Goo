@@ -91,5 +91,36 @@ class English {
         'Apartment for business': 'Apartment for business',
         'Your account will logout unless you login again. Are you sure to logout?':
             'Your account will logout unless you login again. Are you sure to logout?',
+
+        "Welcome": "Welcome",
+        "Enter phone number and password to login":
+            "Enter phone number and password to login",
+        "Please enter password": "Please enter password",
+        "Don't have account?": "Don't have account??",
+        "Register": "Register",
+        "Sign In": "Sign In",
+        "Create Account": "Create Account",
+        "Enter phone number": "Enter phone number",
+        "Enter password": "Enter password",
+        "First Name": "First Name",
+        "Last Name": "Last Name",
+        "Enter first name": "Enter first name",
+        "Enter last name": "Enter last name",
+        "Select Date of Birth": "Select Date of Birth",
+        "Already have an account?": "Already have an account?",
+        "Login": "Login",
+        "Sign Up": "Sign Up",
+        "Password": "Password",
+        "Sun": "Sun",
+        // "Mon": "Mon",
+        // "Tue": "Tue",
+        // "Wed": "Wed",
+        // "Thu": "Thu",
+        // "Fri": "Fri",
+        // "Sat": "Sat",
+        "No Data": "No Data",
+        "Request Rent": "Request Rent",
+        "The session has expired, please login again.":
+            "The session has expired, please login again."
       };
 }

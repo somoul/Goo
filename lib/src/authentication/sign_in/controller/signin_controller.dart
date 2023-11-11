@@ -5,6 +5,7 @@ import 'package:goo_rent/src/authentication/sign_up/data/register_model.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/country.dart';
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
+import 'package:goo_rent/utils/core/config.dart';
 
 class SignInController extends GetxController {
   ///Object
@@ -27,7 +28,9 @@ class SignInController extends GetxController {
     BaseDialogLoading.show();
     isLoging(true);
     var body = {
-      'username': phoneNumber.value,
+      'username': signinPhoneAddCountryCode
+          ? "855${phoneNumber.value}"
+          : phoneNumber.value,
       'password': password.value,
     };
     try {

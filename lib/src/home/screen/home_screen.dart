@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // late final PageController _pageController;
   final pageCount = 5;
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
-  final _mapController = Get.put(MapController());
+  final _mapController = Get.put(GMapController());
   final _propertyController = Get.put(PropertyController());
   final _profileCon = Get.put(ProfileController());
   List<Widget> imageSliders = [];
@@ -56,15 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _onInit() async {
     try {
-      await _mapController.getLocalAddress();
       await _homeController.fetchSlideBanner();
       await _homeController.fetchSliderCategorie();
       await _homeController.getPopularProperty(late: 1, long: 1);
       await _homeController.getAllProperties(late: 1, long: 1);
       await _profileCon.getUserInfo();
-      selectedPage = 0;
-      _homeController.pageController = PageController(initialPage: 0);
-      await _homeController.callStartAnimation();
+      // selectedPage = 0;
+      // _homeController.pageController = PageController(initialPage: 0);
+      // await _homeController.callStartAnimation();
+      await _mapController.getLocalAddress();
       await _mapController.getCurrentAddress();
     } catch (_) {
     } finally {}
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _onRefresh();
               },
               child: CustomScrollView(
-                physics: const ClampingScrollPhysics(),
+                // physics: const ClampingScrollPhysics(),
                 // physics: const BouncingScrollPhysics(),
                 slivers: [
                   SliverToBoxAdapter(
@@ -126,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(height: 30),
+
                         Obx(
                           () => CustomCategoryBlock(
                             loading: _homeController.loadingCategory.value,
@@ -144,6 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(height: AppConstant.padding),
+                        // FilledButton(
+                        //     onPressed: () async {
+                        //       await _profileCon.getUserInfo();
+                        //     },
+                        //     child: const Text("Helkadksfdgkjb")),
 
                         ///Recommend
                         Obx(
@@ -209,10 +215,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Obx(
-                    () => _mapController.currentAddress.value.provice == null
+                    () => _mapController.currentAddress.value == ""
                         ? const SizedBox()
                         : Text(
-                            '${_mapController.currentAddress.value.village}${_mapController.currentAddress.value.village != '' ? ', ' : ''}${_mapController.currentAddress.value.commune}${_mapController.currentAddress.value.commune != '' ? ',' : ''}${_mapController.currentAddress.value.distict}${_mapController.currentAddress.value.distict != '' ? ',' : ''} ${_mapController.currentAddress.value.provice}',
+                            _mapController.currentAddress.value,
                             style: AppText.bodySmall!.copyWith(
                               color: Colors.white,
                               overflow: TextOverflow.ellipsis,

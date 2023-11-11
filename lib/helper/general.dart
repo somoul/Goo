@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -56,4 +57,13 @@ ImageProvider networkProvider(String url) {
     data: url,
     source: MediaSourceTypes.network,
   );
+}
+
+Future postFrameCallback(FutureOr Function() callback) async {
+  final completer = Completer();
+  WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    await callback.call();
+    completer.complete();
+  });
+  await completer.future;
 }

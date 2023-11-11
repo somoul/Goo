@@ -202,7 +202,7 @@ class CustomPopularBlock extends StatelessWidget {
                                                 overflow: TextOverflow.ellipsis,
                                               ),
                                             ),
-                                            item.size == null
+                                            item.data?.size == null
                                                 ? const SizedBox()
                                                 : Image.asset(
                                                     'assets/icons/rom_cm.png',
@@ -211,12 +211,12 @@ class CustomPopularBlock extends StatelessWidget {
                                                     color:
                                                         const Color(0xff979797),
                                                   ),
-                                            item.size == null
+                                            item.data?.size == null
                                                 ? const SizedBox()
                                                 : const SizedBox(width: 5),
                                             Expanded(
                                               child: Text(
-                                                item.size ?? '',
+                                                "${item.data?.size ?? ''}",
                                                 style: AppText.bodySmall!
                                                     .copyWith(
                                                         color: const Color(

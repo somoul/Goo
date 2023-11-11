@@ -18,7 +18,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  final _mapCon = Get.put(MapController());
+  final _mapCon = Get.put(GMapController());
   Set<Marker> markers = {};
   BitmapDescriptor _markerIcon = BitmapDescriptor.defaultMarker;
   final Completer<GoogleMapController> _controller =
@@ -47,6 +47,14 @@ class _MapScreenState extends State<MapScreen> {
           : 'assets/image/marker_ios.png',
     );
     setState(() {});
+  }
+
+  Future _onSaveAddress(String address, String late, String long) async {
+    await _mapCon
+        .saveAddress(address: address, late: late, long: long)
+        .then((value) => {
+              Navigator.pop(context, true),
+            });
   }
 
   @override
@@ -99,17 +107,20 @@ class _MapScreenState extends State<MapScreen> {
                     left: 20, right: 20, bottom: 30, top: 45),
                 child: CustomButton(
                   title: 'Save Your Location'.tr,
-                  onPressed: _mapCon.currentAddress.value.country == null
+                  onPressed: _mapCon.currentAddress.value == ''
                       ? null
                       : () {
-                          Navigator.pop(context,
-                              '${_mapCon.currentAddress.value.village}${_mapCon.currentAddress.value.village != '' ? ', ' : ''}${_mapCon.currentAddress.value.commune}${_mapCon.currentAddress.value.commune != '' ? ',' : ''}${_mapCon.currentAddress.value.distict}${_mapCon.currentAddress.value.distict != '' ? ',' : ''} ${_mapCon.currentAddress.value.provice}${_mapCon.currentAddress.value.provice != '' ? ',' : ''} ${_mapCon.currentAddress.value.country}');
+                          _onSaveAddress(
+                            _mapCon.currentAddress.value,
+                            "${_currentPosition?.latitude ?? ""}",
+                            "${_currentPosition?.longitude ?? ""}",
+                          );
                         },
                 ),
               )
             ],
           ),
-          _mapCon.currentAddress.value.country == null
+          _mapCon.currentAddress.value == ""
               ? const SizedBox()
               : Positioned(
                   left: 15,
@@ -152,7 +163,7 @@ class _MapScreenState extends State<MapScreen> {
                               () => Padding(
                                 padding: const EdgeInsets.only(left: 30),
                                 child: Text(
-                                  '${_mapCon.currentAddress.value.village}${_mapCon.currentAddress.value.village != '' ? ', ' : ''}${_mapCon.currentAddress.value.commune}${_mapCon.currentAddress.value.commune != '' ? ',' : ''}${_mapCon.currentAddress.value.distict}${_mapCon.currentAddress.value.distict != '' ? ',' : ''} ${_mapCon.currentAddress.value.provice}${_mapCon.currentAddress.value.provice != '' ? ',' : ''} ${_mapCon.currentAddress.value.country}',
+                                  _mapCon.currentAddress.value,
                                   style: AppText.bodySmall!
                                       .copyWith(color: Colors.grey),
                                 ),

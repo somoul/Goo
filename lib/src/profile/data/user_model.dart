@@ -6,6 +6,7 @@ import 'dart:convert';
 
 class UserModel {
   int? id;
+  String? uuid;
   String? username;
   String? firstName;
   String? lastName;
@@ -20,6 +21,7 @@ class UserModel {
 
   UserModel({
     this.id,
+    this.uuid,
     this.username,
     this.firstName,
     this.lastName,
@@ -40,6 +42,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["id"],
+        uuid: json["uuid"],
         address: json['address'],
         username: json["username"],
         firstName: json["first_name"],
@@ -55,6 +58,7 @@ class UserModel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "uuid": uuid,
         "address": address,
         "username": username,
         "first_name": firstName,

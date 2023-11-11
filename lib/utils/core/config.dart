@@ -1,1 +1,2 @@
-bool get showDebugBaseApi => true;
+bool get showDebugBaseApi => false;
+bool get signinPhoneAddCountryCode => false;

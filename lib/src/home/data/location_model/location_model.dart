@@ -2,10 +2,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:goo_rent/enum/storage_key.dart';
-import 'package:goo_rent/helper/accessor.dart';
-import 'package:hive/hive.dart';
 part 'location_model.freezed.dart';
 part 'location_model.g.dart';
 

@@ -51,11 +51,16 @@ class _AllPropertyState extends State<AllProperty> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : CustomPropertyGrid(
-                actionTitle: null,
-                title: null,
-                propertyList: _homeCon.propertyData.value.propertyList ?? [],
-                propertyController: PropertyController(),
+            : SingleChildScrollView(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).padding.bottom + 15,
+                ),
+                child: CustomPropertyGrid(
+                  actionTitle: null,
+                  title: null,
+                  propertyList: _homeCon.propertyData.value.propertyList ?? [],
+                  propertyController: PropertyController(),
+                ),
               ),
       ),
     );

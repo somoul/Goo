@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goo_rent/src/post_history/page/history.dart';
 import 'package:goo_rent/src/widgets/buttom_navigation_bar/buttom_navigation_bar.dart';
 import 'package:goo_rent/src/widgets/buttom_navigation_bar/button_navigation_item.dart';
 import 'package:goo_rent/src/home/screen/home_screen.dart';
@@ -54,10 +55,11 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> get _page => const [
         HomeScreen(),
-        MyPropertyPage(
-          isMantenance: true,
-          checkAccount: "default",
-        ),
+        PostHistory(),
+        // MyPropertyPage(
+        //   isMantenance: true,
+        //   checkAccount: "default",
+        // ),
         MyPropertyPage(
           isMantenance: true,
           checkAccount: "default",
@@ -73,7 +75,7 @@ class _MainPageState extends State<MainPage> {
         ),
         BottomNavItem(
           svgPicturePath: 'assets/icons/sales.svg',
-          label: "Sell".tr,
+          label: "History".tr,
         ),
         BottomNavItem(
           svgPicturePath: '',

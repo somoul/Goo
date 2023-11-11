@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_string.dart';
 import 'package:goo_rent/helper/context_provider.dart';
+import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
@@ -36,6 +37,7 @@ class ApiHelper extends GetConnect {
     required METHODE? methode,
     required bool isAuthorize,
     bool isConvertToByte = false,
+    Function? whenRequestFailed,
   }) async {
     final token = await LocalStorage.readToken();
     bool hasParam = url.contains("?");
@@ -58,24 +60,27 @@ class ApiHelper extends GetConnect {
             debugPrint("URL      : $fullUrl");
             debugPrint("DATA[${response.statusCode}]: ${response.body}");
           }
-          return _returnResponse(response);
+          if (response.statusCode == null && whenRequestFailed != null) {
+            whenRequestFailed();
+          }
+          return _returnResponse(response, url);
         case METHODE.post:
           // if (body != null) {
           final response = await post(fullUrl, json.encode(body),
               headers: header ?? header0);
-          return _returnResponse(response);
+          return _returnResponse(response, url);
         // }
         // return Future.error(
         //     const ErrorModel(bodyString: 'Body must be included'));
 
         case METHODE.delete:
           final response = await delete(fullUrl, headers: header ?? header0);
-          return _returnResponse(response);
+          return _returnResponse(response, url);
         case METHODE.update:
           if (body != null) {
             final response = await put(fullUrl, json.encode(body),
                 headers: header ?? header0);
-            return _returnResponse(response);
+            return _returnResponse(response, url);
           }
           return Future.error(
               const ErrorModel(bodyString: 'Body must be included'));
@@ -91,12 +96,12 @@ class ApiHelper extends GetConnect {
     }
   }
 
-  _returnResponse(Response response) async {
+  _returnResponse(Response response, String url) async {
     // debugPrint('Response Data : ${response.bodyString}');
 
     if (response.statusCode != 200) {
       debugPrint(
-          'Error Response ${response.statusCode} > ${response.bodyString}');
+          'Error Response [$url] ${response.statusCode} > ${response.bodyString}');
     }
     switch (response.statusCode) {
       case 200:
@@ -117,13 +122,9 @@ class ApiHelper extends GetConnect {
             statusCode: response.statusCode,
             bodyString: json.decode(response.bodyString!)));
       case 401:
-        _tokenExpired();
+        _tokenExpired(
+            message: "The session has expired, please login again.".tr);
         return;
-
-      ///Session expired
-      // return Future.error(ErrorModel(
-      //     statusCode: response.statusCode,
-      //     bodyString: json.decode(response.bodyString!)));
       case 403:
         return Future.error(ErrorModel(
             statusCode: response.statusCode,
@@ -140,11 +141,9 @@ class ApiHelper extends GetConnect {
     }
   }
 
-  _tokenExpired() async {
-    var profileCon = ProfileController();
-    profileCon.logout().then((value) async {
-      await LocalStorage.removeToken();
-      Get.offAll(const SignInScreen());
-    });
+  _tokenExpired({required String message}) async {
+    await LocalStorage.removeToken();
+    BaseToast.showErorrBaseToast(message);
+    Get.offAll(const SignInScreen());
   }
 }
