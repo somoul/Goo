@@ -45,13 +45,6 @@ class HomeController extends GetxController {
   var homeslideList = <String>[].obs;
 
   Future<List<SlideModel>> fetchSlideBanner() async {
-    // var list = await LocalStorage.get<List<SlideModel>>(StorageKeys.banner);
-    // print('LIST : $list');
-    // if (list?.isNotEmpty ?? false) {
-    //   // list!.map((e) {
-    //   //   listSideBarData.add(e);
-    //   // });
-    // }
     loadingCategory(true);
     loadSlide(true);
     loadingPopular(true);
@@ -120,9 +113,17 @@ class HomeController extends GetxController {
           .onRequest(
               url: '/posts?around=212.22&long=104.862920&lat=11.587222&page=1',
               methode: METHODE.get,
-              isAuthorize: true)
+              isAuthorize: true,
+              whenRequestFailed: () async {
+                var data = await LocalStorage.get(StorageKeys.recommend);
+                if (data != null) {
+                  propertyData.value = PropertyModelResponse.fromJson(data);
+                }
+              })
           .then((value) async {
         propertyData.value = PropertyModelResponse.fromJson(value['data']);
+        await LocalStorage.put(
+            storageKey: StorageKeys.recommend, value: propertyData.value);
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
@@ -141,17 +142,27 @@ class HomeController extends GetxController {
     try {
       await apiHelper
           .onRequest(
-        isAuthorize: true,
-        url: "/categories",
-        methode: METHODE.get,
-      )
-          .then((response) {
+              isAuthorize: true,
+              url: "/categories",
+              methode: METHODE.get,
+              whenRequestFailed: () async {
+                var data = await LocalStorage.get(StorageKeys.categories);
+                if (data != null) {
+                  data.map((element) {
+                    listSideBarDataCategorie
+                        .add(SlideCategorieModel.fromJson(element));
+                  }).toList();
+                }
+              })
+          .then((response) async {
         var jsonData = response['data'];
         listSideBarDataCategorie.clear();
         jsonData.map((json) {
-          sideBarDataCategorie.value = SlideCategorieModel.fromJson(json);
-          listSideBarDataCategorie.add(sideBarDataCategorie.value);
+          listSideBarDataCategorie.add(SlideCategorieModel.fromJson(json));
         }).toList();
+        await LocalStorage.put(
+            storageKey: StorageKeys.categories,
+            value: listSideBarDataCategorie);
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });

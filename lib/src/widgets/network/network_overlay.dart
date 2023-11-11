@@ -22,50 +22,47 @@ class NetworkStatusOverlay extends ConsumerWidget {
           children: [
             child,
             if (exitEntryPoint)
-              Material(
-                color: Colors.black38,
-                child: Positioned.fill(
-                  child: Builder(
-                    builder: (BuildContext context) {
-                      switch (status) {
-                        case NetworkStatuses.noInternet:
-                          return _buildStatus(
-                            status: 'No internet connection'.tr,
-                            color: Colors.red,
-                          );
-                        // _networkStatusBanner(
-                        //   color: Colors.red,
-                        //   iconPath: '',
-                        //   title: 'No internet connection'.tr,
-                        //   content: 'Please check your connection.'.tr,
-                        // );
-                        case NetworkStatuses.connecting:
-                          return _buildStatus(
-                            status: 'Internet connecting'.tr,
-                            color: const Color(0xffF6B818),
-                          );
-                        // _networkStatusBanner(
-                        //   color: const Color(0xffF6B818),
-                        //   iconPath: '',
-                        //   title: 'Internet connecting'.tr,
-                        //   content: 'Please wait, try to connect...'.tr,
-                        // );
-                        case NetworkStatuses.justConnected:
-                          return _buildStatus(
-                            status: 'Internet connected'.tr,
-                            color: Colors.green,
-                          );
-                        //  _networkStatusBanner(
-                        //   color: Colors.green,
-                        //   iconPath: "",
-                        //   title: 'Internet connected'.tr,
-                        //   content: 'Your connection is back.'.tr,
-                        // );
-                        default:
-                          return const SizedBox();
-                      }
-                    },
-                  ),
+              Positioned.fill(
+                child: Builder(
+                  builder: (BuildContext context) {
+                    switch (status) {
+                      case NetworkStatuses.noInternet:
+                        return _buildStatus(
+                          status: 'No internet connection'.tr,
+                          color: Colors.red,
+                        );
+                      // _networkStatusBanner(
+                      //   color: Colors.red,
+                      //   iconPath: '',
+                      //   title: 'No internet connection'.tr,
+                      //   content: 'Please check your connection.'.tr,
+                      // );
+                      case NetworkStatuses.connecting:
+                        return _buildStatus(
+                          status: 'Internet connecting'.tr,
+                          color: const Color(0xffF6B818),
+                        );
+                      // _networkStatusBanner(
+                      //   color: const Color(0xffF6B818),
+                      //   iconPath: '',
+                      //   title: 'Internet connecting'.tr,
+                      //   content: 'Please wait, try to connect...'.tr,
+                      // );
+                      case NetworkStatuses.justConnected:
+                        return _buildStatus(
+                          status: 'Internet connected'.tr,
+                          color: Colors.green,
+                        );
+                      //  _networkStatusBanner(
+                      //   color: Colors.green,
+                      //   iconPath: "",
+                      //   title: 'Internet connected'.tr,
+                      //   content: 'Your connection is back.'.tr,
+                      // );
+                      default:
+                        return const SizedBox();
+                    }
+                  },
                 ),
               )
           ],
@@ -75,20 +72,23 @@ class NetworkStatusOverlay extends ConsumerWidget {
   }
 
   _buildStatus({required String status, required Color color}) {
-    return Center(
-      child: Container(
-        padding: 30.p,
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(10)),
-        child: Text(
-          status,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+    return Material(
+      color: Colors.black26,
+      child: Center(
+        child: Container(
+          padding: 30.p,
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            status,
+            style: const TextStyle(color: Colors.white, fontSize: 20),
+          ),
         ),
       ),
     );
   }
 
-  Widget _networkStatusBanner({
+  Widget networkStatusBanner({
     required Color color,
     required String iconPath,
     required String title,
