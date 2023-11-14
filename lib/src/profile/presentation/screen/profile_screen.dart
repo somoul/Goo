@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/dialog.dart';
 import 'package:goo_rent/helper/general.dart';
+import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
 import 'package:goo_rent/src/favorite/pages/favorite_list_page.dart';
@@ -53,16 +54,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           decoration: BoxDecoration(
                             border: Border.all(width: 1.5, color: Colors.white),
                             shape: BoxShape.circle,
-                            image: DecorationImage(
+                            image: const DecorationImage(
                               fit: BoxFit.cover,
-                              image: profileController.userModel.value.avatar !=
-                                      null
-                                  ? CachedNetworkImageProvider(profileController
-                                          .userModel.value.avatar ??
-                                      '')
-                                  : const AssetImage('assets/image/profile.png')
-                                      as ImageProvider,
+                              image: AssetImage('assets/image/profile.png'),
                             ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: ImageBuilder(
+                                    fit: BoxFit.cover, canView: true)
+                                .network(
+                                    profileController.userModel.value.avatar!),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -91,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 50),
           Expanded(
             child: ListView(
               physics: const BouncingScrollPhysics(),

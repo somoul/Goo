@@ -14,6 +14,7 @@ import 'package:goo_rent/enum/media_type.dart';
 import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/view_photo.dart';
 import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 ImageProvider getImageProvider({
@@ -211,13 +212,15 @@ Widget _defaultErrorBuilder(
                       );
                     } else {
                       return ImageBuilder(width: 40, height: 40)
-                          .asset("assets/image/app_logo.png");
+                          .asset("assets/image/app_logo.png")
+                          .p(5);
                     }
                   },
                 );
               } else {
                 return ImageBuilder(width: 40, height: 40)
-                    .asset("assets/image/app_logo.png");
+                    .asset("assets/image/app_logo.png")
+                    .p(5);
               }
             },
           ),

@@ -119,6 +119,7 @@ class Khmer {
         "No Data": "គ្មានទិន្នន័យ",
         "Request Rent": "ស្នើរសុំ​ជួល",
         "The session has expired, please login again.":
-            "គណនីអ្នកបានផុតកំណត់ សូមចូលគណនីម្តងទៀត"
+            "គណនីអ្នកបានផុតកំណត់ សូមចូលគណនីម្តងទៀត",
+        "Save address successfully": "រក្សាទុកអាស័យដ្ខានបានជោគជ័យ!",
       };
 }

@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/enum/storage_key.dart';
 import 'package:goo_rent/helper/api_helper.dart';
+import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
@@ -43,22 +44,34 @@ class GMapController extends GetxController {
               localeIdentifier: Get.locale?.languageCode ?? "km_KH")
           .then((List<Placemark> placemarks) async {
         var place = placemarks[0];
-        // LocationModel(
-        //   street: place.street,
-        //   village: place.name,
-        //   distict: place.subLocality,
-        //   commune: place.thoroughfare,
-        //   provice: place.locality,
-        //   country: place.country,
-        // );
+
         currentAddress.value =
-            "${place.street ?? ''} ${place.name ?? ''} ${place.subLocality} ${place.thoroughfare} ${place.locality}";
+            "${place.street == "Unnamed Road" ? "" : "${place.street} "}${"${place.subLocality} "}${"${place.locality} "}${"${place.subAdministrativeArea} "}${place.administrativeArea}";
         await LocalStorage.put(
             storageKey: StorageKeys.location, value: currentAddress.value);
       }).catchError((_) {});
     });
 
     return currentAddress.value;
+  }
+
+  Future<String?> getAddressFramMap({
+    required double late,
+    required double long,
+  }) async {
+    String? address;
+    try {
+      var placemarks = await placemarkFromCoordinates(
+        late,
+        long,
+        localeIdentifier: langCode == "km" ? "km_KH" : langCode,
+      );
+      var place = placemarks[0];
+      address =
+          "${place.street == "Unnamed Road" ? "" : "${place.street} "}${"${place.subLocality} "}${"${place.locality} "}${"${place.subAdministrativeArea} "}${place.administrativeArea}";
+      return address;
+    } catch (_) {}
+    return null;
   }
 
   Future getLocalAddress() async {
@@ -74,11 +87,10 @@ class GMapController extends GetxController {
 
   Future saveAddress({
     required String address,
-    required String late,
-    required String long,
+    required double late,
+    required double long,
   }) async {
     BaseDialogLoading.show();
-
     var body = {
       "address": address,
       "lattitude": late,
@@ -96,10 +108,13 @@ class GMapController extends GetxController {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
         return;
       });
+
       addressModel.value = AddressModel.fromJson(response["data"]);
       await getLocalAddress();
       await LocalStorage.put(
           storageKey: StorageKeys.location, value: addressModel.value);
+
+      BaseToast.showSuccessBaseToast("Save address successfully".tr);
     } catch (_) {
     } finally {
       BaseDialogLoading.dismiss();

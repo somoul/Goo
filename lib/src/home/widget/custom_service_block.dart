@@ -102,14 +102,15 @@ _categoryItem({required String icon, required String title}) {
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       children: [
-        CachedNetworkImage(
-          fit: BoxFit.cover,
-          placeholder: (context, url) => icon != ''
-              ? ShimmerBox.wrap(child: ImageBuilder().network(icon))
-              : const ShimmerBox(height: 30, width: 30, circle: true),
-          imageUrl: icon,
-          height: 30,
-        ),
+        // CachedNetworkImage(
+        //   fit: BoxFit.cover,
+        //   placeholder: (context, url) => icon != ''
+        //       ? ShimmerBox.wrap(child: ImageBuilder().network(icon))
+        //       : const ShimmerBox(height: 30, width: 30, circle: true),
+        //   imageUrl: icon,
+        //   height: 30,
+        // ),
+        ImageBuilder(width: 30, height: 30).network(icon),
         Padding(
           padding: const EdgeInsets.only(top: 3),
           child: FittedBox(

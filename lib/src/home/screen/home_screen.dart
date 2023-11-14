@@ -47,11 +47,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _onRefresh() async {
-    await _homeController.fetchSlideBanner();
-    await _homeController.fetchSliderCategorie();
-    await _homeController.getPopularProperty(late: 1, long: 1);
-    await _homeController.getAllProperties(late: 1, long: 1);
     // await _mapController.getLocalAddress();
+    // await _homeController.fetchSlideBanner();
+    // await _homeController.fetchSliderCategorie();
+    // await _homeController.getPopularProperty(late: 1, long: 1);
+    // await _homeController.getAllProperties(
+    //     late: _mapController.addressModel.value.lattitude ?? '',
+    //     long: _mapController.addressModel.value.longitude ?? '');
+    // await _mapController.getLocalAddress();
+    _onInit();
   }
 
   _onInit() async {
@@ -59,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
       await _homeController.fetchSlideBanner();
       await _homeController.fetchSliderCategorie();
       await _homeController.getPopularProperty(late: 1, long: 1);
-      await _homeController.getAllProperties(late: 1, long: 1);
+      _homeController.getAllProperties(
+          late: _mapController.addressModel.value.lattitude ?? '',
+          long: _mapController.addressModel.value.longitude ?? '');
       await _profileCon.getUserInfo();
       // selectedPage = 0;
       // _homeController.pageController = PageController(initialPage: 0);
@@ -68,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
       await _mapController.getCurrentAddress();
     } catch (_) {
     } finally {}
-
     // _pageController = PageController(initialPage: selectedPage);
   }
 

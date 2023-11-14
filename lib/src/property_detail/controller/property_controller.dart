@@ -3,16 +3,16 @@ import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
-import 'package:goo_rent/src/property_detail/data/popular_property.dart';
 
 class PropertyController extends GetxController {
   final _apiHelper = ApiHelper();
 
   ///Save favorite
-  final favoriteModel = PropertyModelResponse().obs;
-  final favoriteData = PopularPropertyModelResponse().obs;
+  // final favoriteModel = PropertyModelResponse().obs;
+  // final favoriteData = PopularPropertyModelResponse().obs;
 
-  bool get isEmptyFavorite => favoriteData.value.data?.isEmpty ?? true;
+  final favoriteData = PropertyModelResponse().obs;
+  bool get isEmptyFavorite => favoriteData.value.propertyList?.isEmpty ?? true;
 
   ////Favorite
   final isLoadFavorite = true.obs;
@@ -22,8 +22,9 @@ class PropertyController extends GetxController {
           .onRequest(
               url: '/get-save-post', methode: METHODE.get, isAuthorize: true)
           .then((value) async {
-        favoriteData.value =
-            PopularPropertyModelResponse.fromJson(value['data']);
+        print("----------------------------->>>>>>  $value");
+        favoriteData.value = PropertyModelResponse.fromJson(value['data']);
+        print("----------------------------->>>>>>  $value");
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });

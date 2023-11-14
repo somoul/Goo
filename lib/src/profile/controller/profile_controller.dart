@@ -59,8 +59,7 @@ class ProfileController extends GetxController {
         userModel.value = UserModel.fromJson(response['data']);
         editUserModel.value = UserModel.fromJson(response['data']);
       });
-    } catch (e) {
-      BaseToast.showErorrBaseToast(e.toString());
+    } catch (_) {
     } finally {
       isLoadingProfile(false);
     }

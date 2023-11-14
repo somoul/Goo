@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/enum/network.dart';
 import 'package:goo_rent/helper/image_builder.dart';
+import 'package:goo_rent/src/provider/app_ref.dart';
 import 'package:goo_rent/src/provider/connection.dart';
 import 'package:goo_rent/src/widgets/network/network_status_builder.dart';
 import 'package:goo_rent/utils/extension/num.dart';
@@ -73,15 +75,38 @@ class NetworkStatusOverlay extends ConsumerWidget {
 
   _buildStatus({required String status, required Color color}) {
     return Material(
-      color: Colors.black26,
+      color: Colors.black45,
       child: Center(
         child: Container(
           padding: 30.p,
           decoration: BoxDecoration(
-              color: color, borderRadius: BorderRadius.circular(10)),
-          child: Text(
-            status,
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.wifi_off_outlined,
+                color: Colors.white,
+                size: 60,
+              ),
+              30.gap,
+              Text(
+                status,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       appRef.read(exitEntryPointProvider.notifier).state = true;
+              //     },
+              //     child: Text(
+              //       "Retry",
+              //       style: AppText.bodySmall!.copyWith(color: Colors.white),
+              //     ))
+            ],
           ),
         ),
       ),

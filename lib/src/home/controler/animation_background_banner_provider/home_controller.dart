@@ -104,8 +104,8 @@ class HomeController extends GetxController {
   final propertyData = PropertyModelResponse().obs;
   final isLoadAllProperty = false.obs;
   Future<void> getAllProperties({
-    required double late,
-    required double long,
+    required String late,
+    required String long,
     int? pageNumber,
   }) async {
     try {

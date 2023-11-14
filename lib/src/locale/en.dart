@@ -121,6 +121,7 @@ class English {
         "No Data": "No Data",
         "Request Rent": "Request Rent",
         "The session has expired, please login again.":
-            "The session has expired, please login again."
+            "The session has expired, please login again.",
+        "Save address successfully": "Save address successfully",
       };
 }

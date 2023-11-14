@@ -321,6 +321,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     tokenKey = await LocalStorage.readToken();
     langCode = await LocalStorage.readLocale();
     // ignore: avoid_print
+    _preload();
     print('Token >  $tokenKey');
     if (tokenKey != '' && tokenKey != null) {
       Get.offAllNamed(Routes.home);
@@ -355,7 +356,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   void didChangeDependencies() {
-    _preload();
     super.didChangeDependencies();
   }
 

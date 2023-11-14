@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 
@@ -14,10 +15,13 @@ class AllProperty extends StatefulWidget {
 
 class _AllPropertyState extends State<AllProperty> {
   final _homeCon = Get.put(HomeController());
+  final _mapController = Get.put(GMapController());
   @override
   void initState() {
     super.initState();
-    _homeCon.getAllProperties(late: 1, long: 1);
+    _homeCon.getAllProperties(
+        late: _mapController.addressModel.value.lattitude ?? '',
+        long: _mapController.addressModel.value.longitude ?? '');
   }
 
   @override
