@@ -6,8 +6,8 @@ import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/helper/custom_button.dart';
 import '../controler/animation_background_banner_provider/home_controller.dart';
+import '../controler/search_type_rent_controler/search_controler.dart';
 import 'custom_drop_down_button_widget.dart';
-import 'custom_rangevalue_widget.dart';
 
 void showBottomSheetFunction({required BuildContext context}) {
   showModalBottomSheet(
@@ -31,8 +31,8 @@ class BottomSheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final homeController = Get.put(HomeController());
-    homeController.startSlider = 0;
-    homeController.endSlider = 100;
+    // homeController.startSlider = 0;
+    // homeController.endSlider = 100;
 
     int indexTapber = 0;
     return AnimatedPadding(
@@ -171,6 +171,7 @@ class CustomScrenBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<double> valueSlider = [0.0, 50.0];
+    final searchTypeRentController = Get.put(SearchTypeRentController());
     // final myController = TextEditingController();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -251,26 +252,33 @@ class CustomScrenBottomSheet extends StatelessWidget {
           "តម្លៃ",
           style: AppText.titleSmall,
         ),
-        const SizedBox(
-          height: 95,
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: 50,
-            ),
-            child: CustomRangeValueWidget(
-                // onDragging: (handlerIndex, lowerValue, upperValue) {
-                //   if (handlerIndex == 0) {
-                //     valueSlider.first = lowerValue;
-                //     print("=====================slider 1   :$lowerValue ");
-                //   } else {
-                //     valueSlider.last = upperValue;
-                //     print("=====================slider 2   :$upperValue ");
-                //   }
-                // },
-                // valueSlider: valueSlider,
-                ),
-          ),
-        ),
+        // SizedBox(
+        //   height: 95,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(
+        //       top: 50,
+        //     ),
+        //     child: CustomRangeValueWidget(
+        //       startRange: 0,
+        //       endRange: 100,
+        //       // startSlider: "${searchTypeRentController.startSlider.value}",
+        //       // endSlider: "${searchTypeRentController.endSlider.value}",
+
+        //       // onRangeChanged: (String? startSlider, String? endSlider) {},
+
+        //       // onDragging: (handlerIndex, lowerValue, upperValue) {
+        //       //   if (handlerIndex == 0) {
+        //       //     valueSlider.first = lowerValue;
+        //       //     print("=====================slider 1   :$lowerValue ");
+        //       //   } else {
+        //       //     valueSlider.last = upperValue;
+        //       //     print("=====================slider 2   :$upperValue ");
+        //       //   }
+        //       // },
+        //       // valueSlider: valueSlider,
+        //     ),
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: CustomButton(

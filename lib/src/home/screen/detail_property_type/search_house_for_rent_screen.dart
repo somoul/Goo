@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/controler/search_type_rent_controler/search_controler.dart';
 import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
@@ -23,14 +24,15 @@ class SearchRentScreen extends StatefulWidget {
 class _SearchRentScreenState extends State<SearchRentScreen> {
   // final MediaQueryData mediaQueryData = MediaQuery.of(context);
   final homeController = Get.put(HomeController());
-  final searchTypeController = Get.put(SearchTypeRentController());
+  final searchController = Get.put(SearchTypeRentController());
+
   String? address;
   @override
   void initState() {
+    postFrameCallback(() async {
+      await searchController.onPriceRang();
+    });
     super.initState();
-
-    homeController.startSlider = 0;
-    homeController.endSlider = 100;
   }
 
   @override
@@ -39,6 +41,14 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search'),
+        actions: const [],
+        leading: IconButton(
+          onPressed: () {
+            searchController.textSearchRent.value == "";
+            navigator?.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Column(
         children: [
@@ -91,16 +101,31 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
-                                    "Search Rent Property".tr,
-                                    style: AppText.bodySmall!
-                                        .copyWith(color: Colors.grey),
-                                  ),
+                                  if (searchController.textSearchRent.value !=
+                                      "")
+                                    Text(
+                                      searchController.textSearchRent.value,
+                                      style: AppText.bodySmall!.copyWith(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  if (searchController.textSearchRent.value ==
+                                      "")
+                                    Text(
+                                      "Search Rent Property".tr,
+                                      style: AppText.bodySmall!.copyWith(
+                                          fontSize: 16,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   Expanded(
                                     child: Text("Search".tr,
                                         textAlign: TextAlign.end,
                                         style: AppText.bodySmall!.copyWith(
-                                            color: AppConstant.kPrimaryColor)),
+                                          color: AppConstant.kPrimaryColor,
+                                          fontSize: 16,
+                                        )),
                                   ),
                                 ],
                               ),
@@ -136,8 +161,8 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                             ),
                           ),
                           CustomContentTextField(
-                            leftIcon: "assets/icons/location.svg",
-                            value: searchTypeController.typeSearchRent.value,
+                            leftIcon: "assets/icons/home3.svg",
+                            value: searchController.typeSearchRent.value,
                             nameTextField: "Choose Property Types".tr,
                             // rightsIcons: "assets/icons/ic_vector.svg",
 
@@ -151,25 +176,30 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                             "Price".tr,
                             style: AppText.titleSmall,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 95,
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                top: 50,
-                              ),
-                              child: CustomRangeValueWidget(
-                                  // onDragging: (handlerIndex, lowerValue, upperValue) {
-                                  //   if (handlerIndex == 0) {
-                                  //     valueSlider.first = lowerValue;
-                                  //     print("=====================slider 1   :$lowerValue ");
-                                  //   } else {
-                                  //     valueSlider.last = upperValue;
-                                  //     print("=====================slider 2   :$upperValue ");
-                                  //   }
-                                  // },
-                                  // valueSlider: valueSlider,
+                                padding: const EdgeInsets.only(
+                                  top: 50,
+                                ),
+                                child: Obx(
+                                  () => CustomRangeValueWidget(
+                                    beginPoint:
+                                        searchController.startPoint.value,
+                                    endPoint: searchController.endPoint.value,
+                                    startRange:
+                                        searchController.startSlider.value,
+                                    endRange: searchController.endSlider.value,
+                                    onChanged: (values) {
+                                      searchController.startSlider.value =
+                                          values.start;
+                                      searchController.endSlider.value =
+                                          values.end;
+                                      // rangeValue = values;
+                                    },
+                                    //
                                   ),
-                            ),
+                                )),
                           ),
                         ],
                       ),
@@ -233,9 +263,8 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                               .listSideBarDataCategorie[index].name,
                         ),
                         onTap: () {
-                          searchTypeController.typeSearchRent.value =
-                              homeController
-                                  .listSideBarDataCategorie[index].name!;
+                          searchController.typeSearchRent.value = homeController
+                              .listSideBarDataCategorie[index].name!;
                           Navigator.pop(context);
                         });
                   },
@@ -296,9 +325,11 @@ class CustomContentTextField extends StatelessWidget {
                 // maxLines: 1,
                 // overflow: TextOverflow.ellipsis,
                 style: AppText.bodySmall!.copyWith(
-                  color:
-                      value != null && value != '' ? Colors.black : Colors.grey,
-                ),
+                    color: value != null && value != ''
+                        ? Colors.grey
+                        : Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(width: 5),
