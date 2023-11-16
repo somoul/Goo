@@ -9,7 +9,7 @@ import 'package:goo_rent/utils/extension/edge_insets.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
-import '../screen/detail_property_type/detail_property_type_screen.dart';
+import '../screen/detail_property_type/property_detail.dart';
 
 class CustomCategoryBlock extends StatelessWidget {
   final bool loading;
@@ -75,8 +75,9 @@ class CustomCategoryBlock extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const DetailPropertyScreen(),
+                              builder: (context) => DetailPropertyScreen(
+                                id: categoryList[index].id ?? 0,
+                              ),
                             ), //TabBarDemo
                           );
                         },

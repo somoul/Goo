@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/src/home/screen/detail_property_type/detail_property_type_screen.dart';
+import 'package:goo_rent/src/home/screen/detail_property_type/property_detail.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid_card.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
@@ -66,8 +66,9 @@ class _FavoriteListPageState extends State<FavoriteListPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DetailPropertyScreen(),
+                                  builder: (context) => DetailPropertyScreen(
+                                    id: item.id ?? 0,
+                                  ),
                                 ), //TabBarDemo
                               );
                             },

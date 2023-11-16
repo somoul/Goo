@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/image_builder.dart';
+import 'package:goo_rent/src/favorite/data/property_detail.dart';
 import 'package:goo_rent/src/widgets/slider.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
@@ -18,20 +18,26 @@ import 'custom_contain_type_rent.dart';
 import 'custom_ship_type.dart';
 
 class DetailPropertyScreen extends StatefulWidget {
-  const DetailPropertyScreen({super.key});
+  final int id;
+  const DetailPropertyScreen({super.key, required this.id});
 
   @override
   State<DetailPropertyScreen> createState() => _DetailPropertyScreenState();
 }
 
 class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
-  final homeController = Get.put(HomeController());
-  final _detailPropertyController = Get.put(DetailPropertyControler());
+  final _homeCon = Get.put(HomeController());
+  final _detailCon = Get.put(DetailController());
+  @override
+  void initState() {
+    postFrameCallback(() async {
+      await _detailCon.getDetail(id: widget.id);
+    });
+    super.initState();
+  }
 
-  // final CarouselController _controller = CarouselController();
-  final String description =
-      "Flutter is Google’s mobile UI framework for crafting high-quality native interfaces on iOS and Android in record time. Flutter works with existing code, is used by developers and organizations around the world, and is free and open source.";
-  int indexImage = 0;
+  PropertyModel get _property => _detailCon.propertyDetail.value;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,10 +92,10 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                     alignment: AlignmentDirectional.center,
                     children: [
                       CustomSlider(
-                        url: homeController.homeslideList,
+                        url: _detailCon.propertyDetail.value.attachments ?? [],
                         canViewImage: true,
                         hasIndicator: false,
-                        aspectRatio: 1,
+                        // aspectRatio: 1,
                       ),
                     ],
                   ),
@@ -103,7 +109,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("អាគារជួលទួលគោក",
+                      Text("${_property.title}",
                           style: AppText.bodyMedium!.copyWith(
                               fontWeight: FontWeight.w600, fontSize: 20)),
                       const SizedBox(
@@ -130,14 +136,12 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80")))),
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -146,7 +150,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "HORM Hy",
+                                "${_property.user?.firstName ?? ''} ${_property.user?.lastName ?? ''}",
                                 style: AppText.titleMedium,
                               ),
                               Text(
@@ -168,7 +172,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                         ),
                       ),
                       ReadMoreText(
-                        description,
+                        'description',
                         trimLines: 2,
                         colorClickableText: Colors.pink,
                         trimMode: TrimMode.Line,
@@ -235,7 +239,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                         int index = entry.key;
                         String value = entry.value;
 
-                        _detailPropertyController.indexImage.value =
+                        _detailCon.indexImage.value =
                             testImage.length - (index + 1);
                         if (index == 0) {
                           return
@@ -272,7 +276,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                                   imageUrl: value,
                                 ),
                                 Text(
-                                  "${_detailPropertyController.indexImage.value}+",
+                                  "${_detailCon.indexImage.value}+",
                                   style: AppText.bodyMedium!.copyWith(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 20,

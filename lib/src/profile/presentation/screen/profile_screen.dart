@@ -61,10 +61,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: ImageBuilder(
-                                    fit: BoxFit.cover, canView: true)
-                                .network(
-                                    profileController.userModel.value.avatar!),
+                            child:
+                                ImageBuilder(fit: BoxFit.cover, canView: true)
+                                    .network(profileController
+                                            .userModel.value.avatar ??
+                                        ''),
                           ),
                         ),
                         const SizedBox(width: 10),

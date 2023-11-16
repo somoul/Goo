@@ -35,7 +35,8 @@ class CustomGridCard extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.width * 0.37,
+                  // height: MediaQuery.of(context).size.width * 0.37,
+                  height: 160,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                   ),

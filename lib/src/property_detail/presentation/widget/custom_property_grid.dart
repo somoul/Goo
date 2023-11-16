@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
-import 'package:goo_rent/src/home/screen/detail_property_type/detail_property_type_screen.dart';
+import 'package:goo_rent/src/home/screen/detail_property_type/property_detail.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid_card.dart';
@@ -76,7 +76,7 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
                   childAspectRatio: 2 / 2.9,
-                  mainAxisExtent: 280,
+                  mainAxisExtent: 300,
                 ),
                 itemBuilder: (context, index) => widget.loading
                     ? _buildShimer()
@@ -85,8 +85,9 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const DetailPropertyScreen(),
+                              builder: (context) => DetailPropertyScreen(
+                                id: widget.propertyList[index].id ?? 0,
+                              ),
                             ), //TabBarDemo
                           );
                         },
