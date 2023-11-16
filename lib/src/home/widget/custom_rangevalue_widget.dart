@@ -5,29 +5,37 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../controler/animation_background_banner_provider/home_controller.dart';
+import '../controler/search_type_rent_controler/search_controler.dart';
 
+// ignore: must_be_immutable
 class CustomRangeValueWidget extends StatefulWidget {
-  // final Function(int, dynamic, dynamic)? onDragging;
-  // final List<double> valueSlider;
-  const CustomRangeValueWidget({
-    Key? key,
-    // required this.onDragging,
-    //  required this.valueSlider
-  }) : super(key: key);
+  double startRange = 0;
+  double endRange = 0;
+  double beginPoint;
+  double endPoint;
+  Function(SfRangeValues) onChanged;
+
+  CustomRangeValueWidget(
+      {Key? key,
+      required this.startRange,
+      required this.endRange,
+      required this.onChanged,
+      required this.beginPoint,
+      required this.endPoint})
+      : super(key: key);
 
   @override
   State<CustomRangeValueWidget> createState() => _CustomRangeValueWidgetState();
 }
 
 class _CustomRangeValueWidgetState extends State<CustomRangeValueWidget> {
+  final searchController = Get.put(SearchTypeRentController());
+
   @override
   Widget build(BuildContext context) {
-    final homeController = Get.put(HomeController());
-    SfRangeValues values =
-        SfRangeValues(homeController.startSlider, homeController.endSlider);
-
     return StatefulBuilder(builder: (context, setStateSlider) {
+      // SfRangeValues rangeValue = SfRangeValues(
+      //     searchController.startSlider.value, searchController.endSlider.value);
       return Center(
         child: SfRangeSliderTheme(
           data: SfRangeSliderThemeData(
@@ -46,9 +54,9 @@ class _CustomRangeValueWidgetState extends State<CustomRangeValueWidget> {
             inactiveColor: const Color(0xffEEEEEE),
             activeColor: const Color(0xff21A6F8),
             // stepSize: ,
-            min: 0,
-            max: 100,
-            values: values,
+            min: widget.beginPoint,
+            max: widget.endPoint,
+            values: SfRangeValues(widget.startRange, widget.endRange),
             interval: 1,
             startThumbIcon: Container(
               height: 24,
@@ -93,15 +101,16 @@ class _CustomRangeValueWidgetState extends State<CustomRangeValueWidget> {
             shouldAlwaysShowTooltip: true,
             enableIntervalSelection: false,
             minorTicksPerInterval: 0,
-            onChanged: (SfRangeValues values) {
-              setState(() {
-                homeController.startSlider = values.start;
-                homeController.endSlider = values.end;
-                values = values;
-                // labels = RangeLabels('${values.start.toInt().toString()}\$',
-                //     '${values.end.toInt().toString()}\$');
-              });
-            },
+            onChanged: widget.onChanged,
+            // onChanged: (SfRangeValues values) {
+            //   // setState(() {
+            //   if (values.start < values.end) {
+            //     searchController.startSlider.value = values.start;
+            //     searchController.endSlider.value = values.end;
+            //     rangeValue = values;
+            //   }
+            //   // });
+            // },
           ),
         ),
       );

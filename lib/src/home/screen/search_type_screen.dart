@@ -19,7 +19,7 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
   void initState() {
     super.initState();
 
-    // _searchTypeRentController.onSearchTypeRen();
+    _searchTypeRentController.onSearchTypeRen();
   }
 
   @override
@@ -130,14 +130,24 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
                     itemBuilder: (context, int index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 15, top: 14),
-                        child: Text(
-                          _searchTypeRentController
-                                  .listSearchTypeRentModel[index].keyword ??
-                              "",
-                          style: AppText.titleSmall!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.black),
+                        child: GestureDetector(
+                          onTap: () {
+                            _searchTypeRentController.textSearchRent.value =
+                                _searchTypeRentController
+                                        .listSearchTypeRentModel[index]
+                                        .keyword ??
+                                    "";
+                            navigator!.pop(context);
+                          },
+                          child: Text(
+                            _searchTypeRentController
+                                    .listSearchTypeRentModel[index].keyword ??
+                                "",
+                            style: AppText.titleSmall!.copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.black),
+                          ),
                         ),
                       );
                       //  Column(
