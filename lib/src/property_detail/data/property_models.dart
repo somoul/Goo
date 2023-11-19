@@ -1,6 +1,6 @@
 class PropertyModelResponse {
   int? currentPage;
-  List<PropertyModel>? propertyList;
+  List<PropertyModel> propertyList = [];
   String? firstPageUrl;
   int? from;
   String? nextPageUrl;
@@ -11,7 +11,7 @@ class PropertyModelResponse {
 
   PropertyModelResponse(
       {this.currentPage,
-      this.propertyList,
+      this.propertyList = const [],
       this.firstPageUrl,
       this.from,
       this.nextPageUrl,
@@ -25,7 +25,7 @@ class PropertyModelResponse {
     if (json['data'] != null) {
       propertyList = <PropertyModel>[];
       json['data'].forEach((v) {
-        propertyList!.add(PropertyModel.fromJson(v));
+        propertyList.add(PropertyModel.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -40,9 +40,7 @@ class PropertyModelResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['current_page'] = currentPage;
-    if (propertyList != null) {
-      data['data'] = propertyList!.map((v) => v.toJson()).toList();
-    }
+    data['data'] = propertyList.map((v) => v.toJson()).toList();
     data['first_page_url'] = firstPageUrl;
     data['from'] = from;
     data['next_page_url'] = nextPageUrl;
@@ -222,7 +220,7 @@ class PropertyModel {
   String? accessoryId;
   String? thumbnail;
   int? visit;
-  Data? data;
+  // Data? data;
   String? duration;
   bool favorite = false;
   User? user;
@@ -248,7 +246,7 @@ class PropertyModel {
       this.accessoryId,
       this.thumbnail,
       this.visit,
-      this.data,
+      // this.data,
       this.duration,
       this.favorite = false,
       this.user});
@@ -274,7 +272,7 @@ class PropertyModel {
     accessoryId = json['accessory_id'];
     thumbnail = json['thumbnail'];
     visit = json['visit'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    // data = json['data'] != null ? Data.fromJson(json['data']) : null;
     duration = json['duration'];
     favorite = json['favorite'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;
@@ -302,9 +300,9 @@ class PropertyModel {
     data['accessory_id'] = accessoryId;
     data['thumbnail'] = thumbnail;
     data['visit'] = visit;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
+    // if (this.data != null) {
+    //   data['data'] = this.data!.toJson();
+    // }
     data['duration'] = duration;
     data['favorite'] = favorite;
     if (user != null) {

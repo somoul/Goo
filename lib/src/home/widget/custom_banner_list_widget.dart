@@ -190,25 +190,26 @@ class CustomPopularBlock extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      item.data?.size == null
-                                          ? const SizedBox()
-                                          : Image.asset(
-                                              'assets/icons/rom_cm.png',
-                                              height: 13,
-                                              width: 13,
-                                              color: const Color(0xff979797),
-                                            ),
-                                      item.data?.size == null
-                                          ? const SizedBox()
-                                          : const SizedBox(width: 5),
-                                      Expanded(
-                                        child: Text(
-                                          "${item.data?.size ?? ''}",
-                                          style: AppText.bodySmall!.copyWith(
-                                              color: const Color(0xff979797)),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
+                                      //@TODO
+                                      // item.data?.size == null
+                                      //     ? const SizedBox()
+                                      //     : Image.asset(
+                                      //         'assets/icons/rom_cm.png',
+                                      //         height: 13,
+                                      //         width: 13,
+                                      //         color: const Color(0xff979797),
+                                      //       ),
+                                      // item.data?.size == null
+                                      //     ? const SizedBox()
+                                      //     : const SizedBox(width: 5),
+                                      // Expanded(
+                                      //   child: Text(
+                                      //     "${item.data?.size ?? ''}",
+                                      //     style: AppText.bodySmall!.copyWith(
+                                      //         color: const Color(0xff979797)),
+                                      //     overflow: TextOverflow.ellipsis,
+                                      //   ),
+                                      // ),
                                       SizedBox(
                                         height: 40,
                                         child: IconButton(

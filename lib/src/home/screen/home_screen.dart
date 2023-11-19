@@ -10,7 +10,7 @@ import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_service_block.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
-import 'package:goo_rent/src/property_detail/presentation/screen/property_detail.dart';
+import 'package:goo_rent/src/property_detail/presentation/screen/property_listing.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid.dart';
 import 'package:goo_rent/src/widgets/slider.dart';
 import 'package:goo_rent/utils/extension/num.dart';
@@ -145,8 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           () => CustomPopularBlock(
                             loading: _homeController.loadingPopular.value,
                             popularList: _homeController
-                                    .popularPropertyData.value.propertyList ??
-                                [],
+                                .popularPropertyData.value.propertyList,
                           ),
                         ),
                         const SizedBox(height: AppConstant.padding),
@@ -165,13 +164,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             onAction: () {
                               Get.to(() => const AllProperty());
                             },
-                            propertyList: _homeController
-                                    .propertyData.value.propertyList ??
-                                [],
+                            propertyList:
+                                _homeController.propertyData.value.propertyList,
                             propertyController: _propertyController,
                           ),
                         ),
-                        const SizedBox(height: 20)
+                        SafeArea(top: false, child: 40.gap)
                       ],
                     ),
                   ), // Container(

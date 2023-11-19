@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
@@ -17,16 +20,18 @@ class CustomPropertyGrid extends StatefulWidget {
   final List<PropertyModel> propertyList;
   final PropertyController propertyController;
   final bool loading;
-
-  const CustomPropertyGrid({
-    super.key,
-    required this.propertyList,
-    this.title,
-    this.actionTitle,
-    this.onAction,
-    required this.propertyController,
-    this.loading = false,
-  });
+  final bool loadingMore;
+  final int loadingLength;
+  const CustomPropertyGrid(
+      {super.key,
+      required this.propertyList,
+      this.title,
+      this.actionTitle,
+      this.onAction,
+      required this.propertyController,
+      this.loading = false,
+      this.loadingMore = false,
+      this.loadingLength = 2});
 
   @override
   State<CustomPropertyGrid> createState() => _CustomPropertyGridState();
@@ -46,15 +51,14 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                   : widget.loading
                       ? const ShimmerBox(height: 14).pl(15)
                       : Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppConstant.padding),
+                          padding: 15.px,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("${widget.title}".tr,
                                   style: AppText.titleSmall),
-                              InkWell(
-                                onTap: () => widget.onAction!(),
+                              TextButton(
+                                onPressed: () => widget.onAction!(),
                                 child: Text("${widget.actionTitle}",
                                     style: AppText.titleSmall!.copyWith(
                                         color: AppConstant.kPrimaryColor)),
@@ -70,7 +74,9 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                     widget.title == null && widget.title == '' ? false : true,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                itemCount: widget.loading ? 2 : widget.propertyList.length,
+                itemCount: widget.loading
+                    ? widget.loadingLength
+                    : widget.propertyList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
@@ -104,6 +110,15 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                         ),
                       ),
               ),
+              if (widget.title == null && widget.loadingMore)
+                SafeArea(
+                    top: false,
+                    bottom: true,
+                    child: Center(
+                      child: Platform.isAndroid
+                          ? const CircularProgressIndicator()
+                          : const CupertinoActivityIndicator(),
+                    ).pb(30))
             ],
           ).pt(10);
   }

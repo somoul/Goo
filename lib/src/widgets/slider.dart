@@ -132,48 +132,51 @@ class _CustomSliderState extends State<CustomSlider> {
         Get.to(() => const SearchRentScreen());
       },
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        margin: const EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: AppConstant.kPrimaryColor.withOpacity(0.15),
-              blurRadius: 20,
-              offset: const Offset(
-                2.0,
-                2.0,
-              ),
-            )
-          ],
-          border: Border.all(
-              width: 2,
-              color: loading ? Colors.grey[100]! : AppConstant.kPrimaryColor),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Row(
-          children: [
-            loading
-                ? ShimmerBox.wrap(
-                    child: SvgPicture.asset('assets/image/search.svg'))
-                : SvgPicture.asset('assets/image/search.svg'),
-            const SizedBox(width: 10),
-            loading
-                ? const ShimmerBox(
-                    width: 150,
-                  )
-                : Text("Apartment for business".tr, style: AppText.bodySmall),
-            if (loading) const Spacer(),
-            loading
-                ? const ShimmerBox()
-                : Expanded(
-                    child: Text("Search".tr,
-                        textAlign: TextAlign.end,
-                        style: AppText.bodySmall!
-                            .copyWith(color: AppConstant.kPrimaryColor)),
-                  ),
-          ],
+        color: Colors.transparent,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: AppConstant.kPrimaryColor.withOpacity(0.15),
+                blurRadius: 20,
+                offset: const Offset(
+                  2.0,
+                  2.0,
+                ),
+              )
+            ],
+            border: Border.all(
+                width: 2,
+                color: loading ? Colors.grey[100]! : AppConstant.kPrimaryColor),
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: Row(
+            children: [
+              loading
+                  ? ShimmerBox.wrap(
+                      child: SvgPicture.asset('assets/image/search.svg'))
+                  : SvgPicture.asset('assets/image/search.svg'),
+              const SizedBox(width: 10),
+              loading
+                  ? const ShimmerBox(
+                      width: 150,
+                    )
+                  : Text("Apartment for business".tr, style: AppText.bodySmall),
+              if (loading) const Spacer(),
+              loading
+                  ? const ShimmerBox()
+                  : Expanded(
+                      child: Text("Search".tr,
+                          textAlign: TextAlign.end,
+                          style: AppText.bodySmall!
+                              .copyWith(color: AppConstant.kPrimaryColor)),
+                    ),
+            ],
+          ),
         ),
       ),
     );

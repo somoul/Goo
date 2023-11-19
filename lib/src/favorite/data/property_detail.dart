@@ -3,14 +3,14 @@ class PropertyModel {
   String? title;
   String? description;
   String? price;
-  int? like;
+  int like = 0;
   List<String>? attachments;
   String? latitude;
   String? longitude;
   int? categoryId;
   String? address;
   int? status;
-  int? id;
+  int id = 0;
   String? bookingPrice;
   List<int>? accessoryId;
   int? visit;
@@ -25,14 +25,14 @@ class PropertyModel {
       this.title,
       this.description,
       this.price,
-      this.like,
+      this.like = 0,
       this.attachments,
       this.latitude,
       this.longitude,
       this.categoryId,
       this.address,
       this.status,
-      this.id,
+      this.id = 0,
       this.bookingPrice,
       this.accessoryId,
       this.visit,
