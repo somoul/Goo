@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:goo_rent/enum/media_type.dart';
 import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/helper/local_storage.dart';
-import 'package:goo_rent/routes/route_name.dart';
 import 'package:share_plus/share_plus.dart';
 
 String getRandomString(int length) {

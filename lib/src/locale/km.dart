@@ -121,5 +121,11 @@ class Khmer {
         "The session has expired, please login again.":
             "គណនីអ្នកបានផុតកំណត់ សូមចូលគណនីម្តងទៀត",
         "Save address successfully": "រក្សាទុកអាស័យដ្ខានបានជោគជ័យ!",
+        "Overview": "ពត៌មានបន្ថែម",
+        "No Accessory": "គ្មានគ្រឿងបរិក្ខា",
+        "Property Location": "ទីតាំងជួល",
+        "Accessories": "គ្រឿងបរិក្ខា",
+        "Read more": "អានបន្ត",
+        "See less": "បិត",
       };
 }

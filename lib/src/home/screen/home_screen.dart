@@ -8,6 +8,7 @@ import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/src/home/widget/custom_banner_list_widget.dart';
 import 'package:goo_rent/src/home/widget/custom_service_block.dart';
+import 'package:goo_rent/src/post_property/controller/post_property_controller.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/property_detail/controller/property_controller.dart';
 import 'package:goo_rent/src/property_detail/presentation/screen/property_listing.dart';
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _mapController = Get.put(GMapController());
   final _propertyController = Get.put(PropertyController());
   final _profileCon = Get.put(ProfileController());
+  final _postPropertyCon = Get.put(PostPropertyController());
   List<Widget> imageSliders = [];
   @override
   void initState() {
@@ -63,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
       await _homeController.fetchSlideBanner();
       await _homeController.fetchSliderCategorie();
       await _homeController.getPopularProperty(late: 1, long: 1);
-      _homeController.getAllProperties(
+      await _homeController.getAllProperties(
           late: _mapController.addressModel.value.lattitude ?? '',
           long: _mapController.addressModel.value.longitude ?? '');
       await _profileCon.getUserInfo();
@@ -72,21 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
       // await _homeController.callStartAnimation();
       await _mapController.getLocalAddress();
       await _mapController.getCurrentAddress();
+      await _postPropertyCon.getAccessories();
     } catch (_) {
+      rethrow;
     } finally {}
     // _pageController = PageController(initialPage: selectedPage);
   }
 
-  // _iniAnimated({required int value}) async {
-  //   Timer(const Duration(seconds: 1), () {
-  //     _homeController.pageController.animateToPage(
-  //       value,
-  //       duration: const Duration(milliseconds: 350),
-  //       curve: Curves.easeIn,
-  //     );
-  //   });
-  // }
-  // int activePage = 1;
   _onClickBaner(int id) async {
     await _homeController.onClickBanner(id);
   }
@@ -132,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 30),
 
+                        ///---------------------------------------------------------
                         Obx(
                           () => CustomCategoryBlock(
                             loading: _homeController.loadingCategory.value,
@@ -143,17 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         /// Popular
                         Obx(
                           () => CustomPopularBlock(
+                            homeController: _homeController,
                             loading: _homeController.loadingPopular.value,
                             popularList: _homeController
                                 .popularPropertyData.value.propertyList,
                           ),
                         ),
                         const SizedBox(height: AppConstant.padding),
-                        // FilledButton(
-                        //     onPressed: () async {
-                        //       await _profileCon.getUserInfo();
-                        //     },
-                        //     child: const Text("Helkadksfdgkjb")),
 
                         ///Recommend
                         Obx(
@@ -249,47 +240,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-class TypeOfRent {
-  final int code;
-  final String imageSrc;
-  final String typeName;
-  final String location;
-  final String sizeRent;
-  final String priceOfRent;
-  final IconOfCard iconCard;
-
-  const TypeOfRent(
-      {required this.iconCard,
-      required this.imageSrc,
-      required this.typeName,
-      required this.location,
-      required this.priceOfRent,
-      required this.sizeRent,
-      required this.code});
-}
-
-class IconOfCard {
-  final String size;
-  final String status;
-  final String park;
-  final String stair;
-
-  const IconOfCard(
-      {required this.size,
-      required this.status,
-      required this.park,
-      required this.stair});
-}
-
-List<TypeOfRent> listTypeOfRent = [
-  const TypeOfRent(
-      code: 983883,
-      imageSrc: 'assets/icons/Rectangle11.png',
-      typeName: "បន្ទប់ជួលផ្សាឈូកមាស",
-      location: "ទីតាំង ភ្នំពេញថ្មី ភូមិថ្មី ខណ្ឌសែនសុខ ភ្នំពេញ",
-      priceOfRent: "ទំហំ ២ x ៤ ម៉ែត្រ",
-      sizeRent: ' ៦០ដុល្លា ១ខែ',
-      iconCard:
-          IconOfCard(size: '3x5m', stair: '5', status: 'Free', park: '1')),
-];

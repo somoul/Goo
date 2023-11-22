@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:goo_rent/enum/storage_key.dart';
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/helper/loading_helper.dart';
+import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
-import 'package:goo_rent/src/widgets/network/network_status_builder.dart';
 
 class PropertyController extends GetxController {
   final _apiHelper = ApiHelper();
@@ -23,9 +24,7 @@ class PropertyController extends GetxController {
           .onRequest(
               url: '/get-save-post', methode: METHODE.get, isAuthorize: true)
           .then((value) async {
-        print("----------------------------->>>>>>  $value");
         favoriteData.value = PropertyModelResponse.fromJson(value['data']);
-        print("----------------------------->>>>>>  $value");
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
@@ -62,7 +61,7 @@ class PropertyController extends GetxController {
   final isFirstLoad = false.obs;
   final _isLoadMore = false.obs;
   final nextPage = 0.obs;
-
+  final useCacheData = false.obs;
   bool get loadMore => _isLoadMore.value && !isEndOfData.value;
 
   Future<void> getPropertyListing({
@@ -84,12 +83,22 @@ class PropertyController extends GetxController {
               methode: METHODE.get,
               isAuthorize: true,
               whenRequestFailed: () async {
-                // var data = await LocalStorage.get(StorageKeys.recommend);
-                // if (data != null) {
-                //   propertyData.value = PropertyModelResponse.fromJson(data);
-                // }
+                try {
+                  var data =
+                      await LocalStorage.get(StorageKeys.propertyListing);
+                  if (data != null) {
+                    data.map((element) {
+                      propertyList.add(PropertyModel.fromJson(element));
+                    }).toList();
+                  }
+                  useCacheData.value = true;
+                } catch (_) {}
+                BaseToast.showErorrBaseToast('Something went wrong'.tr);
               })
           .then((response) async {
+        if (useCacheData.value) {
+          useCacheData.value = false;
+        }
         if (requestPage == 1 && (propertyList.isNotEmpty)) {
           propertyList.clear();
         }
@@ -101,14 +110,21 @@ class PropertyController extends GetxController {
         }
         nextPage.value = requestPage + 1;
         isEndOfData.value = tempData.nextPageUrl == null;
+
+        ///Save to catche
+
+        await LocalStorage.put(
+            storageKey: StorageKeys.propertyListing, value: propertyList);
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (_) {
       rethrow;
     } finally {
-      isFirstLoad(false);
-      _isLoadMore(false);
+      Future.delayed(const Duration(milliseconds: 800), () {
+        isFirstLoad(false);
+        _isLoadMore(false);
+      });
     }
   }
 }

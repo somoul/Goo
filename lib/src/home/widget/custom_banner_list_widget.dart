@@ -1,47 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/image_builder.dart';
+import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
+import 'package:goo_rent/src/home/screen/detail_property_type/property_detail.dart';
+
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 
-class CustomPopularBlock extends StatelessWidget {
-  final List<PropertyModel> popularList;
+// ignore: must_be_immutable
+class CustomPopularBlock extends StatefulWidget {
+  List<PropertyModel> popularList;
   final bool loading;
-  const CustomPopularBlock(
+  final HomeController homeController;
+  CustomPopularBlock(
       {Key? key,
       this.axis = Axis.horizontal,
       required this.popularList,
-      required this.loading})
+      required this.loading,
+      required this.homeController})
       : super(key: key);
   final Axis axis;
+
+  @override
+  State<CustomPopularBlock> createState() => _CustomPopularBlockState();
+}
+
+class _CustomPopularBlockState extends State<CustomPopularBlock> {
   @override
   Widget build(BuildContext context) {
-    // return Container();
-    // final pageController = PageController(viewportFraction: 0.900);
-
-    return
-        // !loading && popularList.isEmpty
-        //     ? const SizedBox()
-        //     :
-        Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        15.gap,
         Padding(
           padding: const EdgeInsets.only(left: AppConstant.paddingLarge),
-          child: loading
+          child: widget.loading
               ? const ShimmerBox(height: 14)
               : Text('Popular'.tr, style: AppText.titleSmall),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 20),
         SizedBox(
-          height: popularList.isEmpty && !loading ? 70 : 285,
+          height: widget.popularList.isEmpty && !widget.loading ? 70 : 285,
           width: double.infinity,
-          child: loading
+          child: widget.loading
               ? ListView(
                   scrollDirection: Axis.horizontal,
                   padding: 16.px,
@@ -49,7 +55,7 @@ class CustomPopularBlock extends StatelessWidget {
                     ...List.generate(3, (index) => _buildShimmer()),
                   ],
                 )
-              : popularList.isEmpty
+              : widget.popularList.isEmpty
                   ? Center(
                       child: Text(
                         'No Data'.tr,
@@ -57,99 +63,115 @@ class CustomPopularBlock extends StatelessWidget {
                       ),
                     )
                   : ListView.builder(
-                      itemCount: popularList.length,
+                      itemCount: widget.popularList.length,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        PropertyModel item = popularList[index];
-                        return Container(
-                          width: 300,
-                          margin: const EdgeInsets.only(right: 15, bottom: 8),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5,
-                                    color: Colors.grey[300]!,
-                                    offset: const Offset(2, 2))
-                              ]),
-                          child: Column(
+                        PropertyModel item = widget.popularList[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPropertyScreen(
+                                  id: item.id ?? 0,
+                                ),
+                              ), //TabBarDemo
+                            );
+                          },
+                          child: Stack(
                             children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    height: 170,
-                                    decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(8),
-                                            topRight: Radius.circular(8)),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                              'assets/icons/Rectangle2416.png'),
-                                        )),
-                                  ),
-                                  Positioned(
-                                      top: 10,
-                                      right: 10,
+                              Container(
+                                width: 270,
+                                height: 285,
+                                margin: const EdgeInsets.only(
+                                  right: 5,
+                                  bottom: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 5,
+                                          color: Colors.grey[300]!,
+                                          offset: const Offset(2, 2))
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15),
+                                      ),
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffF0F0F0),
-                                            borderRadius:
-                                                BorderRadius.circular(100)),
-                                        child: Padding(
+                                        height: 160,
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(15),
+                                              topRight: Radius.circular(15)),
+                                        ),
+                                        child: ImageBuilder(
+                                                fit: BoxFit.cover, width: 270)
+                                            .network(
+                                                item.attachments?[0] ?? ""),
+                                      ),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      textBaseline: TextBaseline.ideographic,
+                                      children: [
+                                        10.gap,
+                                        Text(
+                                          item.title ?? "",
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: AppText.bodyMedium,
+                                        ).px(14),
+                                        10.gap,
+                                        Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              vertical: 2, horizontal: 5),
+                                              horizontal: 15),
                                           child: Row(
                                             children: [
-                                              const Icon(Icons.remove_red_eye,
-                                                  size: 15),
-                                              const SizedBox(width: 3),
+                                              SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child: ImageBuilder().asset(
+                                                    "assets/image2/icon_map.svg"),
+                                              ),
+                                              8.gap,
+                                              Expanded(
+                                                child: Text(
+                                                    item.distance ?? "N/A"),
+                                              ),
                                               Text(
-                                                "193",
+                                                "\$${item.price}/",
                                                 style: AppText.titleSmall!
-                                                    .copyWith(fontSize: 14),
-                                              )
+                                                    .copyWith(
+                                                        color: const Color(
+                                                            0xFF21A6F8)),
+                                              ),
+                                              Text(
+                                                "Month".tr,
+                                                style: AppText.bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.black),
+                                              ),
                                             ],
                                           ),
                                         ),
-                                      ))
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                textBaseline: TextBaseline.ideographic,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 5),
-                                    child: Text("${item.title}",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: AppText.bodyMedium),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
-                                    child: Row(
+                                      ],
+                                    ),
+                                    5.gap,
+                                    const Divider(height: 0, thickness: 0.5),
+                                    Row(
                                       children: [
-                                        Icon(Icons.star,
-                                            color: Colors.yellow[600]!,
-                                            size: 14),
-                                        // Image.asset("assets/icons/ic_star.svg"),
-                                        Text(
-                                          "4.7",
-                                          style: AppText.bodyMedium!.copyWith(
-                                              color: const Color(0xFF21A6F8)),
-                                        ),
-                                        const SizedBox(width: 3),
-                                        Icon(Icons.circle,
-                                            color: Colors.grey[300], size: 5),
-                                        const SizedBox(width: 3),
+                                        14.gap,
                                         Expanded(
                                           child: Text(
-                                            '150km',
+                                            'ID: ${item.id ?? ""}',
                                             overflow: TextOverflow
                                                 .ellipsis, //  "${item.distance}",
                                             maxLines: 1,
@@ -157,73 +179,58 @@ class CustomPopularBlock extends StatelessWidget {
                                                 color: const Color(0xFF979797)),
                                           ),
                                         ),
-                                        const SizedBox(width: 15),
-                                        Text(
-                                          "\$${item.price}/",
-                                          style: AppText.titleSmall!.copyWith(
-                                              color: const Color(0xFF21A6F8)),
+                                        IconButton(
+                                          splashRadius: 45,
+                                          onPressed: () {
+                                            setState(() {
+                                              widget.popularList[index]
+                                                      .favorite =
+                                                  !widget.popularList[index]
+                                                      .favorite;
+                                            });
+                                            widget.homeController.onFavorit(
+                                              propertyId: item.id.toString(),
+                                            );
+                                          },
+                                          icon: ImageBuilder().asset(
+                                            item.favorite
+                                                ? 'assets/image2/active_favorite.svg'
+                                                : 'assets/image/favorite.svg',
+                                          ),
                                         ),
-                                        Text(
-                                          "Month".tr,
-                                          style: AppText.bodySmall!
-                                              .copyWith(color: Colors.black),
-                                        ),
+                                        5.gap,
                                       ],
                                     ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Divider(
-                                    height: 0,
-                                    thickness: 0.5,
-                                    color: Colors.grey[200]!,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const SizedBox(width: 15),
-                                      SvgPicture.asset('assets/image/beds.svg'),
-                                      const SizedBox(width: 5),
-                                      Expanded(
-                                        child: Text(
-                                          "4 បន្ទប់គេង",
-                                          style: AppText.bodySmall!.copyWith(
-                                              color: const Color(0xff979797)),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                  top: 10,
+                                  right: 10,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xffF0F0F0),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2, horizontal: 5),
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.remove_red_eye,
+                                              size: 15),
+                                          const SizedBox(width: 3),
+                                          Text(
+                                            "${item.visit ?? ''}",
+                                            style: AppText.titleSmall!
+                                                .copyWith(fontSize: 14),
+                                          )
+                                        ],
                                       ),
-                                      //@TODO
-                                      // item.data?.size == null
-                                      //     ? const SizedBox()
-                                      //     : Image.asset(
-                                      //         'assets/icons/rom_cm.png',
-                                      //         height: 13,
-                                      //         width: 13,
-                                      //         color: const Color(0xff979797),
-                                      //       ),
-                                      // item.data?.size == null
-                                      //     ? const SizedBox()
-                                      //     : const SizedBox(width: 5),
-                                      // Expanded(
-                                      //   child: Text(
-                                      //     "${item.data?.size ?? ''}",
-                                      //     style: AppText.bodySmall!.copyWith(
-                                      //         color: const Color(0xff979797)),
-                                      //     overflow: TextOverflow.ellipsis,
-                                      //   ),
-                                      // ),
-                                      SizedBox(
-                                        height: 40,
-                                        child: IconButton(
-                                          onPressed: () {},
-                                          icon: SvgPicture.asset(
-                                              'assets/image/favorite.svg'),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              )
+                                    ),
+                                  ))
                             ],
-                          ),
+                          ).pr(20),
                         );
                       },
                     ),
@@ -236,10 +243,11 @@ class CustomPopularBlock extends StatelessWidget {
 ///________Shimmer
 Widget _buildShimmer() {
   return Container(
-    width: 300,
-    margin: const EdgeInsets.only(right: 15, bottom: 8),
+    width: 270,
+    height: 285,
+    margin: const EdgeInsets.only(right: 20, bottom: 8),
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(15),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -253,9 +261,9 @@ Widget _buildShimmer() {
         Stack(
           children: [
             ShimmerBox(
-              height: 170,
-              width: 300,
-              borderRadius: 8,
+              height: 160,
+              width: 270,
+              borderRadius: 15,
               highlightColor: Colors.grey[100],
               baseColor: Colors.white,
             ),
@@ -276,17 +284,12 @@ Widget _buildShimmer() {
             ),
             Padding(
               padding: 15.px,
-              child: Row(
+              child: const Row(
                 children: [
-                  ShimmerBox.wrap(
-                    child:
-                        Icon(Icons.star, color: Colors.yellow[600]!, size: 14),
-                  ),
-                  6.gap,
-                  const ShimmerBox(),
-                  const Spacer(),
-                  const ShimmerBox(),
-                  const SizedBox(width: 15),
+                  ShimmerBox(width: 70),
+                  Spacer(),
+                  ShimmerBox(),
+                  SizedBox(width: 15),
                 ],
               ),
             ),

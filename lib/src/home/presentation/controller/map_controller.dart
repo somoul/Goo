@@ -37,6 +37,7 @@ class GMapController extends GetxController {
   }
 
   Future<String> getCurrentAddress() async {
+    print("fetch current from map");
     await getCurrentPosition().then((currentLocation) async {
       var late = currentLocation.latitude;
       var long = currentLocation.longitude;
@@ -75,10 +76,11 @@ class GMapController extends GetxController {
   }
 
   Future getLocalAddress() async {
+    print("fetch address");
     permission = await Geolocator.checkPermission();
     var data = await LocalStorage.get(StorageKeys.location);
     if (data != null) {
-      currentAddress.value = data;
+      currentAddress.value = data.toString();
     }
   }
 
@@ -108,12 +110,10 @@ class GMapController extends GetxController {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
         return;
       });
-
       addressModel.value = AddressModel.fromJson(response["data"]);
       await getLocalAddress();
       await LocalStorage.put(
           storageKey: StorageKeys.location, value: addressModel.value);
-
       BaseToast.showSuccessBaseToast("Save address successfully".tr);
     } catch (_) {
     } finally {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:goo_rent/constant/app_constant.dart';
-import 'package:goo_rent/src/home/screen/home_screen.dart';
-import 'package:goo_rent/src/profile/presentation/screen/rented_room.dart';
 import 'custom_card_rent_widget.dart';
 
 class CustomAfterLoadingSearchWidget extends StatefulWidget {
@@ -917,26 +915,26 @@ class _CustomAfterLoadingSearchWidgetState
   _customCategoriesListLayout() => ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          ...listTypeOfRent.map((e) => CustomCardRentWidget(
-                imageSrc: e.imageSrc,
-                typeName: e.typeName,
-                location: e.location,
-                sizeRent: e.sizeRent,
-                horizontal: 0,
-                code: e.code,
-                priceOfRent: e.priceOfRent,
-                iconOfCard: e.iconCard,
-              )),
-          ...listTypeOfRent1.map((e) => CustomCardRentWidget(
-                imageSrc: e.imageSrc,
-                typeName: e.typeName,
-                location: e.location,
-                sizeRent: e.sizeRent,
-                horizontal: 0,
-                code: e.code,
-                priceOfRent: e.priceOfRent,
-                iconOfCard: e.iconCard,
-              )),
+          // ...listTypeOfRent.map((e) => CustomCardRentWidget(
+          //       imageSrc: e.imageSrc,
+          //       typeName: e.typeName,
+          //       location: e.location,
+          //       sizeRent: e.sizeRent,
+          //       horizontal: 0,
+          //       code: e.code,
+          //       priceOfRent: e.priceOfRent,
+          //       iconOfCard: e.iconCard,
+          //     )),
+          // ...listTypeOfRent1.map((e) => CustomCardRentWidget(
+          //       imageSrc: e.imageSrc,
+          //       typeName: e.typeName,
+          //       location: e.location,
+          //       sizeRent: e.sizeRent,
+          //       horizontal: 0,
+          //       code: e.code,
+          //       priceOfRent: e.priceOfRent,
+          //       iconOfCard: e.iconCard,
+          //     )),
           const SizedBox(
             height: 10,
           ),

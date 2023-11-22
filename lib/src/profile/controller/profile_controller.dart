@@ -49,6 +49,7 @@ class ProfileController extends GetxController {
 
   Future<void> getUserInfo() async {
     try {
+      print("fetch user");
       await apiHelper
           .onRequest(
         url: '/user_info',

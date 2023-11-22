@@ -12,6 +12,7 @@ class PostPropertyController extends GetxController {
   final accessoryData = <AccessoryModel>[].obs;
 
   Future<void> getAccessories() async {
+    print("fetch accessory");
     isLoadAccessory(true);
     try {
       await apiHelper
@@ -21,7 +22,6 @@ class PostPropertyController extends GetxController {
         methode: METHODE.get,
       )
           .then((response) {
-        print('fvdksnvjuvnaijvnrwig  ::: :$response');
         var data = response['data'];
         accessoryData.clear();
         data.forEach((e) {

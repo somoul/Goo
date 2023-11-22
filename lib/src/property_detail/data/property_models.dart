@@ -217,10 +217,11 @@ class PropertyModel {
   int? id;
   String? lang;
   String? bookingPrice;
-  String? accessoryId;
+  List<int> accessoryId = [];
   String? thumbnail;
   int? visit;
   // Data? data;
+
   String? duration;
   bool favorite = false;
   User? user;
@@ -243,7 +244,7 @@ class PropertyModel {
       this.id,
       this.lang,
       this.bookingPrice,
-      this.accessoryId,
+      this.accessoryId = const [],
       this.thumbnail,
       this.visit,
       // this.data,
@@ -269,7 +270,12 @@ class PropertyModel {
     id = json['id'];
     lang = json['lang'];
     bookingPrice = json['booking_price'];
-    accessoryId = json['accessory_id'];
+    if (json['accessory_id'] is! String) {
+      accessoryId = json['accessory_id'].cast<int>();
+    } else {
+      accessoryId = [];
+    }
+
     thumbnail = json['thumbnail'];
     visit = json['visit'];
     // data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -300,9 +306,6 @@ class PropertyModel {
     data['accessory_id'] = accessoryId;
     data['thumbnail'] = thumbnail;
     data['visit'] = visit;
-    // if (this.data != null) {
-    //   data['data'] = this.data!.toJson();
-    // }
     data['duration'] = duration;
     data['favorite'] = favorite;
     if (user != null) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
-import 'package:goo_rent/src/home/screen/home_screen.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 
 class CustomCardRentWidget extends StatelessWidget {
@@ -13,7 +12,6 @@ class CustomCardRentWidget extends StatelessWidget {
       required this.location,
       required this.sizeRent,
       required this.priceOfRent,
-      this.iconOfCard,
       this.code,
       this.horizontal = 0,
       this.checkAccount = "default"})
@@ -24,7 +22,6 @@ class CustomCardRentWidget extends StatelessWidget {
   final String sizeRent;
   final String priceOfRent;
   final int? code;
-  final IconOfCard? iconOfCard;
   final double horizontal;
   final String checkAccount;
 

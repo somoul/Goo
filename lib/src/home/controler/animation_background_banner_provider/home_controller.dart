@@ -44,7 +44,25 @@ class HomeController extends GetxController {
   final listSideBarData = <SlideModel>[].obs;
   var homeslideList = <String>[].obs;
 
+  Future<void> onFavorit({required String propertyId}) async {
+    try {
+      await apiHelper
+          .onRequest(
+            url: '/save-post/$propertyId',
+            methode: METHODE.post,
+            isAuthorize: true,
+          )
+          .then((value) async {})
+          .onError((ErrorModel error, stackTrace) {
+        BaseToast.showErorrBaseToast('${error.bodyString['message']}');
+      });
+    } catch (e) {
+      BaseToast.showErorrBaseToast(e.toString());
+    } finally {}
+  }
+
   Future<List<SlideModel>> fetchSlideBanner() async {
+    print("fetch slide");
     loadingCategory(true);
     loadSlide(true);
     loadingPopular(true);
@@ -56,15 +74,20 @@ class HomeController extends GetxController {
               methode: METHODE.get,
               url: '/banners',
               whenRequestFailed: () async {
-                var data = await LocalStorage.get(StorageKeys.banner);
-                if (data != null) {
-                  data.map((element) {
-                    listSideBarData.add(SlideModel.fromJson(element));
-                  }).toList();
-                  listSideBarData.map((element) {
-                    homeslideList.add(element.imageUrl!);
-                  }).toList();
+                try {
+                  var data = await LocalStorage.get(StorageKeys.banner);
+                  if (data != null) {
+                    data.map((element) {
+                      listSideBarData.add(SlideModel.fromJson(element));
+                    }).toList();
+                    listSideBarData.map((element) {
+                      homeslideList.add(element.imageUrl!);
+                    }).toList();
+                  }
+                } catch (_) {
+                  rethrow;
                 }
+                BaseToast.showErorrBaseToast('Something went wrong'.tr);
               })
           .then((response) async {
         var jsonData = response['data'];
@@ -109,15 +132,20 @@ class HomeController extends GetxController {
     int? pageNumber,
   }) async {
     try {
+      print("fetch recommended");
       await apiHelper
           .onRequest(
               url: '/posts?around=212.22&long=104.862920&lat=11.587222&page=1',
               methode: METHODE.get,
               isAuthorize: true,
               whenRequestFailed: () async {
-                var data = await LocalStorage.get(StorageKeys.recommend);
-                if (data != null) {
-                  propertyData.value = PropertyModelResponse.fromJson(data);
+                try {
+                  var data = await LocalStorage.get(StorageKeys.recommend);
+                  if (data != null) {
+                    propertyData.value = PropertyModelResponse.fromJson(data);
+                  }
+                } catch (_) {
+                  rethrow;
                 }
               })
           .then((value) async {
@@ -140,18 +168,23 @@ class HomeController extends GetxController {
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     try {
+      print("fetch category");
       await apiHelper
           .onRequest(
               isAuthorize: true,
               url: "/categories",
               methode: METHODE.get,
               whenRequestFailed: () async {
-                var data = await LocalStorage.get(StorageKeys.categories);
-                if (data != null) {
-                  data.map((element) {
-                    listSideBarDataCategorie
-                        .add(SlideCategorieModel.fromJson(element));
-                  }).toList();
+                try {
+                  var data = await LocalStorage.get(StorageKeys.categories);
+                  if (data != null) {
+                    data.map((element) {
+                      listSideBarDataCategorie
+                          .add(SlideCategorieModel.fromJson(element));
+                    }).toList();
+                  }
+                } catch (_) {
+                  rethrow;
                 }
               })
           .then((response) async {
@@ -180,6 +213,7 @@ class HomeController extends GetxController {
     required double late,
     required double long,
   }) async {
+    print("fetch popular");
     try {
       await apiHelper
           .onRequest(
@@ -190,6 +224,7 @@ class HomeController extends GetxController {
         popularPropertyData.value = PropertyModelResponse.fromJson(value);
       });
     } catch (_) {
+      rethrow;
       // BaseToast.showErorrBaseToast(e.toString());
     } finally {
       loadingPopular(false);

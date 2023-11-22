@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/dialog.dart';
@@ -76,13 +75,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                  '${profileController.userModel.value.firstName} ${profileController.userModel.value.lastName}',
+                                  '${profileController.userModel.value.firstName ?? "N/A"} ${profileController.userModel.value.lastName ?? ''}',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: AppText.bodyMedium!.copyWith(
                                       color: Colors.white, fontSize: 16)),
                               Text(
-                                "${'ID'.tr}: ${profileController.userModel.value.id}",
+                                "${'ID'.tr}: ${profileController.userModel.value.id ?? "N/A"}",
                                 style: AppText.bodySmall!.copyWith(
                                     color: Colors.white.withOpacity(0.6),
                                     fontSize: 14),

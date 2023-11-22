@@ -14,33 +14,36 @@ class PropertyModel {
   String? bookingPrice;
   List<int>? accessoryId;
   int? visit;
-  Data? data;
+  Map<String, dynamic> data = {};
   String? duration;
   String? distance;
+  bool favorite = false;
   User? user;
   Category? category;
 
-  PropertyModel(
-      {this.userId,
-      this.title,
-      this.description,
-      this.price,
-      this.like = 0,
-      this.attachments,
-      this.latitude,
-      this.longitude,
-      this.categoryId,
-      this.address,
-      this.status,
-      this.id = 0,
-      this.bookingPrice,
-      this.accessoryId,
-      this.visit,
-      this.data,
-      this.duration,
-      this.distance,
-      this.user,
-      this.category});
+  PropertyModel({
+    this.userId,
+    this.title,
+    this.description,
+    this.price,
+    this.like = 0,
+    this.attachments,
+    this.latitude,
+    this.longitude,
+    this.categoryId,
+    this.address,
+    this.status,
+    this.id = 0,
+    this.bookingPrice,
+    this.accessoryId,
+    this.visit,
+    this.data = const {},
+    this.duration,
+    this.distance,
+    this.user,
+    this.category,
+    this.favorite = false,
+  });
 
   PropertyModel.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
@@ -58,9 +61,10 @@ class PropertyModel {
     bookingPrice = json['booking_price'];
     accessoryId = json['accessory_id'].cast<int>();
     visit = json['visit'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] ?? {};
     duration = json['duration'];
     distance = json['distance'];
+    favorite = json['favorite'] ?? false;
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     category =
         json['category'] != null ? Category.fromJson(json['category']) : null;
@@ -83,9 +87,7 @@ class PropertyModel {
     data['booking_price'] = bookingPrice;
     data['accessory_id'] = accessoryId;
     data['visit'] = visit;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
+    data['data'] = data;
     data['duration'] = duration;
     data['distance'] = distance;
     if (user != null) {
@@ -94,25 +96,6 @@ class PropertyModel {
     if (category != null) {
       data['category'] = category!.toJson();
     }
-    return data;
-  }
-}
-
-class Data {
-  int? size;
-  double? waterPrice;
-
-  Data({this.size, this.waterPrice});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    size = json['size'];
-    waterPrice = json['water_price'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['size'] = size;
-    data['water_price'] = waterPrice;
     return data;
   }
 }
@@ -178,7 +161,7 @@ class Category {
   String? updatedAt;
   String? icon;
   String? nameKh;
-  Field? field;
+  Map<String, dynamic>? field;
 
   Category(
       {this.id,
@@ -198,7 +181,9 @@ class Category {
     updatedAt = json['updated_at'];
     icon = json['icon'];
     nameKh = json['name_kh'];
-    field = json['field'] != null ? Field.fromJson(json['field']) : null;
+    field = (json['field'] != null ? json['field'] as Map : {})
+        .cast<String, dynamic>();
+    // field = json['field'] != null ? Field.fromJson(json['field']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -210,94 +195,9 @@ class Category {
     data['updated_at'] = updatedAt;
     data['icon'] = icon;
     data['name_kh'] = nameKh;
-    if (field != null) {
-      data['field'] = field!.toJson();
-    }
-    return data;
-  }
-}
-
-class Field {
-  Size? size;
-  WaterPrice? waterPrice;
-  Size? electricityPrice;
-
-  Field({this.size, this.waterPrice, this.electricityPrice});
-
-  Field.fromJson(Map<String, dynamic> json) {
-    size = json['size'] != null ? Size.fromJson(json['size']) : null;
-    waterPrice = json['water_price'] != null
-        ? WaterPrice.fromJson(json['water_price'])
-        : null;
-    electricityPrice = json['electricity_price'] != null
-        ? Size.fromJson(json['electricity_price'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (size != null) {
-      data['size'] = size!.toJson();
-    }
-    if (waterPrice != null) {
-      data['water_price'] = waterPrice!.toJson();
-    }
-    if (electricityPrice != null) {
-      data['electricity_price'] = electricityPrice!.toJson();
-    }
-    return data;
-  }
-}
-
-class Size {
-  String? alias;
-  String? label;
-  bool? required;
-  String? type;
-  String? placeholder;
-
-  Size({this.alias, this.label, this.required, this.type, this.placeholder});
-
-  Size.fromJson(Map<String, dynamic> json) {
-    alias = json['alias'];
-    label = json['label'];
-    required = json['required'];
-    type = json['type'];
-    placeholder = json['placeholder'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['alias'] = alias;
-    data['label'] = label;
-    data['required'] = required;
-    data['type'] = type;
-    data['placeholder'] = placeholder;
-    return data;
-  }
-}
-
-class WaterPrice {
-  String? alias;
-  String? label;
-  bool? required;
-  String? type;
-
-  WaterPrice({this.alias, this.label, this.required, this.type});
-
-  WaterPrice.fromJson(Map<String, dynamic> json) {
-    alias = json['alias'];
-    label = json['label'];
-    required = json['required'];
-    type = json['type'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['alias'] = alias;
-    data['label'] = label;
-    data['required'] = required;
-    data['type'] = type;
+    // if (field != null) {
+    //   data['field'] = field!.toJson();
+    // }
     return data;
   }
 }

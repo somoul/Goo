@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_string.dart';
-import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
 import 'package:goo_rent/helper/local_storage.dart';
-import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/utils/core/config.dart';
 
 class ErrorModel {
@@ -97,11 +95,9 @@ class ApiHelper extends GetConnect {
   }
 
   _returnResponse(Response response, String url) async {
-    // debugPrint('Response Data : ${response.bodyString}');
-
     if (response.statusCode != 200) {
       debugPrint(
-          'Error Response [$url] ${response.statusCode} > ${response.bodyString}');
+          'Error Response [$url] sCode${response.statusCode} > ${response.bodyString}');
     }
     switch (response.statusCode) {
       case 200:

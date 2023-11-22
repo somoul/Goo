@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
@@ -10,6 +7,7 @@ import 'package:goo_rent/src/property_detail/controller/property_controller.dart
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/property_detail/presentation/widget/custom_property_grid_card.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
+import 'package:goo_rent/utils/extension/edge_insets.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 
@@ -51,17 +49,22 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                   : widget.loading
                       ? const ShimmerBox(height: 14).pl(15)
                       : Padding(
-                          padding: 15.px,
+                          padding: 15.pl,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("${widget.title}".tr,
                                   style: AppText.titleSmall),
-                              TextButton(
-                                onPressed: () => widget.onAction!(),
-                                child: Text("${widget.actionTitle}",
-                                    style: AppText.titleSmall!.copyWith(
-                                        color: AppConstant.kPrimaryColor)),
+                              SizedBox(
+                                height: 30,
+                                child: TextButton(
+                                  style:
+                                      TextButton.styleFrom(padding: 0.p.px(20)),
+                                  onPressed: () => widget.onAction!(),
+                                  child: Text("${widget.actionTitle}",
+                                      style: AppText.titleSmall!.copyWith(
+                                          color: AppConstant.kPrimaryColor)),
+                                ),
                               )
                             ],
                           ),
@@ -110,15 +113,6 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                         ),
                       ),
               ),
-              if (widget.title == null && widget.loadingMore)
-                SafeArea(
-                    top: false,
-                    bottom: true,
-                    child: Center(
-                      child: Platform.isAndroid
-                          ? const CircularProgressIndicator()
-                          : const CupertinoActivityIndicator(),
-                    ).pb(30))
             ],
           ).pt(10);
   }
@@ -127,7 +121,7 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Padding(
         padding: const EdgeInsets.all(15),

@@ -123,5 +123,11 @@ class English {
         "The session has expired, please login again.":
             "The session has expired, please login again.",
         "Save address successfully": "Save address successfully",
+        "Overview": "Overview",
+        "No Accessory": "No Accessory",
+        "Property Location": "Property Location",
+        "Accessories": "Accessories",
+        "Read more": "Read more",
+        "See less": "See less",
       };
 }

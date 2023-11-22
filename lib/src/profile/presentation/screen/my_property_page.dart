@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:goo_rent/src/profile/presentation/screen/rented_room.dart';
-import 'package:goo_rent/src/profile/presentation/screen/renting_room.dart';
 
 class MyPropertyPage extends StatelessWidget {
   static const String routeName = '/my_property_page';
@@ -30,11 +28,11 @@ class MyPropertyPage extends StatelessWidget {
                 //style: TextStyle(fontSize: 22, color: Colors.black),
               ),
             ),
-            body: DefaultTabController(
+            body: const DefaultTabController(
               length: 2,
               child: Scaffold(
                 backgroundColor: Colors.white,
-                appBar: const PreferredSize(
+                appBar: PreferredSize(
                   preferredSize: Size.fromHeight(100),
                   child: SizedBox(
                     height: 50,
@@ -80,12 +78,12 @@ class MyPropertyPage extends StatelessWidget {
                 ),
                 body: TabBarView(
                   children: [
-                    RentingRoomPage(
-                      checkAccount: checkAccount ?? "default",
-                    ),
-                    RentedRoomPage(
-                      checkAccount: checkAccount ?? "default",
-                    )
+                    // RentingRoomPage(
+                    //   checkAccount: checkAccount ?? "default",
+                    // ),
+                    // RentedRoomPage(
+                    //   checkAccount: checkAccount ?? "default",
+                    // )
                   ],
                 ),
               ),
