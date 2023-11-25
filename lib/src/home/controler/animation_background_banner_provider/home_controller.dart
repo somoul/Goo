@@ -156,6 +156,7 @@ class HomeController extends GetxController {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (_) {
+      rethrow;
     } finally {
       isLoadAllProperty(false);
     }
@@ -168,7 +169,7 @@ class HomeController extends GetxController {
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     try {
-      print("fetch category");
+      debugPrint("fetch category");
       await apiHelper
           .onRequest(
               isAuthorize: true,
@@ -213,15 +214,28 @@ class HomeController extends GetxController {
     required double late,
     required double long,
   }) async {
-    print("fetch popular");
+    debugPrint("fetch popular");
     try {
       await apiHelper
           .onRequest(
               url: '/posts/popular?lat=11.587222&long=104.862920',
               methode: METHODE.get,
-              isAuthorize: true)
+              isAuthorize: true,
+              whenRequestFailed: () async {
+                try {
+                  var data = await LocalStorage.get(StorageKeys.popular);
+                  if (data != null) {
+                    popularPropertyData.value =
+                        PropertyModelResponse.fromJson(data);
+                  }
+                } catch (_) {
+                  rethrow;
+                }
+              })
           .then((value) async {
         popularPropertyData.value = PropertyModelResponse.fromJson(value);
+        await LocalStorage.put(
+            storageKey: StorageKeys.popular, value: popularPropertyData.value);
       });
     } catch (_) {
       rethrow;

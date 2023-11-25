@@ -157,7 +157,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             propertyList:
                                 _homeController.propertyData.value.propertyList,
-                            propertyController: _propertyController,
+                            onFavorit: (int id, int index) async {
+                              _homeController.propertyData.value
+                                      .propertyList[index].favorite =
+                                  !_homeController.propertyData.value
+                                      .propertyList[index].favorite;
+                              setState(() {});
+                              await _propertyController.onFavorit(
+                                  propertyId: '$id');
+                            },
                           ),
                         ),
                         SafeArea(top: false, child: 40.gap)

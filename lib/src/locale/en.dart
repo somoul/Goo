@@ -129,5 +129,14 @@ class English {
         "Accessories": "Accessories",
         "Read more": "Read more",
         "See less": "See less",
+        "Remove": "Remove",
+        "Are you sure to remove this item from save?":
+            "Are you sure to remove this item from save?",
+        "No internet connection": "No internet connection",
+        "Please check your connection.": "Please check your connection.",
+        "Internet connecting": "Internet connecting",
+        "Please wait, try to connect...": "Please wait, try to connect...",
+        "Internet connected": "Internet connected",
+        "Your connection is back.": "Your connection is back"
       };
 }

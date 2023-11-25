@@ -43,6 +43,9 @@ class _AllPropertyState extends State<AllProperty> {
   }
 
   _scrollListener() async {
+    if (_propCon.isEndOfData.value || _propCon.useCacheData.value) {
+      return;
+    }
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
       if (_propCon.useCacheData.value == false) {
@@ -92,9 +95,8 @@ class _AllPropertyState extends State<AllProperty> {
                     title: null,
                     loading: true,
                     loadingLength: 8,
-                    loadingMore: _propCon.loadMore,
                     propertyList: _propCon.propertyList,
-                    propertyController: PropertyController(),
+                    onFavorit: (_, __) {},
                   ),
                 )
               : _propCon.propertyList.isNotEmpty
@@ -110,20 +112,26 @@ class _AllPropertyState extends State<AllProperty> {
                             CustomPropertyGrid(
                               actionTitle: null,
                               title: null,
-                              loadingMore: _propCon.loadMore,
                               propertyList: _propCon.propertyList,
-                              propertyController: PropertyController(),
+                              onFavorit: (id, index) async {
+                                _propCon.propertyList[index].favorite =
+                                    !_propCon.propertyList[index].favorite;
+                                setState(() {});
+                                await _propCon.onFavorit(propertyId: '$id');
+                              },
                             ),
-                            if (_propCon.loadMore)
+                            if (!_propCon.isEndOfData.value)
                               Center(
                                   child: SizedBox(
-                                height: 40,
-                                width: 40,
+                                height: 50,
+                                width: 50,
                                 child: Platform.isAndroid
-                                    ? const CircularProgressIndicator()
+                                    ? const CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ).p(10)
                                     : const CupertinoActivityIndicator(),
-                              )).pb(15),
-                            if (_propCon.isEndOfData.value)
+                              )).pb(15)
+                            else
                               const Text("No more data"),
                           ],
                         ),

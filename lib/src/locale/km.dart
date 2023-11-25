@@ -127,5 +127,13 @@ class Khmer {
         "Accessories": "គ្រឿងបរិក្ខា",
         "Read more": "អានបន្ត",
         "See less": "បិត",
+        "Remove": "លុបចេញ",
+        "Are you sure to remove this item from save?": "តើអ្នកចង់លុបចេញឬទេ?",
+        "No internet connection": "គ្មានអុីនធណេត",
+        "Please check your connection.": "សូមឆែកមើលការតភ្ជាប់អុីនធណេត!",
+        "Internet connecting": "កំពុងភ្ជាប់",
+        "Please wait, try to connect...": "សូមរង់ចាំ កំពុងភ្ជាប់អុីនធណេត...!",
+        "Internet connected": "បានភ្ជាប់",
+        "Your connection is back.": "បានតភ្ជាប់អុីនធណេតជោគជ័យ!"
       };
 }

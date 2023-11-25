@@ -16,9 +16,8 @@ class CustomPropertyGrid extends StatefulWidget {
   final String? actionTitle;
   final Function? onAction;
   final List<PropertyModel> propertyList;
-  final PropertyController propertyController;
   final bool loading;
-  final bool loadingMore;
+  final Function(int id, int index) onFavorit;
   final int loadingLength;
   const CustomPropertyGrid(
       {super.key,
@@ -26,10 +25,10 @@ class CustomPropertyGrid extends StatefulWidget {
       this.title,
       this.actionTitle,
       this.onAction,
-      required this.propertyController,
       this.loading = false,
-      this.loadingMore = false,
-      this.loadingLength = 2});
+      // this.loadingMore = false,
+      this.loadingLength = 2,
+      required this.onFavorit});
 
   @override
   State<CustomPropertyGrid> createState() => _CustomPropertyGridState();
@@ -82,10 +81,10 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                     : widget.propertyList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 13,
+                  mainAxisSpacing: 13,
                   childAspectRatio: 2 / 2.9,
-                  mainAxisExtent: 300,
+                  mainAxisExtent: 290,
                 ),
                 itemBuilder: (context, index) => widget.loading
                     ? _buildShimer()
@@ -95,8 +94,7 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => DetailPropertyScreen(
-                                id: widget.propertyList[index].id ?? 0,
-                              ),
+                                  id: widget.propertyList[index].id),
                             ), //TabBarDemo
                           );
                         },
@@ -104,11 +102,13 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                           propertyModel: widget.propertyList[index],
                           isFavorite: widget.propertyList[index].favorite,
                           onFavorite: () {
-                            widget.propertyList[index].favorite =
-                                !widget.propertyList[index].favorite;
-                            setState(() {});
-                            widget.propertyController.onFavorit(
-                                propertyId: '${widget.propertyList[index].id}');
+                            widget.onFavorit(
+                                widget.propertyList[index].id, index);
+                            // widget.propertyList[index].favorite =
+                            //     !widget.propertyList[index].favorite;
+                            // setState(() {});
+                            // widget.propertyController.onFavorit(
+                            //     propertyId: '${widget.propertyList[index].id}');
                           },
                         ),
                       ),

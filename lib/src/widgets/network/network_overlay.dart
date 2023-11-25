@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/enum/network.dart';
 import 'package:goo_rent/helper/image_builder.dart';
-import 'package:goo_rent/src/provider/app_ref.dart';
+import 'package:goo_rent/src/home/widget/shake_widget.dart';
 import 'package:goo_rent/src/provider/connection.dart';
 import 'package:goo_rent/src/widgets/network/network_status_builder.dart';
 import 'package:goo_rent/utils/extension/num.dart';
@@ -29,38 +28,26 @@ class NetworkStatusOverlay extends ConsumerWidget {
                   builder: (BuildContext context) {
                     switch (status) {
                       case NetworkStatuses.noInternet:
-                        return _buildStatus(
-                          status: 'No internet connection'.tr,
+                        return _networkStatusBanner(
                           color: Colors.red,
+                          iconPath: 'assets/image2/no-internet.png',
+                          title: 'No internet connection'.tr,
+                          content: 'Please check your connection.'.tr,
                         );
-                      // _networkStatusBanner(
-                      //   color: Colors.red,
-                      //   iconPath: '',
-                      //   title: 'No internet connection'.tr,
-                      //   content: 'Please check your connection.'.tr,
-                      // );
                       case NetworkStatuses.connecting:
-                        return _buildStatus(
-                          status: 'Internet connecting'.tr,
+                        return _networkStatusBanner(
                           color: const Color(0xffF6B818),
+                          iconPath: 'assets/image2/internet-connected.png',
+                          title: 'Internet connecting'.tr,
+                          content: 'Please wait, try to connect...'.tr,
                         );
-                      // _networkStatusBanner(
-                      //   color: const Color(0xffF6B818),
-                      //   iconPath: '',
-                      //   title: 'Internet connecting'.tr,
-                      //   content: 'Please wait, try to connect...'.tr,
-                      // );
                       case NetworkStatuses.justConnected:
-                        return _buildStatus(
-                          status: 'Internet connected'.tr,
+                        return _networkStatusBanner(
                           color: Colors.green,
+                          iconPath: 'assets/image2/internet-connected.png',
+                          title: 'Internet connected'.tr,
+                          content: 'Your connection is back.'.tr,
                         );
-                      //  _networkStatusBanner(
-                      //   color: Colors.green,
-                      //   iconPath: "",
-                      //   title: 'Internet connected'.tr,
-                      //   content: 'Your connection is back.'.tr,
-                      // );
                       default:
                         return const SizedBox();
                     }
@@ -73,47 +60,7 @@ class NetworkStatusOverlay extends ConsumerWidget {
     );
   }
 
-  _buildStatus({required String status, required Color color}) {
-    return Material(
-      color: Colors.black45,
-      child: Center(
-        child: Container(
-          padding: 30.p,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.wifi_off_outlined,
-                color: Colors.white,
-                size: 60,
-              ),
-              30.gap,
-              Text(
-                status,
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              // ElevatedButton(
-              //     onPressed: () {
-              //       appRef.read(exitEntryPointProvider.notifier).state = true;
-              //     },
-              //     child: Text(
-              //       "Retry",
-              //       style: AppText.bodySmall!.copyWith(color: Colors.white),
-              //     ))
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget networkStatusBanner({
+  Widget _networkStatusBanner({
     required Color color,
     required String iconPath,
     required String title,
@@ -124,26 +71,32 @@ class NetworkStatusOverlay extends ConsumerWidget {
       child: SafeArea(
         child: Column(
           children: [
+            12.gap,
             Container(
-              margin: 75.pt,
               width: double.infinity,
-              padding: 20.p,
+              padding: 15.p,
               color: color,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ImageBuilder().asset(iconPath),
+                  SizedBox(
+                    width: color == Colors.red ? 35 : 38,
+                    height: color == Colors.red ? 35 : 38,
+                    child: ImageBuilder().asset(iconPath),
+                  ),
                   15.gap,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600),
                       ),
                       Text(
                         content,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 16),
                       ),
                     ],
                   ),

@@ -15,6 +15,9 @@ import 'package:goo_rent/src/profile/presentation/screen/real_estate_page.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/src/widgets/shimmer_box.dart';
+import 'package:goo_rent/utils/extension/num.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -32,22 +35,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Column(
         children: [
           Obx(
-            () => profileController.isLoadingProfile.value
-                ? const SizedBox(
-                    height: 200,
-                    child: Center(child: CircularProgressIndicator()),
-                  )
-                : Container(
-                    height: 200,
-                    color: Colors.blue,
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
+            () => Container(
+              height: 200,
+              color: Colors.blue,
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  profileController.isLoadingProfile.value
+                      ? Container(
+                          padding: 1.5.p,
+                          decoration: const BoxDecoration(
+                              color: Colors.white60, shape: BoxShape.circle),
+                          child: ShimmerBox(
+                            height: 58,
+                            width: 58,
+                            circle: true,
+                            baseColor: AppConstant.kPrimaryColor,
+                            highlightColor:
+                                AppConstant.kPrimaryColor.withOpacity(0.7),
+                          ),
+                        )
+                      : Container(
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
@@ -67,31 +79,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ''),
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                  '${profileController.userModel.value.firstName ?? "N/A"} ${profileController.userModel.value.lastName ?? ''}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppText.bodyMedium!.copyWith(
-                                      color: Colors.white, fontSize: 16)),
-                              Text(
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        profileController.isLoadingProfile.value
+                            ? ShimmerBox(
+                                height: 20,
+                                width: 200,
+                                baseColor: AppConstant.kPrimaryColor,
+                                highlightColor:
+                                    AppConstant.kPrimaryColor.withOpacity(0.5),
+                              )
+                            : Text(
+                                '${profileController.userModel.value.firstName ?? "N/A"} ${profileController.userModel.value.lastName ?? ''}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppText.bodyMedium!.copyWith(
+                                    color: Colors.white, fontSize: 16)),
+                        profileController.isLoadingProfile.value
+                            ? ShimmerBox(
+                                height: 15,
+                                width: 150,
+                                baseColor: AppConstant.kPrimaryColor,
+                                highlightColor:
+                                    AppConstant.kPrimaryColor.withOpacity(0.5),
+                              ).pt(10)
+                            : Text(
                                 "${'ID'.tr}: ${profileController.userModel.value.id ?? "N/A"}",
                                 style: AppText.bodySmall!.copyWith(
                                     color: Colors.white.withOpacity(0.6),
                                     fontSize: 14),
                               )
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: 50),
           Expanded(

@@ -11,6 +11,7 @@ import 'package:goo_rent/routes/route.dart';
 import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/locale/translator.dart';
 import 'package:goo_rent/src/provider/app_ref.dart';
+import 'package:goo_rent/src/widgets/network/network_overlay.dart';
 import 'package:goo_rent/theme/theme_data.dart';
 import 'helper/locale_helper.dart';
 // import 'package:goo_rent/utils/locale_helper.dart';
@@ -55,15 +56,15 @@ class MyApp extends StatelessWidget {
               initialRoute: Routes.initialize,
               getPages: AppPages.pages,
               ///////////////////////////////Enable network trigger
-              // builder: (context, child) {
-              //   return NetworkStatusOverlay(
-              //     child: Overlay(
-              //       initialEntries: [
-              //         OverlayEntry(builder: (_) => child!),
-              //       ],
-              //     ),
-              //   );
-              // },
+              builder: (context, child) {
+                return NetworkStatusOverlay(
+                  child: Overlay(
+                    initialEntries: [
+                      OverlayEntry(builder: (_) => child!),
+                    ],
+                  ),
+                );
+              },
               ///////////////////////////////////////////////////
             );
           },

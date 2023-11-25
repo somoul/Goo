@@ -24,7 +24,7 @@ class InternetConnectionWidget extends ConsumerStatefulWidget {
   static Future<bool> hasInternet() async {
     var connections = await Future.wait([
       hasConnectionTo('google.com'),
-      hasConnectionTo('baidu.com'),
+      // hasConnectionTo('baidu.com'),
       hasConnectionTo('yandex.ru'),
     ]);
     return connections.any((connected) => connected);
