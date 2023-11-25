@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
@@ -38,7 +40,7 @@ class SearchTypeRentController extends GetxController {
   final startSlider = 0.0.obs;
   final endSlider = 100.0.obs;
   final startPoint = 0.0.obs;
-  final endPoint = 0.0.obs;
+  final endPoint = 10.0.obs;
   final textSearchRent = "".obs;
   Future<void> onPriceRang() async {
     isLodingSearchTyp.value = true;
@@ -57,8 +59,38 @@ class SearchTypeRentController extends GetxController {
             double.parse(PriceRangeModel.fromJson(responseData).max ?? '0');
         startPoint.value = startSlider.value;
         endPoint.value = endSlider.value;
-        isLodingSearchTyp.value = false;
+        Timer(const Duration(seconds: 2), () {
+          isLodingSearchTyp.value = false;
+        });
       },
-    );
+    ).onError((ErrorModel error, stackTrace) {
+      BaseToast.showErorrBaseToast('${error.bodyString['message']}');
+      isLodingSearchTyp.value = false;
+    });
   }
-}//SearchTypeRentModel
+
+// submit search-property-type
+
+  final latMap = 0.0.obs;
+  final longMap = 0.0.obs;
+
+  final isLodingSearchDataPropertyType = false.obs;
+  // ignore: non_constant_identifier_names
+  Future SearchDataPropertype() async {
+    isLodingSearchDataPropertyType(true);
+    await apiHelper //_langCode
+        .onRequest(
+      isAuthorize: true,
+      methode: METHODE.get,
+      url:
+          "/posts?lang=${Get.locale?.languageCode}&long=$longMap&lat=$latMap&page=1&search=${typeSearchRent.value}&min_price=$startPoint&max_price=$endPoint&category_id=${typeSearchRent.value}",
+    )
+        .then((value) {
+      print("$value");
+    }).onError((ErrorModel error, stackTrace) {
+      print("hfgvjhbkjnlk;l';=========");
+      // BaseToast.showErorrBaseToast('${error.bodyString['message']}');
+      isLodingSearchTyp.value = false;
+    });
+  }
+}

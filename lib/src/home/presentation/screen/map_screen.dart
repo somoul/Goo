@@ -12,6 +12,8 @@ import 'package:goo_rent/src/home/presentation/controller/map_controller.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../controler/search_type_rent_controler/search_controler.dart';
+
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   final _mapCon = Get.put(GMapController());
+  final _SearchTypeRentController = Get.put(SearchTypeRentController());
   bool _displayAddress = false;
   bool _gettingAddress = false;
 
@@ -102,6 +105,8 @@ class _MapScreenState extends State<MapScreen> {
                             },
                             onCameraIdle: () async {
                               await _getAddress(_late, _long);
+                              _SearchTypeRentController.latMap.value = _late;
+                              _SearchTypeRentController.longMap.value = _long;
                             },
                             onCameraMove: _onCameraMove,
                             // markers: {
