@@ -220,6 +220,7 @@ class PropertyModel {
   List<int> accessoryId = [];
   String? thumbnail;
   int? visit;
+  String? cname;
   // Data? data;
 
   String? duration;
@@ -247,7 +248,7 @@ class PropertyModel {
       this.accessoryId = const [],
       this.thumbnail,
       this.visit,
-      // this.data,
+      this.cname,
       this.duration,
       this.favorite = false,
       this.user});
@@ -266,6 +267,7 @@ class PropertyModel {
     categoryId = json['category_id'];
     address = json['address'];
     status = json['status'];
+    cname = json['cname'];
     createdAt = json['created_at'];
     id = json['id'] ?? 0;
     lang = json['lang'];

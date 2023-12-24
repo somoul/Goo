@@ -157,28 +157,29 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
                       // );
                     }),
                 if (_searchTypeRentController.listSearchTypeRentModel.isEmpty)
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 100,
-                          width: 135,
-                          child: Image.asset(
-                              "assets/icons/undraw_empty_search.png"),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "No search history".tr,
-                          style: AppText.bodyMedium!.copyWith(
-                              fontSize: 14, fontWeight: FontWeight.w300),
-                        )
-                      ],
-                    ),
-                  ),
+                  const NullPropertyContain()
+                // Expanded(
+                //   flex: 2,
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       SizedBox(
+                //         height: 100,
+                //         width: 135,
+                //         child: Image.asset(
+                //             "assets/icons/undraw_empty_search.png"),
+                //       ),
+                //       const SizedBox(
+                //         height: 15,
+                //       ),
+                //       Text(
+                //         "No search history".tr,
+                //         style: AppText.bodyMedium!.copyWith(
+                //             fontSize: 14, fontWeight: FontWeight.w300),
+                //       )
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -200,6 +201,35 @@ class CustomRowText extends StatelessWidget {
           style: AppText.titleSmall!,
         ),
       ],
+    );
+  }
+}
+
+class NullPropertyContain extends StatelessWidget {
+  const NullPropertyContain({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 100,
+            width: 135,
+            child: Image.asset("assets/icons/undraw_empty_search.png"),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Text(
+            "No search history".tr,
+            style: AppText.bodyMedium!
+                .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
+          )
+        ],
+      ),
     );
   }
 }

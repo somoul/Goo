@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 MediaQuery.of(context).padding.top.gap,
-                _buildLocation(),
+                buildLocation(context),
               ],
             ),
           ),
@@ -149,6 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ///Recommend
                         Obx(
                           () => CustomPropertyGrid(
+                            isGrid: true,
                             title: 'Recommend'.tr,
                             actionTitle: 'See All'.tr,
                             loading: _homeController.isLoadAllProperty.value,
@@ -180,71 +181,74 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
 
-  Widget _buildLocation() {
-    return InkWell(
-      onTap: () => Get.to(const MapScreen()),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        color: AppConstant.kPrimaryColor,
-        width: MediaQuery.of(context).size.width,
-        child: Row(
-          children: [
-            const SizedBox(width: 10),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 54,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 30,
-                        child: SvgPicture.asset(
-                          'assets/icons/location.svg',
-                          fit: BoxFit.contain,
-                          color: Colors.white,
-                          width: 24,
-                        ),
+Widget buildLocation(
+  BuildContext context,
+) {
+  final mapController = Get.put(GMapController());
+  return InkWell(
+    onTap: () => Get.to(const MapScreen()),
+    child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      color: AppConstant.kPrimaryColor,
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        children: [
+          const SizedBox(width: 10),
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 54,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 30,
+                      child: SvgPicture.asset(
+                        'assets/icons/location.svg',
+                        fit: BoxFit.contain,
+                        color: Colors.white,
+                        width: 24,
                       ),
-                      Text(
-                        'Your Current Location'.tr,
-                        style: AppText.titleSmall!
-                            .copyWith(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                  Obx(
-                    () => _mapController.currentAddress.value == ""
-                        ? const SizedBox()
-                        : Text(
-                            _mapController.currentAddress.value,
-                            style: AppText.bodySmall!.copyWith(
-                              color: Colors.white,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            // overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      'Your Current Location'.tr,
+                      style: AppText.titleSmall!
+                          .copyWith(color: Colors.white, fontSize: 14),
+                    ),
+                  ],
+                ),
+                Obx(
+                  () => mapController.currentAddress.value == ""
+                      ? const SizedBox()
+                      : Text(
+                          mapController.currentAddress.value,
+                          style: AppText.bodySmall!.copyWith(
+                            color: Colors.white,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                  ).pl(30),
-                ],
+                          // overflow: TextOverflow.ellipsis,
+                        ),
+                ).pl(30),
+              ],
+            ),
+          ),
+          const SizedBox(width: 4),
+          const SizedBox(
+            width: 40,
+            child: Center(
+              child: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 18,
+                color: Colors.white,
               ),
             ),
-            const SizedBox(width: 4),
-            const SizedBox(
-              width: 40,
-              child: Center(
-                child: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  size: 18,
-                  color: Colors.white,
-                ),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
-    );
-  }
+    ),
+  );
 }

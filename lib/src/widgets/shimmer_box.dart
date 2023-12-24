@@ -68,7 +68,7 @@ class ShimmerBox extends StatelessWidget {
       // baseColor: baseColor ?? Colors.grey[200]!,
       child: Container(
         height: height ?? 13,
-        width: width ?? 100,
+        width: width ?? 50,
         decoration: circle
             ? BoxDecoration(color: Colors.grey[200]!, shape: BoxShape.circle)
             : BoxDecoration(

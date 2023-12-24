@@ -37,6 +37,7 @@ class SearchTypeRentController extends GetxController {
   }
 
 // getApi  PriceRang
+  final isSearchProperty = false.obs;
   final startSlider = 0.0.obs;
   final endSlider = 100.0.obs;
   final startPoint = 0.0.obs;
@@ -86,7 +87,8 @@ class SearchTypeRentController extends GetxController {
           "/posts?lang=${Get.locale?.languageCode}&long=$longMap&lat=$latMap&page=1&search=${typeSearchRent.value}&min_price=$startPoint&max_price=$endPoint&category_id=${typeSearchRent.value}",
     )
         .then((value) {
-      print("$value");
+      print("========show data search ; $value");
+      isLodingSearchDataPropertyType(false);
     }).onError((ErrorModel error, stackTrace) {
       print("hfgvjhbkjnlk;l';=========");
       // BaseToast.showErorrBaseToast('${error.bodyString['message']}');

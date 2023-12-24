@@ -11,6 +11,8 @@ import 'package:goo_rent/src/home/controler/animation_background_banner_provider
 import 'package:goo_rent/src/home/controler/search_type_rent_controler/search_controler.dart';
 import 'package:goo_rent/src/home/presentation/screen/map_screen.dart';
 import 'package:goo_rent/src/home/screen/search_type_screen.dart';
+import '../../../property_detail/controller/property_controller.dart';
+import '../../../property_detail/presentation/screen/property_listing.dart';
 import '../../presentation/controller/map_controller.dart';
 import '../../widget/CustomDefaultShimmer.dart';
 import '../../widget/custom_butomsheet_type_of_rent.dart';
@@ -28,6 +30,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
   final homeController = Get.put(HomeController());
   final searchController = Get.put(SearchTypeRentController());
   final _mapCon = Get.put(GMapController());
+  final _propCon = Get.put(PropertyController());
 
   String? address;
   @override
@@ -290,8 +293,13 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                         left: 20, right: 20, bottom: 30, top: 20),
                     child: CustomButton(
                       onPressed: () {
-                        print("====== 213456");
-                        searchController.SearchDataPropertype();
+                        // searchController.SearchDataPropertype();
+
+                        // if (searchController
+                        //     .isLodingSearchDataPropertyType.value) {
+                        Get.to(() => const AllProperty());
+                        searchController.isSearchProperty.value = true;
+                        // }
                       },
                       title: "Search".tr,
                       isOutline: false,
@@ -300,7 +308,8 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                 ),
               ],
             ),
-            searchController.isLodingSearchTyp.value
+            searchController.isLodingSearchTyp.value ||
+                    searchController.isLodingSearchDataPropertyType.value
                 ? Center(
                     child: CircularProgressIndicator(
                       color: Theme.of(context).primaryColor,

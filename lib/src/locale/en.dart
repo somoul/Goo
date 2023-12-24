@@ -112,6 +112,7 @@ class English {
         "Sign Up": "Sign Up",
         "Password": "Password",
         "Sun": "Sun",
+        "Category": "Category",
         // "Mon": "Mon",
         // "Tue": "Tue",
         // "Wed": "Wed",

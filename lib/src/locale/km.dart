@@ -85,6 +85,7 @@ class Khmer {
         'label_no': 'គ្មាន',
         'Date Of Birth': 'កាលបរិច្ឆេទកំណើត',
         'Choose Date of Birth': 'ជ្រើសរើសកាលបរិច្ឆេទ',
+        'Category': 'ប្រភេទ',
 
         //search propery rent
         'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម',
