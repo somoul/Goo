@@ -87,10 +87,8 @@ class SearchTypeRentController extends GetxController {
           "/posts?lang=${Get.locale?.languageCode}&long=$longMap&lat=$latMap&page=1&search=${typeSearchRent.value}&min_price=$startPoint&max_price=$endPoint&category_id=${typeSearchRent.value}",
     )
         .then((value) {
-      print("========show data search ; $value");
       isLodingSearchDataPropertyType(false);
     }).onError((ErrorModel error, stackTrace) {
-      print("hfgvjhbkjnlk;l';=========");
       // BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       isLodingSearchTyp.value = false;
     });

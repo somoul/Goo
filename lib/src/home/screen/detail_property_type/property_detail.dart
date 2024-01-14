@@ -91,7 +91,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildPostAddressBlock(),
+                              _buildPostAddressBlock(), // error
                               _buildVariant(),
                               _buildAccessories(),
                               _buildOverView(),
@@ -389,7 +389,7 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
                   _property.title ?? "",
                   style: AppText.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600,
-                    fontSize: 20,
+                    fontSize: 16.5,
                   ),
                 ),
               ),
@@ -417,89 +417,75 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
             ],
           ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            ImageBuilder().asset("assets/image2/icon_map.svg"),
+            5.gap,
             Expanded(
-              flex: 4,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ImageBuilder().asset("assets/image2/icon_map.svg"),
-                  10.gap,
-                  Text(
-                    _property.distance ?? "N/A",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500, color: Colors.grey[500]),
-                  )
-                ],
+              flex: 2,
+              child: Text(
+                _property.distance ?? "N/A",
+                overflow: TextOverflow.ellipsis,
+                style: AppText.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey[500],
+                  fontSize: 16,
+                ),
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: 2,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    _property.price != null ? "${_property.price}/" : "N/A",
+                    _property.price != null ? "\$${_property.price}/" : "N/A",
+                    overflow: TextOverflow.ellipsis,
                     style: AppText.titleLarge!.copyWith(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
                       color: AppConstant.kPrimaryColor,
                     ),
                   ),
-                  Text("Month".tr,
-                      style: AppText.titleLarge!
-                          .copyWith(fontWeight: FontWeight.w500))
+                  Expanded(
+                    flex: 1,
+                    child: Text("Month".tr,
+                        style: AppText.titleLarge!.copyWith(
+                            fontWeight: FontWeight.w500, fontSize: 16)),
+                  ),
                 ],
               ),
             ),
             Expanded(
-              flex: 3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    height: 45,
-                    width: 45,
-                    child: IconButton(
-                        splashRadius: 45,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.share,
-                          color: AppConstant.kPrimaryColor,
-                        )),
-                  ).pr(5)
-                ],
-              ),
-            ),
+              flex: 1,
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.share,
+                    color: AppConstant.kPrimaryColor,
+                  )).pr(5),
+            )
           ],
-        ).py(10),
-        const Divider(height: 0),
-        10.gap,
-        Text(
-          "Property Location".tr,
-          style: AppText.titleLarge!.copyWith(
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        10.gap,
+        ).py(0),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            SvgPicture.asset(
+              'assets/icons/location.svg',
+              fit: BoxFit.contain,
+              color: Colors.grey,
               width: 24,
-              child: SvgPicture.asset(
-                'assets/icons/location.svg',
-                fit: BoxFit.contain,
-                color: Colors.grey,
-                width: 24,
-              ),
             ),
             6.gap,
             Expanded(
               child: Text(
                 _property.address ?? 'N/A',
-                style: AppText.bodyLarge,
-              ).pb(10),
+                style: AppText.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[500],
+                  fontSize: 14,
+                ),
+              ).pb(0),
             ),
           ],
         ),
@@ -510,8 +496,9 @@ class _DetailPropertyScreenState extends State<DetailPropertyScreen> {
   Widget _buildVariant() {
     return Column(
       children: [
+        16.gap,
         const Divider(height: 0),
-        20.gap,
+        16.gap,
         Column(
           children: _getData.map((element) {
             if (jsonFields.containsKey(element)) {
