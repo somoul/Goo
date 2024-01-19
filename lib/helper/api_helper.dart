@@ -97,7 +97,7 @@ class ApiHelper extends GetConnect {
   _returnResponse(Response response, String url) async {
     if (response.statusCode != 200) {
       debugPrint(
-          'Error Response [$url] sCode${response.statusCode} > ${response.bodyString}');
+          'Error Response [$url] Status-Code${response.statusCode} > ${response.bodyString}');
     }
     switch (response.statusCode) {
       case 200:

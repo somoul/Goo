@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
 import 'package:goo_rent/src/home/data/slide_categorie_model/slide_categorie_model.dart';
 import 'package:goo_rent/src/post_property/presentation/screens/rent_step_1_.dart';
+import 'package:goo_rent/src/post_property/presentation/widgets/select_categories_mixin.dart';
 
 class SelectCategoryScreen extends StatefulWidget {
   const SelectCategoryScreen({super.key});
@@ -12,7 +15,8 @@ class SelectCategoryScreen extends StatefulWidget {
   State<SelectCategoryScreen> createState() => _SelectCategoryScreenState();
 }
 
-class _SelectCategoryScreenState extends State<SelectCategoryScreen> {
+class _SelectCategoryScreenState extends State<SelectCategoryScreen>
+    with SelectCategoryMixin {
   final _homeController = Get.put(HomeController());
 
   @override
@@ -20,18 +24,7 @@ class _SelectCategoryScreenState extends State<SelectCategoryScreen> {
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
       appBar: AppBar(
-        backgroundColor: const Color(0xfff9f9f9),
-        leading: IconButton(
-            onPressed: () => Get.back(),
-            icon: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: const Icon(Icons.clear, color: Colors.black),
-            )),
-        title: Text('Rent'.tr, style: AppText.bodyLarge),
+        title: Text('Rent'.tr),
       ),
       body: ListView(
         children: [
@@ -58,35 +51,12 @@ class _SelectCategoryScreenState extends State<SelectCategoryScreen> {
               SlideCategorieModel categModel =
                   _homeController.listSideBarDataCategorie[index];
               return InkWell(
-                onTap: () =>
-                    Get.to(const RentStepOne()), //_onShowSelectAccessory(),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Colors.grey[200]!,
-                        )
-                      ]),
-                  child: Column(
-                    children: [
-                      Image.network(
-                        categModel.icon ?? '',
-                        width: 45,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '${categModel.name}',
-                        style: AppText.bodySmall,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      )
-                    ],
-                  ),
-                ),
+                onTap: () {
+                  _homeController.selectedCategory.value = categModel;
+                  print(_homeController.selectedCategory.value.toString());
+                  Get.to(const RentStepOne());
+                }, //_onShowSelectAccessory(),
+                child: buildSelectItem(categModel),
               );
             },
           ),

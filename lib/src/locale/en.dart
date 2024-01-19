@@ -113,6 +113,7 @@ class English {
         "Password": "Password",
         "Sun": "Sun",
         "Category": "Category",
+        "Select rental type": "Select rental type",
         // "Mon": "Mon",
         // "Tue": "Tue",
         // "Wed": "Wed",

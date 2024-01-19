@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:goo_rent/helper/loading_helper.dart';
+import 'package:goo_rent/helper/upload_iamge.dart';
 import 'package:goo_rent/src/post_property/data/accessory_model.dart';
-
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
 
@@ -12,7 +13,6 @@ class PostPropertyController extends GetxController {
   final accessoryData = <AccessoryModel>[].obs;
 
   Future<void> getAccessories() async {
-    print("fetch accessory");
     isLoadAccessory(true);
     try {
       await apiHelper
@@ -33,6 +33,26 @@ class PostPropertyController extends GetxController {
     } catch (_) {
     } finally {
       isLoadAccessory(false);
+    }
+  }
+
+  //Step 1--------------------------------
+  final imageList = <String>[].obs;
+  final uploading = false.obs;
+  Future uploadImage(String path) async {
+    // uploading(true);
+    BaseDialogLoading.show();
+    try {
+      var data = await UploadFile.uploadImage(path);
+      if (data != null) {
+        var url = data['image_url'];
+        imageList.add(url);
+      }
+    } catch (e) {
+      rethrow;
+    } finally {
+      BaseDialogLoading.dismiss();
+      // uploading(false);
     }
   }
 }

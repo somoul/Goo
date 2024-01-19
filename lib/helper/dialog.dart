@@ -1,11 +1,90 @@
+import 'dart:io';
+import 'dart:io' as io;
+import 'dart:convert';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/enum/select_image.dart';
 import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/utils/extension/num.dart';
+import 'package:image_picker/image_picker.dart';
+
+// Future<SelectPhotoOption>
+Future _showSelectPhotoDialog() async {
+  return await showCupertinoModalPopup(
+    context: ContextProvider.context,
+    builder: (BuildContext context) => CupertinoActionSheet(
+      title: Text(
+        "Choose Image".tr,
+        style: AppText.titleMedium,
+      ),
+      actions: SelectPhotoOption.values.asMap().entries.map(
+        (option) {
+          var title = option.value.title.tr;
+          if (option.key == 2) {
+            return CupertinoActionSheetAction(
+              isDestructiveAction: true,
+              onPressed: () {
+                Get.back(result: option.value.source);
+                // Navigator.pop(context, option.value);
+              },
+              child: Text(
+                title,
+                style: AppText.titleSmall!.copyWith(color: Colors.red),
+              ),
+            );
+          }
+          return CupertinoActionSheetAction(
+            isDefaultAction: true,
+            onPressed: () {
+              // Navigator.pop(context, option.value);
+              Get.back(result: option.value.source);
+            },
+            child: Text(
+              title,
+              style: AppText.titleSmall!
+                  .copyWith(color: AppConstant.kPrimaryColor),
+            ),
+          );
+        },
+      ).toList(),
+    ),
+  );
+}
+
+Future _pickImage(ImageSource imageSource) async {
+  try {
+    final file = await ImagePicker().pickImage(source: imageSource);
+    if (file != null) {
+      return File(file.path);
+    }
+    return null;
+  } catch (_) {}
+}
+
+Future<File?> pickImageGetFile() async {
+  var imageSource = await _showSelectPhotoDialog();
+  if (imageSource != null) {
+    return await _pickImage(imageSource);
+  }
+  return null;
+}
+
+Future<String?> pickFileGetBase64() async {
+  var file = await pickImageGetFile();
+  if (file != null) {
+    var bytes = file.readAsBytesSync();
+    final base64String = base64Encode(bytes);
+    print('__________${base64String}_________');
+    return base64Encode(bytes);
+  } else {
+    return null;
+  }
+}
 
 onShowChangeLanguage(
     {VoidCallback? onSelected, bool barrierDismissible = false}) async {

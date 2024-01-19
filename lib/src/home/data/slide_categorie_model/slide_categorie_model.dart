@@ -12,6 +12,7 @@ class SlideCategorieModel with _$SlideCategorieModel {
     String? icon,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'name_kh') String? nameKh,
+    @Default({}) Map<String, dynamic>? field,
   }) = _SlideCategorieModel;
 
   factory SlideCategorieModel.fromJson(Map<String, dynamic> json) =>

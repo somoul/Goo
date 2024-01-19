@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:goo_rent/enum/storage_key.dart';
 import 'package:goo_rent/helper/api_helper.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
-import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/src/property_detail/data/property_models.dart';
 import 'package:goo_rent/src/widgets/network/network_status_builder.dart';
@@ -82,8 +81,8 @@ class PropertyController extends GetxController {
   ///------------------------------------------------------------
   Future<bool> onFavorit({required String propertyId}) async {
     try {
-      BaseDialogLoading.show();
-      debugPrint('On favorite...');
+      // BaseDialogLoading.show();
+      debugPrint('On favorite...: $propertyId');
       var result = await _apiHelper
           .onRequest(
         url: '/save-post/$propertyId',
@@ -101,14 +100,14 @@ class PropertyController extends GetxController {
     } catch (e) {
       BaseToast.showErorrBaseToast(e.toString());
     } finally {
-      BaseDialogLoading.dismiss();
+      // BaseDialogLoading.dismiss();
     }
     return false;
   }
 
   ///____________Get All Properties____________________________________________________________________
 
-  final filterPropertyYype = "Room".obs;
+  final filterPropertyYype = 0.obs;
   final propertyList = <PropertyModel>[].obs;
   final isEndOfData = false.obs;
   final isFirstLoad = false.obs;
@@ -119,7 +118,7 @@ class PropertyController extends GetxController {
   Future<void> getPropertyListing({
     required String late,
     required String long,
-    required String typeProperty,
+    required int typeProperty,
     required String minPrice,
     required String maxPrice,
     int requestPage = 1,
@@ -131,10 +130,12 @@ class PropertyController extends GetxController {
     try {
       await _apiHelper
           .onRequest(
-              url:
-                  '/posts?lang=kh&long=$long&lat=$late&search=$typeProperty&min_price=$minPrice&max_price=$maxPrice',
+              url: filterPropertyYype == -1
+                  ? '/posts?long=$long&lat=$late&page=$requestPage&min_price=$minPrice&max_price=$maxPrice&category_id='
+                  : '/posts?long=$long&lat=$late&page=$requestPage&min_price=$minPrice&max_price=$maxPrice&category_id=$filterPropertyYype',
+              // '/posts?lang=kh&long=$long&lat=$late&min_price=$minPrice&max_price=$maxPrice&category_id=$filterPropertyYype',
               // '/posts?lang=kh&long=$long&lat=$late&search=$typeProperty&min_price=$minPrice&max_price=$maxPrice&page=$requestPage',
-              //'/posts?long=$long&lat=$late&page=$requestPage',
+              // '/posts?long=$long&lat=$late&page=$requestPage',
               methode: METHODE.get,
               isAuthorize: true,
               whenRequestFailed: () async {
@@ -166,7 +167,7 @@ class PropertyController extends GetxController {
             propertyList.add(element);
           }).toList();
         }
-        // print("====== show data 2345 :$propertyList");
+        // print("====== show data 2345 :${propertyList[0].}");
         nextPage.value = requestPage + 1;
         isEndOfData.value = tempData.nextPageUrl == null;
         if (requestPage == 1) {

@@ -221,7 +221,11 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                 heightShimmer: 47,
                                 child: CustomContentTextField(
                                   leftIcon: "assets/icons/home3.svg",
-                                  value: searchController.typeSearchRent.value,
+                                  value: searchController
+                                              .typeSearchRent.value ==
+                                          ""
+                                      ? searchController.typeSearchRent.value
+                                      : "Select rental type".tr,
                                   nameTextField: "Choose Property Types".tr,
                                   // rightsIcons: "assets/icons/ic_vector.svg",
 
@@ -308,15 +312,15 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                 ),
               ],
             ),
-            searchController.isLodingSearchTyp.value ||
-                    searchController.isLodingSearchDataPropertyType.value
-                ? Center(
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).primaryColor,
-                      strokeWidth: 4,
-                    ),
-                  )
-                : const Text("")
+            // searchController.isLodingSearchTyp.value ||
+            //         searchController.isLodingSearchDataPropertyType.value
+            //     ? Center(
+            //         child: CircularProgressIndicator(
+            //           color: Theme.of(context).primaryColor,
+            //           strokeWidth: 4,
+            //         ),
+            //       )
+            //     : const Text("")
           ],
         ),
       ),
@@ -365,6 +369,8 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                         onTap: () {
                           searchController.typeSearchRent.value = homeController
                               .listSideBarDataCategorie[index].name!;
+                          _propCon.filterPropertyYype.value = homeController
+                              .listSideBarDataCategorie[index].id!;
                           Navigator.pop(context);
                         });
                   },

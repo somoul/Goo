@@ -48,12 +48,13 @@ class HomeController extends GetxController {
     try {
       await apiHelper
           .onRequest(
-            url: '/save-post/$propertyId',
-            methode: METHODE.post,
-            isAuthorize: true,
-          )
-          .then((value) async {})
-          .onError((ErrorModel error, stackTrace) {
+        url: '/save-post/$propertyId',
+        methode: METHODE.post,
+        isAuthorize: true,
+      )
+          .then((value) async {
+        print("======= show favorit ======1:$value");
+      }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
     } catch (e) {
@@ -169,6 +170,8 @@ class HomeController extends GetxController {
   ///Function  get data on  Categorie
   final selectedCategory = const SlideCategorieModel().obs;
   //////
+
+  final a = 0.obs;
   final loadingCategory = false.obs;
   final sideBarDataCategorie = const SlideCategorieModel().obs;
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;

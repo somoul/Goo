@@ -8,8 +8,8 @@ part of 'PriceRangeModel.dart';
 
 _$_PriceRangeModel _$$_PriceRangeModelFromJson(Map<String, dynamic> json) =>
     _$_PriceRangeModel(
-      min: json['min'] as String?,
-      max: json['max'] as String?,
+      min: json['min'] as String,
+      max: json['max'] as String,
     );
 
 Map<String, dynamic> _$$_PriceRangeModelToJson(_$_PriceRangeModel instance) =>

@@ -35,6 +35,9 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,7 +84,6 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
                             _searchTypeRentController.typeSearchRent.value =
                                 value;
                             _searchTypeRentController.onSearchTypeRen();
-                            print("====== show : $value");
                           },
                           decoration: const BoxDecoration(
                             image: null,
@@ -157,29 +159,11 @@ class _SearchTypeScreenState extends State<SearchTypeScreen> {
                       // );
                     }),
                 if (_searchTypeRentController.listSearchTypeRentModel.isEmpty)
-                  const NullPropertyContain()
-                // Expanded(
-                //   flex: 2,
-                //   child: Column(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       SizedBox(
-                //         height: 100,
-                //         width: 135,
-                //         child: Image.asset(
-                //             "assets/icons/undraw_empty_search.png"),
-                //       ),
-                //       const SizedBox(
-                //         height: 15,
-                //       ),
-                //       Text(
-                //         "No search history".tr,
-                //         style: AppText.bodyMedium!.copyWith(
-                //             fontSize: 14, fontWeight: FontWeight.w300),
-                //       )
-                //     ],
-                //   ),
-                // ),
+                  const Spacer(),
+                if (_searchTypeRentController.listSearchTypeRentModel.isEmpty)
+                  const NullPropertyContain(),
+                if (_searchTypeRentController.listSearchTypeRentModel.isEmpty)
+                  const Spacer(),
               ],
             ),
           ),
@@ -210,26 +194,27 @@ class NullPropertyContain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 100,
-            width: 135,
-            child: Image.asset("assets/icons/undraw_empty_search.png"),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(
-            "No search history".tr,
-            style: AppText.bodyMedium!
-                .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
-          )
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // const Spacer(),
+        SizedBox(
+          height: 100,
+          width: 135,
+          child: Image.asset("assets/icons/undraw_empty_search.png"),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Text(
+          "No search history".tr,
+          style: AppText.bodyMedium!
+              .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
+        ),
+        // const Spacer(),
+        // const Spacer(),
+        // const Spacer(),
+      ],
     );
   }
 }

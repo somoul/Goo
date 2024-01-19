@@ -26,6 +26,7 @@ mixin _$SlideCategorieModel {
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'name_kh')
   String? get nameKh => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get field => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $SlideCategorieModelCopyWith<$Res> {
       {int? id,
       String? name,
       String? icon,
-      @JsonKey(name: 'name_kh') String? nameKh});
+      @JsonKey(name: 'name_kh') String? nameKh,
+      Map<String, dynamic>? field});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$SlideCategorieModelCopyWithImpl<$Res, $Val extends SlideCategorieModel>
     Object? name = freezed,
     Object? icon = freezed,
     Object? nameKh = freezed,
+    Object? field = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -81,6 +84,10 @@ class _$SlideCategorieModelCopyWithImpl<$Res, $Val extends SlideCategorieModel>
           ? _value.nameKh
           : nameKh // ignore: cast_nullable_to_non_nullable
               as String?,
+      field: freezed == field
+          ? _value.field
+          : field // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -97,7 +104,8 @@ abstract class _$$_SlideCategorieModelCopyWith<$Res>
       {int? id,
       String? name,
       String? icon,
-      @JsonKey(name: 'name_kh') String? nameKh});
+      @JsonKey(name: 'name_kh') String? nameKh,
+      Map<String, dynamic>? field});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$_SlideCategorieModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? icon = freezed,
     Object? nameKh = freezed,
+    Object? field = freezed,
   }) {
     return _then(_$_SlideCategorieModel(
       id: freezed == id
@@ -133,6 +142,10 @@ class __$$_SlideCategorieModelCopyWithImpl<$Res>
           ? _value.nameKh
           : nameKh // ignore: cast_nullable_to_non_nullable
               as String?,
+      field: freezed == field
+          ? _value._field
+          : field // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -142,7 +155,12 @@ class __$$_SlideCategorieModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SlideCategorieModel implements _SlideCategorieModel {
   const _$_SlideCategorieModel(
-      {this.id, this.name, this.icon, @JsonKey(name: 'name_kh') this.nameKh});
+      {this.id,
+      this.name,
+      this.icon,
+      @JsonKey(name: 'name_kh') this.nameKh,
+      final Map<String, dynamic>? field = const {}})
+      : _field = field;
 
   factory _$_SlideCategorieModel.fromJson(Map<String, dynamic> json) =>
       _$$_SlideCategorieModelFromJson(json);
@@ -157,10 +175,20 @@ class _$_SlideCategorieModel implements _SlideCategorieModel {
   @override
   @JsonKey(name: 'name_kh')
   final String? nameKh;
+  final Map<String, dynamic>? _field;
+  @override
+  @JsonKey()
+  Map<String, dynamic>? get field {
+    final value = _field;
+    if (value == null) return null;
+    if (_field is EqualUnmodifiableMapView) return _field;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'SlideCategorieModel(id: $id, name: $name, icon: $icon, nameKh: $nameKh)';
+    return 'SlideCategorieModel(id: $id, name: $name, icon: $icon, nameKh: $nameKh, field: $field)';
   }
 
   @override
@@ -171,12 +199,14 @@ class _$_SlideCategorieModel implements _SlideCategorieModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.nameKh, nameKh) || other.nameKh == nameKh));
+            (identical(other.nameKh, nameKh) || other.nameKh == nameKh) &&
+            const DeepCollectionEquality().equals(other._field, _field));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, icon, nameKh);
+  int get hashCode => Object.hash(runtimeType, id, name, icon, nameKh,
+      const DeepCollectionEquality().hash(_field));
 
   @JsonKey(ignore: true)
   @override
@@ -198,7 +228,8 @@ abstract class _SlideCategorieModel implements SlideCategorieModel {
       {final int? id,
       final String? name,
       final String? icon,
-      @JsonKey(name: 'name_kh') final String? nameKh}) = _$_SlideCategorieModel;
+      @JsonKey(name: 'name_kh') final String? nameKh,
+      final Map<String, dynamic>? field}) = _$_SlideCategorieModel;
 
   factory _SlideCategorieModel.fromJson(Map<String, dynamic> json) =
       _$_SlideCategorieModel.fromJson;
@@ -212,6 +243,8 @@ abstract class _SlideCategorieModel implements SlideCategorieModel {
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'name_kh')
   String? get nameKh;
+  @override
+  Map<String, dynamic>? get field;
   @override
   @JsonKey(ignore: true)
   _$$_SlideCategorieModelCopyWith<_$_SlideCategorieModel> get copyWith =>
