@@ -163,12 +163,18 @@ class HomeController extends GetxController {
   }
   // /posts/recomment?lang=kh&lat=11.587222&long=104.862920
 
+  // SlideCategorieModel get getSelectcategory => listSideBarDataCategorie
+  //     .firstWhere((element) => element.id == selectedCategory.value.id);
+
   ///Function  get data on  Categorie
+  final selectedCategory = const SlideCategorieModel().obs;
+  //////
   final loadingCategory = false.obs;
   final sideBarDataCategorie = const SlideCategorieModel().obs;
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   final listPropertySideBarDataCategorie =
       <SlideCategorieModel>[const SlideCategorieModel(id: -1, name: "All")].obs;
+
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     try {
       debugPrint("fetch category");

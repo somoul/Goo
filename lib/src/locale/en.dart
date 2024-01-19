@@ -96,7 +96,7 @@ class English {
         "Enter phone number and password to login":
             "Enter phone number and password to login",
         "Please enter password": "Please enter password",
-        "Don't have account?": "Don't have account??",
+        "Don't have account?": "Don't have account?",
         "Register": "Register",
         "Sign In": "Sign In",
         "Create Account": "Create Account",
