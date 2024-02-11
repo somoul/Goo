@@ -139,6 +139,18 @@ class English {
         "Internet connecting": "Internet connecting",
         "Please wait, try to connect...": "Please wait, try to connect...",
         "Internet connected": "Internet connected",
-        "Your connection is back.": "Your connection is back"
+        "Your connection is back.": "Your connection is back",
+        "Please enter": "Please enter",
+        "lease Read Terms and Conditions": "Please Read Terms and Conditions",
+        "termCondictionContent":
+            "Welcome to Post Real Estate For Rent With Us! Nak is promoting a 20 square meter room for rent for \$80 per month. Our team will review your request and send back the results to you if the information is sufficient or lacking.",
+        "When customer use use our App": "When customer use use our App",
+        "promotionContent":
+            "But during the 3 months until January 30, 2024, we have a free commission (0 \$) from you.",
+        "Deny": "Deny",
+        "Confirm": "Confirm",
+        "Please choose rent property as following":
+            "Please choose rent property as following",
+        "Lot of customers are waiting!": "Lot of customers are waiting!",
       };
 }

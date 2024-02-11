@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // await _homeController.callStartAnimation();
       await _mapController.getLocalAddress();
       await _mapController.getCurrentAddress();
-      await _postPropertyCon.getAccessories();
+      await _postPropertyCon.getAccessories(showLoading: false);
     } catch (_) {
       rethrow;
     } finally {}
@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             actionTitle: 'See All'.tr,
                             loading: _homeController.isLoadAllProperty.value,
                             onAction: () {
-                              Get.to(() => const AllProperty());
+                              const AllProperty();
                             },
                             propertyList:
                                 _homeController.propertyData.value.propertyList,

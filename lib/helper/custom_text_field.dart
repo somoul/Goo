@@ -122,6 +122,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       width: 1,
                     ),
                   ),
+                  alignLabelWithHint: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: const BorderSide(

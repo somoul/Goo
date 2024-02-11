@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/enum/media_type.dart';
+import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:share_plus/share_plus.dart';
@@ -20,6 +21,10 @@ String getRandomString(int length) {
       ),
     ),
   );
+}
+
+void closekeyboard() {
+  FocusManager.instance.primaryFocus?.unfocus();
 }
 
 Future<void> onUpdateLanguage({bool isKhmer = true}) async {

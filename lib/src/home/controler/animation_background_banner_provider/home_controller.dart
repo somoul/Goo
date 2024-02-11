@@ -168,15 +168,15 @@ class HomeController extends GetxController {
   //     .firstWhere((element) => element.id == selectedCategory.value.id);
 
   ///Function  get data on  Categorie
-  final selectedCategory = const SlideCategorieModel().obs;
+  final selectedCategory = SlideCategorieModel().obs;
   //////
 
   final a = 0.obs;
   final loadingCategory = false.obs;
-  final sideBarDataCategorie = const SlideCategorieModel().obs;
+  final sideBarDataCategorie = SlideCategorieModel().obs;
   final listSideBarDataCategorie = <SlideCategorieModel>[].obs;
   final listPropertySideBarDataCategorie =
-      <SlideCategorieModel>[const SlideCategorieModel(id: -1, name: "All")].obs;
+      <SlideCategorieModel>[SlideCategorieModel(id: -1, name: "All")].obs;
 
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     try {
@@ -205,13 +205,15 @@ class HomeController extends GetxController {
         jsonData.map((json) {
           listSideBarDataCategorie.add(SlideCategorieModel.fromJson(json));
         }).toList();
+
         await LocalStorage.put(
             storageKey: StorageKeys.categories,
             value: listSideBarDataCategorie);
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
-    } catch (_) {
+    } catch (e) {
+      rethrow;
     } finally {
       loadingCategory(false);
     }
