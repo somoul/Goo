@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/api_helper.dart';
-import 'package:goo_rent/helper/loading_dialoge.dart';
 import 'package:goo_rent/helper/loading_helper.dart';
 import 'package:goo_rent/src/profile/data/user_model.dart';
-import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class ProfileController extends GetxController {
   final firstValue = TextEditingController(text: '').obs;
@@ -20,9 +18,11 @@ class ProfileController extends GetxController {
   ///
 
   ///Medthod
-  Future<void> onSaveProfileInfo(
-      {String? firstValue, String? secondValue}) async {
-    KeyboardHeper.hideKeyborad();
+  Future<void> onSaveProfileInfo({
+    String? firstValue,
+    String? secondValue,
+  }) async {
+    BaseDialogLoading.show();
     Map<String, dynamic> body = secondValue != null
         ? {
             'value1': firstValue,
@@ -32,24 +32,21 @@ class ProfileController extends GetxController {
             'value': firstValue,
           };
     try {
-      await apiHelper
-          .onRequest(
-              url: '/user_update',
-              methode: METHODE.post,
-              isAuthorize: false,
-              body: body)
-          .then((value) async {
-        BaseToast.showSuccessBaseToast('Updated Successfully!');
-        Get.back();
-      });
+      await apiHelper.onRequest(
+        url: '/user_update',
+        methode: METHODE.post,
+        isAuthorize: false,
+        body: body,
+      );
     } catch (e) {
-      BaseToast.showErorrBaseToast(e.toString());
+      // BaseToast.showErorrBaseToast(e.toString());
+    } finally {
+      BaseDialogLoading.dismiss();
     }
   }
 
   Future<void> getUserInfo() async {
     try {
-      print("fetch user");
       await apiHelper
           .onRequest(
         url: '/user_info',

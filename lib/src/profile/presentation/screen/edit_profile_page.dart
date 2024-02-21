@@ -543,9 +543,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      contentName != ''
-                          ? contentName
-                          : '${'label_no'.tr}$labelName',
+                      contentName != '' ? contentName : 'label_no'.tr,
                       overflow: TextOverflow.ellipsis,
                       style: AppText.bodyLarge!.copyWith(
                           // color: contentName != '' ? Colors.black : Colors.grey,

@@ -139,9 +139,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leadingAsset: 'assets/icons/About.png'),
                 CustomListile(
                     title: 'Edit Account'.tr,
-                    onTap: () => Get.to(
-                          () => const EditProfilePage(),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EditProfilePage(),
                         ),
+                      );
+                    },
                     leadingAsset: 'assets/icons/Security.png'),
                 CustomListile(
                   title: 'Change Language'.tr,

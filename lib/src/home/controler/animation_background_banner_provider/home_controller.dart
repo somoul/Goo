@@ -180,7 +180,6 @@ class HomeController extends GetxController {
 
   Future<List<SlideCategorieModel>> fetchSliderCategorie() async {
     try {
-      debugPrint("fetch category");
       await apiHelper
           .onRequest(
               isAuthorize: true,
