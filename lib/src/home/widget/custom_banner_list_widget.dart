@@ -74,7 +74,7 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailPropertyScreen(
-                                  id: item.id ?? 0,
+                                  id: item.id,
                                 ),
                               ), //TabBarDemo
                             );
@@ -171,7 +171,7 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                         14.gap,
                                         Expanded(
                                           child: Text(
-                                            'ID: ${item.id ?? ""}',
+                                            'ID: ${item.id}',
                                             overflow: TextOverflow
                                                 .ellipsis, //  "${item.distance}",
                                             maxLines: 1,

@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_string.dart';
+import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/loading_dialoge.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/signin_screen.dart';
 import 'package:goo_rent/helper/local_storage.dart';
 import 'package:goo_rent/utils/core/config.dart';
 
@@ -138,8 +139,15 @@ class ApiHelper extends GetConnect {
   }
 
   _tokenExpired({required String message}) async {
-    await LocalStorage.removeToken();
-    BaseToast.showErorrBaseToast(message);
-    Get.offAll(const SignInScreen());
+    final route = ModalRoute.of(ContextProvider.context);
+    String? pageName;
+    if (route != null) {
+      pageName = route.settings.name;
+    }
+    if (pageName != "/SignInScreen") {
+      await LocalStorage.removeToken();
+      BaseToast.showErorrBaseToast(message);
+      Get.offAll(const SignInScreen());
+    }
   }
 }

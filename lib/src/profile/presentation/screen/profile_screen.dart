@@ -4,7 +4,7 @@ import 'package:goo_rent/helper/dialog.dart';
 import 'package:goo_rent/helper/general.dart';
 import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/helper/local_storage.dart';
-import 'package:goo_rent/src/authentication/sign_in/presentation/screen/signin_screen.dart';
+import 'package:goo_rent/src/authentication/sign_in/presentation/signin_screen.dart';
 import 'package:goo_rent/src/favorite/pages/favorite_list_page.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/profile/presentation/screen/components/custom_item_button.dart';

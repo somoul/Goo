@@ -49,14 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _onRefresh() async {
-    // await _mapController.getLocalAddress();
-    // await _homeController.fetchSlideBanner();
-    // await _homeController.fetchSliderCategorie();
-    // await _homeController.getPopularProperty(late: 1, long: 1);
-    // await _homeController.getAllProperties(
-    //     late: _mapController.addressModel.value.lattitude ?? '',
-    //     long: _mapController.addressModel.value.longitude ?? '');
-    // await _mapController.getLocalAddress();
     _onInit();
   }
 
@@ -113,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         // _buildSlider(),
+
                         Obx(
                           () => CustomSlider(
                             url: _homeController.homeslideList,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
+import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/custom_button.dart';
 import 'package:goo_rent/main_page.dart';
 import 'package:goo_rent/routes/route_name.dart';
