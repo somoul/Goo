@@ -260,7 +260,7 @@ class _RentStepOneState extends State<RentStepOne> with Step1Mixin, Step2Mixin {
             minChildSize: .70,
             maxChildSize: 1,
             snapSizes: const [.70],
-            shouldCloseOnMinExtent: false,
+            // shouldCloseOnMinExtent: false,
             builder: (context, scrollController) {
               return Container(
                 margin: MediaQuery.paddingOf(context).top.pt,
