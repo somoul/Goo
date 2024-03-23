@@ -13,8 +13,8 @@ _$_SlideCategorieModel _$$_SlideCategorieModelFromJson(
       name: json['name'] as String?,
       name_kh: json['name_kh'] as String?,
       icon: json['icon'] as String?,
-      field: (json['field'] as List<dynamic>?)
-          ?.map((e) => FieldModel.fromJson(e as Map<String, dynamic>))
+      columField: (json['field'] as List<dynamic>?)
+          ?.map((e) => ColumField.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -25,11 +25,22 @@ Map<String, dynamic> _$$_SlideCategorieModelToJson(
       'name': instance.name,
       'name_kh': instance.name_kh,
       'icon': instance.icon,
-      'field': instance.field?.map((e) => e.toJson()).toList(),
+      'field': instance.columField?.map((e) => e.toJson()).toList(),
     };
 
-_$_FieldModel _$$_FieldModelFromJson(Map<String, dynamic> json) =>
-    _$_FieldModel(
+_$_ColumField _$$_ColumFieldFromJson(Map<String, dynamic> json) =>
+    _$_ColumField(
+      rowField: (json['field'] as List<dynamic>?)
+          ?.map((e) => RowField.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_ColumFieldToJson(_$_ColumField instance) =>
+    <String, dynamic>{
+      'field': instance.rowField?.map((e) => e.toJson()).toList(),
+    };
+
+_$_RowField _$$_RowFieldFromJson(Map<String, dynamic> json) => _$_RowField(
       controller: json['controller'],
       inputTypes: json['inputTypes'] as String?,
       format: json['format'] as String?,
@@ -39,16 +50,17 @@ _$_FieldModel _$$_FieldModelFromJson(Map<String, dynamic> json) =>
       hint_kh: json['hint_kh'] as String?,
       required: json['required'] as bool? ?? false,
       field: (json['field'] as List<dynamic>?)
-              ?.map((e) => FieldModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => RowField.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      value: json['value'],
       maxLines: json['maxLines'] as int? ?? 1,
       isDisplay: json['isDisplay'] as bool? ?? true,
       isSelect: json['isSelect'] as bool? ?? false,
-      value: json['value'],
+      suffixAsset: json['suffixAsset'] as String?,
     );
 
-Map<String, dynamic> _$$_FieldModelToJson(_$_FieldModel instance) =>
+Map<String, dynamic> _$$_RowFieldToJson(_$_RowField instance) =>
     <String, dynamic>{
       'controller': instance.controller,
       'inputTypes': instance.inputTypes,
@@ -59,8 +71,9 @@ Map<String, dynamic> _$$_FieldModelToJson(_$_FieldModel instance) =>
       'hint_kh': instance.hint_kh,
       'required': instance.required,
       'field': instance.field,
+      'value': instance.value,
       'maxLines': instance.maxLines,
       'isDisplay': instance.isDisplay,
       'isSelect': instance.isSelect,
-      'value': instance.value,
+      'suffixAsset': instance.suffixAsset,
     };

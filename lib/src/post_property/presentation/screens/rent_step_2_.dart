@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/home/controler/animation_background_banner_provider/home_controller.dart';
-
+import 'package:goo_rent/src/home/data/slide_categorie_model/slide_categorie_model.dart';
+import 'package:goo_rent/src/post_property/controller/post_property_controller.dart';
+import 'package:goo_rent/src/post_property/presentation/screens/review_submit.dart';
+import 'package:goo_rent/helper/custom_button.dart';
+import 'package:goo_rent/src/post_property/presentation/widgets/step_2_mixin.dart';
+import 'package:goo_rent/utils/extension/widget.dart';
 import 'package:goo_rent/utils/hide_keybaord.dart';
 
 class RentStepTwo extends StatefulWidget {
@@ -12,178 +16,171 @@ class RentStepTwo extends StatefulWidget {
   State<RentStepTwo> createState() => _RentStepTwoState();
 }
 
-class _RentStepTwoState extends State<RentStepTwo> {
+class _RentStepTwoState extends State<RentStepTwo> with Step2Mixin {
   final controller = Get.put(HomeController());
+  final postController = Get.put(PostPropertyController());
+  final _formKey = GlobalKey<FormState>();
+  bool get hideKeyborad => MediaQuery.of(context).viewInsets.bottom == 0.0;
+  bool get _hasFields {
+    return controller.selectedCategory.value.columField != null &&
+        (controller.selectedCategory.value.columField?.isNotEmpty ?? false);
+  }
+
+  void _initValue() {
+    if (_hasFields) {
+      postController.fieldListStep2.clear();
+      for (ColumField field
+          in controller.selectedCategory.value.columField ?? []) {
+        postController.fieldListStep2.add(
+          ColumField(
+            rowField: [
+              if ((field.rowField?.isNotEmpty ?? false) &&
+                  field.rowField != null &&
+                  (field.rowField?.length ?? 0) <= 2)
+                ...field.rowField!.map(
+                  (rowField) {
+                    rowField.controller = _getValue(rowField.value);
+                    return rowField;
+                  },
+                ).toList(),
+            ],
+          ),
+        );
+      }
+    }
+    setState(() {});
+  }
+
+  bool _has2Radio(List<RowField> list) {
+    if (list.length < 2) {
+      return true;
+    }
+    var zero = list.first.value is bool;
+    var second = list.last.value is bool;
+    return zero && second;
+  }
+
+  dynamic _getValue(value) {
+    if (value is bool) {
+      return value;
+    } else {
+      return TextEditingController(text: value.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    _initValue();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Waiting API"),
-      ),
-    );
     return GestureDetector(
       onTap: () => KeyboardHeper.hideKeyborad(),
       child: Scaffold(
         backgroundColor: const Color(0xfff9f9f9),
         appBar: AppBar(
-          backgroundColor: const Color(0xfff9f9f9),
-          leading: IconButton(
-              onPressed: () => Get.back(),
-              icon: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: const Icon(Icons.clear, color: Colors.black),
-              )),
-          title: Text('Rent'.tr, style: AppText.bodyLarge),
+          title: Text('Request Rent'.tr),
         ),
-        // body: Obx(
-        //   () => Column(
-        //     children: [
-        //       Expanded(
-        //         child: SingleChildScrollView(
-        //           padding:
-        //               const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        //           child: Column(
-        //             children: [
-        //               Text(controller.selectedCategory.value.toString()),
-        //               Text(controller.selectedCategory.value.name ?? ''),
-        //               if (controller.selectedCategory.value.field != null &&
-        //                   controller.selectedCategory.value.field != {})
-        //                 ...controller.selectedCategory.value.field!.entries
-        //                     .map(
-        //                       (feild) => CustomTextField(
-        //                         labelText: feild.value['label'] ?? '',
-        //                         hindText: feild.value['placeholder'] ??
-        //                             feild.value['label'] ??
-        //                             '',
-        //                         textInputType: TextInputType.number,
-        //                         onChange: (val) {},
-        //                       ),
-        //                     )
-        //                     .toList(),
-        //               // ...controller.listSideBarDataCategorie
-        //               //     .firstWhere((element) => false),
-        //               // if (controller.selectedCategory.value.id != null &&
-        //               //     controller.selectedCategory.value.field != {})
-        //               //   ...controller.selectedCategory.value.field!.entries
-        //               //       .map(
-        //               //         (feild) =>
-        //               // CustomTextField(
-        //               //           labelText: feild.value.name ?? '',
-        //               //           hindText: 'Enter price'.tr,
-        //               //           textInputType: TextInputType.number,
-        //               //           suffixIcon: Padding(
-        //               //             padding: const EdgeInsets.only(
-        //               //                 top: 12, bottom: 10),
-        //               //             child: Text(' | Month'.tr,
-        //               //                 style:
-        //               //                     const TextStyle(color: Colors.grey)),
-        //               //           ),
-        //               //           onChange: (val) {},
-        //               //         ),
-        //               //       )
-        //               //       .toList(),
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (postController.fieldListStep2.isNotEmpty)
+                        ...postController.fieldListStep2.asMap().entries.map(
+                          (fColum) {
+                            // if (_has2Radio(fColum.value.rowField!)) {
+                            //   return Row(
+                            //     children: fColum.value.rowField!
+                            //         .map(
+                            //           (fRow) => disPlay2Radio(
+                            //             context,
+                            //             label: fRow.label ?? '',
+                            //             value: fRow.checkBoolean,
+                            //             onTop: () {
+                            //               setState(() {
+                            //                 fRow.value.value =
+                            //                     !fRow.value.value;
+                            //               });
+                            //             },
+                            //           ),
+                            //         )
+                            //         .toList(),
+                            //   );
+                            // }
 
-        //               // CustomTextField(
-        //               //   labelText: 'Price'.tr,
-        //               //   hindText: 'Enter price'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   suffixIcon: Padding(
-        //               //     padding: const EdgeInsets.only(top: 12, bottom: 10),
-        //               //     child: Text(' | Month'.tr,
-        //               //         style: const TextStyle(color: Colors.grey)),
-        //               //   ),
-        //               //   onChange: (val) {},
-        //               // ),
-        //               // CustomTextField(
-        //               //   labelText: 'Size'.tr,
-        //               //   hindText: 'Enter size'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   suffixIcon: Padding(
-        //               //     padding: const EdgeInsets.only(
-        //               //         top: 12, bottom: 10, right: 10),
-        //               //     child: Text(
-        //               //       ' | Square metre'.tr,
-        //               //       style: const TextStyle(color: Colors.grey),
-        //               //     ),
-        //               //   ),
-        //               //   onChange: (val) {},
-        //               // ),
-        //               // CustomTextField(
-        //               //   labelText: 'Address'.tr,
-        //               //   hindText: 'Enter address'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   suffixIcon: Container(
-        //               //     padding: const EdgeInsets.all(13),
-        //               //     width: 20,
-        //               //     height: 20,
-        //               //     child: Image.asset(
-        //               //       'assets/image/marker_android.png',
-        //               //       color: Colors.grey,
-        //               //     ),
-        //               //   ),
-        //               //   onChange: (val) {},
-        //               // ),
-        //               // CustomTextField(
-        //               //   labelText: 'Room types'.tr,
-        //               //   hindText: 'Select room types'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   suffixIcon: Container(
-        //               //     padding: const EdgeInsets.all(13),
-        //               //     width: 20,
-        //               //     height: 20,
-        //               //     child: const Icon(
-        //               //       Icons.arrow_forward_ios_rounded,
-        //               //       color: Colors.grey,
-        //               //       size: 18,
-        //               //     ),
-        //               //   ),
-        //               //   onChange: (val) {},
-        //               // ),
-        //               // CustomTextField(
-        //               //   labelText: 'Area'.tr,
-        //               //   hindText: 'Select area'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   suffixIcon: Container(
-        //               //     padding: const EdgeInsets.all(13),
-        //               //     width: 20,
-        //               //     height: 20,
-        //               //     child: const Icon(
-        //               //       Icons.arrow_forward_ios_rounded,
-        //               //       color: Colors.grey,
-        //               //       size: 18,
-        //               //     ),
-        //               //   ),
-        //               //   onChange: (val) {},
-        //               // ),
-        //               // CustomTextField(
-        //               //   labelText: 'Floor'.tr,
-        //               //   hindText: 'Enter floor'.tr,
-        //               //   textInputType: TextInputType.number,
-        //               //   onChange: (val) {},
-        //               // ),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //       Padding(
-        //         padding: const EdgeInsets.only(
-        //             left: 15, right: 15, top: 15, bottom: 30),
-        //         child: CustomButton(
-        //           title: 'Continue'.tr,
-        //           onPressed: () {
-        //             Get.to(const SelectPhotoScreen());
-        //           },
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
+                            return Row(
+                              children: [
+                                ...fColum.value.rowField!.asMap().entries.map(
+                                  (fRow) {
+                                    if (fRow.value.value is bool) {
+                                      return Expanded(
+                                        child: radioButton(
+                                          context,
+                                          label: fRow.value.label ?? '',
+                                          value: fRow.value.checkBoolean,
+                                          onTop: () {
+                                            setState(() {
+                                              fRow.value.value =
+                                                  !fRow.value.value;
+                                            });
+                                          },
+                                        ),
+                                      );
+                                    }
+                                    return Expanded(
+                                      child: textField(
+                                        ///Local check
+                                        // maxLines: fRow.value.maxLines,
+                                        keyboardType: fRow.value.getInputType,
+
+                                        ///From API
+                                        field: fRow.value,
+                                        onChange: (val) {
+                                          setState(() {});
+                                        },
+                                      )
+                                          .pr(fRow.key == 0 ? 8 : 0)
+                                          .pl(fRow.key == 1 ? 8 : 0),
+                                    );
+                                  },
+                                ).toList(),
+                              ],
+                            );
+                          },
+                        ).toList(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (hideKeyborad)
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 15, right: 15, top: 15, bottom: 30),
+                child: CustomButton(
+                  title: 'Continue'.tr,
+                  onPressed: _onContinue,
+                ),
+              )
+          ],
+        ),
       ),
     );
+  }
+
+  _onContinue() {
+    if (_formKey.currentState!.validate()) {
+      Get.to(const ReviewSubmit());
+    }
   }
 }

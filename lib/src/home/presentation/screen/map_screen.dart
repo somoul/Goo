@@ -15,7 +15,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../controler/search_type_rent_controler/search_controler.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  final Function(double, double, String)? onSelected;
+  const MapScreen({Key? key, this.onSelected}) : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -146,10 +147,18 @@ class _MapScreenState extends State<MapScreen> {
                   title: 'Save Your Location'.tr,
                   onPressed: _mapCon.currentAddress.value == ''
                       ? null
-                      : () {
-                          _onSaveAddress(
-                              _mapCon.currentAddress.value, _late, _long);
-                        },
+                      : widget.onSelected != null
+                          ? () {
+                              widget.onSelected!(
+                                  _late, _long, _mapCon.currentAddress.value);
+                            }
+                          : () {
+                              _onSaveAddress(
+                                _mapCon.currentAddress.value,
+                                _late,
+                                _long,
+                              );
+                            },
                 ),
               )
             ],

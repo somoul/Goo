@@ -205,13 +205,15 @@ class HomeController extends GetxController {
         jsonData.map((json) {
           listSideBarDataCategorie.add(SlideCategorieModel.fromJson(json));
         }).toList();
+
         await LocalStorage.put(
             storageKey: StorageKeys.categories,
             value: listSideBarDataCategorie);
       }).onError((ErrorModel error, stackTrace) {
         BaseToast.showErorrBaseToast('${error.bodyString['message']}');
       });
-    } catch (_) {
+    } catch (e) {
+      rethrow;
     } finally {
       loadingCategory(false);
     }

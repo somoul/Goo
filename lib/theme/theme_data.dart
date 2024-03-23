@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/constant/app_constant.dart';
+import 'package:goo_rent/constant/app_text.dart';
 
 import 'color_schemes.g.dart';
 
@@ -29,14 +30,34 @@ class CustomTheme {
 
         /// Form
         inputDecorationTheme: InputDecorationTheme(
-            focusColor: AppConstant.kPrimaryColor,
-            focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.black),
-                borderRadius: BorderRadius.circular(7)),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.black),
-                borderRadius: BorderRadius.circular(7)),
-            labelStyle: const TextStyle(color: Colors.grey)),
+          // focusColor: AppConstant.kPrimaryColor,
+          // focusedBorder: OutlineInputBorder(
+          //     borderSide: const BorderSide(color: Colors.black),
+          //     borderRadius: BorderRadius.circular(7)),
+          // enabledBorder: OutlineInputBorder(
+          //     borderSide: const BorderSide(color: Colors.black),
+          //     borderRadius: BorderRadius.circular(7)),
+
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+              width: 1,
+            ),
+          ),
+
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppConstant.kPrimaryColor,
+              width: 1,
+            ),
+          ),
+        ),
 
         ///Btn
         elevatedButtonTheme: ElevatedButtonThemeData(

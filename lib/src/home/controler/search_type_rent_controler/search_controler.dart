@@ -55,9 +55,9 @@ class SearchTypeRentController extends GetxController {
       (response) {
         var responseData = response['data'];
         startSlider.value =
-            double.parse(PriceRangeModel.fromJson(responseData).min ?? '0');
+            double.parse(PriceRangeModel.fromJson(responseData).min);
         endSlider.value =
-            double.parse(PriceRangeModel.fromJson(responseData).max ?? '0');
+            double.parse(PriceRangeModel.fromJson(responseData).max);
         startPoint.value = startSlider.value;
         endPoint.value = endSlider.value;
         Timer(const Duration(seconds: 2), () {
