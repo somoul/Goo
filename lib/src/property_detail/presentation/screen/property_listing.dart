@@ -112,9 +112,9 @@ class _AllPropertyState extends State<AllProperty> {
                       height: 15,
                     ),
                   ),
-                  const Spacer(),
                   Text(
                     'All Properies'.tr,
+                    textAlign: TextAlign.left,
                     style: AppText.bodyMedium!
                         .copyWith(fontSize: 16, fontWeight: FontWeight.w600),
                   ),

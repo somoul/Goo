@@ -117,7 +117,8 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                     child: Row(
                                       children: [
                                         SvgPicture.asset(
-                                            'assets/image/search.svg'),
+                                          'assets/image/search.svg',
+                                        ),
                                         const SizedBox(
                                           width: 10,
                                         ),
@@ -138,9 +139,9 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                           Text(
                                             "Search Rent Property".tr,
                                             style: AppText.bodySmall!.copyWith(
-                                                fontSize: 16,
+                                                fontSize: 16.5,
                                                 color: Colors.grey,
-                                                fontWeight: FontWeight.w500),
+                                                fontWeight: FontWeight.w400),
                                           ),
                                         Expanded(
                                           child: Text("Search".tr,
@@ -149,7 +150,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                                   AppText.bodySmall!.copyWith(
                                                 color:
                                                     AppConstant.kPrimaryColor,
-                                                fontSize: 16,
+                                                fontSize: 16.5,
                                               )),
                                         ),
                                       ],
@@ -222,13 +223,11 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                 child: CustomContentTextField(
                                   leftIcon: "assets/icons/home3.svg",
                                   value: searchController
-                                              .typeSearchRent.value ==
+                                              .typeSearchRent.value !=
                                           ""
                                       ? searchController.typeSearchRent.value
-                                      : "Select rental type".tr,
+                                      : "Choose Property Types".tr,
                                   nameTextField: "Choose Property Types".tr,
-                                  // rightsIcons: "assets/icons/ic_vector.svg",
-
                                   onTap: () async {
                                     _onSelectPropertyType(context);
                                     setState(() {});
@@ -305,7 +304,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                         searchController.isSearchProperty.value = true;
                         // }
                       },
-                      title: "Search".tr,
+                      title: "Start search".tr,
                       isOutline: false,
                     ),
                   ),
@@ -367,10 +366,15 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                               .listSideBarDataCategorie[index].name,
                         ),
                         onTap: () {
-                          searchController.typeSearchRent.value = homeController
-                              .listSideBarDataCategorie[index].name!;
-                          _propCon.filterPropertyYype.value = homeController
-                              .listSideBarDataCategorie[index].id!;
+                          setState(() {
+                            searchController.typeSearchRent.value =
+                                homeController
+                                    .listSideBarDataCategorie[index].name!;
+                            _propCon.filterPropertyYype.value = homeController
+                                .listSideBarDataCategorie[index].id!;
+                          });
+
+                          print("========== show data 4657890-==");
                           Navigator.pop(context);
                         });
                   },

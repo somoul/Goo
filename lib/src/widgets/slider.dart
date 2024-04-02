@@ -87,7 +87,7 @@ class _CustomSliderState extends State<CustomSlider> {
                       enlargeFactor: 0,
                       enlargeCenterPage: true,
                       viewportFraction: 1,
-                      aspectRatio: 1.8,
+                      aspectRatio: 1.9,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,
                       onPageChanged: (index, reason) {
                         setState(() {
@@ -125,9 +125,7 @@ class _CustomSliderState extends State<CustomSlider> {
                 onTap: () {
                   Get.to(() => const SearchRentScreen());
                 },
-                child: Container(
-                    color: Colors.transparent,
-                    child: _serchBox(widget.loading))),
+                child: _serchBox(widget.loading)),
           ),
       ],
     );
@@ -138,7 +136,7 @@ class _CustomSliderState extends State<CustomSlider> {
       color: Colors.transparent,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12.9, vertical: 12.9),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -168,15 +166,19 @@ class _CustomSliderState extends State<CustomSlider> {
                 ? const ShimmerBox(
                     width: 150,
                   )
-                : Text("Apartment for business".tr, style: AppText.bodySmall),
+                : Text(
+                    "Apartment for business".tr,
+                    style: AppText.bodySmall!
+                        .copyWith(fontSize: 16.5, fontWeight: FontWeight.w400),
+                  ),
             if (loading) const Spacer(),
             loading
                 ? const ShimmerBox()
                 : Expanded(
                     child: Text("Search".tr,
                         textAlign: TextAlign.end,
-                        style: AppText.bodySmall!
-                            .copyWith(color: AppConstant.kPrimaryColor)),
+                        style: AppText.bodySmall!.copyWith(
+                            fontSize: 16, color: AppConstant.kPrimaryColor)),
                   ),
           ],
         ),

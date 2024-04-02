@@ -14,7 +14,7 @@ class Khmer {
         'ID': 'លេខសម្គាល់',
         'Property': 'អចលនទ្រព្យ',
         'Problem': 'បញ្ហា',
-        'History': 'កំណត់ត្រា',
+        'History': 'លក់',
         'Favorite': 'រក្សាទុក',
         'Edit': 'កែប្រែ',
         'Home': 'ទំព័រដើម',
@@ -41,12 +41,12 @@ class Khmer {
         /// [MAP]
         'Map': 'ផែនទី',
         'Your Location': 'ទីតាំងរបស់អ្នក',
-        'Save Your Location': 'រក្សាអាស័យដ្ឋានរបស់អ្នក',
+        'Save Your Location': 'ជ្រេីសយកអាស័យដ្ឋានរបស់នេះ',
         'Month': 'ខែ',
-        'Search': 'ស្វែងរក',
-        'Rent Type': 'ប្រភេទជួល',
+        'Search': 'ស្វែងរករហ័ស',
+        'Rent Type': 'ទីតាំង',
         'Choose Address': 'ជ្រើសរើសទីតាំង',
-        'Search Rent Property': 'ស្វែងអចលនាទ្រព្យជួល',
+        'Search Rent Property': 'ស្វែងរកជួលអចលនទ្រព្យ',
         'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
 
         //search propery rent
@@ -87,6 +87,7 @@ class Khmer {
         'Choose Date of Birth': 'ជ្រើសរើសកាលបរិច្ឆេទ',
         'Category': 'ប្រភេទ',
         "Select rental type": "ជ្រើសរើសប្រភេទជួល",
+        "Start search": "ចាប់ផ្តើមស្វែងរក",
 
         //search propery rent
         'Apartment for business': 'ផ្ទះសម្រាប់អាជីវកម្ម',

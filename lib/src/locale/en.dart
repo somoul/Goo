@@ -87,6 +87,7 @@ class English {
         'label_no': 'No ',
         'Date Of Birth': 'Date Of Birth',
         'Choose Date of Birth': 'Choose Date of Birth',
+        "Start search": "Start search",
         //search property rent
         'Apartment for business': 'Apartment for business',
         'Your account will logout unless you login again. Are you sure to logout?':

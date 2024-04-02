@@ -52,152 +52,6 @@ class PropertyModelResponse {
   }
 }
 
-// class PropertyModel {
-//   int? userId;
-//   String? title;
-//   String? description;
-//   String? price;
-//   int? like;
-//   List<String>? attachments;
-//   int? comment;
-//   String? latitude;
-//   String? longitude;
-//   int? categoryId;
-//   String? address;
-//   int? status;
-//   String? postType;
-//   String? createdAt;
-//   String? updatedAt;
-//   int? id;
-//   String? lang;
-//   String? bookingPrice;
-//   String? size;
-//   String? landSize;
-//   String? electricPrice;
-//   String? waterPrice;
-//   String? accessoryId;
-//   String? thumbnail;
-//   String? firstName;
-//   String? lastName;
-//   String? username;
-//   String? avatar;
-//   String? categoryName;
-//   String? categoryNameKh;
-//   String? duration;
-//   String? distance;
-//   bool favorite = false;
-
-//   PropertyModel({
-//     this.userId,
-//     this.title,
-//     this.description,
-//     this.price,
-//     this.like,
-//     this.attachments,
-//     this.comment,
-//     this.latitude,
-//     this.longitude,
-//     this.categoryId,
-//     this.address,
-//     this.status,
-//     this.postType,
-//     this.createdAt,
-//     this.updatedAt,
-//     this.id,
-//     this.lang,
-//     this.bookingPrice,
-//     this.size,
-//     this.landSize,
-//     this.electricPrice,
-//     this.waterPrice,
-//     this.accessoryId,
-//     this.thumbnail,
-//     this.firstName,
-//     this.lastName,
-//     this.username,
-//     this.avatar,
-//     this.categoryName,
-//     this.categoryNameKh,
-//     this.duration,
-//     this.distance,
-//     this.favorite = false,
-//   });
-
-//   PropertyModel.fromJson(Map<String, dynamic> json) {
-//     userId = json['user_id'];
-//     title = json['title'];
-//     description = json['description'];
-//     price = json['price'];
-//     like = json['like'];
-//     attachments =
-//         json['attachments'] != null ? json['attachments'].cast<String>() : [];
-//     comment = json['comment'];
-//     latitude = json['latitude'];
-//     longitude = json['longitude'];
-//     categoryId = json['category_id'];
-//     address = json['address'];
-//     status = json['status'];
-//     postType = json['post_type'];
-//     createdAt = json['created_at'];
-//     updatedAt = json['updated_at'];
-//     id = json['id'];
-//     lang = json['lang'];
-//     bookingPrice = json['booking_price'];
-//     size = json['size'];
-//     landSize = json['land_size'];
-//     electricPrice = json['electric_price'];
-//     waterPrice = json['water_price'];
-//     accessoryId = json['accessory_id'];
-//     thumbnail = json['thumbnail'];
-//     firstName = json['first_name'];
-//     lastName = json['last_name'];
-//     username = json['username'];
-//     avatar = json['avatar'];
-//     categoryName = json['category_name'];
-//     categoryNameKh = json['category_name_kh'];
-//     duration = json['duration'];
-//     distance = json['distance'];
-//     favorite = json['favorite'] ?? false;
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['user_id'] = userId;
-//     data['title'] = title;
-//     data['description'] = description;
-//     data['price'] = price;
-//     data['like'] = like;
-//     data['attachments'] = attachments;
-//     data['comment'] = comment;
-//     data['latitude'] = latitude;
-//     data['longitude'] = longitude;
-//     data['category_id'] = categoryId;
-//     data['address'] = address;
-//     data['status'] = status;
-//     data['post_type'] = postType;
-//     data['created_at'] = createdAt;
-//     data['updated_at'] = updatedAt;
-//     data['id'] = id;
-//     data['lang'] = lang;
-//     data['booking_price'] = bookingPrice;
-//     data['size'] = size;
-//     data['land_size'] = landSize;
-//     data['electric_price'] = electricPrice;
-//     data['water_price'] = waterPrice;
-//     data['accessory_id'] = accessoryId;
-//     data['thumbnail'] = thumbnail;
-//     data['first_name'] = firstName;
-//     data['last_name'] = lastName;
-//     data['username'] = username;
-//     data['avatar'] = avatar;
-//     data['category_name'] = categoryName;
-//     data['category_name_kh'] = categoryNameKh;
-//     data['duration'] = duration;
-//     data['distance'] = distance;
-//     return data;
-//   }
-// }
-
 ///////
 class PropertyModel {
   String? distance;
@@ -221,8 +75,8 @@ class PropertyModel {
   String? thumbnail;
   int? visit;
   String? cname;
+  Category? category;
   // Data? data;
-
   String? duration;
   bool favorite = false;
   User? user;
@@ -251,7 +105,8 @@ class PropertyModel {
       this.cname,
       this.duration,
       this.favorite = false,
-      this.user});
+      this.user,
+      this.category});
 
   PropertyModel.fromJson(Map<String, dynamic> json) {
     distance = json['distance'];
@@ -284,6 +139,8 @@ class PropertyModel {
     duration = json['duration'];
     favorite = json['favorite'] ?? false;
     user = json['user'] != null ? User.fromJson(json['user']) : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -310,6 +167,10 @@ class PropertyModel {
     data['visit'] = visit;
     data['duration'] = duration;
     data['favorite'] = favorite;
+
+    if (category != null) {
+      data['category'] = category!.toJson();
+    }
     if (user != null) {
       data['user'] = user!.toJson();
     }
@@ -381,6 +242,51 @@ class User {
     data['gender'] = gender;
     data['dob'] = dob;
     data['uuid'] = uuid;
+    return data;
+  }
+}
+
+class Category {
+  int? id;
+  String? name;
+  int? active;
+  String? createdAt;
+  String? updatedAt;
+  String? icon;
+  String? nameKh;
+  String? field;
+
+  Category(
+      {this.id,
+      this.name,
+      this.active,
+      this.createdAt,
+      this.updatedAt,
+      this.icon,
+      this.nameKh,
+      this.field});
+
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    active = json['active'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    icon = json['icon'];
+    nameKh = json['name_kh'];
+    field = json['field'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['active'] = active;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['icon'] = icon;
+    data['name_kh'] = nameKh;
+    data['field'] = field;
     return data;
   }
 }

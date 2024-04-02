@@ -11,6 +11,8 @@ import 'package:goo_rent/src/widgets/shimmer_box.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
 
+import 'CustomDefaultShimmer.dart';
+
 // ignore: must_be_immutable
 class CustomPopularBlock extends StatefulWidget {
   List<PropertyModel> popularList;
@@ -36,14 +38,16 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        15.gap,
+        1.gap,
         Padding(
           padding: const EdgeInsets.only(left: AppConstant.paddingLarge),
           child: widget.loading
               ? const ShimmerBox(height: 14)
-              : Text('Popular'.tr, style: AppText.titleSmall),
+              : Text('Popular'.tr,
+                  style: AppText.titleSmall!.copyWith(
+                      color: AppConstant.kPrimaryColor, fontSize: 19)),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 18),
         SizedBox(
           height: widget.popularList.isEmpty && !widget.loading ? 70 : 285,
           width: double.infinity,
@@ -74,7 +78,7 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailPropertyScreen(
-                                  id: item.id,
+                                  id: item.id ?? 0,
                                 ),
                               ), //TabBarDemo
                             );
@@ -82,7 +86,7 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                           child: Stack(
                             children: [
                               Container(
-                                width: 270,
+                                width: 260,
                                 height: 285,
                                 margin: const EdgeInsets.only(
                                   right: 5,
@@ -99,23 +103,47 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                     ]),
                                 child: Column(
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15),
-                                      ),
-                                      child: Container(
-                                        height: 160,
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(15),
-                                              topRight: Radius.circular(15)),
+                                    Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(15),
+                                            topRight: Radius.circular(15),
+                                          ),
+                                          child: Container(
+                                            height: 160,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(15),
+                                                  topRight:
+                                                      Radius.circular(15)),
+                                            ),
+                                            child: ImageBuilder(
+                                                    fit: BoxFit.cover,
+                                                    width: 270)
+                                                .network(
+                                                    item.attachments?[0] ?? ""),
+                                          ),
                                         ),
-                                        child: ImageBuilder(
-                                                fit: BoxFit.cover, width: 270)
-                                            .network(
-                                                item.attachments?[0] ?? ""),
-                                      ),
+                                        Positioned(
+                                            left: 10,
+                                            bottom: 8,
+                                            child: CustomDefaultShimmer(
+                                              widthShimmer: 20,
+                                              heightShimmer: 16,
+                                              padding: const EdgeInsets.all(0),
+                                              isShimmer: widget.loading,
+                                              child: Text(
+                                                " item.cname ?? " "",
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: AppText.titleSmall!
+                                                    .copyWith(
+                                                        fontSize: 12,
+                                                        color: Colors.white70),
+                                              ),
+                                            ))
+                                      ],
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -127,7 +155,8 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                           item.title ?? "",
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: AppText.bodyMedium,
+                                          style: AppText.bodyMedium!
+                                              .copyWith(fontSize: 18),
                                         ).px(14),
                                         10.gap,
                                         Padding(
@@ -144,20 +173,27 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                               8.gap,
                                               Expanded(
                                                 child: Text(
-                                                    item.distance ?? "N/A"),
+                                                    item.distance ?? "N/A",
+                                                    style: AppText.titleSmall!
+                                                        .copyWith(
+                                                            color: const Color(
+                                                                0xFF21A6F8),
+                                                            fontSize: 17)),
                                               ),
                                               Text(
                                                 "\$${item.price}/",
                                                 style: AppText.titleSmall!
                                                     .copyWith(
                                                         color: const Color(
-                                                            0xFF21A6F8)),
+                                                            0xFF21A6F8),
+                                                        fontSize: 17),
                                               ),
                                               Text(
                                                 "Month".tr,
                                                 style: AppText.bodySmall!
                                                     .copyWith(
-                                                        color: Colors.black),
+                                                        color: Colors.black,
+                                                        fontSize: 17),
                                               ),
                                             ],
                                           ),
@@ -176,7 +212,9 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                                 .ellipsis, //  "${item.distance}",
                                             maxLines: 1,
                                             style: AppText.bodyMedium!.copyWith(
-                                                color: const Color(0xFF979797)),
+                                                color: const Color(0xFF979797),
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w500),
                                           ),
                                         ),
                                         IconButton(

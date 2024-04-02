@@ -111,7 +111,7 @@ class _CustomGridCardState extends State<CustomGridCard> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppText.titleSmall!
-                            .copyWith(fontSize: 12, color: Colors.white70),
+                            .copyWith(fontSize: 15, color: Colors.white70),
                       ),
                     ))
               ],
@@ -130,7 +130,7 @@ class _CustomGridCardState extends State<CustomGridCard> {
                   '${widget.propertyModel.title}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppText.titleSmall!.copyWith(fontSize: 14),
+                  style: AppText.titleSmall!.copyWith(fontSize: 16),
                 ).px(14),
               ),
               const SizedBox(height: 6),
@@ -142,8 +142,8 @@ class _CustomGridCardState extends State<CustomGridCard> {
                 child: Row(
                   children: [
                     SizedBox(
-                      height: 18,
-                      width: 18,
+                      height: 19,
+                      width: 19,
                       child: ImageBuilder().asset("assets/image2/icon_map.svg"),
                     ),
                     6.gap,
@@ -152,18 +152,19 @@ class _CustomGridCardState extends State<CustomGridCard> {
                         '${widget.propertyModel.distance}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: AppText.bodySmall!.copyWith(color: Colors.grey),
+                        style: AppText.bodySmall!
+                            .copyWith(color: Colors.grey, fontSize: 15.5),
                       ),
                     ),
                     const SizedBox(width: 3),
                     Text(
                       '\$${widget.propertyModel.price}/',
                       style: AppText.titleSmall!.copyWith(
-                          fontSize: 14, color: AppConstant.kPrimaryColor),
+                          fontSize: 15.5, color: AppConstant.kPrimaryColor),
                     ),
                     Text(
                       'Month'.tr,
-                      style: AppText.titleSmall!.copyWith(fontSize: 12),
+                      style: AppText.titleSmall!.copyWith(fontSize: 15.5),
                     )
                   ],
                 ).px(14),
@@ -190,7 +191,7 @@ class _CustomGridCardState extends State<CustomGridCard> {
                           'Category'.tr,
                           maxLines: 1,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 12,
+                              fontSize: 15.5,
                               fontWeight: FontWeight.w500,
                               color: Colors.black),
                         ),
@@ -208,7 +209,7 @@ class _CustomGridCardState extends State<CustomGridCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 12,
+                              fontSize: 15.5,
                               fontWeight: FontWeight.w500,
                               color: Colors.black),
                         ),
@@ -223,8 +224,8 @@ class _CustomGridCardState extends State<CustomGridCard> {
                         isShimmer: widget.isLoading,
                         child: GestureDetector(
                           onTap: () {
+                            widget.onFavorit();
                             setState(() {
-                              widget.onFavorit();
                               widget.propertyModel.favorite =
                                   !widget.propertyModel.favorite;
                             });
@@ -301,10 +302,39 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: ImageBuilder(
-                            fit: BoxFit.cover, height: 110, width: 110)
+                            fit: BoxFit.cover, height: 115, width: 120)
                         .network(widget.propertyModel.attachments?[0] ?? ''),
                   ),
                 ),
+                Positioned(
+                    left: 5,
+                    top: 7,
+                    child: CustomDefaultShimmer(
+                      widthShimmer: 20,
+                      heightShimmer: 16,
+                      padding: const EdgeInsets.all(0),
+                      isShimmer: widget.isLoading,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xFFFFFFFF),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.remove_red_eye, size: 14),
+                            const SizedBox(width: 3),
+                            Text(
+                              '${widget.propertyModel.visit}',
+                              style: AppText.bodySmall!.copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
                 // Positioned(
                 //   left: 6.5,
                 //   bottom: 6,
@@ -358,6 +388,8 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
               child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(),
                 CustomDefaultShimmer(
@@ -369,7 +401,8 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                     '${widget.propertyModel.title}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: AppText.titleSmall!.copyWith(fontSize: 14),
+                    textAlign: TextAlign.start,
+                    style: AppText.titleSmall!.copyWith(fontSize: 16),
                   ),
                 ),
                 const Spacer(),
@@ -383,7 +416,7 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                       child: Text(
                         '\$${widget.propertyModel.price}/',
                         style: AppText.titleSmall!.copyWith(
-                            fontSize: 14, color: AppConstant.kPrimaryColor),
+                            fontSize: 15.5, color: AppConstant.kPrimaryColor),
                       ),
                     ),
                     CustomDefaultShimmer(
@@ -393,7 +426,7 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                       isShimmer: widget.isLoading,
                       child: Text(
                         'Month'.tr,
-                        style: AppText.titleSmall!.copyWith(fontSize: 12),
+                        style: AppText.titleSmall!.copyWith(fontSize: 15.5),
                       ),
                     ),
                     const Spacer(),
@@ -403,8 +436,8 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                       padding: const EdgeInsets.all(0),
                       isShimmer: widget.isLoading,
                       child: SizedBox(
-                        height: 18,
-                        width: 18,
+                        height: 19,
+                        width: 19,
                         child:
                             ImageBuilder().asset("assets/image2/icon_map.svg"),
                       ).p(5),
@@ -419,8 +452,8 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                           '${widget.propertyModel.distance}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              AppText.bodySmall!.copyWith(color: Colors.grey),
+                          style: AppText.bodySmall!
+                              .copyWith(color: Colors.grey, fontSize: 15.5),
                         ),
                       ),
                     ),
@@ -448,7 +481,7 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                           maxLines: 1,
                           overflow: TextOverflow.clip,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 12,
+                              fontSize: 15.5,
                               fontWeight: FontWeight.w500,
                               color: Colors.black),
                         ),

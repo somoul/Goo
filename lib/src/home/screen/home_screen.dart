@@ -147,18 +147,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             actionTitle: 'See All'.tr,
                             loading: _homeController.isLoadAllProperty.value,
                             onAction: () {
-                              const AllProperty();
+                              setState(() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AllProperty()),
+                                );
+                              });
                             },
                             propertyList:
                                 _homeController.propertyData.value.propertyList,
                             onFavorit: (int id, int index) async {
-                              _homeController.propertyData.value
-                                      .propertyList[index].favorite =
-                                  !_homeController.propertyData.value
-                                      .propertyList[index].favorite;
-                              setState(() {});
-                              await _propertyController.onFavorit(
-                                  propertyId: '$id');
+                              // _homeController.propertyData.value
+                              //         .propertyList[index].favorite =
+                              //     !_homeController.propertyData.value
+                              //         .propertyList[index].favorite;
+                              setState(() {
+                                _propertyController.onFavorit(
+                                    propertyId: id.toString());
+                              });
                             },
                           ),
                         ),
@@ -175,6 +183,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+//  setState(() {
+//                                               widget.popularList[index]
+//                                                       .favorite =
+//                                                   !widget.popularList[index]
+//                                                       .favorite;
+//                                             });
+//                                             widget.homeController.onFavorit(
+//                                               propertyId: item.id.toString(),
+//                                             )
 
 Widget buildLocation(
   BuildContext context,

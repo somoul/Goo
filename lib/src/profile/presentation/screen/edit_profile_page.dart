@@ -8,6 +8,7 @@ import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/src/home/widget/buttom_sheet_default.dart';
 import 'package:goo_rent/src/profile/controller/profile_controller.dart';
 import 'package:goo_rent/src/profile/presentation/screen/edit_info.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -19,6 +20,36 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   int _currentGender = 2;
   final _profileController = Get.put(ProfileController());
+  ImagePicker imagePicker = ImagePicker();
+  XFile? imageFile;
+
+  Future<void> getPickImage() async {
+    final XFile? pickedImage = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedImage != null) {
+      setState(() {
+        imageFile = pickedImage;
+      });
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  Future<void> getCamera() async {
+    final XFile? pickedImage = await imagePicker.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (pickedImage != null) {
+      setState(() {
+        imageFile = pickedImage;
+      });
+    } else {
+      print('No camera selected.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +91,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   CupertinoActionSheetAction(
                                     isDefaultAction: true,
                                     onPressed: () {
+                                      getCamera();
                                       Navigator.pop(context);
                                     },
                                     child: Text(
@@ -71,6 +103,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   CupertinoActionSheetAction(
                                     isDefaultAction: true,
                                     onPressed: () {
+                                      getPickImage();
                                       Navigator.pop(context);
                                     },
                                     child: Text("From Gallery".tr,
@@ -96,9 +129,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             alignment: Alignment.center,
                             children: [
                               Container(
-                                width: 110,
-                                height: 110,
+                                width: 115,
+                                height: 115,
                                 decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(60)),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: _profileController
@@ -126,7 +161,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       border: Border.all(
                                           width: 1, color: Colors.white)),
                                   child: const Icon(Icons.edit,
-                                      color: Colors.white, size: 22),
+                                      color: Colors.white, size: 20),
                                 ),
                               )
                             ],
@@ -461,6 +496,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   );
                                 }));
                           })
+
                       // StatefulBuilder(builder: (context,setStateSex){
                       //   return _buildEditItem(
                       //       labelName: "ភេទ",

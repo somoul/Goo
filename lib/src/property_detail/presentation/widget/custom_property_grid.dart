@@ -54,15 +54,21 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("${widget.title}".tr, style: AppText.titleSmall),
+                        Text("${widget.title}".tr,
+                            style: AppText.titleSmall!.copyWith(
+                                color: AppConstant.kPrimaryColor,
+                                fontSize: 19)),
                         SizedBox(
                           height: 30,
                           child: TextButton(
                             style: TextButton.styleFrom(padding: 0.p.px(20)),
-                            onPressed: () => widget.onAction!(),
+                            onPressed: () {
+                              widget.onAction!();
+                            },
                             child: Text("${widget.actionTitle}",
                                 style: AppText.titleSmall!.copyWith(
-                                    color: AppConstant.kPrimaryColor)),
+                                    color: AppConstant.kPrimaryColor,
+                                    fontSize: 19)),
                           ),
                         )
                       ],
@@ -75,12 +81,12 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                 : const NeverScrollableScrollPhysics(),
             shrinkWrap:
                 widget.title == null && widget.title == '' ? false : true,
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: widget.propertyList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.isGrid == true ? 2 : 1, //2
-              crossAxisSpacing: 13,
-              mainAxisSpacing: 13,
+              crossAxisSpacing: 11.5,
+              mainAxisSpacing: 11.5,
 
               mainAxisExtent: widget.isGrid == true ? 275 : 130, //
             ),
@@ -100,7 +106,10 @@ class _CustomPropertyGridState extends State<CustomPropertyGrid> {
                       propertyModel: widget.propertyList[index],
                       homeController: _homeController,
                       onFavorit: () {
-                        widget.onFavorit(widget.propertyList[index].id, index);
+                        setState(() {
+                          widget.onFavorit(
+                              widget.propertyList[index].id, index);
+                        });
                       },
                     )
                   : PropertyCartOne(

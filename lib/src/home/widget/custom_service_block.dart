@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:goo_rent/constant/app_text.dart';
 import 'package:goo_rent/helper/image_builder.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
-import 'package:goo_rent/theme/color_schemes.g.dart';
 import 'package:goo_rent/utils/extension/edge_insets.dart';
 import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/extension/widget.dart';
+import '../../../constant/app_constant.dart';
 import '../data/slide_categorie_model/slide_categorie_model.dart';
 import '../screen/detail_property_type/property_detail.dart';
 
@@ -27,18 +27,17 @@ class CustomCategoryBlock extends StatelessWidget {
         loading
             ? const ShimmerBox().pt(15).pl(15)
             : Padding(
-                padding: 15.px.pt(10),
+                padding: 15.px.pt(5),
                 child: Text(
                   "Service".tr,
-                  style: AppText.titleSmall!.copyWith(
-                    color: lightColorScheme.primary,
-                  ),
+                  style: AppText.titleSmall!
+                      .copyWith(color: AppConstant.kPrimaryColor, fontSize: 19),
                 ),
               ),
         Container(
-          height: 60,
+          height: 70,
           width: double.infinity,
-          margin: const EdgeInsets.only(top: 14),
+          margin: const EdgeInsets.only(top: 10),
           child: loading
               ? ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -102,25 +101,17 @@ _categoryItem({required String icon, required String title}) {
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       children: [
-        // CachedNetworkImage(
-        //   fit: BoxFit.cover,
-        //   placeholder: (context, url) => icon != ''
-        //       ? ShimmerBox.wrap(child: ImageBuilder().network(icon))
-        //       : const ShimmerBox(height: 30, width: 30, circle: true),
-        //   imageUrl: icon,
-        //   height: 30,
-        // ),
-        ImageBuilder(width: 30, height: 30).network(icon),
+        ImageBuilder(width: 45, height: 45).network(icon),
         Padding(
-          padding: const EdgeInsets.only(top: 3),
+          padding: const EdgeInsets.only(top: 1),
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
               title,
               style: AppText.titleSmall!.copyWith(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
+                  color: Colors.black.withOpacity(0.7),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500),
               textAlign: TextAlign.start,
             ),
           ),

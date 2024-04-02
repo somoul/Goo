@@ -247,6 +247,10 @@ class HomeController extends GetxController {
               })
           .then((value) async {
         popularPropertyData.value = PropertyModelResponse.fromJson(value);
+        print(
+            "======== show data all property:${popularPropertyData.value.propertyList[0].category}");
+        print(
+            "======== show data all property:${PropertyModelResponse.fromJson(value).propertyList[0].category}");
         await LocalStorage.put(
             storageKey: StorageKeys.popular, value: popularPropertyData.value);
       });
