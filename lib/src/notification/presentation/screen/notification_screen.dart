@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../constant/app_text.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({
@@ -7,29 +10,22 @@ class NotificationScreen extends StatelessWidget {
   static const String routeName = '/notification_screen';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   centerTitle: false,
-        //   title: const Text(
-        //     "ការផ្តល់ដំណឹង",
-        //     style: TextStyle(
-        //         fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
-        //   ),
-        // ),
-        body: Placeholder());
-    //   SingleChildScrollView(
-    //     child: Padding(
-    //       padding: const EdgeInsets.all(10),
-    //       // child: CustomListTileWidget(),
-    //       child: Center(
-    //         child: ElevatedButton(
-    //           onPressed: () {},
-    //           child: const Text('Show Notification '),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          centerTitle: true,
+          title: Text(
+            "Notification".tr,
+            style: AppText.bodyMedium!.copyWith(
+                fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+          ),
+        ),
+        body: Center(
+          child: Text(
+            "Panding....",
+            style: AppText.bodyMedium!.copyWith(
+                fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+          ),
+        ));
   }
 }

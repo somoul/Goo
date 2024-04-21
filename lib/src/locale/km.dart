@@ -14,7 +14,7 @@ class Khmer {
         'ID': 'លេខសម្គាល់',
         'Property': 'អចលនទ្រព្យ',
         'Problem': 'បញ្ហា',
-        'History': 'លក់',
+        'Sale': 'លក់',
         'Favorite': 'រក្សាទុក',
         'Edit': 'កែប្រែ',
         'Home': 'ទំព័រដើម',
@@ -151,6 +151,10 @@ class Khmer {
         "Confirm": "យល់ព្រម",
         "Please choose rent property as following":
             "ជ្រើសរើសប្រភេទអចលទ្រព្យដាក់ជួលខាងក្រោម",
-        "Lot of customers are waiting!": "អតិថិជនជាច្រើនកំពុងរកចាំ!"
+        "Lot of customers are waiting!": "អតិថិជនជាច្រើនកំពុងរកចាំ!",
+
+        //Sales
+        "Sales": "ការលក់",
+        "Coming soon...": "នឹងមកដល់ក្នុងពេលឆាប់នេះ..."
       };
 }

@@ -48,73 +48,76 @@ class _CustomGridCardState extends State<CustomGridCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-            ),
-            child: Stack(
-              children: [
-                CustomDefaultShimmer(
-                  widthShimmer: double.infinity,
-                  heightShimmer: 140,
-                  padding: const EdgeInsets.all(0),
-                  isShimmer: widget.isLoading,
-                  child: Center(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: ImageBuilder(fit: BoxFit.cover, height: 162)
-                          .network(widget.propertyModel.attachments?[0] ?? ''),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Stack(
+                children: [
+                  CustomDefaultShimmer(
+                    widthShimmer: double.infinity,
+                    heightShimmer: 140,
+                    padding: const EdgeInsets.all(0),
+                    isShimmer: widget.isLoading,
+                    child: Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: ImageBuilder(fit: BoxFit.cover, height: 162)
+                            .network(
+                                widget.propertyModel.attachments?[0] ?? ''),
+                      ),
                     ),
                   ),
-                ),
-                Positioned(
-                    right: 10,
-                    top: 10,
-                    child: CustomDefaultShimmer(
-                      widthShimmer: 20,
-                      heightShimmer: 16,
-                      padding: const EdgeInsets.all(0),
-                      isShimmer: widget.isLoading,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: const Color(0xFFFFFFFF),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.remove_red_eye, size: 14),
-                            const SizedBox(width: 3),
-                            Text(
-                              '${widget.propertyModel.visit}',
-                              style: AppText.bodySmall!.copyWith(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                  Positioned(
+                      right: 10,
+                      top: 10,
+                      child: CustomDefaultShimmer(
+                        widthShimmer: 20,
+                        heightShimmer: 16,
+                        padding: const EdgeInsets.all(0),
+                        isShimmer: widget.isLoading,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color(0xFFFFFFFF),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.remove_red_eye, size: 14),
+                              const SizedBox(width: 3),
+                              Text(
+                                '${widget.propertyModel.visit}',
+                                style: AppText.bodySmall!.copyWith(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    )),
-                Positioned(
-                    left: 10,
-                    bottom: 8,
-                    child: CustomDefaultShimmer(
-                      widthShimmer: 20,
-                      heightShimmer: 16,
-                      padding: const EdgeInsets.all(0),
-                      isShimmer: widget.isLoading,
-                      child: Text(
-                        'ID: ${widget.propertyModel.id}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppText.titleSmall!
-                            .copyWith(fontSize: 15, color: Colors.white70),
-                      ),
-                    ))
-              ],
+                      )),
+                  Positioned(
+                      left: 10,
+                      bottom: 8,
+                      child: CustomDefaultShimmer(
+                        widthShimmer: 20,
+                        heightShimmer: 16,
+                        padding: const EdgeInsets.all(0),
+                        isShimmer: widget.isLoading,
+                        child: Text(
+                          'ID: ${widget.propertyModel.id}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppText.titleSmall!
+                              .copyWith(fontSize: 15, color: Colors.white70),
+                        ),
+                      ))
+                ],
+              ),
             ),
           ),
           Column(

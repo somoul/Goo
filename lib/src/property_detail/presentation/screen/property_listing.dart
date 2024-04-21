@@ -120,8 +120,8 @@ class _AllPropertyState extends State<AllProperty> {
                   ),
                   const Spacer(),
                   Container(
-                    height: 35,
-                    width: 100,
+                    height: 33,
+                    width: 80,
                     margin: const EdgeInsets.only(right: 16),
                     decoration: BoxDecoration(
                         color: Colors.black12.withOpacity(0.04),
@@ -139,11 +139,27 @@ class _AllPropertyState extends State<AllProperty> {
                               }
                             },
                             child: _propCon.isGridProperty.value
-                                ? const Icon(Icons.grid_view)
-                                : const Icon(Icons.splitscreen)),
+                                ? Image.asset(
+                                    "assets/icons/grid_category.png",
+                                    height: 25,
+                                    width: 25,
+                                  )
+                                : Image.asset(
+                                    "assets/icons/no_grid.png",
+                                    height: 25,
+                                    width: 25,
+                                  )
+                            //("assets/icon/arrow_back.svg")///Users/bavsomoul/Documents/Project/Goo-Rent/assets/icons/no_grid.png
+                            //const Icon(Icons.grid_view)
+                            // : const Icon(Icons.splitscreen)
+                            ),
                         const Spacer(),
                         const Spacer(),
-                        const Icon(Icons.format_line_spacing),
+                        Image.asset(
+                          "assets/icons/more.png",
+                          height: 25,
+                          width: 25,
+                        ),
                         const Spacer(),
                       ],
                     ),

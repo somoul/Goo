@@ -12,7 +12,7 @@ class English {
         'ID': 'ID',
         'Property': 'Property',
         'Problem': 'Problem',
-        'History': 'History',
+        'Sale': 'Sale',
         'Favorite': 'Favorite',
         'Edit': 'Edit',
         'Home': 'Home',
@@ -153,5 +153,9 @@ class English {
         "Please choose rent property as following":
             "Please choose rent property as following",
         "Lot of customers are waiting!": "Lot of customers are waiting!",
+
+        //Sales
+        "Sales": "Sales",
+        "Coming soon...": "Coming soon..."
       };
 }

@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
         ),
         BottomNavItem(
           svgPicturePath: 'assets/icons/sales.svg',
-          label: "History".tr,
+          label: "Sale".tr,
         ),
         BottomNavItem(
           svgPicturePath: '',

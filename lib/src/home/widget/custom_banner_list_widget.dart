@@ -103,47 +103,55 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                     ]),
                                 child: Column(
                                   children: [
-                                    Stack(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(15),
-                                            topRight: Radius.circular(15),
-                                          ),
-                                          child: Container(
-                                            height: 160,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(15),
-                                                  topRight:
-                                                      Radius.circular(15)),
+                                    Expanded(
+                                      child: Stack(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(15),
+                                              topRight: Radius.circular(15),
                                             ),
-                                            child: ImageBuilder(
-                                                    fit: BoxFit.cover,
-                                                    width: 270)
-                                                .network(
-                                                    item.attachments?[0] ?? ""),
-                                          ),
-                                        ),
-                                        Positioned(
-                                            left: 10,
-                                            bottom: 8,
-                                            child: CustomDefaultShimmer(
-                                              widthShimmer: 20,
-                                              heightShimmer: 16,
-                                              padding: const EdgeInsets.all(0),
-                                              isShimmer: widget.loading,
-                                              child: Text(
-                                                " item.cname ?? " "",
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: AppText.titleSmall!
-                                                    .copyWith(
-                                                        fontSize: 12,
-                                                        color: Colors.white70),
+                                            child: Container(
+                                              height: 160,
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15)),
                                               ),
-                                            ))
-                                      ],
+                                              child: ImageBuilder(
+                                                      fit: BoxFit.cover,
+                                                      width: 270)
+                                                  .network(
+                                                      item.attachments?[0] ??
+                                                          ""),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              left: 10,
+                                              bottom: 8,
+                                              child: CustomDefaultShimmer(
+                                                widthShimmer: 20,
+                                                heightShimmer: 16,
+                                                padding:
+                                                    const EdgeInsets.all(0),
+                                                isShimmer: widget.loading,
+                                                child: Text(
+                                                  " item.cname ?? " "",
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: AppText.titleSmall!
+                                                      .copyWith(
+                                                          fontSize: 12,
+                                                          color:
+                                                              Colors.white70),
+                                                ),
+                                              ))
+                                        ],
+                                      ),
                                     ),
                                     Column(
                                       crossAxisAlignment:
