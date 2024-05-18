@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goo_rent/constant/app_constant.dart';
 import 'package:goo_rent/constant/app_text.dart';
-import 'package:goo_rent/helper/context_provider.dart';
 import 'package:goo_rent/helper/custom_button.dart';
 import 'package:goo_rent/main_page.dart';
-import 'package:goo_rent/routes/route_name.dart';
 import 'package:goo_rent/src/authentication/sign_in/controller/signin_controller.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/build_country_picker.dart';
 import 'package:goo_rent/src/authentication/sign_up/presentation/widget/country_code_picker/countries.dart';
 import 'package:get/get.dart';
 import 'package:goo_rent/helper/custom_text_field.dart';
 import 'package:goo_rent/src/widgets/shimmer_box.dart';
-import 'package:goo_rent/utils/extension/num.dart';
 import 'package:goo_rent/utils/hide_keybaord.dart';
+
+import '../../../../routes/route_name.dart';
+import '../../forgot_password/controller/forgot_password_controller.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -24,6 +24,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final signinCon = Get.put(SignInController());
+  final newForgotController = Get.put(NewForgotController());
   _init() {
     signinCon.countryCode.value = countryList[35];
   }
@@ -49,22 +50,24 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Obx(
                 () => SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.2),
                       Text("Welcome".tr,
-                          style: AppText.titleLarge!.copyWith(fontSize: 30)),
+                          style: AppText.titleLarge!.copyWith(
+                              fontSize: 34, fontWeight: FontWeight.w700)),
                       const SizedBox(
                         height: 15,
                       ),
                       Text(
                         "Enter phone number and password to login".tr,
-                        style: AppText.titleSmall,
+                        style: AppText.titleSmall!.copyWith(
+                            fontSize: 16.5, fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 30),
                       Row(
                         children: [
                           if (signinCon.countryCode.value.name != '')
@@ -98,15 +101,18 @@ class _SignInScreenState extends State<SignInScreen> {
                           )
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 25),
                       Obx(
                         () => CustomTextField(
                           suffixIcon: IconButton(
                             onPressed: () => signinCon.isShowPass.value =
                                 !signinCon.isShowPass.value,
-                            icon: Icon(signinCon.isShowPass.value
-                                ? Icons.visibility_off
-                                : Icons.visibility),
+                            icon: Icon(
+                              signinCon.isShowPass.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.black26,
+                            ),
                           ),
                           obscureText: signinCon.isShowPass.value,
                           textInputType: TextInputType.visiblePassword,
@@ -118,28 +124,50 @@ class _SignInScreenState extends State<SignInScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 25),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Don\'t have account?'.tr,
-                            style: AppText.bodySmall,
+                            style: AppText.bodySmall!.copyWith(
+                                fontWeight: FontWeight.w400, fontSize: 15),
                           ),
-                          5.gap,
-                          TextButton(
-                              onPressed: () {
-                                Get.offAndToNamed(Routes.signup);
-                              },
-                              child: Text(
-                                'Register'.tr,
-                                style: const TextStyle(
+                          const SizedBox(width: 5),
+                          GestureDetector(
+                            onTap: () {
+                              newForgotController.isCheckRouteOtp.value = false;
+                              Get.offAndToNamed(Routes.signup);
+                            },
+                            child: Text(
+                              'Register'.tr,
+                              style: TextStyle(
                                   fontFamily: 'Kantumruy',
-                                ),
-                              ))
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ),
                         ],
-                      )
+                      ),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            newForgotController.isCheckRouteOtp.value = true;
+                            Get.offAndToNamed(Routes.forloginphone);
+                          },
+                          child: Text(
+                            'Forgot password'.tr,
+                            style: TextStyle(
+                                fontFamily: 'Kantumruy',
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

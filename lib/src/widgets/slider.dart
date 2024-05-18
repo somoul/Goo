@@ -30,7 +30,7 @@ class CustomSlider extends StatefulWidget {
     this.canViewImage = true,
     this.hasSearch = false,
     this.hasIndicator = true,
-    this.aspectRatio = 1.8,
+    this.aspectRatio = 2.2,
   });
 
   @override
@@ -74,8 +74,9 @@ class _CustomSliderState extends State<CustomSlider> {
                                   ]);
                                 }
                               },
-                              child: ImageBuilder(fit: BoxFit.cover)
-                                  .network(item.value),
+                              child: ImageBuilder(
+                                fit: BoxFit.cover,
+                              ).network(item.value),
                             ),
                           ),
                         )
@@ -87,7 +88,7 @@ class _CustomSliderState extends State<CustomSlider> {
                       enlargeFactor: 0,
                       enlargeCenterPage: true,
                       viewportFraction: 1,
-                      aspectRatio: 1.9,
+                      aspectRatio: 2.2,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,
                       onPageChanged: (index, reason) {
                         setState(() {

@@ -74,11 +74,8 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     // var pos = MapUtils.getCurrentLocation();
+    final width = MediaQuery.of(context).size.width * 0.85;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Map'.tr),
-      ),
       body: Stack(
         children: [
           Column(
@@ -164,6 +161,76 @@ class _MapScreenState extends State<MapScreen> {
             ],
           ),
           // if (_displayAddress && _mapCon.currentAddress.value != "")
+
+          Positioned(
+              top: 58,
+              right: 15,
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        navigator?.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                        size: 20,
+                      )),
+                  SizedBox(
+                    height: 50,
+                    width: width,
+                    child: CupertinoSearchTextField(
+                      keyboardType: TextInputType.text,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(5.5, 8, 5.5, 8),
+                      prefixInsets:
+                          const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 5),
+                      suffixInsets:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 5, 5),
+                      itemSize: 0,
+                      placeholder: "Find your location...".tr,
+                      placeholderStyle: AppText.bodyLarge!.copyWith(
+                          color: Colors.black26,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 4),
+                        child: SvgPicture.asset(
+                          'assets/icons/ic_search.svg',
+                          width: 23,
+                          height: 23,
+                        ),
+                      ),
+                      style: AppText.bodyLarge!.copyWith(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
+                      suffixIcon: const Icon(
+                        null,
+                        size: 0,
+                      ),
+                      onChanged: (String value) {
+                        // _searchTypeRentController.typeSearchRent.value =
+                        //     value;
+                        // _searchTypeRentController.onSearchTypeRen();
+                      },
+                      decoration: const BoxDecoration(
+                        image: null,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [
+                            Colors.white,
+                            Colors.white,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+
           Positioned(
             left: 15,
             right: 15,

@@ -203,13 +203,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: 'Problem'.tr,
                     iconAsset: 'assets/icons/chating.png',
                   ),
-                  CustomItemButton(
-                    onTap: () {
-                      // Get.to(() => const ProblemPage());
-                    },
-                    title: 'History'.tr,
-                    iconAsset: 'assets/icons/mybookmak.png',
-                  ),
+                  // CustomItemButton(
+                  //   onTap: () {
+                  //     // Get.to(() => const ProblemPage());
+                  //   },
+                  //   title: 'History'.tr,
+                  //   iconAsset: 'assets/icons/mybookmak.png',
+                  // ),
                   CustomItemButton(
                     onTap: () {
                       Get.to(() => const FavoriteListPage());

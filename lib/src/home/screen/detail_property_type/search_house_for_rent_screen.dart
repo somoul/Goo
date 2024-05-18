@@ -144,7 +144,7 @@ class _SearchRentScreenState extends State<SearchRentScreen> {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         Expanded(
-                                          child: Text("Search".tr,
+                                          child: Text("Quick Search".tr,
                                               textAlign: TextAlign.end,
                                               style:
                                                   AppText.bodySmall!.copyWith(

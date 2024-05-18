@@ -48,6 +48,7 @@ class Khmer {
         'Choose Address': 'ជ្រើសរើសទីតាំង',
         'Search Rent Property': 'ស្វែងរកជួលអចលនទ្រព្យ',
         'Choose Property Type': 'ជ្រើសរើសប្រភេទអចលនទ្រព្យ',
+        "Find your location...": "ស្វែងរកទីតាំងអ្នក...",
 
         //search propery rent
         'Looking to rent a property for rent': 'ស្វែងរកជួលចលនទ្រព្យសម្រាប់ជួល',
@@ -112,6 +113,7 @@ class Khmer {
         "Login": "ចូលគណនី",
         "Sign Up": "បង្កើតគណនី",
         "Password": "លេខសម្ងាត់",
+        "Quick Search": "ស្វែងរករហ័ស",
         // "Sun": "អាទិត្យ",
         // "Mon": "ចន្ទ",
         // "Tue": "អង្គារ៍",
@@ -152,9 +154,24 @@ class Khmer {
         "Please choose rent property as following":
             "ជ្រើសរើសប្រភេទអចលទ្រព្យដាក់ជួលខាងក្រោម",
         "Lot of customers are waiting!": "អតិថិជនជាច្រើនកំពុងរកចាំ!",
+        "Forgot password": "​ភ្លេចលេខសម្ងាត់",
+        "Login account": "ចូលគណនី",
+        "Please enter your phone number!": "សូមបញ្ជូលលេខទូរស័ព្ទរបស់អ្នក!",
+        "Please create your password!": "សូមបង្កើតលេខសម្ងាត់របស់អ្នក!",
+        "New password *": "លេខសម្ងាត់ថ្មី *",
+        "Confirm new password *": "បញ្ជាក់លេខសម្ងាត់ថ្មី *",
+        "Welcome!": "សូមស្វាគមន៍!",
 
         //Sales
         "Sales": "ការលក់",
-        "Coming soon...": "នឹងមកដល់ក្នុងពេលឆាប់នេះ..."
+        "Coming soon...": "នឹងមកដល់ក្នុងពេលឆាប់នេះ...",
+
+        //=================== home rent ========
+        "Request to rental advertise": "ស្នើសុំផ្សព្វផ្សាយជួល",
+        "Select the type of property for rent below":
+            "ជ្រើសរើសប្រភេទអចលទ្រព្យដាក់ជួលខាងក្រោម",
+        "Many customers are waiting!": "អតិថិជនជាច្រើនកំពុងរកចាំ!",
+        "For Accommodation": "សម្រាប់ស្នាក់នៅ",
+        "For Business": "សម្រាប់អាជីវកម្ម"
       };
 }

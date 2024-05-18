@@ -30,8 +30,10 @@ class CustomCategoryBlock extends StatelessWidget {
                 padding: 15.px.pt(5),
                 child: Text(
                   "Service".tr,
-                  style: AppText.titleSmall!
-                      .copyWith(color: AppConstant.kPrimaryColor, fontSize: 19),
+                  style: AppText.titleSmall!.copyWith(
+                      color: AppConstant.kPrimaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
         Container(
@@ -101,7 +103,7 @@ _categoryItem({required String icon, required String title}) {
     margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       children: [
-        ImageBuilder(width: 45, height: 45).network(icon),
+        ImageBuilder(width: 49, height: 46).network(icon),
         Padding(
           padding: const EdgeInsets.only(top: 1),
           child: FittedBox(
@@ -110,7 +112,7 @@ _categoryItem({required String icon, required String title}) {
               title,
               style: AppText.titleSmall!.copyWith(
                   color: Colors.black.withOpacity(0.7),
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.start,
             ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:goo_rent/constant/app_text.dart';
-import 'package:goo_rent/src/home/data/slide_categorie_model/slide_categorie_model.dart';
 
 mixin SelectCategoryMixin {
   /// _____________Select Category________________________
-  Widget buildSelectItem(SlideCategorieModel categModel) {
+  Widget buildSelectItem(String? icon, String? name) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
       decoration: BoxDecoration(
@@ -19,13 +18,14 @@ mixin SelectCategoryMixin {
       child: Column(
         children: [
           Image.network(
-            categModel.icon ?? '',
+            icon ?? '',
             width: 45,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 6),
           Text(
-            '${categModel.name}',
-            style: AppText.bodySmall,
+            name ?? "",
+            style: AppText.bodySmall!
+                .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           )

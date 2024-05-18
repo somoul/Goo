@@ -49,6 +49,7 @@ class English {
         'Choose Address': 'Choose Address',
         'Search Rent Property': 'Search Rent Property',
         'Choose Property Type': 'Choose Property Type',
+        "Find your location...": "Find your location...",
 
         //search property rent
         'Looking to rent a property for rent':
@@ -115,6 +116,7 @@ class English {
         "Sun": "Sun",
         "Category": "Category",
         "Select rental type": "Select rental type",
+        "Quick Search": "Quick Search",
         // "Mon": "Mon",
         // "Tue": "Tue",
         // "Wed": "Wed",
@@ -153,9 +155,23 @@ class English {
         "Please choose rent property as following":
             "Please choose rent property as following",
         "Lot of customers are waiting!": "Lot of customers are waiting!",
+        "Forgot password": "Forgot password",
+        "Login account": "Login account",
+        "Please enter your phone number!": "Please enter your phone number!",
+        "Please create your password!": "Please create your password!",
+        "New password *": "New password *",
+        "Confirm new password *": "Confirm new password *",
+        "Welcome!": "Welcome!",
 
         //Sales
         "Sales": "Sales",
-        "Coming soon...": "Coming soon..."
+        "Coming soon...": "Coming soon...",
+        //=============== home rent ========
+        "Request to rental advertise": "Request to rental advertise",
+        "Select the type of property for rent below":
+            "Select the type of property for rent below",
+        "Many customers are waiting!": "Many customers are waiting!",
+        "For Accommodation": "For Accommodation",
+        "For Business": "For Business"
       };
 }

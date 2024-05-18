@@ -10,6 +10,9 @@ import 'package:goo_rent/utils/hide_keybaord.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../../../routes/route_name.dart';
+import '../../../forgot_password/controller/forgot_password_controller.dart';
+
 class VerifyOTPScreen extends StatefulWidget {
   const VerifyOTPScreen({Key? key}) : super(key: key);
 
@@ -18,6 +21,7 @@ class VerifyOTPScreen extends StatefulWidget {
 }
 
 class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+  final newForgotController = Get.put(NewForgotController());
   // static const String routeName = '/verification_otp_screen';
   final otpCon = Get.put(OTPController());
   final signUpController = Get.put(SignUpController());
@@ -87,8 +91,10 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                                 // errorAnimationController: errorController,
                                 // controller: textEditingController,
                                 onCompleted: (value) {},
-                                onChanged: (value) =>
-                                    signUpController.otpCode.value = value,
+                                onChanged: (value) {
+                                  _onOtpCode(value);
+                                  // signUpController.otpCode.value = value;
+                                },
                                 beforeTextPaste: (text) {
                                   //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                                   //but you can show anything you want here, like your pop up saying wrong paste format or etc
@@ -99,53 +105,74 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                             ),
                           ),
                         ),
-                        10.gap,
+                        50.gap,
+                        otpCon.index != 0
+                            ? Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text("Duration in "),
+                                    Obx(
+                                      () => Text(
+                                        "00:${otpCon.index < 10 ? "0${otpCon.index}" : otpCon.index}",
+                                        style: AppText.bodyMedium!.copyWith(
+                                            // color: AppConstant.kPrimaryColor,
+                                            ),
+                                      ),
+                                    ),
+                                    // Text("Duration in "),
+                                    // Consumer<OTPCountdownProvider>(
+                                    //   builder: (context, countdown, _) {
+                                    //     return Text(
+                                    //         "00:${countdown.index < 10 ? "0${countdown.index}" : countdown.index}");
+                                    //   },
+                                    // )
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                        Center(
+                            child: Text(
+                          "Didn't get code?",
+                          style: TextStyle(color: Colors.blue.shade300),
+                        )),
                         Center(
                             child: TextButton(
                                 onPressed: () {
                                   _onRequestOTP();
                                 },
-                                child: Text(
-                                  "Didn't get code?",
-                                  style: TextStyle(color: Colors.blue.shade300),
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Text(
+                                    "Re-send code",
+                                    style:
+                                        TextStyle(color: Colors.blue.shade300),
+                                  ),
                                 ))),
-                        Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Duration in "),
-                              Obx(
-                                () => Text(
-                                  "00:${otpCon.index < 10 ? "0${otpCon.index}" : otpCon.index}",
-                                  style: AppText.bodyMedium!.copyWith(
-                                      // color: AppConstant.kPrimaryColor,
-                                      ),
-                                ),
-                              ),
-                              // Text("Duration in "),
-                              // Consumer<OTPCountdownProvider>(
-                              //   builder: (context, countdown, _) {
-                              //     return Text(
-                              //         "00:${countdown.index < 10 ? "0${countdown.index}" : countdown.index}");
-                              //   },
-                              // )
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
                 ),
-                Obx(
-                  () => SafeArea(
-                    top: false,
-                    child: CustomButton(
+                // Obx(
+                //   () =>
+                SafeArea(
+                  top: false,
+                  child: CustomButton(
                       title: 'Confirm',
-                      onPressed: signUpController.otpCode.value.length < 6
-                          ? null
-                          : () async => await signUpController.onRegister(),
-                    ),
-                  ),
+                      onPressed: () {
+                        Get.offAndToNamed(Routes.newforgotpassword);
+                      }
+                      //  signUpController.otpCode.value.length < 6
+                      //     ? null
+                      //     : () async {
+                      //         if (newForgotController.isCheckRouteOtp.value) {
+                      //           Get.offAndToNamed(Routes.newforgotpassword);
+                      //         } else {
+                      //           signUpController.onRegister();
+                      //         }
+                      //       }
+                      ),
+                  // ),
                 ),
               ],
             );
@@ -155,11 +182,33 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     );
   }
 
+  _onConfirm() {
+    // if (newForgotController.isCheckRouteOtp.value) {
+    //   Get.offAndToNamed(Routes.newforgotpassword);
+    // } else {
+    //   signUpController.onRegister();
+    // }
+  }
+
   _onRequestOTP() {
-    signUpController.onRequestOTP(
-      onCounting: () {
-        otpCon.changeIndex();
-      },
-    );
+    newForgotController.isCheckRouteOtp.value
+        ? newForgotController.onSendOtp(
+            onCounting: () {
+              otpCon.changeIndex();
+            },
+          )
+        : signUpController.onRequestOTP(
+            onCounting: () {
+              otpCon.changeIndex();
+            },
+          );
+  }
+
+  _onOtpCode(String otpCode) {
+    if (newForgotController.isCheckRouteOtp.value) {
+      newForgotController.otpCode.value = otpCode;
+    } else {
+      signUpController.otpCode.value = otpCode;
+    }
   }
 }

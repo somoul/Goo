@@ -7,4 +7,6 @@ abstract class Routes {
   static const createPassword = '/create-password';
   static const createName = '/createName';
   static const home = '/home';
+  static const forloginphone = '/login-phone';
+  static const newforgotpassword = '/login-phone/newforgot-password';
 }

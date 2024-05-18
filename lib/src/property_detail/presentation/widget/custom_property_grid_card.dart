@@ -112,8 +112,10 @@ class _CustomGridCardState extends State<CustomGridCard> {
                           'ID: ${widget.propertyModel.id}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: AppText.titleSmall!
-                              .copyWith(fontSize: 15, color: Colors.white70),
+                          style: AppText.titleSmall!.copyWith(
+                              fontSize: 14.5,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
                         ),
                       ))
                 ],
@@ -133,7 +135,8 @@ class _CustomGridCardState extends State<CustomGridCard> {
                   '${widget.propertyModel.title}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppText.titleSmall!.copyWith(fontSize: 16),
+                  style: AppText.titleSmall!
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
                 ).px(14),
               ),
               const SizedBox(height: 6),
@@ -163,11 +166,17 @@ class _CustomGridCardState extends State<CustomGridCard> {
                     Text(
                       '\$${widget.propertyModel.price}/',
                       style: AppText.titleSmall!.copyWith(
-                          fontSize: 15.5, color: AppConstant.kPrimaryColor),
+                          fontSize: 16.5,
+                          color: AppConstant.kPrimaryColor,
+                          fontWeight: FontWeight.w500),
                     ),
-                    Text(
-                      'Month'.tr,
-                      style: AppText.titleSmall!.copyWith(fontSize: 15.5),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        'month'.tr,
+                        style: AppText.titleSmall!.copyWith(
+                            fontSize: 12, fontWeight: FontWeight.w600),
+                      ),
                     )
                   ],
                 ).px(14),
@@ -194,9 +203,9 @@ class _CustomGridCardState extends State<CustomGridCard> {
                           'Category'.tr,
                           maxLines: 1,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 15.5,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ),
@@ -212,9 +221,9 @@ class _CustomGridCardState extends State<CustomGridCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 15.5,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ),
@@ -338,52 +347,25 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                         ),
                       ),
                     )),
-                // Positioned(
-                //   left: 6.5,
-                //   bottom: 6,
-                //   child: CustomDefaultShimmer(
-                //     widthShimmer: 50,
-                //     heightShimmer: 16,
-                //     padding: const EdgeInsets.all(0),
-                //     isShimmer: isLoading,
-                //     child: Text(
-                //       'ID: ${propertyModel.id}',
-                //       maxLines: 1,
-                //       overflow: TextOverflow.ellipsis,
-                //       style: AppText.titleSmall!
-                //           .copyWith(fontSize: 12, color: Colors.white70),
-                //     ),
-                //   ),
-                // ),
-                // Positioned(
-                //     left: 6.5,
-                //     top: 6.5,
-                //     child: CustomDefaultShimmer(
-                //       widthShimmer: 50,
-                //       heightShimmer: 20,
-                //       padding: const EdgeInsets.all(0),
-                //       isShimmer: isLoading,
-                //       child: Container(
-                //         padding: const EdgeInsets.symmetric(horizontal: 3),
-                //         decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(10),
-                //           color: const Color(0xFFFFFFFF),
-                //         ),
-                //         child: Row(
-                //           children: [
-                //             const Icon(Icons.remove_red_eye, size: 14),
-                //             const SizedBox(width: 3),
-                //             Text(
-                //               '${propertyModel.visit}',
-                //               style: AppText.bodySmall!.copyWith(
-                //                 fontSize: 12,
-                //                 fontWeight: FontWeight.w500,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ))
+                Positioned(
+                  left: 6.5,
+                  bottom: 4,
+                  child: CustomDefaultShimmer(
+                    widthShimmer: 50,
+                    heightShimmer: 16,
+                    padding: const EdgeInsets.all(0),
+                    isShimmer: widget.isLoading,
+                    child: Text(
+                      'ID: ${widget.propertyModel.id}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppText.titleSmall!.copyWith(
+                          fontSize: 14.5,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
               ],
             ),
           ).p(12),
@@ -405,7 +387,10 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: AppText.titleSmall!.copyWith(fontSize: 16),
+                    style: AppText.titleSmall!.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
                 const Spacer(),
@@ -419,17 +404,23 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                       child: Text(
                         '\$${widget.propertyModel.price}/',
                         style: AppText.titleSmall!.copyWith(
-                            fontSize: 15.5, color: AppConstant.kPrimaryColor),
+                            fontSize: 16.5,
+                            color: AppConstant.kPrimaryColor,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
-                    CustomDefaultShimmer(
-                      widthShimmer: 30,
-                      heightShimmer: 16,
-                      padding: const EdgeInsets.all(0),
-                      isShimmer: widget.isLoading,
-                      child: Text(
-                        'Month'.tr,
-                        style: AppText.titleSmall!.copyWith(fontSize: 15.5),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: CustomDefaultShimmer(
+                        widthShimmer: 30,
+                        heightShimmer: 16,
+                        padding: const EdgeInsets.all(0),
+                        isShimmer: widget.isLoading,
+                        child: Text(
+                          'month'.tr,
+                          style: AppText.titleSmall!.copyWith(
+                              fontSize: 12, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     const Spacer(),
@@ -480,13 +471,13 @@ class _PropertyCartOneState extends State<PropertyCartOne> {
                         padding: const EdgeInsets.all(0),
                         isShimmer: widget.isLoading,
                         child: Text(
-                          "${'Category'.tr}:${widget.propertyModel.cname} ",
+                          "${'Category'.tr}: ${widget.propertyModel.cname} ",
                           maxLines: 1,
                           overflow: TextOverflow.clip,
                           style: AppText.titleSmall!.copyWith(
-                              fontSize: 15.5,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ),

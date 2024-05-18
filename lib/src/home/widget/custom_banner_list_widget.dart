@@ -45,11 +45,13 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
               ? const ShimmerBox(height: 14)
               : Text('Popular'.tr,
                   style: AppText.titleSmall!.copyWith(
-                      color: AppConstant.kPrimaryColor, fontSize: 19)),
+                      color: AppConstant.kPrimaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500)),
         ),
         const SizedBox(height: 18),
         SizedBox(
-          height: widget.popularList.isEmpty && !widget.loading ? 70 : 285,
+          height: widget.popularList.isEmpty && !widget.loading ? 70 : 294,
           width: double.infinity,
           child: widget.loading
               ? ListView(
@@ -86,7 +88,7 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                           child: Stack(
                             children: [
                               Container(
-                                width: 260,
+                                width: 230,
                                 height: 285,
                                 margin: const EdgeInsets.only(
                                   right: 5,
@@ -186,7 +188,10 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                                         .copyWith(
                                                             color: const Color(
                                                                 0xFF21A6F8),
-                                                            fontSize: 17)),
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
                                               ),
                                               Text(
                                                 "\$${item.price}/",
@@ -194,14 +199,18 @@ class _CustomPopularBlockState extends State<CustomPopularBlock> {
                                                     .copyWith(
                                                         color: const Color(
                                                             0xFF21A6F8),
-                                                        fontSize: 17),
+                                                        fontSize: 19.5,
+                                                        fontWeight:
+                                                            FontWeight.w600),
                                               ),
                                               Text(
                                                 "Month".tr,
                                                 style: AppText.bodySmall!
                                                     .copyWith(
                                                         color: Colors.black,
-                                                        fontSize: 17),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 15),
                                               ),
                                             ],
                                           ),

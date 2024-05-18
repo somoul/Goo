@@ -7,6 +7,9 @@ import 'package:goo_rent/src/authentication/sign_up/presentation/screen/start_ac
 import 'package:goo_rent/src/authentication/sign_up/presentation/screen/verification_otp_screen.dart';
 import 'package:goo_rent/src/splash/presentation/screen/splash_screen.dart';
 
+import '../src/authentication/forgot_password/presentation/login_phone_screen.dart';
+import '../src/authentication/forgot_password/presentation/new_for_got_password_screen.dart';
+
 abstract class AppPages {
   static final pages = [
     GetPage(
@@ -29,6 +32,21 @@ abstract class AppPages {
       name: Routes.verifyOtp,
       page: () => const VerifyOTPScreen(),
     ),
+    GetPage(
+        name: Routes.forloginphone,
+        page: () => const LoginPhoneScreen(),
+        children: [
+          GetPage(
+            name: Routes.verifyOtp,
+            page: () => const VerifyOTPScreen(),
+          ),
+          GetPage(
+            name: Routes.newforgotpassword,
+            page: () => const NewForgotPasswordScreen(),
+          ),
+        ]),
+
+    //NewForgotPasswordScreen
     // GetPage(
     //   name: Routes.createName,
     //   page: () => CreateNameScreen(),
